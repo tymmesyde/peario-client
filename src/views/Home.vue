@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div class="inner">
-      <img class="logo" src="../assets/logo.svg" alt="">
+      <img class="logo" src="../assets/img/logo.svg" alt="">
 
       <div class="searchbar">
         <ion-icon name="search-outline"></ion-icon>
