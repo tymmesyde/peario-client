@@ -5,6 +5,16 @@
   src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('assets/fonts/Montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url('assets/fonts/Montserrat/Montserrat-SemiBold.ttf');
+}
+
 ::-webkit-scrollbar {
   width: 0.75vh;
 }
@@ -61,9 +71,8 @@ input[type=text] {
   display: block;
   height: 5vh;
   width: 100%;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat-Medium';
   font-size: 2vh;
-  font-weight: 600;
   color: #dfdfdf;
   // text-align: center;
   border: 0.1vh solid #dfdfdf;
@@ -83,14 +92,14 @@ button {
   border: 0.1vh solid $text-color;
   height: 5vh;
   line-height: 2vh;
-  font-family: 'Montserrat';
-  font-weight: 500;
+  font-family: 'Montserrat-Medium';
   font-size: 2vh;
   color: $text-color;
   padding: 0 2.5vh;
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     background-color: $text-color;
@@ -159,14 +168,4 @@ ion-icon {
 .fade-leave-active {
   transition: opacity 0.1s ease-in;
   opacity: 0;
-}
-
-@media only screen and (max-width: 1125px) {
-
-  .container {
-    align-items: flex-start;
-    justify-content: left;
-    padding: 5vh;
-  }
-
 }
