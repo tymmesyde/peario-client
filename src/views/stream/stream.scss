@@ -1,0 +1,125 @@
+$stream-icon-size: 7vh;
+
+#stream {
+    .meta,
+    .streams {
+        display: inline-grid;
+        vertical-align: top;
+    }
+
+    .meta {
+        font-family: 'Montserrat';
+        width: 74vh;
+        grid-template-columns: auto auto;
+        grid-column-gap: 3.5vh;
+        grid-row-gap: 0.75vh;
+        margin-bottom: 4vh;
+
+        .poster {
+            grid-row-start: 1;
+            grid-row-end: 5;
+            user-select: none;
+        }
+
+        .title {
+            font-size: 6vh;
+            font-weight: 500;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-left: -0.5vh;
+        }
+
+        .year {
+            font-size: 2vh;
+        }
+
+        .description {
+            opacity: 0.5;
+        }
+    }
+
+    .streams {
+        margin-left: 3vh;
+
+        h2 {
+            margin-bottom: 1vh;
+        }
+
+        ul {
+            width: 38vh;
+            height: 50vh;
+            padding-right: 1vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+            .no-streams {
+                text-align: center;
+            }
+
+            .stream {
+                height: 10vh;
+                display: grid;
+                grid-template-columns: $stream-icon-size 9vh 14vh;
+                column-gap: 1.5vh;
+                padding: 1.5vh;
+                border-radius: 1vh;
+                overflow: hidden;
+                user-select: none;
+                cursor: pointer;
+                transition: all 0.1s ease-in-out;
+
+                .icon {
+                    display: grid;
+                    align-content: center;
+                    height: $stream-icon-size;
+                    width: $stream-icon-size;
+                    border-radius: 2vh;
+                    overflow: hidden;
+                    background-color: rgba(white, 0.1);
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .name {
+                    font-family: 'Montserrat';
+                    font-weight: 500;
+                    font-size: 1.75vh;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    align-self: center;
+                }
+
+                .title {
+                    white-space: pre;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    opacity: 0.5;
+                }
+
+                &:hover {
+                    background-color: rgba(grey, 0.1);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 90vh) {
+
+
+    .meta {
+        width: auto !important;
+
+        .poster {
+            display: none;
+        }
+    }
+
+    .streams {
+        margin: auto !important;
+    }
+
+}

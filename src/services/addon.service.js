@@ -1,0 +1,24 @@
+import AddonClient from "stremio-addon-client";
+
+const AddonService = {
+
+    createStreamCollection(addons) {
+        const col = AddonClient.AddonCollection();
+        col.load(addons);
+        return col.getAddons().filter(({ manifest }) => {
+            const { resources, types } = manifest;
+            return resources.includes('stream') && (types.includes('movie') || types.includes('series'));
+        });
+    },
+
+    async getStreams(collection, type, id) {
+        return (await Promise.all(collection.map(async addon => {
+            const { streams } = await addon.get('stream', type, id);
+            const { icon, logo } = addon.manifest;
+            return streams.map(s => { s.icon = icon || logo; return s; });
+        }))).flat();
+    }
+
+};
+
+export default AddonService;

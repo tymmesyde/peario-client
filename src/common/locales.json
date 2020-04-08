@@ -1,0 +1,26 @@
+{
+    "en": {
+        "errors": {
+            "stremio": {
+                "title": "Stremio is not running",
+                "message": "Please, open Stremio so Peario can operate."
+            },
+            "room": {
+                "title": "This room does not exists",
+                "message": "Be sure that the room is still active."
+            }
+        }
+    },
+    "fr": {
+        "errors": {
+            "stremio": {
+                "title": "Stremio n'est pas actif",
+                "message": "Ouvrez Stremio pour que Peario puisse opérer."
+            },
+            "room": {
+                "title": "Cette salle n'existe pas",
+                "message": "Soyez sûr que la salle est toujours active."
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+@import './variables.scss';
+
+::-webkit-scrollbar {
+  width: 0.75vh;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(white, 0.35);
+  border: 0.25vh solid $background-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $text-color;
+  border-radius: 1vh;
+}
+
+::selection {
+  background-color: rgba(white, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background-color: $background-color;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+h2 {
+  font-family: 'Montserrat';
+  margin: 0;
+  font-size: 3.5vh;
+  font-weight: 700;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+p {
+  margin: 0;
+  font-size: 1.75vh;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+input[type=text] {
+  display: block;
+  height: 5vh;
+  width: 100%;
+  font-family: 'Montserrat';
+  font-size: 2vh;
+  font-weight: 600;
+  color: #dfdfdf;
+  // text-align: center;
+  border: 0.1vh solid #dfdfdf;
+  background: transparent;
+  outline: none;
+  opacity: 0.8;
+  padding-left: 5.5vh;
+  padding-right: 2vh;
+
+  &:hover, &:focus {
+    opacity: 1;
+  }
+}
+
+button {
+  background: transparent;
+  border: 0.1vh solid $text-color;
+  height: 5vh;
+  line-height: 2vh;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 2vh;
+  color: $text-color;
+  padding: 0 2.5vh;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $text-color;
+    color: $background-color;
+  }
+
+  &:active {
+    border-color: $background-color;
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: $footer-height;
+  width: 100%;
+  text-align: center;
+}
+
+ion-icon {
+  vertical-align: -0.35vh;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: $header-height;
+}
+
+.flip {
+  transform: rotate(180deg);
+}
+
+.danger {
+  color: #c72b2b;
+}
+
+.success {
+  color: #64c72b;
+}
+
+.spin {
+  animation: spinning 1s ease-in-out infinite;
+}
+
+@keyframes spinning {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity 0.1s ease-in;
+}
+
+.fade-leave-active {
+  transition: opacity 0.1s ease-in;
+  opacity: 0;
+}
+
+@media only screen and (max-width: 1125px) {
+
+  .container {
+    align-items: flex-start;
+    justify-content: left;
+    padding: 5vh;
+  }
+
+}

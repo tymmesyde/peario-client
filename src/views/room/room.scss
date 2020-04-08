@@ -1,0 +1,45 @@
+$background-color: #141414;
+
+#room {
+    height: 100%;
+    background-color: black;
+    user-select: none;
+
+    .error {
+        height: 100%;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .ion {
+            font-size: 15vh;
+        }
+    }
+
+    .users {
+        z-index: 99;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 2.5vh;
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+        transition-delay: 0.3s;
+
+        &.show {
+            opacity: 1;
+        }
+
+        ul {
+            margin-top: 1vh;
+
+            li {
+                display: grid;
+                grid-template-columns: 3vh auto;
+                padding-bottom: 1vh;
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    }
+}
