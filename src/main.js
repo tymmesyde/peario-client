@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRx from 'vue-rx';
 import VueNativeSock from 'vue-native-websocket';
+import VueMeta from 'vue-meta'
 import VueI18n from 'vue-i18n';
 import App from './App.vue';
 import router from './router';
@@ -14,6 +15,9 @@ Vue.use(VueNativeSock, WS_SERVER, {
   reconnection: true
 });
 Vue.use(VueI18n);
+Vue.use(VueMeta, {
+  refreshOnceOnNavigation: true
+});
 
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = [/^ion-/];

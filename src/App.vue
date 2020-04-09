@@ -14,9 +14,13 @@
 import Error from "@/components/Error.vue";
 import WebSocketService from "@/services/ws.service";
 import StremioService from "@/services/stremio.service";
+import { APP_TITLE } from "@/common/config";
 
 export default {
   name: 'App',
+  metaInfo: {
+    titleTemplate: APP_TITLE
+  },
   components: {
     Error
   },
