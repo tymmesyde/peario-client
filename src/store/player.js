@@ -38,7 +38,7 @@ export default {
             context.commit('updatePlayer', { hide });
         },
         updateBuffering(context, buffering) {
-            context.commit('updateBuffering', { buffering });
+            context.commit('updatePlayer', { buffering });
         }
     }
 };
