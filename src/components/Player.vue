@@ -80,6 +80,7 @@ export default {
             
             this.disptach();
             this.$emit('paused');
+            this.$forceUpdate();
         },
         toggleAutoSync() {
             this.autoSync = !this.autoSync;
