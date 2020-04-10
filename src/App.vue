@@ -3,7 +3,7 @@
     <Error type="stremio" v-if="!stremioRunning"></Error>
 
     <transition name="fade">
-      <router-view v-if="stremioRunning"></router-view>
+      <router-view v-if="stremioRunning && ready"></router-view>
     </transition>
 
     <footer></footer>
@@ -26,14 +26,13 @@ export default {
   },
   data() {
     return {
-      stremioRunning: true,
+      ready: false,
+      stremioRunning: true
     }
   },
   mounted() {
     WebSocketService.init(this.$socket, this.$options.sockets);
-    // WebSocketService.events.on('client.token', payload => {
-    //   console.log(payload);
-    // });
+    WebSocketService.events.on('ready', () => this.ready = true);
 
     const isRunningInterval = setInterval(async () => {
       this.stremioRunning = await StremioService.isServerOpen();
