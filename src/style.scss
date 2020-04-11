@@ -87,6 +87,53 @@ input[type=text] {
   }
 }
 
+input[type=range] {
+  appearance: none;
+  height: 0.3rem;
+  background: transparent;
+  outline: none;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 1vh;
+  transition: height 0.1s ease-in-out;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 0;
+    box-shadow: -100rem 0 0 100rem white;
+  }
+
+  &::-moz-range-thumb {
+    appearance: none;
+    width: 0;
+    box-shadow: -100rem 0 0 100rem white;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 0.3rem;
+    background-color: rgba(white, 0.35);
+    transition: height 0.1s ease-in-out;
+  }
+
+  &::-moz-range-track {
+    height: 0.3rem;
+    background-color: rgba(white, 0.35);
+    transition: height 0.1s ease-in-out;
+  }
+
+  &:hover {
+    height: 0.5rem;
+
+    &::-webkit-slider-runnable-track {
+      height: 0.5rem;
+    }
+
+    &::-moz-range-track {
+      height: 0.5rem;
+    }
+  }
+}
+
 button {
   background: transparent;
   border: 0.1vh solid $text-color;

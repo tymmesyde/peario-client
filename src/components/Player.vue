@@ -313,31 +313,6 @@ export default {
             .fullscreen {
                 justify-self: right;
             }
-
-            input[type=range] {
-                -webkit-appearance: none;
-                background: transparent;
-                outline: none;
-                overflow: hidden;
-                margin: 0;
-                border-radius: 1vh;
-
-                &::-webkit-slider-thumb {
-                    -webkit-appearance: none;
-                    width: 0;
-                    box-shadow: -100rem 0 0 100rem white;
-                }
-
-                &::-webkit-slider-runnable-track {
-                    height: 0.3rem;
-                    background-color: rgba(white, 0.35);
-                    transition: height 0.1s ease-in-out;
-                }
-
-                &:hover::-webkit-slider-runnable-track {
-                    height: 0.5rem;
-                }
-            }
         }
     }
 </style>
