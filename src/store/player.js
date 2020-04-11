@@ -39,6 +39,9 @@ export default {
         },
         updateBuffering(context, buffering) {
             context.commit('updatePlayer', { buffering });
+        },
+        updateLockState(context, locked) {
+            context.commit('updatePlayer', { locked });
         }
     }
 };

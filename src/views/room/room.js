@@ -39,7 +39,7 @@ export default {
 
             this.users = users;
 
-            if (this.player.autoSync && this.player.video) {
+            if (this.player.autoSync && this.player.video && !this.player.locked) {
                 const { paused, buffering, time } = player;
 
                 const unsync = time - this.player.video.currentTime;
@@ -47,10 +47,8 @@ export default {
                     this.player.video.currentTime = time;
                 }
 
-                if (!this.player.locked) {
-                    paused ? this.player.video.pause() : this.player.video.play();
-                    this.player.buffering = buffering;
-                }
+                paused ? this.player.video.pause() : this.player.video.play();
+                this.player.buffering = buffering;
             }
 
             this.$forceUpdate();

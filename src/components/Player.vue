@@ -132,6 +132,7 @@ export default {
             this.$store.dispatch('updateHideState', this.hide);
             this.$store.dispatch('updateAutoSync', this.autoSync);
             this.$store.dispatch('updateBuffering', this.buffering);
+            this.$store.dispatch('updateLockState', this.locked);
         }
     },
     mounted() {
