@@ -9,6 +9,12 @@
                 "title": "This room does not exists",
                 "message": "Be sure that the room is still active."
             }
+        },
+        "loading": {
+            "room": {
+                "title": "Loading the room",
+                "message": "It can take some times."
+            }
         }
     },
     "fr": {
@@ -20,6 +26,12 @@
             "room": {
                 "title": "Cette salle n'existe pas",
                 "message": "Soyez sûr que la salle est toujours active."
+            }
+        },
+        "loading": {
+            "room": {
+                "title": "Chargement de la salle",
+                "message": "Cela peut prendre un peu de temps."
             }
         }
     }

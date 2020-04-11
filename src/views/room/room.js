@@ -1,4 +1,5 @@
 import Header from "@/components/Header.vue";
+import Loading from "@/components/Loading.vue";
 import Error from "@/components/Error.vue";
 import Player from "@/components/Player.vue";
 import StremioService from "@/services/stremio.service";
@@ -8,6 +9,7 @@ export default {
     name: 'Room',
     components: {
         Header,
+        Loading,
         Error,
         Player
     },

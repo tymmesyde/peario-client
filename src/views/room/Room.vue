@@ -2,6 +2,7 @@
     <div id="room" class="container">
         <Header></Header>
 
+        <Loading type="room" v-if="!playerOptions"></Loading>
         <Error type="room" v-if="!playerOptions"></Error>
 
         <div class="users" v-if="player.video" :class="{ 'show': !player.hide }">
