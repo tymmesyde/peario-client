@@ -75,4 +75,12 @@ export default {
   color: $text-color;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  height: $footer-height;
+  width: 100%;
+  text-align: center;
+}
+
 </style>

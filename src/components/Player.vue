@@ -1,5 +1,5 @@
 <template>
-    <div class="player" ref="player" v-bind:class="{ 'hide': hide }" @mousewheel="updateVolume($event)">
+    <div class="player" ref="player" :class="{ 'hide': hide }" @mousewheel="updateVolume($event)">
         <div class="locked" v-if="locked">
             <div>
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
@@ -153,13 +153,12 @@ export default {
         this.player.onmousemove = () => {
             clearTimeout(hideTimeout);
             this.hide = false;
+            this.disptach();
 
             if (!this.video.paused) hideTimeout = setTimeout(() => {
                 this.hide = true;
                 this.disptach();
             }, 3000);
-
-            this.disptach();
         };
 
         this.video.onwaiting = () => {
@@ -195,11 +194,9 @@ export default {
 
         &.hide {
             cursor: none;
-        }
 
-        &:not(.hide):hover {
             .controls {
-                opacity: 1;
+                opacity: 0;
             }
         }
 
@@ -269,7 +266,7 @@ export default {
             width: 100%;
             padding: 2vh 3vh;
             user-select: none;
-            opacity: 0;
+            opacity: 1;
             transition: all 0.2s ease-in;
 
             .control {
