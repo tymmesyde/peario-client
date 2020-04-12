@@ -21,7 +21,7 @@ export default {
     @import '@/variables.scss';
 
     .loading {
-        z-index: 99;
+        z-index: 98;
         position: absolute;
         display: flex;
         height: 100%;

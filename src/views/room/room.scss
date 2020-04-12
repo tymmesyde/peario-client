@@ -5,18 +5,6 @@ $background-color: #141414;
     background-color: black;
     user-select: none;
 
-    .error {
-        height: 100%;
-        display: grid;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-
-        .ion {
-            font-size: 15vh;
-        }
-    }
-
     .users {
         z-index: 99;
         position: absolute;

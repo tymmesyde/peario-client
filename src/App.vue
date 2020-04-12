@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Error :type="error.type" v-if="error"></Error>
     <Error type="stremio" v-if="!stremioRunning"></Error>
 
     <transition name="fade">
@@ -28,7 +29,8 @@ export default {
   data() {
     return {
       ready: false,
-      stremioRunning: true
+      stremioRunning: true,
+      error: null,
     }
   },
   mounted() {
@@ -37,6 +39,8 @@ export default {
       StorageService.set('user', user);
       this.ready = true;
     });
+
+    WebSocketService.events.on('error', error => this.error = error);
 
     const isRunningInterval = setInterval(async () => {
       this.stremioRunning = await StremioService.isServerOpen();
@@ -63,6 +67,7 @@ export default {
 }
 
 #app {
+  position: relative;
   height: calc(100% - #{$header-height} - #{$footer-height});
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;

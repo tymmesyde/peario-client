@@ -21,12 +21,16 @@ export default {
     @import '@/variables.scss';
 
     .error {
+        z-index: 99;
+        position: absolute;
         display: flex;
         height: 100%;
+        width: 100%;
         justify-content: center;
         align-items: center;
         text-align: center;
         line-height: 3.5vh;
+        background-color: black;
 
         ion-icon {
             font-size: 15vh;
