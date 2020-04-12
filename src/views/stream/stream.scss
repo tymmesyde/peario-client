@@ -3,9 +3,9 @@ $stream-icon-size: 7vh;
 #stream {
     .inner {
         display: grid;
-        grid-template-columns: 65% auto;
+        grid-template-columns: 63% auto;
         column-gap: 3vh;
-        padding: 35vh;
+        width: 115vh;
     }
 
     .meta,
@@ -62,7 +62,11 @@ $stream-icon-size: 7vh;
             overflow-y: auto;
 
             .no-streams {
-                text-align: center;
+                height: 100%;
+                display: grid;
+                align-items: center;
+                justify-content: center;
+                grid-template-rows: 4.5vh 5vh;
             }
 
             .stream {
