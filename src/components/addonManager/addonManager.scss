@@ -1,8 +1,9 @@
+@import './../../variables.scss';
+
 $title-height: 9vh;
 $menu-width: 45vh;
 $menu-padding: 2vh;
 $addon-icon-size: 8vh;
-$background-color: #141414;
 
 .backdrop {
     z-index: 97;

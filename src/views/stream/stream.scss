@@ -21,7 +21,7 @@ $stream-icon-size: 7vh;
 
         .poster {
             grid-row-start: 1;
-            grid-row-end: 8;
+            grid-row-end: 11;
             user-select: none;
 
             img {
@@ -110,6 +110,11 @@ $stream-icon-size: 7vh;
                     font-size: 1.5vh;
                     text-overflow: ellipsis;
                     opacity: 0.5;
+
+                    &.extend {
+                        grid-column-start: 2;
+                        grid-column-end: 4;
+                    }
                 }
 
                 &:hover {
