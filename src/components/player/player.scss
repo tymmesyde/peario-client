@@ -1,0 +1,137 @@
+.player {
+    height: 100%;
+    display: grid;
+    position: relative;
+    align-self: center;
+
+    &.hide {
+        cursor: none;
+
+        .controls {
+            opacity: 0;
+        }
+    }
+
+    .locked {
+        z-index: 98;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+
+        img {
+            width: 65%;
+            margin-bottom: 2vh;
+            font-family: 'Montserrat';
+            font-size: 9vh;
+            font-weight: 500;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+        }
+    }
+
+    .buffering {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        ion-icon {
+            font-size: 7vh;
+        }
+    }
+
+    video {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        align-self: center;
+    }
+
+    .auto-sync {
+        position: absolute;
+        bottom: 8vh;
+        padding: 1vh 1vh 1vh 3vh;
+
+        ion-icon {
+            margin-right: 0.5vh;
+        }
+    }
+
+    .controls {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 5vh 5vh auto 6vh 5vh;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 2vh 3vh;
+        user-select: none;
+        opacity: 1;
+        transition: all 0.2s ease-in;
+
+        .control {
+            font-size: 3.5vh;
+            cursor: pointer;
+
+            &.disabled {
+                user-select: none;
+                opacity: 0.3;
+            }
+        }
+
+        .volume,
+        .fullscreen {
+            position: relative;
+            font-size: 2.5vh;
+            line-height: 0;
+            cursor: pointer;
+        }
+
+        .volume {
+            justify-self: center;
+
+            input {
+                position: absolute;
+                left: -3.2vh;
+                top: -6vh;
+                width: 9vh;
+                transform: rotate(-90deg);
+                opacity: 0;
+                transition: all 0.2s ease-in;
+            }
+
+            &:hover {
+                input {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .time-bar {
+            margin-left: 1.5vh !important;
+            margin-right: 2vh !important;
+        }
+
+        .timer {
+            justify-self: center;
+            font-weight: 500;
+            line-height: 0;
+        }
+
+        .fullscreen {
+            justify-self: right;
+        }
+    }
+}
