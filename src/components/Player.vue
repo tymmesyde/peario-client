@@ -22,7 +22,7 @@
                 Auto-Sync
             </div>
 
-            <div class="control" @click="togglePlay()">
+            <div class="control" @click="togglePlay()" :class="{ 'disabled': autoSync && !options.isOwner }">
                 <ion-icon name="play-outline" v-show="video.paused"></ion-icon>
                 <ion-icon name="pause-outline" v-show="!video.paused"></ion-icon>
             </div>
@@ -36,7 +36,7 @@
                     <ion-icon name="volume-high-outline" v-show="video.volume >= 0.8"></ion-icon>
                 </span>
             </div>
-            <input class="time-bar" type="range" min="0" max="10000" v-bind:value="timebar" @input="seek($event)">
+            <input class="time-bar" type="range" min="0" max="10000" v-bind:value="timebar" :disabled="autoSync && !options.isOwner" @input="seek($event)" >
             <div class="timer">
                 {{ timer }}
             </div>
@@ -61,7 +61,8 @@ export default {
             meta: {
                 logo: String,
                 background: String,
-            }
+            },
+            isOwner: Boolean
         }
     },
     data() {
@@ -75,12 +76,14 @@ export default {
             this.locked = false;
         },
         togglePlay() {
-            this.video.paused ? this.video.play() : this.video.pause();
-            this.video.paused ? this.hide = false : this.hide = true;
-            
-            this.disptach();
-            this.$emit('paused');
-            this.$forceUpdate();
+            if ((!this.options.isOwner && !this.autoSync) || this.options.isOwner) {
+                this.video.paused ? this.video.play() : this.video.pause();
+                this.video.paused ? this.hide = false : this.hide = true;
+                
+                this.disptach();
+                this.$emit('paused');
+                this.$forceUpdate();
+            }
         },
         toggleAutoSync() {
             this.autoSync = !this.autoSync;
@@ -112,7 +115,9 @@ export default {
             this.video.volume = this.volume;
         },
         seek(event) {
-            this.video.currentTime = event.target.value * this.video.duration / 10000;
+            if ((!this.options.isOwner && !this.autoSync) || this.options.isOwner) {
+                this.video.currentTime = event.target.value * this.video.duration / 10000;
+            }
         },
         onTimeUpdate() {
             const { currentTime, duration } = this.video;
@@ -270,6 +275,11 @@ export default {
             .control {
                 font-size: 3.5vh;
                 cursor: pointer;
+
+                &.disabled {
+                    user-select: none;
+                    opacity: 0.3;
+                }
             }
 
             .volume, .fullscreen {

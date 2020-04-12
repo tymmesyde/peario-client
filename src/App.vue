@@ -14,6 +14,7 @@
 import Error from "@/components/Error.vue";
 import WebSocketService from "@/services/ws.service";
 import StremioService from "@/services/stremio.service";
+import StorageService from "@/services/storage.service";
 import { APP_TITLE } from "@/common/config";
 
 export default {
@@ -32,7 +33,10 @@ export default {
   },
   mounted() {
     WebSocketService.init(this.$socket, this.$options.sockets);
-    WebSocketService.events.on('ready', () => this.ready = true);
+    WebSocketService.events.on('ready', ({ user }) => {
+      StorageService.set('user', user);
+      this.ready = true;
+    });
 
     const isRunningInterval = setInterval(async () => {
       this.stremioRunning = await StremioService.isServerOpen();

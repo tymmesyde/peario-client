@@ -121,7 +121,7 @@ input[type=range] {
     transition: height 0.1s ease-in-out;
   }
 
-  &:hover {
+  &:not([disabled]):hover {
     height: 0.5rem;
 
     &::-webkit-slider-runnable-track {

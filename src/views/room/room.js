@@ -4,6 +4,7 @@ import Error from "@/components/Error.vue";
 import Player from "@/components/Player.vue";
 import StremioService from "@/services/stremio.service";
 import WebSocketService from "@/services/ws.service";
+import StorageService from "@/services/storage.service";
 
 export default {
     name: 'Room',
@@ -22,22 +23,25 @@ export default {
         }
     },
     computed: {
-        player(){
+        player() {
             return this.$store.getters.player;
-        } 
+        },
+        user() {
+            return StorageService.get('user');
+        }
     },
     methods: {
         async syncRoom(room) {            
             const { infoHash, meta, player, owner, users } = room;
 
+            if (!this.owner) this.owner = owner;
+
             if (!this.playerOptions) {
                 const streamUrl = await StremioService.getStreamUrl(infoHash);
                 const lang = this.$i18n.locale;
                 const subtitles = await StremioService.getSubtitles(streamUrl);
-                this.playerOptions = { src: streamUrl, lang, subtitles, meta };
+                this.playerOptions = { src: streamUrl, lang, subtitles, meta, isOwner: this.user.id === owner };
             }
-            
-            if (!this.owner) this.owner = owner;
 
             this.users = users;
 
