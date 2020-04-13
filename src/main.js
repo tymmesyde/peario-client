@@ -7,7 +7,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { WS_SERVER } from './common/config';
-import locales from './common/locales.json';
+import locales from './assets/locales.json';
 
 Vue.use(VueRx);
 Vue.use(VueNativeSock, WS_SERVER, {

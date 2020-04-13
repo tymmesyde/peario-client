@@ -1,4 +1,5 @@
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import Loading from "@/components/Loading.vue";
 import Error from "@/components/Error.vue";
 import Player from "@/components/player/Player.vue";
@@ -10,6 +11,7 @@ export default {
     name: 'Room',
     components: {
         Header,
+        Footer,
         Loading,
         Error,
         Player

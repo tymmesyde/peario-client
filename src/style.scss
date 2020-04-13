@@ -11,6 +11,11 @@
 }
 
 @font-face {
+  font-family: 'Montserrat-MediumItalic';
+  src: url('assets/fonts/Montserrat/Montserrat-MediumItalic.ttf');
+}
+
+@font-face {
   font-family: 'Montserrat-SemiBold';
   src: url('assets/fonts/Montserrat/Montserrat-SemiBold.ttf');
 }
@@ -39,12 +44,12 @@
 
 html, body {
   height: 100%;
-  background-color: $background-color;
 }
 
 body {
   margin: 0;
   overflow: hidden;
+  background: linear-gradient(180deg, $background-color 0%, #292544 100%);
 }
 
 h2 {
@@ -146,6 +151,7 @@ button {
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
+  user-select: none;
   transition: all 0.1s ease-in-out;
 
   &:hover {
@@ -164,11 +170,11 @@ ion-icon {
 
 .container {
   position: relative;
-  height: 100%;
+  height: calc(100% - #{$header-height} - #{$footer-height});
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: $header-height;
 }
 
 .flip {

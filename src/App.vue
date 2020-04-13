@@ -6,8 +6,6 @@
     <transition name="fade">
       <router-view v-if="stremioRunning && ready"></router-view>
     </transition>
-
-    <footer></footer>
   </div>
 </template>
 
@@ -68,19 +66,14 @@ export default {
 
 #app {
   position: relative;
-  height: calc(100% - #{$header-height} - #{$footer-height});
+  height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $text-color;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  height: $footer-height;
-  width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>

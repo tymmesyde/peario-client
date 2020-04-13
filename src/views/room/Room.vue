@@ -26,6 +26,8 @@
         </div>
 
         <Player v-if="playerOptions" v-bind:options="playerOptions" v-on:paused="syncPlayer()"></Player>
+
+        <Footer></Footer>
     </div>
 </template>
 

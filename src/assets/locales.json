@@ -1,5 +1,11 @@
 {
     "en": {
+        "views": {
+            "home": {
+                "title": "Share your streams",
+                "sub": "Watch movies with your 🍐 from around the world"
+            }
+        },
         "errors": {
             "stremio": {
                 "title": "Stremio is not running",
@@ -18,6 +24,12 @@
         }
     },
     "fr": {
+        "views": {
+            "home": {
+                "title": "Partagez vos streams",
+                "sub": "Regardez des films avec vos amis du monde entier"
+            }
+        },
         "errors": {
             "stremio": {
                 "title": "Stremio n'est pas actif",

@@ -1,8 +1,8 @@
 <template>
     <header>
-      <router-link :to="{ name: '' }">
-        <img alt="logo" src="../assets/img/logo.svg">
-      </router-link>
+      <div class="logo">
+        <img src="../assets/img/logo.svg">
+      </div>
     </header>
 </template>
 
@@ -16,19 +16,23 @@ export default {
 @import '../variables.scss';
 
 header {
-  z-index: 98;
+  z-index: 99;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: $header-height;
   line-height: $header-height;
-  padding: 0 2vh;
+  padding: 0 2.5vh;
+  display: flex;
+  align-items: center;
 
-  img {
+  .logo {
     width: 20vh;
     user-select: none;
     vertical-align: middle;
+    display: flex;
+    align-items: center;
   }
 }
 </style>
