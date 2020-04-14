@@ -29,6 +29,7 @@ export default {
       ready: false,
       stremioRunning: true,
       error: null,
+      heartbeat: null
     }
   },
   mounted() {
@@ -36,6 +37,8 @@ export default {
     WebSocketService.events.on('ready', ({ user }) => {
       StorageService.set('user', user);
       this.ready = true;
+
+      this.heartbeat = setInterval(() => WebSocketService.send('heartbeat', {}), 2000);
     });
 
     WebSocketService.events.on('error', error => this.error = error);
@@ -44,6 +47,9 @@ export default {
       this.stremioRunning = await StremioService.isServerOpen();
       if (this.stremioRunning) clearInterval(isRunningInterval);
     }, 2000);
+  },
+  destroyed() {
+    clearInterval(this.heartbeat);
   }
 };
 </script>
