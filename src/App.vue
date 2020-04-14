@@ -52,18 +52,6 @@ export default {
 
 @import './style.scss';
 
-.error {
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  ion-icon {
-    font-size: 15vh;
-  }
-}
-
 #app {
   position: relative;
   height: 100%;

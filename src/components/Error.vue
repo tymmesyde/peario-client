@@ -30,7 +30,7 @@ export default {
         align-items: center;
         text-align: center;
         line-height: 3.5vh;
-        background-color: black;
+        background: $background-gradient;
 
         ion-icon {
             font-size: 15vh;

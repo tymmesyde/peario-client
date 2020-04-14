@@ -49,7 +49,7 @@ html, body {
 body {
   margin: 0;
   overflow: hidden;
-  background: linear-gradient(180deg, $background-color 0%, #292544 100%);
+  background: $background-gradient;
 }
 
 h2 {
@@ -63,6 +63,7 @@ h2 {
 
 p {
   margin: 0;
+  font-family: 'Montserrat';
   font-size: 1.75vh;
 }
 
