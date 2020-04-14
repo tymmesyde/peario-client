@@ -23,6 +23,11 @@ const StremioService = {
         return data.meta;
     },
 
+    async searchMovies(title) {
+        const { data } = await axios.get(`${CINEMETA_URL}/catalog/movie/top/search=${title}.json`);
+        return data.metas;
+    },
+
     async getAddons() {
         const { data } = await axios.get(`${STREMIO_API_URL}/addonscollection.json`);
         return data;

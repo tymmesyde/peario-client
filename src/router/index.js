@@ -11,6 +11,11 @@ export default new Router({
             component: () => import("@/views/Home")
         },
         {
+            name: "search",
+            path: "/search",
+            component: () => import("@/views/search/Search.vue")
+        },
+        {
             name: "stream",
             path: "/stream/:type/:id",
             component: () => import("@/views/stream/Stream.vue")
