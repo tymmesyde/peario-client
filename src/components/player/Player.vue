@@ -13,6 +13,8 @@
             </div>
         </div>
 
+        <Subtitle v-if="video" :options="{ list: options.subtitles, defaultLang: options.lang }" :timecode="video.currentTime"></Subtitle>
+
         <video ref="video" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()"></video>
         
         <div class="controls" v-if="!locked && video">

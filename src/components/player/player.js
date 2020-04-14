@@ -1,7 +1,11 @@
 import UtilsService from "@/services/utils.service";
+import Subtitle from "@/components/Subtitle.vue";
 
 export default {
     name: 'Player',
+    components: {
+        Subtitle
+    },
     props: {
         options: {
             src: String,
@@ -75,8 +79,6 @@ export default {
             const sec = date.getUTCSeconds();
             const min = date.getUTCMinutes();
             const hours = date.getUTCHours();
-
-            console.log(currentTime);
             
             this.timebar = Number(((currentTime * 10000 / duration) || 0).toFixed());
             this.timer = `${hours > 0 ? hours + ':' : ''}${hours && min < 10 ? '0' + min : min}:${sec < 10 ? '0' + sec : sec}`;
