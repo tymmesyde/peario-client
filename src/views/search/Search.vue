@@ -6,9 +6,9 @@
             <div class="title">
                 <h1>
                     <ion-icon name="search"></ion-icon>
-                    Search
+                    {{ $t(`views.search.title`) }}
                 </h1>
-                <h3>Find a movie to watch with your 🍐 !</h3>
+                <h3>{{ $t(`views.search.sub`) }}</h3>
             </div>
 
             <input type="text" v-model="search" placeholder="Parasite, Fight Club, ...">
