@@ -8,9 +8,17 @@
         <div class="poster">
           <img v-bind:src="meta.poster" alt="">
         </div>
-        <div class="title">{{ meta.name }}</div>
-        <div class="year">{{ meta.year }}</div>
-        <div class="description">{{ meta.description }}</div>
+        <div class="info">
+          <div class="title">{{ meta.name }}</div>
+          <div class="year">{{ meta.year }}</div>
+          <div class="runtime">{{ meta.runtime }}</div>
+          <div class="description">{{ meta.description }}</div>
+          <div class="genres">
+            <div class="genre" v-for="genre of meta.genre" v-bind:key="genre">
+              {{ genre }}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="streams">
