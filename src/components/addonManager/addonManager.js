@@ -4,11 +4,22 @@ import AddonService from '@/services/addon.service';
 
 export default {
     name: 'AddonManager',
+    props: {
+        open: Boolean
+    },
     data: () => {
         return {
             isOpen: false,
             addons: [],
             installed: []
+        }
+    },
+    watch: {
+        open(state) {
+            this.isOpen = state;
+        },
+        isOpen() {
+            if (!this.isOpen) this.$emit('closed');
         }
     },
     methods: {

@@ -1,7 +1,7 @@
 <template>
   <div id="stream" class="container">
     <Header></Header>
-    <AddonManager></AddonManager>
+    <AddonManager :open="openAddons" v-on:closed="openAddons = false"></AddonManager>
 
     <div class="inner">
       <div class="meta">
@@ -21,7 +21,7 @@
         <ul>
           <li class="no-streams" v-if="!streams.length">
             <p>No streams available</p>
-            <button class="open"><ion-icon name="cube-outline"></ion-icon> Addons</button>
+            <button class="open" @click="openAddons = true"><ion-icon name="cube-outline"></ion-icon> Addons</button>
           </li>
 
           <li class="stream" v-for="(stream, index) in streams" v-bind:key="index" @click="createRoom(stream.infoHash)">
