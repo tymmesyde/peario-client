@@ -8,7 +8,7 @@
         <h3>{{ $t(`views.home.sub`) }}</h3>
       </div>
 
-      <div class="player">
+      <div class="player" @click="goToSearch()">
         <div class="overlay"></div>
         <div class="viewers-count">
           <ion-icon name="eye-outline"></ion-icon>
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <button>
+      <button @click="goToSearch()">
         <ion-icon name="play"></ion-icon>
         Watch a Movie
       </button>
@@ -35,6 +35,11 @@ export default {
   name: 'Home',
   components: {
     Header
+  },
+  methods: {
+    goToSearch() {
+      this.$router.push({ name: 'search' });
+    }
   }
 }
 </script>
