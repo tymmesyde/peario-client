@@ -49,7 +49,18 @@ html, body {
 body {
   margin: 0;
   overflow: hidden;
-  background: $background-gradient;
+  background: url('./assets/img/dunes.svg'), url('./assets/img/stars.svg'), linear-gradient(180deg, $background-color 0%, #292544 100%);
+  background-repeat: no-repeat;
+  background-position: center bottom, center 10%, center;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Montserrat-SemiBold';
+  font-size: 8vh;
+  font-weight: normal;
+  letter-spacing: -0.15rem;
+  color: $text-color
 }
 
 h2 {
@@ -59,12 +70,23 @@ h2 {
   font-weight: 700;
   text-transform: uppercase;
   user-select: none;
+  color: $text-color
+}
+
+h3 {
+  font-family: 'Montserrat-MediumItalic';
+  font-size: 2.75vh;
+  font-weight: normal;
+  margin: 0;
+  opacity: 0.75;
+  color: $text-color
 }
 
 p {
   margin: 0;
   font-family: 'Montserrat';
   font-size: 1.75vh;
+  color: $text-color
 }
 
 ul {
@@ -74,19 +96,24 @@ ul {
 }
 
 input[type=text] {
-  display: block;
-  height: 5vh;
+  height: 7vh;
   width: 100%;
-  font-family: 'Montserrat-Medium';
-  font-size: 2vh;
-  color: #dfdfdf;
-  // text-align: center;
-  border: 0.1vh solid #dfdfdf;
-  background: transparent;
+  background-color: transparent;
+  border: 0.3vh solid #FB4040;
+  border-radius: 7vh;
+  padding: 0 3.5vh;
+  font-family: 'Montserrat-SemiBold';
+  font-size: 2.75vh;
+  color: white;
+  text-transform: none;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease-in-out;
   outline: none;
-  opacity: 0.8;
-  padding-left: 5.5vh;
-  padding-right: 2vh;
+
+  &::placeholder {
+    color: $text-color;
+    opacity: 0.5;
+  }
 
   &:hover, &:focus {
     opacity: 1;
