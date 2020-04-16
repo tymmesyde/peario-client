@@ -33,7 +33,7 @@ const StremioService = {
         return data;
     },
 
-    async getStreamUrl(infoHash) {
+    async createStream(infoHash) {
         const { data } = await axios.get(`${STREMIO_STREAMING_SERVER}/${infoHash}/create`);
         const { files } = data;
         const videoFile = files.find(({ name }) => utils.isVideo(name));
