@@ -6,6 +6,7 @@ import Player from "@/components/player/Player.vue";
 import StremioService from "@/services/stremio.service";
 import WebSocketService from "@/services/ws.service";
 import StorageService from "@/services/storage.service";
+import Utils from "../../services/utils.service";
 
 export default {
     name: 'Room',
@@ -39,10 +40,11 @@ export default {
             if (!this.owner) this.owner = owner;
 
             if (!this.playerOptions) {
-                const streamUrl = await StremioService.getStreamUrl(infoHash);
+                const videoUrl = await StremioService.createStream(infoHash);
+                const playlistUrl = await Utils.createPlaylist(videoUrl);
                 const lang = this.$i18n.locale;
-                const subtitles = await StremioService.getSubtitles(streamUrl);
-                this.playerOptions = { src: streamUrl, lang, subtitles, meta, isOwner: this.user.id === owner };
+                const subtitles = await StremioService.getSubtitles(videoUrl);
+                this.playerOptions = { src: playlistUrl, lang, subtitles, meta, isOwner: this.user.id === owner };
             }
 
             this.users = users;
