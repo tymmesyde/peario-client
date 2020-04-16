@@ -18,7 +18,8 @@ export default {
     data: () => {
         return {
             meta: {},
-            streams: []
+            streams: [],
+            openAddons: false,
         }
     },
     methods: {

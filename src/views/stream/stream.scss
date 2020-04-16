@@ -20,8 +20,6 @@ $stream-icon-size: 7vh;
         font-family: 'Montserrat';
 
         .poster {
-            grid-row-start: 1;
-            grid-row-end: 11;
             user-select: none;
 
             img {
@@ -30,20 +28,48 @@ $stream-icon-size: 7vh;
             }
         }
 
-        .title {
-            font-size: 6vh;
-            font-weight: 600;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
+        .info {
+            .title {
+                font-size: 6vh;
+                font-weight: 600;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                margin-left: -0.25vh;
+                margin-bottom: 0.5vh;
+            }
 
-        .year {
-            font-size: 2vh;
-        }
+            .year, .runtime {
+                display: inline-block;
+            }
 
-        .description {
-            opacity: 0.5;
+            .year {
+                font-size: 2vh;
+                margin-bottom: 1vh;
+            }
+
+            .runtime {
+                margin-left: 2.5vh;
+            }
+
+            .description {
+                opacity: 0.5;
+            }
+
+            .genres {
+                margin-top: 2vh;
+                user-select: none;
+
+                .genre {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 1vh;
+                    margin-bottom: 1vh;
+                    padding: 0.5vh 1.5vh;
+                    border-radius: 3vh;
+                    background-color: rgba(white, 0.1);
+                }
+            }
         }
     }
 

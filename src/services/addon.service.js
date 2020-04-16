@@ -13,9 +13,13 @@ const AddonService = {
 
     async getStreams(collection, type, id) {
         return (await Promise.all(collection.map(async addon => {
-            const { streams } = await addon.get('stream', type, id);
-            const { icon, logo } = addon.manifest;
-            return streams.map(s => { s.icon = icon || logo; return s; });
+            try {
+                const { streams } = await addon.get('stream', type, id);
+                const { icon, logo } = addon.manifest;
+                return streams.map(s => { s.icon = icon || logo; return s; });
+            } catch(e) {
+                return [];
+            }
         }))).flat();
     }
 
