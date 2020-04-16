@@ -1,15 +1,9 @@
 import Hls from "hls.js";
-import MimeDb from "mime-db";
 import axios from "axios";
 
-const hls = new Hls();
+const HlsService = {
 
-const Utils = {
-
-    isVideo(filename) {
-        const videoTypes = Object.keys(MimeDb).filter(m => m.startsWith('video') && MimeDb[m].extensions).map(m => MimeDb[m].extensions).flat();
-        return videoTypes.find(t => filename.includes(t)) ? true : false;
-    },
+    hls: new Hls(),
 
     async createPlaylist(videoUrl) {
         const prefix = "stream-q-";
@@ -40,19 +34,19 @@ const Utils = {
         return URL.createObjectURL(new Blob([Buffer.from(playlist)], { type: 'application/x-mpegURL' }));
     },
 
-    async loadHls(playlistUrl, videoElement) {
-        hls.attachMedia(videoElement);
-        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+    loadHls(playlistUrl, videoElement) {
+        this.hls.attachMedia(videoElement);
+        this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
             console.log("video and hls.js are now bound together !");
-            hls.loadSource(playlistUrl);
-            hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
+            this.hls.loadSource(playlistUrl);
+            this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
                 console.log("manifest loaded, found " + data.levels.length + " quality level");
                 console.log(data.levels);
-                hls.loadLevel = data.levels.length - 1;
+                this.hls.loadLevel = data.levels.length - 1;
             });
         });
-    }
+    },
 
 };
 
-export default Utils;
+export default HlsService;

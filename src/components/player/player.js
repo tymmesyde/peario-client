@@ -1,4 +1,4 @@
-import UtilsService from "@/services/utils.service";
+import Hls from "@/services/hls.service";
 import Subtitle from "@/components/Subtitle.vue";
 
 export default {
@@ -98,7 +98,7 @@ export default {
         this.disptach();
         console.log(this.video);
 
-        UtilsService.loadHls(this.options.src, this.video);
+        Hls.loadHls(this.options.src, this.video);
 
         let hideTimeout = null;
         this.player.onmousemove = () => {
