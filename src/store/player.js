@@ -7,10 +7,7 @@ export default {
             hide: false,
             video: null,
             volume: 0.5,
-            volumeTmp: 0,
             autoSync: true,
-            timebar: 0,
-            timer: '0:00',
             fullscreen: false,
         }
     },

@@ -18,10 +18,27 @@ export default {
             isOwner: Boolean
         }
     },
+    computed: {
+        subsLangs() {
+            return this.options.subtitles.map(({ lang }) => lang).filter((el, i, self) => i == self.indexOf(el)).sort();
+        }
+    },
     data() {
-        return this.$store.getters.player;
+        return {
+            toggleSub: true,
+            toggleSubPanel: false,
+            currentSub: null,
+            subPanelLang: null,
+            volumeTmp: 0,
+            timebar: 0,
+            timer: '0:00',
+            ...this.$store.getters.player
+        };
     },
     methods: {
+        filterSubs(lang) {
+            return this.options.subtitles.filter(s => s.lang === lang);
+        },
         unlockPlayer() {
             const canPlay = this.video.play();
             canPlay.catch(() => {});
@@ -95,10 +112,13 @@ export default {
         this.player = this.$refs.player;
         this.video = this.$refs.video;
         this.video.volume = this.volume;
-        this.disptach();
-        console.log(this.video);
+
+        this.currentSub = this.options.subtitles.find(s => s.lang.includes(this.options.lang));
+        this.subPanelLang = this.currentSub.lang;
 
         Hls.loadHls(this.options.src, this.video);
+
+        this.disptach();
 
         let hideTimeout = null;
         this.player.onmousemove = () => {

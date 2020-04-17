@@ -72,7 +72,7 @@
     .controls {
         display: grid;
         align-items: center;
-        grid-template-columns: 5vh 5vh auto 6vh 5vh;
+        grid-template-columns: 5vh 5vh auto 6vh 5vh 5vh;
         position: absolute;
         bottom: 0;
         width: 100%;
@@ -128,6 +128,66 @@
             justify-self: center;
             font-weight: 500;
             line-height: 0;
+        }
+
+        .subtitles {
+            position: relative;
+            justify-self: center;
+            font-size: 2.25vh;
+            line-height: 0;
+            
+            ion-icon {
+                cursor: pointer;
+            }
+
+            .panel {
+                position: absolute;
+                height: 19vh;
+                width: 20vh;
+                right: -6vh;
+                bottom: 5vh;
+                border-radius: 1vh;
+                background-color: rgba(white, 0.1);
+
+                .toggle {
+                    display: grid;
+                    align-items: center;
+                    height: 4vh;
+                    font-size: 1.75vh;
+                    padding-left: 1vh;
+
+                    .status {
+                        display: grid;
+                        grid-template-columns: 2.75vh auto;
+                        align-items: center;
+                    }
+                }
+
+                .list {
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 15vh;
+                    width: 10vh;
+                    line-height: 100%;
+                    font-size: 1.5vh;
+                    overflow-y: auto;
+
+                    li {
+                        height: 3vh;
+                        line-height: 3vh;
+                        padding-left: 1.25vh;
+                        cursor: pointer;
+
+                        &.active {
+                            background-color: rgba(white, 0.2);
+                        }
+
+                        &:not(.active):hover {
+                            background-color: rgba(white, 0.1);
+                        }
+                    }
+                }
+            }
         }
 
         .fullscreen {

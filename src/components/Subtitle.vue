@@ -10,11 +10,9 @@ import SubtitleService from '@/services/subtitle.service';
 export default {
     name: 'Subtitle',
     props: {
-        options: {
-            subtitles: [],
-            defaultLang: String,
-        },
+        subtitles: Array,
         timecode: Number,
+        current: Object,
     },
     data() {
         return {
@@ -24,10 +22,14 @@ export default {
     watch: {
         timecode(value) {
             this.text = SubtitleService.getCurrent(value);
+        },
+        current(subtitle) {
+            SubtitleService.set(subtitle);
         }
     },
     mounted() {
-        SubtitleService.init(this.options);
+        SubtitleService.list = this.subtitles;
+        SubtitleService.set(this.current);
     }
 }
 </script>
