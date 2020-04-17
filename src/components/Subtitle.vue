@@ -1,6 +1,6 @@
 <template>
     <div id="subtitle">
-        {{ text }}
+        <span v-html="text"></span>
     </div>
 </template>
 
