@@ -245,15 +245,11 @@ ion-icon {
   }
 }
 
-.fade-enter {
-  opacity: 0;
+.fade-enter-active, .fade-leave-active {
+  position: absolute;
+  transition: opacity .2s;
 }
-
-.fade-enter-active {
-  transition: opacity 0.1s ease-in;
-}
-
-.fade-leave-active {
-  transition: opacity 0.1s ease-in;
+.fade-enter, .fade-leave-to {
+  position: absolute;
   opacity: 0;
 }
