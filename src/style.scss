@@ -25,17 +25,21 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(white, 0.35);
-  border: 0.25vh solid $background-color;
+  background-color: rgba($text-color, 0.1);
+  border-radius: 0.75vh;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $text-color;
-  border-radius: 1vh;
+  background-color: rgba($text-color, 0.75);
+  border-radius: 0.75vh;
+
+  &:hover {
+    background-color: $text-color;
+  }
 }
 
 ::selection {
-  background-color: rgba(white, 0.35);
+  background-color: rgba($text-color, 0.35);
 }
 
 * {
@@ -66,7 +70,7 @@ h1 {
 h2 {
   font-family: 'Montserrat';
   margin: 0;
-  font-size: 3.5vh;
+  font-size: 3vh;
   font-weight: 700;
   text-transform: uppercase;
   user-select: none;
@@ -99,7 +103,7 @@ input[type=text] {
   height: 7vh;
   width: 100%;
   background-color: transparent;
-  border: 0.3vh solid #FB4040;
+  border: 0.3vh solid $accent-color;
   border-radius: 7vh;
   padding: 0 3.5vh;
   font-family: 'Montserrat-SemiBold';
@@ -168,27 +172,34 @@ input[type=range] {
 }
 
 button {
-  background: transparent;
-  border: 0.1vh solid $text-color;
   height: 5vh;
-  line-height: 2vh;
-  font-family: 'Montserrat-Medium';
-  font-size: 2vh;
-  color: $text-color;
+  background-color: $accent-color;
+  border: 0.3vh solid $accent-color;
+  border-radius: 7vh;
   padding: 0 2.5vh;
-  text-transform: uppercase;
-  outline: none;
+  font-family: 'Montserrat-SemiBold';
+  font-size: 2vh;
+  color: white;
+  text-transform: none;
+  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  user-select: none;
+  outline: none;
   transition: all 0.1s ease-in-out;
 
+  &.big {
+    height: 7vh;
+    padding: 0 4vh;
+    font-size: 2.75vh;
+  }
+
   &:hover {
-    background-color: $text-color;
-    color: $background-color;
+    background: transparent;
   }
 
   &:active {
-    border-color: $background-color;
+    border-width: 0;
+    box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1) inset;
+    background-color: $accent-color;
   }
 }
 
@@ -215,6 +226,10 @@ ion-icon {
 
 .success {
   color: #64c72b;
+}
+
+.accent {
+  color: $accent-color;
 }
 
 .spin {

@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <button @click="goToSearch()">
+      <button class="big" @click="goToSearch()">
         <ion-icon name="play"></ion-icon>
         Watch a Movie
       </button>
@@ -109,7 +109,7 @@ export default {
       left: 2vh;
       font-family: 'Montserrat-SemiBold';
       font-size: 2.5vh;
-      color: #FB4040;
+      color: $accent-color;
       user-select: none;
 
       ion-icon {
@@ -123,23 +123,6 @@ export default {
 
     &:hover {
       transform: scale(1.02);
-    }
-  }
-
-  button {
-    height: 7vh;
-    background-color: #FB4040;
-    border: 0.3vh solid #FB4040;
-    border-radius: 7vh;
-    padding: 0 4vh;
-    font-family: 'Montserrat-SemiBold';
-    font-size: 2.75vh;
-    color: white;
-    text-transform: none;
-    box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
-    
-    &:hover {
-      background: transparent;
     }
   }
   

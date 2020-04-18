@@ -61,6 +61,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../variables.scss';
+
 #search {
     .title {
         text-align: center;
@@ -83,16 +85,14 @@ export default {
         overflow: hidden;
         overflow-y: auto;
         margin: auto;
-        margin-top: 2vh;
-        border-radius: 2vh;
-        background-color: rgba(0, 0, 0, 0.2);
-        box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
+        margin-top: 1.5vh;
 
         li {
             display: grid;
             grid-template-columns: 9vh auto;
             grid-column-gap: 1.5vh;
             padding: 2vh;
+            border-radius: 1vh;
             cursor: pointer;
             transition: all 0.1s ease-in-out;
             transition-delay: 0.05s;
@@ -102,7 +102,7 @@ export default {
                 align-content: center;
                 height: 13vh;
                 overflow: hidden;
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(white, 0.1);
                 border-radius: 0.5vh;
 
                 ion-icon {
@@ -131,7 +131,7 @@ export default {
             }
 
             &:hover {
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(white, 0.05);
             }
         }
     }
