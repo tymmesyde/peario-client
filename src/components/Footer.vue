@@ -12,7 +12,7 @@ export default {
 @import '../variables.scss';
 
 footer {
-  z-index: 99;
+  z-index: 96;
   position: fixed;
   bottom: 0;
   height: $footer-height;
