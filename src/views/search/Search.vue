@@ -13,16 +13,18 @@
 
             <input type="text" v-model="search" placeholder="Parasite, Fight Club, ...">
             <ul class="list">
-                <li v-for="result in results" :key="result.imdb_id" @click="$router.push({ name: 'stream', params: { type: 'movie', id: result.imdb_id } })">
-                    <div class="poster">
-                        <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
-                        <img :src="result.poster" alt="poster" v-if="result.poster">
-                    </div>
-                    <div class="info">
-                        <p class="name">{{ result.name }}</p>
-                        <p class="year">{{ result.releaseInfo }}</p>
-                    </div>
-                </li>
+                <transition-group name="fade">
+                    <li v-for="result in results" :key="result.imdb_id" @click="$router.push({ name: 'stream', params: { type: 'movie', id: result.imdb_id } })">
+                        <div class="poster">
+                            <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
+                            <img :src="result.poster" alt="poster" v-if="result.poster">
+                        </div>
+                        <div class="info">
+                            <p class="name">{{ result.name }}</p>
+                            <p class="year">{{ result.releaseInfo }}</p>
+                        </div>
+                    </li>
+                </transition-group>
             </ul>
         </div>
 

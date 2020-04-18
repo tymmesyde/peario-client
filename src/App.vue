@@ -3,7 +3,7 @@
     <Error :type="error.type" v-if="error"></Error>
     <Error type="stremio" v-if="!stremioRunning"></Error>
 
-    <transition name="fade">
+    <transition name="fade-router">
       <router-view v-if="stremioRunning && ready"></router-view>
     </transition>
   </div>

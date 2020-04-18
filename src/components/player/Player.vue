@@ -49,27 +49,29 @@
                     <ion-icon name="text" v-show="toggleSubPanel"></ion-icon>
                 </span>
 
-                <div class="panel" v-if="toggleSubPanel">
-                    <div class="toggle" @click="toggleSub = !toggleSub">
-                        <div v-show="toggleSub" class="status">
-                            <ion-icon name="toggle"></ion-icon> On
+                <transition name="fade">
+                    <div class="panel" v-if="toggleSubPanel">
+                        <div class="toggle" @click="toggleSub = !toggleSub">
+                            <div v-show="toggleSub" class="status">
+                                <ion-icon name="toggle"></ion-icon> On
+                            </div>
+                            <div v-show="!toggleSub" class="status">
+                                <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
+                            </div>
                         </div>
-                        <div v-show="!toggleSub" class="status">
-                            <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
-                        </div>
+                        
+                        <ul class="list langs">
+                            <li v-for="lang in subsLangs" :key="lang" :class="{ 'active': lang === subPanelLang }" @click="subPanelLang = lang">
+                                {{ lang }}
+                            </li>
+                        </ul>
+                        <ul class="list subs">
+                            <li v-for="(sub, i) in filterSubs(subPanelLang)" :key="sub.id" :class="{ 'active': sub === currentSub }" @click="currentSub = sub">
+                                Subtitle {{ i+1 }}
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <ul class="list langs">
-                        <li v-for="lang in subsLangs" :key="lang" :class="{ 'active': lang === subPanelLang }" @click="subPanelLang = lang">
-                            {{ lang }}
-                        </li>
-                    </ul>
-                    <ul class="list subs">
-                        <li v-for="(sub, i) in filterSubs(subPanelLang)" :key="sub.id" :class="{ 'active': sub === currentSub }" @click="currentSub = sub">
-                            Subtitle {{ i+1 }}
-                        </li>
-                    </ul>
-                </div>
+                </transition>
             </div>
 
             <div class="fullscreen" @click="toggleFullscreen()">
