@@ -35,15 +35,10 @@ const HlsService = {
     },
 
     loadHls(playlistUrl, videoElement) {
+        this.hls.loadSource(playlistUrl);
         this.hls.attachMedia(videoElement);
-        this.hls.on(Hls.Events.MEDIA_ATTACHED, () => {
-            console.log("video and hls.js are now bound together !");
-            this.hls.loadSource(playlistUrl);
-            this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
-                console.log("manifest loaded, found " + data.levels.length + " quality level");
-                console.log(data.levels);
-                this.hls.loadLevel = data.levels.length - 1;
-            });
+        this.hls.on(Hls.Events.LEVEL_SWITCHED, (event, data) => {
+            console.log(`Hls: Switched to ${data.level}`);
         });
     },
 
