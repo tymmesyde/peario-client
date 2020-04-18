@@ -15,8 +15,9 @@ $stream-icon-size: 7vh;
     }
 
     .meta {
-        grid-template-columns: 40% auto;
-        grid-column-gap: 3.5vh;
+        $column-gap: 3.5vh;
+        grid-template-columns: 40% calc(60% - #{$column-gap});
+        grid-column-gap: $column-gap;
         font-family: 'Montserrat';
 
         .poster {
