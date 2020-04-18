@@ -108,6 +108,9 @@ export default {
             this.$store.dispatch('updateLockState', this.locked);
         }
     },
+    created() {
+        Hls.init();
+    },
     mounted() {
         this.player = this.$refs.player;
         this.video = this.$refs.video;
@@ -152,5 +155,8 @@ export default {
         document.addEventListener('fullscreenchange', () => {
             if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) this.fullscreen = false;
         });
+    },
+    destroyed() {
+        Hls.clear();
     }
 }

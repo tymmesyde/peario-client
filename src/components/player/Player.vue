@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <Subtitle v-if="video" v-show="toggleSub" :subtitles="options.subtitles" :timecode="video.currentTime" :current="currentSub"></Subtitle>
+        <Subtitle v-if="video && currentSub" v-show="toggleSub" :subtitles="options.subtitles" :timecode="video.currentTime" :current="currentSub"></Subtitle>
 
         <video ref="video" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
         

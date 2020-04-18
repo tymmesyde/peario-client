@@ -3,7 +3,11 @@ import axios from "axios";
 
 const HlsService = {
 
-    hls: new Hls(),
+    hls: null,
+
+    init() {
+        this.hls = new Hls();
+    },
 
     async createPlaylist(videoUrl) {
         const prefix = "stream-q-";
@@ -41,6 +45,11 @@ const HlsService = {
             console.log(`Hls: Switched to ${data.level}`);
         });
     },
+
+    clear() {
+        this.hls.detachMedia();
+        this.hls.destroy();
+    }
 
 };
 
