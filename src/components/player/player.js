@@ -8,8 +8,6 @@ export default {
     props: {
         options: {
             src: String,
-            lang: String,
-            subtitles: [],
             meta: {
                 logo: String,
                 background: String,
@@ -17,17 +15,16 @@ export default {
             isOwner: Boolean
         }
     },
-    computed: {
-        subsLangs() {
-            return this.options.subtitles.map(({ lang }) => lang).filter((el, i, self) => i == self.indexOf(el)).sort();
-        }
-    },
     data() {
         return {
-            toggleSub: true,
-            toggleSubPanel: false,
-            currentSub: null,
-            subPanelLang: null,
+            subtitles: {
+                active: true,
+                togglePanel: false,
+                current: null,
+                list: [],
+                langs: [],
+                panelLang: null,
+            },
             volumeTmp: 0,
             timebar: 0,
             timer: '0:00',
@@ -36,7 +33,7 @@ export default {
     },
     methods: {
         filterSubs(lang) {
-            return this.options.subtitles.filter(s => s.lang === lang);
+            return this.subtitles.list.filter(s => s.lang === lang);
         },
         unlockPlayer() {
             const canPlay = this.video.play();
@@ -99,6 +96,13 @@ export default {
             this.timebar = Number(((currentTime * 10000 / duration) || 0).toFixed());
             this.timer = `${hours > 0 ? hours + ':' : ''}${hours && min < 10 ? '0' + min : min}:${sec < 10 ? '0' + sec : sec}`;
         },
+        loadSubtitles({ list, langs }) {
+            const lang = this.$i18n.locale;
+            this.subtitles.list = list;
+            this.subtitles.langs = langs;
+            this.subtitles.current = this.subtitles.list.find(s => s.lang.includes(lang));
+            this.subtitles.panelLang = this.subtitles.current.lang;
+        },
         disptach() {
             this.$store.dispatch('updateVideo', this.video);
             this.$store.dispatch('updateHideState', this.hide);
@@ -111,9 +115,6 @@ export default {
         this.player = this.$refs.player;
         this.video = this.$refs.video;
         this.video.volume = this.volume;
-
-        this.currentSub = this.options.subtitles.find(s => s.lang.includes(this.options.lang));
-        this.subPanelLang = this.currentSub.lang;
 
         this.disptach();
 

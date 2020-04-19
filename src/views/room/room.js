@@ -40,9 +40,7 @@ export default {
 
             if (!this.playerOptions) {
                 const videoUrl = await StremioService.createStream(infoHash);
-                const lang = this.$i18n.locale;
-                const subtitles = await StremioService.getSubtitles(videoUrl);
-                this.playerOptions = { src: videoUrl, lang, subtitles, meta, isOwner: this.user.id === owner };
+                this.playerOptions = { src: videoUrl, meta, isOwner: this.user.id === owner };
             }
 
             this.users = users;

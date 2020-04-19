@@ -178,6 +178,9 @@
                         line-height: 3vh;
                         padding-left: 1.25vh;
                         cursor: pointer;
+                        overflow: hidden;
+                        white-space: pre;
+                        text-overflow: ellipsis;
 
                         &.active {
                             background-color: rgba(white, 0.2);

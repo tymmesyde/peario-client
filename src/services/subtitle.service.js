@@ -14,8 +14,8 @@ const SubtitleService = {
         return null;
     },
 
-    async set(subtitle) {
-        const { data } = await axios.get(subtitle.url);
+    async set(url) {
+        const { data } = await axios.get(url);
         this.subtitles = parse(data);
     }
 

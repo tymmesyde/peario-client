@@ -1,35 +1,56 @@
 <template>
     <div id="subtitle">
-        <span v-html="text"></span>
+        <span v-html="html"></span>
     </div>
 </template>
 
 <script>
+import { where } from 'langs';
 import SubtitleService from '@/services/subtitle.service';
+import StremioService from '@/services/stremio.service';
 
 export default {
     name: 'Subtitle',
     props: {
-        subtitles: Array,
+        videoUrl: String,
         timecode: Number,
         current: Object,
     },
     data() {
         return {
-            text: null,
+            html: null,
+            subtitles: [],
         }
     },
     watch: {
         timecode(value) {
-            this.text = SubtitleService.getCurrent(value);
+            this.html = SubtitleService.getCurrent(value);
         },
         current(subtitle) {
-            SubtitleService.set(subtitle);
+            if (subtitle.url) SubtitleService.set(subtitle.url);
         }
     },
-    mounted() {
+    async created() {
+        this.subtitles = await StremioService.getSubtitles(this.videoUrl);
         SubtitleService.list = this.subtitles;
-        SubtitleService.set(this.current);
+
+        const langs = this.subtitles
+                            .map(({ lang }) => lang)
+                            .filter((el, i, self) => i == self.indexOf(el))
+                            .map(lang => {
+                                const iso2 = where('2', lang);
+                                const iso2B = where('2B', lang);
+                                return {
+                                    iso: lang,
+                                    local: iso2 ? iso2.local : iso2B ? iso2B.local : lang
+                                }
+                            })
+                            .sort();
+
+        this.$emit('loaded', {
+            list: this.subtitles,
+            langs
+        });
     }
 }
 </script>

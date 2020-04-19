@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <Subtitle v-if="video && currentSub" v-show="toggleSub" :subtitles="options.subtitles" :timecode="video.currentTime" :current="currentSub"></Subtitle>
+        <Subtitle v-if="video" v-show="subtitles.active" :videoUrl="options.src" :timecode="video.currentTime" :current="subtitles.current" v-on:loaded="loadSubtitles($event)"></Subtitle>
 
         <video ref="video" :src="options.src" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
         
@@ -44,29 +44,29 @@
             </div>
 
             <div class="subtitles">
-                <span @click="toggleSubPanel = !toggleSubPanel">
-                    <ion-icon name="text-outline" v-show="!toggleSubPanel"></ion-icon>
-                    <ion-icon name="text" v-show="toggleSubPanel"></ion-icon>
+                <span @click="subtitles.togglePanel = !subtitles.togglePanel">
+                    <ion-icon name="text-outline" v-show="!subtitles.togglePanel"></ion-icon>
+                    <ion-icon name="text" v-show="subtitles.togglePanel"></ion-icon>
                 </span>
 
                 <transition name="fade">
-                    <div class="panel" v-if="toggleSubPanel">
-                        <div class="toggle" @click="toggleSub = !toggleSub">
-                            <div v-show="toggleSub" class="status">
+                    <div class="panel" v-if="subtitles.togglePanel">
+                        <div class="toggle" @click="subtitles.active = !subtitles.active">
+                            <div v-show="subtitles.active" class="status">
                                 <ion-icon name="toggle"></ion-icon> On
                             </div>
-                            <div v-show="!toggleSub" class="status">
+                            <div v-show="!subtitles.active" class="status">
                                 <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
                             </div>
                         </div>
                         
                         <ul class="list langs">
-                            <li v-for="lang in subsLangs" :key="lang" :class="{ 'active': lang === subPanelLang }" @click="subPanelLang = lang">
-                                {{ lang }}
+                            <li v-for="lang in subtitles.langs" :key="lang.iso" :class="{ 'active': lang.iso === subtitles.panelLang }" @click="subtitles.panelLang = lang.iso">
+                                {{ lang.local }}
                             </li>
                         </ul>
                         <ul class="list subs">
-                            <li v-for="(sub, i) in filterSubs(subPanelLang)" :key="sub.id" :class="{ 'active': sub === currentSub }" @click="currentSub = sub">
+                            <li v-for="(sub, i) in filterSubs(subtitles.panelLang)" :key="sub.id" :class="{ 'active': sub === subtitles.current }" @click="subtitles.current = sub">
                                 Subtitle {{ i+1 }}
                             </li>
                         </ul>

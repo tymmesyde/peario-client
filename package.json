@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "hls.js": "^0.13.2",
+    "langs": "^2.0.0",
     "mime-db": "^1.43.0",
     "rxjs": "^6.5.4",
     "stremio-addon-client": "^1.16.1",
