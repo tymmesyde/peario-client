@@ -48,33 +48,14 @@ export default {
 @import '../variables.scss';
 
 #home {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  background: url('../assets/img/dunes.svg'), url('../assets/img/stars.svg'), linear-gradient(180deg, $background-color 0%, #292544 100%);
-  background-repeat: no-repeat;
-  background-position: center bottom, center 10%, center;
-  padding-bottom: $header-height;
+  padding-bottom: $header-height / 2;
 
   .title {
     margin-bottom: 6vh;
 
     h1 {
-      font-family: 'Montserrat-SemiBold';
-      font-size: 8vh;
-      font-weight: normal;
-      letter-spacing: -0.15rem;
       margin: 1vh;
-    }
-
-    h3 {
-      font-family: 'Montserrat-MediumItalic';
-      font-size: 2.75vh;
-      font-weight: normal;
-      margin: 0;
-      opacity: 0.75;
     }
   }
 
