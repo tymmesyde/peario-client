@@ -56,7 +56,7 @@ export default {
             this.debouncer = setTimeout(async () => {
                 if (value.length) this.results = await StremioService.searchMovies(value);
                 else this.results = [];
-            }, 500);
+            }, 250);
         }
     }
 }
