@@ -27,12 +27,14 @@
         </h2>
 
         <ul>
-          <transition-group name="fade">
+          <transition name="fade">
             <li class="no-streams" v-if="!streams.length">
               <p>No streams available</p>
               <button class="open" @click="openAddons = true"><ion-icon name="cube-outline"></ion-icon> Addons</button>
             </li>
+          </transition>
 
+          <transition-group name="fade">
             <li class="stream" v-for="(stream, i) in streams" :key="`${i}-${stream.infoHash}`" @click="createRoom(stream.infoHash)">
               <div class="icon">
                 <img v-bind:src="stream.icon" alt="">
