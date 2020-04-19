@@ -1,4 +1,3 @@
-import Hls from "@/services/hls.service";
 import Subtitle from "@/components/Subtitle.vue";
 
 export default {
@@ -108,9 +107,6 @@ export default {
             this.$store.dispatch('updateLockState', this.locked);
         }
     },
-    created() {
-        Hls.init();
-    },
     mounted() {
         this.player = this.$refs.player;
         this.video = this.$refs.video;
@@ -118,8 +114,6 @@ export default {
 
         this.currentSub = this.options.subtitles.find(s => s.lang.includes(this.options.lang));
         this.subPanelLang = this.currentSub.lang;
-
-        Hls.loadHls(this.options.src, this.video);
 
         this.disptach();
 
@@ -136,7 +130,7 @@ export default {
         };
 
         this.video.onwaiting = () => {
-            console.log('WAIING');
+            console.log('WAITING');
             this.buffering = true;
         };
         this.video.onloadeddata = () => {
@@ -157,6 +151,6 @@ export default {
         });
     },
     destroyed() {
-        Hls.clear();
+        this.video.src = null;
     }
 }

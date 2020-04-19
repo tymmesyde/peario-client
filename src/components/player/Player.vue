@@ -15,7 +15,7 @@
 
         <Subtitle v-if="video && currentSub" v-show="toggleSub" :subtitles="options.subtitles" :timecode="video.currentTime" :current="currentSub"></Subtitle>
 
-        <video ref="video" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
+        <video ref="video" :src="options.src" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
         
         <div class="controls" v-if="!locked && video">
             <div class="auto-sync" @click="toggleAutoSync()">
