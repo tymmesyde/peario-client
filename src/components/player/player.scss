@@ -144,11 +144,12 @@
             .panel {
                 position: absolute;
                 height: 19vh;
-                width: 20vh;
+                width: 22vh;
                 right: -6vh;
                 bottom: 5vh;
                 border-radius: 1vh;
                 background-color: rgba(white, 0.1);
+                overflow: hidden;
 
                 .toggle {
                     display: grid;
@@ -168,7 +169,7 @@
                     display: inline-block;
                     vertical-align: top;
                     height: 15vh;
-                    width: 10vh;
+                    width: 11vh;
                     line-height: 100%;
                     font-size: 1.5vh;
                     overflow-y: auto;
