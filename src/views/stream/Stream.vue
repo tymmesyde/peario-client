@@ -23,14 +23,14 @@
 
       <div class="streams">
         <h2>
-          <ion-icon name="play-outline"></ion-icon> Streams
+          <ion-icon name="play-outline"></ion-icon> {{ $t(`views.stream.streams.title`) }}
         </h2>
 
         <ul>
           <transition name="fade">
             <li class="no-streams" v-if="!streams.length">
-              <p>No streams available</p>
-              <button class="open" @click="openAddons = true"><ion-icon name="cube-outline"></ion-icon> Addons</button>
+              <p>{{ $t(`views.stream.streams.error`) }}</p>
+              <button class="open" @click="openAddons = true"><ion-icon name="cube-outline"></ion-icon> {{ $t(`views.stream.streams.button`) }}</button>
             </li>
           </transition>
 

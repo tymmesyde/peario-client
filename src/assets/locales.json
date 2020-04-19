@@ -3,11 +3,26 @@
         "views": {
             "home": {
                 "title": "Share your streams",
-                "sub": "Watch movies with your 🍐 from around the world"
+                "sub": "Watch movies with your 🍐 from around the world",
+                "button": "Watch a Movie"
             },
             "search": {
                 "title": "Search",
                 "sub": "Find a movie to watch with your 🍐 !"
+            },
+            "stream": {
+                "streams": {
+                    "title": "Streams",
+                    "error": "No streams available",
+                    "button": "Addons"
+                }
+            }
+        },
+        "components": {
+            "player": {
+                "ready": "READY",
+                "autoSync": "Auto-Sync",
+                "subtitle": "Subtitle"
             }
         },
         "errors": {
@@ -31,11 +46,26 @@
         "views": {
             "home": {
                 "title": "Partagez vos streams",
-                "sub": "Regardez des films avec vos amis du monde entier"
+                "sub": "Regardez des films avec vos amis du monde entier",
+                "button": "Regarder un film"
             },
             "search": {
                 "title": "Rechercher",
                 "sub": "Trouvez un film à regarder avec vos amis !"
+            },
+            "stream": {
+                "streams": {
+                    "title": "Streams",
+                    "error": "Aucun streams disponible",
+                    "button": "Addons"
+                }
+            }
+        },
+        "components": {
+            "player": {
+                "ready": "C'EST PARTI",
+                "autoSync": "Auto-Syncro",
+                "subtitle": "Sous-Titre"
             }
         },
         "errors": {

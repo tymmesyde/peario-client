@@ -3,7 +3,7 @@
         <div class="locked" v-if="locked">
             <div>
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
-                <button @click="unlockPlayer()"><ion-icon name="checkmark-outline"></ion-icon> READY</button>
+                <button @click="unlockPlayer()"><ion-icon name="checkmark-outline"></ion-icon> {{ $t(`components.player.ready`) }}</button>
             </div>
         </div>
 
@@ -21,7 +21,7 @@
             <div class="auto-sync" @click="toggleAutoSync()">
                 <ion-icon name="toggle-outline" class="flip" v-show="!autoSync"></ion-icon>
                 <ion-icon name="toggle" v-show="autoSync"></ion-icon>
-                Auto-Sync
+                {{ $t(`components.player.autoSync`) }}
             </div>
 
             <div class="control" @click="togglePlay()" :class="{ 'disabled': autoSync && !options.isOwner }">
@@ -67,7 +67,7 @@
                         </ul>
                         <ul class="list subs">
                             <li v-for="(sub, i) in filterSubs(subtitles.panelLang)" :key="sub.id" :class="{ 'active': sub === subtitles.current }" @click="subtitles.current = sub">
-                                Subtitle {{ i+1 }}
+                                {{ $t(`components.player.subtitle`) }} {{ i+1 }}
                             </li>
                         </ul>
                     </div>

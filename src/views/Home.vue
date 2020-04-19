@@ -22,7 +22,7 @@
 
       <button class="big" @click="goToSearch()">
         <ion-icon name="play"></ion-icon>
-        Watch a Movie
+        {{ $t(`views.home.button`) }}
       </button>
     </div>
   </div>
