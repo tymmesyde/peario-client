@@ -1,5 +1,5 @@
 <template>
-    <div class="player" ref="player" :class="{ 'hide': hide }">
+    <div class="player" ref="player" :class="{ 'hide': hide }" @dragover="dropSubtitles($event)" @drop="dropSubtitles($event)">
         <div class="locked" v-if="locked">
             <div>
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">

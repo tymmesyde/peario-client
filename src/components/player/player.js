@@ -112,6 +112,34 @@ export default {
             this.subtitles.current = this.subtitles.list.find(s => s.lang.includes(lang)) || this.subtitles.list[0];
             this.subtitles.panelLang = this.subtitles.current.lang;
         },
+        dropSubtitles(event) {
+            event.preventDefault();
+
+            const { files } = event.dataTransfer;
+            if (files.length) {
+                const file = files[0];
+                if (file.name.endsWith('.srt')) {
+                    const reader = new FileReader();
+                    reader.readAsText(file, 'ASCII');
+                    reader.addEventListener('load', () => {
+                        const userLang = {
+                            iso: 'user',
+                            local: 'User'
+                        };
+
+                        this.subtitles.langs.unshift(userLang);
+                        this.subtitles.panelLang = userLang.iso;
+
+                        this.subtitles.current = {
+                            lang: userLang.iso,
+                            data: reader.result
+                        };
+
+                        this.subtitles.list.unshift(this.subtitles.current);
+                    });
+                }
+            }
+        },
         disptach() {
             this.$store.dispatch('updateVideo', this.video);
             this.$store.dispatch('updateHideState', this.hide);

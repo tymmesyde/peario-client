@@ -27,7 +27,10 @@ export default {
             this.html = SubtitleService.getCurrent(value);
         },
         current(subtitle) {
-            if (subtitle.url) SubtitleService.set(subtitle.url);
+            if (subtitle) {
+                if (subtitle.url) SubtitleService.set(subtitle.url);
+                else if (subtitle.data) SubtitleService.setCustom(subtitle.data);
+            }
         }
     },
     async created() {
