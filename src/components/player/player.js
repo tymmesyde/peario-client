@@ -15,6 +15,11 @@ export default {
             isOwner: Boolean
         }
     },
+    computed: {
+        shareUrl() {
+            return window.location.href;
+        }
+    },
     data() {
         return {
             subtitles: {
@@ -32,6 +37,10 @@ export default {
         };
     },
     methods: {
+        copyShareUrl() {
+            this.$copyText(this.shareUrl);
+            this.$toasted.global.clipboard();
+        },
         filterSubs(lang) {
             return this.subtitles.list.filter(s => s.lang === lang);
         },

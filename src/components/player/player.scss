@@ -37,6 +37,18 @@
             display: block;
             margin: auto;
         }
+
+        .share {
+            position: absolute;
+            width: 100%;
+            bottom: 7vh;
+
+            input {
+                width: 50vh;
+                margin-top: 1vh;
+                cursor: pointer;
+            }
+        }
     }
 
     .buffering {

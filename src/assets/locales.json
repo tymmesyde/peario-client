@@ -22,7 +22,8 @@
             "player": {
                 "ready": "READY",
                 "autoSync": "Auto-Sync",
-                "subtitle": "Subtitle"
+                "subtitle": "Subtitle",
+                "share": "You can now share this link with your friends:"
             }
         },
         "errors": {
@@ -40,6 +41,9 @@
                 "title": "Loading the room",
                 "message": "It can take some times."
             }
+        },
+        "toasts": {
+            "clipboard": "Copied to your clipboard !"
         }
     },
     "fr": {
@@ -65,7 +69,8 @@
             "player": {
                 "ready": "C'EST PARTI",
                 "autoSync": "Auto-Syncro",
-                "subtitle": "Sous-Titre"
+                "subtitle": "Sous-Titre",
+                "share": "Vous pouvez maintenant partager ce lien avec vos amis:"
             }
         },
         "errors": {
@@ -83,6 +88,9 @@
                 "title": "Chargement de la salle",
                 "message": "Cela peut prendre un peu de temps."
             }
+        },
+        "toasts": {
+            "clipboard": "Copié dans votre presse-papier !"
         }
     }
 }

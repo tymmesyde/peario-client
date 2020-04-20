@@ -3,6 +3,8 @@ import VueRx from 'vue-rx';
 import VueNativeSock from 'vue-native-websocket';
 import VueMeta from 'vue-meta'
 import VueI18n from 'vue-i18n';
+import VueClipboard from 'vue-clipboard2';
+import Toasted from 'vue-toasted';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -18,6 +20,8 @@ Vue.use(VueI18n);
 Vue.use(VueMeta, {
   refreshOnceOnNavigation: true
 });
+Vue.use(VueClipboard);
+Vue.use(Toasted);
 
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = [/^ion-/];
@@ -25,6 +29,14 @@ Vue.config.ignoredElements = [/^ion-/];
 const i18n = new VueI18n({
   locale: navigator.language.substr(0, 2) || 'en',
   messages: locales,
+});
+
+const { toasts } = i18n.messages[i18n.locale];
+
+Vue.toasted.register('clipboard', toasts.clipboard, {
+  type: 'success',
+  position: 'bottom-center',
+  duration: 3000,
 });
 
 new Vue({

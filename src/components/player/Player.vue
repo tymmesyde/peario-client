@@ -5,6 +5,11 @@
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
                 <button @click="unlockPlayer()"><ion-icon name="checkmark-outline"></ion-icon> {{ $t(`components.player.ready`) }}</button>
             </div>
+
+            <div class="share" v-if="options.isOwner">
+                <p>{{ $t(`components.player.share`) }}</p>
+                <input type="text" :value="shareUrl" spellcheck="false" @click="copyShareUrl()">
+            </div>
         </div>
 
         <div class="buffering" v-if="!locked && !video.paused && buffering">

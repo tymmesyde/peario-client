@@ -11,7 +11,7 @@
                 <h3>{{ $t(`views.search.sub`) }}</h3>
             </div>
 
-            <input type="text" v-model="search" placeholder="Parasite, Fight Club, ...">
+            <input type="text" class="large" v-model="search" placeholder="Parasite, Fight Club, ...">
             <ul class="list">
                 <transition-group name="fade">
                     <li v-for="result in results" :key="result.imdb_id" @click="$router.push({ name: 'stream', params: { type: 'movie', id: result.imdb_id } })">
