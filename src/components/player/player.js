@@ -109,7 +109,7 @@ export default {
             const lang = this.$i18n.locale;
             this.subtitles.list = list;
             this.subtitles.langs = langs;
-            this.subtitles.current = this.subtitles.list.find(s => s.lang.includes(lang));
+            this.subtitles.current = this.subtitles.list.find(s => s.lang.includes(lang)) || this.subtitles.list[0];
             this.subtitles.panelLang = this.subtitles.current.lang;
         },
         disptach() {
