@@ -2,8 +2,7 @@ import axios from "axios";
 import { parse } from 'subtitle';
 
 const SubtitleService = {
-
-    list: [],
+    
     subtitles: null,
 
     getCurrent(seconds) {

@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <Subtitle v-if="video" v-show="subtitles.active" :videoUrl="options.src" :timecode="video.currentTime" :current="subtitles.current" :size="subtitles.size" v-on:loaded="loadSubtitles($event)"></Subtitle>
+        <Subtitle v-if="video" :timecode="video.currentTime"></Subtitle>
 
         <video ref="video" :src="options.src" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
         
@@ -48,46 +48,7 @@
                 {{ timer }}
             </div>
 
-            <div class="subtitles">
-                <span @click="subtitles.togglePanel = !subtitles.togglePanel">
-                    <ion-icon name="chatbox-ellipses-outline" v-show="!subtitles.togglePanel"></ion-icon>
-                    <ion-icon name="chatbox-ellipses" v-show="subtitles.togglePanel"></ion-icon>
-                </span>
-
-                <transition name="fade">
-                    <div class="panel" v-if="subtitles.togglePanel">
-                        <div class="bar">
-                            <div class="toggle" @click="subtitles.active = !subtitles.active">
-                                <div v-show="subtitles.active" class="status">
-                                    <ion-icon name="toggle"></ion-icon> On
-                                </div>
-                                <div v-show="!subtitles.active" class="status">
-                                    <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
-                                </div>
-                            </div>
-
-                            <div class="sizes">
-                                <div class="size" v-for="size in subtitles.sizes" :key="size" :class="[{ 'active': subtitles.size === size }, size]" @click="subtitles.size = size">
-                                    <ion-icon name="text-outline"></ion-icon>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="lists">
-                            <ul class="list langs">
-                                <li v-for="lang in subtitles.langs" :key="lang.iso" :class="{ 'active': lang.iso === subtitles.panelLang }" @click="subtitles.panelLang = lang.iso">
-                                    {{ lang.local }}
-                                </li>
-                            </ul>
-                            <ul class="list subs">
-                                <li v-for="(sub, i) in filterSubs(subtitles.panelLang)" :key="sub.id" :class="{ 'active': sub === subtitles.current }" @click="subtitles.current = sub">
-                                    {{ $t(`components.player.subtitle`) }} {{ i+1 }}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </transition>
-            </div>
+            <SubtitlesControl :videoUrl="options.src" :userSubtitle="userSubtitle"></SubtitlesControl>
 
             <div class="fullscreen" @click="toggleFullscreen()">
                 <ion-icon name="expand-outline" v-show="!fullscreen"></ion-icon>

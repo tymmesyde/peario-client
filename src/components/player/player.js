@@ -1,9 +1,11 @@
 import Subtitle from "@/components/Subtitle.vue";
+import SubtitlesControl from "./controls/SubtitlesControl.vue";
 
 export default {
     name: 'Player',
     components: {
-        Subtitle
+        Subtitle,
+        SubtitlesControl
     },
     props: {
         options: {
@@ -22,20 +24,7 @@ export default {
     },
     data() {
         return {
-            subtitles: {
-                active: true,
-                togglePanel: false,
-                current: null,
-                list: [],
-                langs: [],
-                panelLang: null,
-                size: 'medium',
-                sizes: [
-                    'small',
-                    'medium',
-                    'large'
-                ]
-            },
+            userSubtitle: null,
             volumeTmp: 0,
             timebar: 0,
             timer: '0:00',
@@ -46,9 +35,6 @@ export default {
         copyShareUrl() {
             this.$copyText(this.shareUrl);
             this.$toasted.global.clipboard();
-        },
-        filterSubs(lang) {
-            return this.subtitles.list.filter(s => s.lang === lang);
         },
         unlockPlayer() {
             const canPlay = this.video.play();
@@ -111,39 +97,13 @@ export default {
             this.timebar = Number(((currentTime * 10000 / duration) || 0).toFixed());
             this.timer = `${hours > 0 ? hours + ':' : ''}${hours && min < 10 ? '0' + min : min}:${sec < 10 ? '0' + sec : sec}`;
         },
-        loadSubtitles({ list, langs }) {
-            const lang = this.$i18n.locale;
-            this.subtitles.list = list;
-            this.subtitles.langs = langs;
-            this.subtitles.current = this.subtitles.list.find(s => s.lang.includes(lang)) || this.subtitles.list[0];
-            this.subtitles.panelLang = this.subtitles.current.lang;
-        },
         dropSubtitles(event) {
             event.preventDefault();
 
             const { files } = event.dataTransfer;
             if (files.length) {
                 const file = files[0];
-                if (file.name.endsWith('.srt')) {
-                    const reader = new FileReader();
-                    reader.readAsText(file, 'ASCII');
-                    reader.addEventListener('load', () => {
-                        const userLang = {
-                            iso: 'user',
-                            local: 'User'
-                        };
-
-                        this.subtitles.langs.unshift(userLang);
-                        this.subtitles.panelLang = userLang.iso;
-
-                        this.subtitles.current = {
-                            lang: userLang.iso,
-                            data: reader.result
-                        };
-
-                        this.subtitles.list.unshift(this.subtitles.current);
-                    });
-                }
+                if (file.name.endsWith('.srt')) this.userSubtitle = file;
             }
         },
         disptach() {
