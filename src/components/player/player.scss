@@ -148,7 +148,7 @@
             justify-self: center;
             font-size: 2.25vh;
             line-height: 0;
-            
+
             ion-icon {
                 cursor: pointer;
             }
@@ -163,17 +163,61 @@
                 background-color: rgba(white, 0.1);
                 overflow: hidden;
 
-                .toggle {
+                $bar-height: 4vh;
+
+                .bar {
+                    height: $bar-height;
                     display: grid;
+                    grid-template-columns: 30% 70%;
                     align-items: center;
-                    height: 4vh;
-                    font-size: 1.75vh;
                     padding-left: 1vh;
 
-                    .status {
+                    .toggle {
+                        height: $bar-height;
                         display: grid;
-                        grid-template-columns: 2.75vh auto;
                         align-items: center;
+                        font-size: 1.75vh;
+                        cursor: pointer;
+
+                        .status {
+                            display: grid;
+                            grid-template-columns: 2.75vh auto;
+                            align-items: center;
+                        }
+                    }
+
+                    .sizes {
+                        text-align: right;
+
+                        .size {
+                            height: $bar-height;
+                            width: $bar-height;
+                            line-height: $bar-height;
+                            display: inline-block;
+                            vertical-align: top;
+                            text-align: center;
+                            cursor: pointer;
+                            
+                            &.small {
+                                font-size: 1.5vh;
+                            }
+
+                            &.medium {
+                                font-size: 2vh;
+                            }
+
+                            &.large {
+                                font-size: 2.6vh;
+                            }
+
+                            &.active {
+                                background-color: rgba(white, 0.2);
+                            }
+
+                            &:not(.active):hover {
+                                background-color: rgba(white, 0.1);
+                            }
+                        }
                     }
                 }
 

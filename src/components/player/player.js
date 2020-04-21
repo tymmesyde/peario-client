@@ -29,6 +29,12 @@ export default {
                 list: [],
                 langs: [],
                 panelLang: null,
+                size: 'medium',
+                sizes: [
+                    'small',
+                    'medium',
+                    'large'
+                ]
             },
             volumeTmp: 0,
             timebar: 0,

@@ -1,5 +1,5 @@
 <template>
-    <div id="subtitle">
+    <div id="subtitle" :class="getSize">
         <span v-html="html"></span>
     </div>
 </template>
@@ -15,6 +15,10 @@ export default {
         videoUrl: String,
         timecode: Number,
         current: Object,
+        size: String,
+    },
+    computed:{
+        getSize(){ return this.size; }
     },
     data() {
         return {
@@ -66,7 +70,18 @@ export default {
         display: flex;
         justify-content: center;
         color: white;
-        font-size: 2vh;
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
+        &.small {
+            font-size: 2vh;
+        }
+
+        &.medium {
+            font-size: 3vh;
+        }
+
+        &.large {
+            font-size: 4vh;
+        }
     }
 </style>
