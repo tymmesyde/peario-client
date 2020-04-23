@@ -26,8 +26,10 @@ Vue.use(Toasted);
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = [/^ion-/];
 
+const navigatorLang = navigator.language.substr(0, 2);
+
 const i18n = new VueI18n({
-  locale: navigator.language.substr(0, 2) || 'en',
+  locale: Object.keys(locales).includes(navigatorLang) ? navigatorLang : 'en',
   messages: locales,
 });
 
