@@ -1,0 +1,47 @@
+{
+    "views": {
+        "home": {
+            "title": "Akışlarınızı paylaşın",
+            "sub": "Dünyanın dört bir yanından arkadaşlarınızla film izleyin",
+            "button": "Film izlemek"
+        },
+        "search": {
+            "title": "Arama",
+            "sub": "Arkadaşlarınızla izlemek için bir film bulun!"
+        },
+        "stream": {
+            "streams": {
+                "title": "Canlı Yayınlar",
+                "error": "Mevcut akış yok",
+                "button": "Eklentileri"
+            }
+        }
+    },
+    "components": {
+        "player": {
+            "ready": "HAZIR",
+            "autoSync": "Otomatik Eşitleme",
+            "subtitle": "Alt yazı",
+            "share": "Artık bu bağlantıyı arkadaşlarınızla paylaşabilirsiniz:"
+        }
+    },
+    "errors": {
+        "stremio": {
+            "title": "Stremio açık değil",
+            "message": "Peario'nun çalışabilmesi için lütfen Stremio'yu açın."
+        },
+        "room": {
+            "title": "Bu oda mevcut değil",
+            "message": "Odanın hala aktif olduğundan emin olun."
+        }
+    },
+    "loading": {
+        "room": {
+            "title": "Oda yükleniyor",
+            "message": "Biraz zaman alabilir."
+        }
+    },
+    "toasts": {
+        "clipboard": "Panonuza kopyalandı!"
+    }
+}
