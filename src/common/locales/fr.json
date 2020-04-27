@@ -1,0 +1,47 @@
+{
+    "views": {
+        "home": {
+            "title": "Partagez vos streams",
+            "sub": "Regardez des films avec vos amis du monde entier",
+            "button": "Regarder un film"
+        },
+        "search": {
+            "title": "Rechercher",
+            "sub": "Trouvez un film à regarder avec vos amis !"
+        },
+        "stream": {
+            "streams": {
+                "title": "Streams",
+                "error": "Aucun streams disponible",
+                "button": "Addons"
+            }
+        }
+    },
+    "components": {
+        "player": {
+            "ready": "C'EST PARTI",
+            "autoSync": "Auto-Syncro",
+            "subtitle": "Sous-Titre",
+            "share": "Vous pouvez maintenant partager ce lien avec vos amis:"
+        }
+    },
+    "errors": {
+        "stremio": {
+            "title": "Stremio n'est pas actif",
+            "message": "Ouvrez Stremio pour que Peario puisse opérer."
+        },
+        "room": {
+            "title": "Cette salle n'existe pas",
+            "message": "Soyez sûr que la salle est toujours active."
+        }
+    },
+    "loading": {
+        "room": {
+            "title": "Chargement de la salle",
+            "message": "Cela peut prendre un peu de temps."
+        }
+    },
+    "toasts": {
+        "clipboard": "Copié dans votre presse-papier !"
+    }
+}

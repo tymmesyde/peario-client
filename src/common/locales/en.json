@@ -1,0 +1,47 @@
+{
+    "views": {
+        "home": {
+            "title": "Share your streams",
+            "sub": "Watch movies with your 🍐 from around the world",
+            "button": "Watch a Movie"
+        },
+        "search": {
+            "title": "Search",
+            "sub": "Find a movie to watch with your 🍐 !"
+        },
+        "stream": {
+            "streams": {
+                "title": "Streams",
+                "error": "No streams available",
+                "button": "Addons"
+            }
+        }
+    },
+    "components": {
+        "player": {
+            "ready": "READY",
+            "autoSync": "Auto-Sync",
+            "subtitle": "Subtitle",
+            "share": "You can now share this link with your friends:"
+        }
+    },
+    "errors": {
+        "stremio": {
+            "title": "Stremio is not running",
+            "message": "Please, open Stremio so Peario can operate."
+        },
+        "room": {
+            "title": "This room does not exists",
+            "message": "Be sure that the room is still active."
+        }
+    },
+    "loading": {
+        "room": {
+            "title": "Loading the room",
+            "message": "It can take some times."
+        }
+    },
+    "toasts": {
+        "clipboard": "Copied to your clipboard !"
+    }
+}
