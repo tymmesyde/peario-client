@@ -42,7 +42,6 @@ export default {
         const addons = await StremioService.getAddons();
         const streamCol = AddonService.createStreamCollection(addons);
         this.addons = streamCol;
-        this.installed = StorageService.get('installed');
-        console.log(this.addons);
+        this.installed = StorageService.get('installed') || [];
     }
 };

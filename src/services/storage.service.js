@@ -14,7 +14,7 @@ const StorageService = {
     get(key) {
         const item = localStorage.getItem(key);
         try {
-            return JSON.parse(item) || [];
+            return JSON.parse(item);
         } catch(e) {
             return null;
         }

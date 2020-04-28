@@ -25,10 +25,9 @@ export default {
     methods: {
         async loadStreams() {
             const { id, type } = this.meta;
-            const installedAddons = StorageService.get('installed');
+            const installedAddons = StorageService.get('installed') || [];
             const streamCol = AddonService.createStreamCollection(installedAddons);
             this.streams = await AddonService.getStreams(streamCol, type, id);
-            console.log(this.streams);
         },
         createRoom(infoHash) {
             WebSocketService.send('room.new', { infoHash, meta: this.meta });
@@ -41,8 +40,6 @@ export default {
     async mounted() {
         const { type, id } = this.$route.params;
         this.meta = type === 'movie' ? await StremioService.getMetaMovie(id) : await StremioService.getMetaSeries(id);
-        console.log(this.meta);
-
         this.loadStreams();
         StorageService.watch.subscribe(() => this.loadStreams());
     }
