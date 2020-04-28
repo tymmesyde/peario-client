@@ -29,8 +29,10 @@
         <ul>
           <transition name="fade">
             <li class="no-streams" v-if="!streams.length">
-              <p>{{ $t(`views.stream.streams.error`) }}</p>
-              <button class="open" @click="openAddons = true"><ion-icon name="cube-outline"></ion-icon> {{ $t(`views.stream.streams.button`) }}</button>
+              <div>
+                <ion-icon name="sad"></ion-icon>
+                <p>{{ $t(`views.stream.streams.error`) }}</p>
+              </div>
             </li>
           </transition>
 
@@ -38,12 +40,18 @@
             <li class="stream" v-for="(stream, i) in streams" :key="`${i}-${stream.infoHash}`" @click="createRoom(stream.infoHash)">
               <div class="icon">
                 <img v-bind:src="stream.icon" alt="">
+                <ion-icon class="outline" name="play-outline"></ion-icon>
+                <ion-icon class="filled" name="play"></ion-icon>
               </div>
               <div class="name" v-if="stream.name">{{ stream.name }}</div>
               <div class="title" :class="{ 'extend': !stream.name }">{{ stream.title }}</div>
             </li>
           </transition-group>
         </ul>
+
+        <button @click="openAddons = true">
+          <ion-icon name="cube-outline"></ion-icon> Manage Addons
+        </button>
       </div>
     </div>
     

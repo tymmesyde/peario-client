@@ -1,9 +1,5 @@
 <template>
     <div id="addons">
-        <button class="open" v-on:click="isOpen = true">
-            <ion-icon name="cube-outline"></ion-icon> Addons
-        </button>
-
         <transition name="fade">
             <div class="menu" v-if="isOpen">
                 <h2>

@@ -85,6 +85,7 @@ $stream-icon-size: 7vh;
             width: 100%;
             height: 50vh;
             padding-right: 1vh;
+            padding-bottom: 1vh;
             overflow-x: hidden;
             overflow-y: auto;
 
@@ -93,7 +94,12 @@ $stream-icon-size: 7vh;
                 display: grid;
                 align-items: center;
                 justify-content: center;
-                grid-template-rows: 4.5vh 5vh;
+                text-align: center;
+
+                ion-icon {
+                    font-size: 7vh;
+                    margin-bottom: 1vh;
+                }
             }
 
             .stream {
@@ -109,6 +115,7 @@ $stream-icon-size: 7vh;
                 transition: all 0.1s ease-in-out;
 
                 .icon {
+                    position: relative;
                     display: grid;
                     align-content: center;
                     height: $stream-icon-size;
@@ -116,9 +123,25 @@ $stream-icon-size: 7vh;
                     border-radius: 2vh;
                     overflow: hidden;
                     background-color: rgba(white, 0.1);
+                    
+                    > * {
+                        transition: opacity 0.1s ease-in-out;
+                        transition-delay: 0.1s;
+                    }
 
                     img {
                         width: 100%;
+                    }
+
+                    ion-icon {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        font-size: 4.5vh;
+                        opacity: 0;
                     }
                 }
 
@@ -146,6 +169,27 @@ $stream-icon-size: 7vh;
 
                 &:hover {
                     background-color: rgba(100, 100, 100, 0.1);
+
+                    .icon {
+                        img {
+                            opacity: 0;
+                        }
+
+                        ion-icon.outline {
+                            opacity: 1;
+                        }
+                    }
+
+                    &:active {
+                        background-color: rgba(100, 100, 100, 0.2);
+
+                        .icon {
+                            ion-icon.filled {
+                                transition-delay: 0s;
+                                opacity: 1;
+                            }
+                        }
+                    }
                 }
             }
         }
