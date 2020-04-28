@@ -1,0 +1,47 @@
+{
+    "views": {
+        "home": {
+            "title": "Partilhe os seus streams",
+            "sub": "Veja filmes com os seus amigos de todo o mundo",
+            "button": "Ver um Filme"
+        },
+        "search": {
+            "title": "Pesquisa",
+            "sub": "Encontre um filme para ver com os seus amigos!"
+        },
+        "stream": {
+            "streams": {
+                "title": "Streams",
+                "error": "Não há fluxos disponíveis",
+                "button": "Addons"
+            }
+        }
+    },
+    "components": {
+        "player": {
+            "ready": "PRONTO",
+            "autoSync": "Auto-Sync",
+            "subtitle": "Subtítulo",
+            "share": "Pode agora partilhar este link com os seus amigos:"
+        }
+    },
+    "errors": {
+        "stremio": {
+            "title": "O Stremio não está aberto",
+            "message": "Por favor, abra o Stremio para que o Peario possa funcionar."
+        },
+        "room": {
+            "title": "Esta sala não existe",
+            "message": "Certifique-se de que a sala ainda está activa."
+        }
+    },
+    "loading": {
+        "room": {
+            "title": "Carregamento da sala",
+            "message": "Pode demorar algumas vezes."
+        }
+    },
+    "toasts": {
+        "clipboard": "Copiado para a sua prancheta!"
+    }
+}
