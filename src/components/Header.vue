@@ -3,12 +3,19 @@
       <div class="logo">
         <img src="../assets/img/logo.svg">
       </div>
+
+      <Locales></Locales>
     </header>
 </template>
 
 <script>
+import Locales from './Locales';
+
 export default {
-    name: 'Header'
+  name: 'Header',
+  components: {
+    Locales
+  }
 }
 </script>
 
