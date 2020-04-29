@@ -13,7 +13,7 @@
             "streams": {
                 "title": "Streams",
                 "error": "No streams available",
-                "button": "Addons"
+                "button": "Manage Addons"
             }
         }
     },

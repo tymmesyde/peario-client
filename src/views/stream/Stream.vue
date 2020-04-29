@@ -50,7 +50,7 @@
         </ul>
 
         <button @click="openAddons = true">
-          <ion-icon name="cube-outline"></ion-icon> Manage Addons
+          <ion-icon name="cube-outline"></ion-icon> {{ $t(`views.stream.streams.button`) }}
         </button>
       </div>
     </div>
