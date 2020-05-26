@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Partilhe os seus streams",
-            "sub": "Veja filmes com os seus amigos de todo o mundo",
-            "button": "Ver um Filme"
+            "sub": "Assista filmes e séries com seus amigos de todo o mundo",
+            "button": "Assista a um Filme / Série"
         },
         "search": {
             "title": "Pesquisa",
-            "sub": "Encontre um filme para ver com os seus amigos!",
+            "sub": "Encontre algo para assistir com seus amigos!",
             "segments": {
                 "movies": "Filmes",
                 "series": "Séries"

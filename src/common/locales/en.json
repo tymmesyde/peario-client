@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Share your streams",
-            "sub": "Watch movies with your 🍐 from around the world",
-            "button": "Watch a Movie"
+            "sub": "Watch movies & series with your 🍐 from around the world",
+            "button": "Watch a Movie / Series"
         },
         "search": {
             "title": "Search",
-            "sub": "Find a movie to watch with your 🍐 !",
+            "sub": "Find something to watch with your 🍐 !",
             "segments": {
                 "movies": "Movies",
                 "series": "Series"

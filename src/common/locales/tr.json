@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Akışlarınızı paylaşın",
-            "sub": "Dünyanın dört bir yanından arkadaşlarınızla film izleyin",
-            "button": "Film izlemek"
+            "sub": "Dünyanın dört bir yanından arkadaşlarınızla film ve dizi izleyin",
+            "button": "Film / Dizi İzle"
         },
         "search": {
             "title": "Arama",
-            "sub": "Arkadaşlarınızla izlemek için bir film bulun!",
+            "sub": "Arkadaşlarınızla izlemek için bir şeyler bulun!",
             "segments": {
                 "movies": "Filmler",
                 "series": "Seriler"
