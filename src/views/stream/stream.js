@@ -67,6 +67,9 @@ export default {
         },
         currentEpisode() {
             return this.meta.videos ? this.meta.videos.find(({ season, episode }) => season === this.selected.season && episode === this.selected.episode) : null;
+        },
+        filterVideos() {
+            return this.meta.videos.filter(({ season }) => season === this.selected.season).sort((a, b) => a.episode - b.episode);
         }
     },
     async mounted() {

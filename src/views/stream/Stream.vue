@@ -29,7 +29,7 @@
           </li>
         </ul>
         <ul class="list episodes">
-          <li v-for="video in meta.videos.filter(({ season }) => season === selected.season)" :key="video.id" :class="{ 'active': selected.episode === video.episode }" @click="selected.episode = video.episode">
+          <li v-for="video in filterVideos()" :key="video.id" :class="{ 'active': selected.episode === video.episode }" @click="selected.episode = video.episode">
             <div class="number">{{ video.episode }}</div>
             <div class="name">{{ video.name }}</div>
           </li>
