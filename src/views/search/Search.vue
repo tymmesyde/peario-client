@@ -11,24 +11,26 @@
                 <h3>{{ $t(`views.search.sub`) }}</h3>
             </div>
 
-            <input type="text" class="large" v-model="search" placeholder="Parasite, Fight Club, ...">
-            <ul class="segments" v-show="search">
-                <li v-for="segment in segments" :key="segment" :class="{ 'active': selectedType === segment }" @click="selectedType = segment">{{ $t(`views.search.segments.${segment}`) }}</li>
-            </ul>
-            <ul class="list">
-                <transition-group name="fade">
-                    <li v-for="result in results[selectedType]" :key="result.imdb_id" @click="goToStream(result)">
-                        <div class="poster">
-                            <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
-                            <img :src="result.poster" alt="poster" v-if="result.poster">
-                        </div>
-                        <div class="info">
-                            <p class="name">{{ result.name }}</p>
-                            <p class="year">{{ result.releaseInfo }}</p>
-                        </div>
-                    </li>
-                </transition-group>
-            </ul>
+            <div class="search">
+                <input type="text" class="large" v-model="search" placeholder="Parasite, Fight Club, ...">
+                <ul class="segments" v-show="search">
+                    <li v-for="segment in segments" :key="segment" :class="{ 'active': selectedType === segment }" @click="selectedType = segment">{{ $t(`views.search.segments.${segment}`) }}</li>
+                </ul>
+                <ul class="list">
+                    <transition-group name="fade">
+                        <li v-for="result in results[selectedType]" :key="result.imdb_id" @click="goToStream(result)">
+                            <div class="poster">
+                                <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
+                                <img :src="result.poster" alt="poster" v-if="result.poster">
+                            </div>
+                            <div class="info">
+                                <p class="name">{{ result.name }}</p>
+                                <p class="year">{{ result.releaseInfo }}</p>
+                            </div>
+                        </li>
+                    </transition-group>
+                </ul>
+            </div>
         </div>
 
         <Footer></Footer>
@@ -97,9 +99,13 @@ export default {
         }
     }
 
+    .search {
+        width: 60vh;
+        margin: auto;
+    }
+
     .list {
         max-height: 35vh;
-        width: 55vh;
         overflow: hidden;
         overflow-y: auto;
         margin: auto;
@@ -112,8 +118,6 @@ export default {
             padding: 1.5vh;
             margin-bottom: 0.5vh;
             border-radius: 1vh;
-            cursor: pointer;
-            transition: all 0.1s ease-in-out;
             transition-delay: 0.05s;
 
             .poster {
@@ -147,10 +151,6 @@ export default {
                     font-size: 1.75vh;
                     font-style: italic;
                 }
-            }
-
-            &:hover {
-                background-color: rgba(white, 0.05);
             }
         }
     }
