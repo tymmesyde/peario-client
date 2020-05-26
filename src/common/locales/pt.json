@@ -7,9 +7,14 @@
         },
         "search": {
             "title": "Pesquisa",
-            "sub": "Encontre um filme para ver com os seus amigos!"
+            "sub": "Encontre um filme para ver com os seus amigos!",
+            "segments": {
+                "movies": "Filmes",
+                "series": "Séries"
+            }
         },
         "stream": {
+            "season": "Época",
             "streams": {
                 "title": "Streams",
                 "error": "Não há fluxos disponíveis",

@@ -7,9 +7,14 @@
         },
         "search": {
             "title": "Rechercher",
-            "sub": "Trouvez un film à regarder avec vos amis !"
+            "sub": "Trouvez un film à regarder avec vos amis !",
+            "segments": {
+                "movies": "Films",
+                "series": "Séries"
+            }
         },
         "stream": {
+            "season": "Saison",
             "streams": {
                 "title": "Streams",
                 "error": "Aucun streams disponible",

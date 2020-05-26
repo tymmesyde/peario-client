@@ -7,9 +7,14 @@
         },
         "search": {
             "title": "Arama",
-            "sub": "Arkadaşlarınızla izlemek için bir film bulun!"
+            "sub": "Arkadaşlarınızla izlemek için bir film bulun!",
+            "segments": {
+                "movies": "Filmler",
+                "series": "Seriler"
+            }
         },
         "stream": {
+            "season": "Sezon",
             "streams": {
                 "title": "Canlı Yayınlar",
                 "error": "Mevcut akış yok",
