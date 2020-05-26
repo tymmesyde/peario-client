@@ -1,0 +1,52 @@
+{
+    "views": {
+        "home": {
+            "title": "Comparte tus corrientes",
+            "sub": "Mira películas y series con tus amigos de todo el mundo",
+            "button": "Ver una película / serie"
+        },
+        "search": {
+            "title": "Busca en",
+            "sub": "¡Encuentra algo para ver con tus amigos!",
+            "segments": {
+                "movies": "Películas",
+                "series": "Series"
+            }
+        },
+        "stream": {
+            "season": "Temporada",
+            "streams": {
+                "title": "Streams",
+                "error": "No hay streams disponibles",
+                "button": "Administrar Addons"
+            }
+        }
+    },
+    "components": {
+        "player": {
+            "ready": "LISTO",
+            "autoSync": "Auto-Syncro",
+            "subtitle": "Subtítulo",
+            "share": "Ahora puedes compartir este enlace con tus amigos:"
+        }
+    },
+    "errors": {
+        "stremio": {
+            "title": "Stremio no está corriendo",
+            "message": "Por favor, abre a Stremio para que Peario pueda operar."
+        },
+        "room": {
+            "title": "Esta sala no existe",
+            "message": "Asegúrate de que la sala sigue activa."
+        }
+    },
+    "loading": {
+        "room": {
+            "title": "Cargando la sala",
+            "message": "Puede tomar algunas veces."
+        }
+    },
+    "toasts": {
+        "clipboard": "¡Copiado en tu portapapeles!"
+    }
+}
