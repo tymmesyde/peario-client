@@ -71,6 +71,32 @@ $stream-icon-size: 7vh;
                     background-color: rgba(white, 0.1);
                 }
             }
+
+            .episodes {
+                height: 28vh;
+                overflow: auto;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    height: 4vh;
+                    padding: 0 1.5vh;
+                    border-radius: 0.5vh;
+                    white-space: pre;
+                    overflow: hidden;
+
+                    .number {
+                        font-size: 1.5vh;
+                        font-weight: bold;
+                        margin-right: 1vh;
+                    }
+
+                    & > * {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+            }
         }
     }
 

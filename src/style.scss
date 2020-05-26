@@ -21,6 +21,7 @@
 }
 
 ::-webkit-scrollbar {
+  height: 0.5vh;
   width: 0.75vh;
 }
 
@@ -221,6 +222,56 @@ ion-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+$segment-height: 4vh;
+.segments {
+  margin-top: 2vh;
+  margin-bottom: 1.5vh;
+  padding-bottom: 0.5vh;
+  white-space: pre;
+  overflow: hidden;
+  overflow-x: auto;
+  user-select: none;
+
+  li {
+    height: $segment-height;
+    line-height: $segment-height;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 2vh;
+    border-radius: 1vh;
+    margin-right: 1vh;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &.active {
+      background-color: rgba(white, 0.1);
+      font-weight: bold;
+    }
+
+    &:hover {
+      background-color: rgba(white, 0.05);
+    }
+  }
+}
+
+.list {
+  user-select: none;
+
+  li {
+    transition: all 0.1s ease-in-out;
+    cursor: default;
+
+    &.active {
+      background-color: rgba($text-color, 0.1);
+    }
+
+    &:not(.active):hover {
+      background-color: rgba($text-color, 0.05);
+      cursor: pointer;
+    }
+  }
 }
 
 .flip {

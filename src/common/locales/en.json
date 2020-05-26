@@ -7,9 +7,14 @@
         },
         "search": {
             "title": "Search",
-            "sub": "Find a movie to watch with your 🍐 !"
+            "sub": "Find a movie to watch with your 🍐 !",
+            "segments": {
+                "movies": "Movies",
+                "series": "Series"
+            }
         },
         "stream": {
+            "season": "Season",
             "streams": {
                 "title": "Streams",
                 "error": "No streams available",

@@ -28,6 +28,11 @@ const StremioService = {
         return data.metas;
     },
 
+    async searchSeries(title) {
+        const { data } = await axios.get(`${CINEMETA_URL}/catalog/series/top/search=${title}.json`);
+        return data.metas;
+    },
+
     async getAddons() {
         const { data } = await axios.get(`${STREMIO_API_URL}/addonscollection.json`);
         return data;

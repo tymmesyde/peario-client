@@ -12,9 +12,12 @@
             </div>
 
             <input type="text" class="large" v-model="search" placeholder="Parasite, Fight Club, ...">
+            <ul class="segments" v-show="search">
+                <li v-for="segment in segments" :key="segment" :class="{ 'active': selectedType === segment }" @click="selectedType = segment">{{ $t(`views.search.segments.${segment}`) }}</li>
+            </ul>
             <ul class="list">
                 <transition-group name="fade">
-                    <li v-for="result in results" :key="result.imdb_id" @click="$router.push({ name: 'stream', params: { type: 'movie', id: result.imdb_id } })">
+                    <li v-for="result in results[selectedType]" :key="result.imdb_id" @click="goToStream(result)">
                         <div class="poster">
                             <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
                             <img :src="result.poster" alt="poster" v-if="result.poster">
@@ -46,7 +49,12 @@ export default {
     data() {
         return {
             search: '',
-            results: [],
+            segments: ['movies', 'series'],
+            selectedType: 'movies',
+            results: {
+                movies: [],
+                series: []
+            },
             debouncer: null
         }
     },
@@ -54,9 +62,17 @@ export default {
         search(value) {
             clearTimeout(this.debouncer);
             this.debouncer = setTimeout(async () => {
-                if (value.length) this.results = await StremioService.searchMovies(value);
+                if (value.length) {
+                    this.results.movies = await StremioService.searchMovies(value);
+                    this.results.series = await StremioService.searchSeries(value);
+                }
                 else this.results = [];
             }, 250);
+        }
+    },
+    methods: {
+        goToStream({ type, imdb_id }) {
+            this.$router.push({ name: 'stream', params: { type, id: imdb_id } });
         }
     }
 }
@@ -93,7 +109,8 @@ export default {
             display: grid;
             grid-template-columns: 9vh auto;
             grid-column-gap: 1.5vh;
-            padding: 2vh;
+            padding: 1.5vh;
+            margin-bottom: 0.5vh;
             border-radius: 1vh;
             cursor: pointer;
             transition: all 0.1s ease-in-out;

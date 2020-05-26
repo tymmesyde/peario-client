@@ -18,6 +18,19 @@
               {{ genre }}
             </div>
           </div>
+
+          <ul class="segments">
+            <li v-for="season in seasons" :key="season" :class="{ 'active': selected.season === season }" @click="selected.season = season">
+              <span v-if="season > 0">{{ $t(`views.stream.season`) }} {{ season }}</span>
+              <span v-else>Miscellaneous</span>
+            </li>
+          </ul>
+          <ul class="list episodes" v-if="meta.videos">
+            <li v-for="video in meta.videos.filter(({ season }) => season === selected.season)" :key="video.id" :class="{ 'active': selected.episode === video.episode }" @click="selected.episode = video.episode">
+              <div class="number">{{ video.episode }}</div>
+              <div class="name">{{ video.name }}</div>
+            </li>
+          </ul>
         </div>
       </div>
 
