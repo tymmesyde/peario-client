@@ -28,8 +28,8 @@ export default {
             meta: {},
             seasons: [],
             selected: {
-                season: 1,
-                episode: 1
+                season: 0,
+                episode: 0
             },
             streams: [],
             openAddons: false,
@@ -75,9 +75,16 @@ export default {
     async mounted() {
         const { type, id } = this.$route.params;
 
-        this.meta = type === 'movie' ? await StremioService.getMetaMovie(id) : await StremioService.getMetaSeries(id);
+        const parsed = id.split(':');
+        const metaId = parsed[0];
+
+        this.meta = type === 'movie' ? await StremioService.getMetaMovie(metaId) : await StremioService.getMetaSeries(metaId);
         if (this.meta.videos) this.parseSeason();
-        this.loadStreams();
+        
+        this.selected = {
+            season: parsed[1] | 1,
+            episode: parsed[2] | 1
+        };
 
         StorageService.watch.subscribe(() => this.loadStreams());
     }
