@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="series col-3" v-if="meta.videos">
+      <div class="series col-3" v-if="isSeries">
         <ul class="segments">
           <li v-for="season in seasons" :key="season" :class="{ 'active': selected.season === season }" @click="selected.season = season">
             <span v-if="season > 0">{{ $t(`views.stream.season`) }} {{ season }}</span>

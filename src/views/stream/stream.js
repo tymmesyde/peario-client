@@ -17,6 +17,9 @@ export default {
         },
         episode() {
             return this.selected.episode;
+        },
+        isSeries() {
+            return this.meta.type === 'series';
         }
     },
     data: () => {
