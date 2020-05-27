@@ -1,5 +1,3 @@
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import Error from "@/components/Error.vue";
 import AddonManager from '@/components/addonManager/AddonManager.vue';
 import StremioService from "@/services/stremio.service";
@@ -10,8 +8,6 @@ import WebSocketService from "@/services/ws.service";
 export default {
     name: 'Stream',
     components: {
-        Header,
-        Footer,
         Error,
         AddonManager
     },

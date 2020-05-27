@@ -1,14 +1,13 @@
 <template>
   <div id="stream" class="container">
-    <Header></Header>
     <AddonManager :open="openAddons" v-on:closed="openAddons = false"></AddonManager>
 
-    <div class="inner">
-      <div class="meta">
-        <div class="poster">
+    <div class="inner center col-10">
+      <div class="meta col-6">
+        <div class="poster col-5">
           <img v-bind:src="meta.poster" alt="">
         </div>
-        <div class="info">
+        <div class="info col-7">
           <div class="title">{{ meta.name }}</div>
           <div class="year">{{ meta.year }}</div>
           <div class="runtime">{{ meta.runtime }}</div>
@@ -21,7 +20,7 @@
         </div>
       </div>
 
-      <div class="series" v-if="meta.videos">
+      <div class="series col-3" v-if="meta.videos">
         <ul class="segments">
           <li v-for="season in seasons" :key="season" :class="{ 'active': selected.season === season }" @click="selected.season = season">
             <span v-if="season > 0">{{ $t(`views.stream.season`) }} {{ season }}</span>
@@ -36,12 +35,12 @@
         </ul>
       </div>
 
-      <div class="streams">
+      <div class="streams col-3">
         <h2>
           <ion-icon name="play-outline"></ion-icon> {{ $t(`views.stream.streams.title`) }}
         </h2>
 
-        <ul>
+        <ul class="list">
           <transition name="fade">
             <li class="no-streams" v-if="!streams.length">
               <div>
@@ -69,8 +68,6 @@
         </button>
       </div>
     </div>
-    
-    <Footer></Footer>
   </div>
 </template>
 

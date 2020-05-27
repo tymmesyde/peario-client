@@ -1,7 +1,5 @@
 <template>
     <div id="search" class="container">
-        <Header></Header>
-
         <div class="inner">
             <div class="title">
                 <h1>
@@ -32,22 +30,14 @@
                 </ul>
             </div>
         </div>
-
-        <Footer></Footer>
     </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
 import StremioService from '@/services/stremio.service';
 
 export default {
     name: 'Search',
-    components: {
-        Header,
-        Footer
-    },
     data() {
         return {
             search: '',
@@ -99,17 +89,8 @@ export default {
         }
     }
 
-    .search {
-        width: 60vh;
-        margin: auto;
-    }
-
     .list {
         max-height: 35vh;
-        overflow: hidden;
-        overflow-y: auto;
-        margin: auto;
-        margin-top: 1.5vh;
 
         li {
             display: grid;

@@ -1,27 +1,12 @@
 $stream-icon-size: 7vh;
 
 #stream {
-    .inner {
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 40% repeat(auto-fit, 20%);
-        column-gap: 3vh;
-        width: 100vw;
-    }
-
-    .meta,
-    .streams {
-        display: inline-grid;
-        vertical-align: top;
-    }
+    font-family: 'Montserrat';
 
     .meta {
-        $column-gap: 3.5vh;
-        grid-template-columns: 40% calc(60% - #{$column-gap});
-        grid-column-gap: $column-gap;
-        font-family: 'Montserrat';
-
         .poster {
+            padding-left: 0;
+            overflow: hidden;
             user-select: none;
 
             img {
@@ -31,6 +16,8 @@ $stream-icon-size: 7vh;
         }
 
         .info {
+            padding-right: 0;
+
             .title {
                 font-size: 6vh;
                 font-weight: 600;
@@ -81,7 +68,6 @@ $stream-icon-size: 7vh;
         }
 
         .episodes {
-            height: 50vh;
             overflow: auto;
 
             li {
@@ -115,19 +101,13 @@ $stream-icon-size: 7vh;
     }
 
     .streams {
-        font-family: 'Montserrat';
-
         h2 {
             margin-bottom: 1vh;
         }
 
         ul {
-            width: 100%;
-            height: 50vh;
             padding-right: 1vh;
             padding-bottom: 1vh;
-            overflow-x: hidden;
-            overflow-y: auto;
 
             .no-streams {
                 height: 100%;
@@ -151,8 +131,6 @@ $stream-icon-size: 7vh;
                 border-radius: 1vh;
                 overflow: hidden;
                 user-select: none;
-                cursor: pointer;
-                transition: all 0.1s ease-in-out;
 
                 .icon {
                     position: relative;
@@ -208,8 +186,6 @@ $stream-icon-size: 7vh;
                 }
 
                 &:hover {
-                    background-color: rgba(100, 100, 100, 0.1);
-
                     .icon {
                         img {
                             opacity: 0;
@@ -221,8 +197,6 @@ $stream-icon-size: 7vh;
                     }
 
                     &:active {
-                        background-color: rgba(100, 100, 100, 0.2);
-
                         .icon {
                             ion-icon.filled {
                                 transition-delay: 0s;
@@ -232,6 +206,10 @@ $stream-icon-size: 7vh;
                     }
                 }
             }
+        }
+
+        button {
+            width: 100%;
         }
     }
 }

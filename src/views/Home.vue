@@ -1,14 +1,12 @@
 <template>
   <div id="home" class="container">
-    <Header></Header>
-
     <div class="inner">
       <div class="title">
         <h1>{{ $t(`views.home.title`) }}</h1>
         <h3>{{ $t(`views.home.sub`) }}</h3>
       </div>
 
-      <div class="player" @click="goToSearch()">
+      <div class="player col-4 no-border" @click="goToSearch()">
         <div class="overlay"></div>
         <div class="viewers-count">
           <ion-icon name="eye-outline"></ion-icon>
@@ -29,13 +27,8 @@
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
-
 export default {
   name: 'Home',
-  components: {
-    Header
-  },
   methods: {
     goToSearch() {
       this.$router.push({ name: 'search' });

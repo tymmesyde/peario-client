@@ -1,15 +1,21 @@
 <template>
   <div id="app">
+    <Header></Header>
+
     <Error :type="error.type" v-if="error"></Error>
     <Error type="stremio" v-if="!stremioRunning"></Error>
 
     <transition name="fade-router">
       <router-view v-if="stremioRunning && ready"></router-view>
     </transition>
+
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import Error from "@/components/Error.vue";
 import WebSocketService from "@/services/ws.service";
 import StremioService from "@/services/stremio.service";
@@ -22,6 +28,8 @@ export default {
     titleTemplate: APP_TITLE
   },
   components: {
+    Header,
+    Footer,
     Error
   },
   data() {

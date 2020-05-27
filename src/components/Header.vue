@@ -35,11 +35,15 @@ header {
   align-items: center;
 
   .logo {
-    width: 20vh;
+    width: 18vh;
     user-select: none;
     vertical-align: middle;
     display: flex;
     align-items: center;
+
+    img {
+      width: 100%;
+    }
   }
 }
 </style>

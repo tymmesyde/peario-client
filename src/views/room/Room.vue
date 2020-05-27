@@ -1,7 +1,5 @@
 <template>
     <div id="room" class="container">
-        <Header></Header>
-
         <Loading type="room" v-if="!playerOptions"></Loading>
 
         <div class="users" v-if="player.video" :class="{ 'show': !player.hide }">
@@ -26,8 +24,6 @@
         </div>
 
         <Player v-if="playerOptions" v-bind:options="playerOptions" v-on:paused="syncPlayer()"></Player>
-
-        <Footer></Footer>
     </div>
 </template>
 

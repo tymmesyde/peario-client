@@ -52,22 +52,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../variables.scss';
+
 #locales {
     position: absolute;
     right: 3vh;
+    font-family: 'Montserrat';
     user-select: none;
     cursor: pointer;
+    text-align: right;
 
     ul {
         position: absolute;
         top: 7vh;
-        width: 10vh;
+        right: 0;
         padding: 1vh 1.5vh;
         border-radius: 1vh;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: $background-color;
+        text-align: left;
 
         li {
-            line-height: 3vh;
+            line-height: 2em;
+            font-size: 1em;
+            padding: 0 0.5em;
             transition: font-weight 0.1s ease-out;
 
             &:hover {
