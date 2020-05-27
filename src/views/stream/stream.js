@@ -20,6 +20,12 @@ export default {
         },
         isSeries() {
             return this.meta.type === 'series';
+        },
+        currentEpisode() {
+            return this.meta.videos ? this.meta.videos.find(({ season, episode }) => season === this.selected.season && episode === this.selected.episode) : null;
+        },
+        filterVideos() {
+            return this.meta.videos.filter(({ season }) => season === this.selected.season).sort((a, b) => a.episode - b.episode);
         }
     },
     data: () => {
@@ -47,7 +53,7 @@ export default {
             const { id, type } = this.meta;
             const installedAddons = StorageService.get('installed') || [];
             const streamCol = AddonService.createStreamCollection(installedAddons);
-            const episode = this.currentEpisode();
+            const episode = this.currentEpisode;
             this.streams = await AddonService.getStreams(streamCol, type, episode ? episode.id : id);
         },
         createRoom(infoHash) {
@@ -63,12 +69,6 @@ export default {
                 const misc = this.seasons.shift();
                 this.seasons.push(misc);
             }
-        },
-        currentEpisode() {
-            return this.meta.videos ? this.meta.videos.find(({ season, episode }) => season === this.selected.season && episode === this.selected.episode) : null;
-        },
-        filterVideos() {
-            return this.meta.videos.filter(({ season }) => season === this.selected.season).sort((a, b) => a.episode - b.episode);
         }
     },
     async mounted() {
