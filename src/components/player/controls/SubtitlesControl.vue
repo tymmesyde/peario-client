@@ -132,7 +132,7 @@ export default {
 #subtitles-control {
     .panel {
         $panel-height: 250px;
-        $panel-width: 270px;
+        $panel-width: 300px;
 
         position: absolute;
         height: $panel-height;
