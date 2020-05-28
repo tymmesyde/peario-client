@@ -1,5 +1,5 @@
 <template>
-    <div class="player" ref="player" :class="{ 'hide': hide }" @dragover="dropSubtitles($event)" @drop="dropSubtitles($event)">
+    <div class="player" ref="player" :class="{ 'hideControls': hideControls }" @mousemove="showControls()" @touchmove="showControls()" @dragover="dropSubtitles($event)" @drop="dropSubtitles($event)">
         <div class="locked" v-if="locked">
             <div>
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
@@ -20,7 +20,7 @@
 
         <Subtitle v-if="video" :timecode="video.currentTime"></Subtitle>
 
-        <video ref="video" :src="options.src" :poster="options.meta.background" @click="togglePlay()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
+        <video ref="video" :src="options.src" :poster="options.meta.background" @click="showControls()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
 
         <div class="controls" v-if="!locked && video">
             <div class="panel">

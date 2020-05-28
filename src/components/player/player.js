@@ -24,6 +24,7 @@ export default {
     },
     data() {
         return {
+            hideTimeout: null,
             userSubtitle: null,
             volumeTmp: 0,
             timebar: 0,
@@ -41,20 +42,33 @@ export default {
             canPlay.catch(() => {});
             this.video.pause();
             this.locked = false;
+            this.disptachAll();
+        },
+        showControls() {
+            clearTimeout(this.hideTimeout);
+            this.hideControls = false;
+            this.disptachAll();
+
+            this.hideTimeout = setTimeout(() => {
+                if (!this.video.paused && !this.hideControls) {
+                    this.hideControls = true;
+                    this.disptachAll();
+                }
+            }, 3000);
         },
         togglePlay() {
             if ((!this.options.isOwner && !this.autoSync) || this.options.isOwner) {
                 this.video.paused ? this.video.play() : this.video.pause();
-                this.video.paused ? this.hide = false : this.hide = true;
+                this.hideControls = !this.video.paused;
                 
-                this.disptach();
+                this.disptachAll();
                 this.$emit('paused');
                 this.$forceUpdate();
             }
         },
         toggleAutoSync() {
             this.autoSync = !this.autoSync;
-            this.disptach();
+            this.disptachAll();
         },
         async toggleFullscreen() {
             if (!this.fullscreen) {
@@ -106,9 +120,9 @@ export default {
                 if (file.name.endsWith('.srt')) this.userSubtitle = file;
             }
         },
-        disptach() {
+        disptachAll() {
             this.$store.dispatch('updateVideo', this.video);
-            this.$store.dispatch('updateHideState', this.hide);
+            this.$store.dispatch('updateHideState', this.hideControls);
             this.$store.dispatch('updateAutoSync', this.autoSync);
             this.$store.dispatch('updateBuffering', this.buffering);
             this.$store.dispatch('updateLockState', this.locked);
@@ -119,31 +133,27 @@ export default {
         this.video = this.$refs.video;
         this.video.volume = this.volume;
 
-        this.disptach();
+        this.disptachAll();
 
-        let hideTimeout = null;
-        this.player.onmousemove = () => {
-            clearTimeout(hideTimeout);
-            this.hide = false;
-            this.disptach();
-
-            if (!this.video.paused) hideTimeout = setTimeout(() => {
-                this.hide = true;
-                this.disptach();
-            }, 3000);
-        };
+        this.player.onmouseleave = () => {
+            if (!this.video.paused) {
+                clearTimeout(this.hideTimeout);
+                this.hideControls = true;
+                this.disptachAll();
+            }
+        }
 
         this.video.onwaiting = () => {
-            console.log('WAITING');
             this.buffering = true;
+            this.disptachAll();
         };
         this.video.onloadeddata = () => {
-            console.log('LOADEDDATA');
             this.buffering = false;
+            this.disptachAll();
         };
         this.video.oncanplay = () => {
-            console.log('CANPLAY');
             this.buffering = false;
+            this.disptachAll();
         };
 
         document.addEventListener('keyup', ({ keyCode }) => {

@@ -4,7 +4,7 @@ export default {
             player: null,
             locked: true,
             buffering: true,
-            hide: false,
+            hideControls: false,
             video: null,
             volume: 0.5,
             autoSync: true,
@@ -31,8 +31,8 @@ export default {
         updateAutoSync(context, autoSync) {
             context.commit('updatePlayer', { autoSync });
         },
-        updateHideState(context, hide) {
-            context.commit('updatePlayer', { hide });
+        updateHideState(context, hideControls) {
+            context.commit('updatePlayer', { hideControls });
         },
         updateBuffering(context, buffering) {
             context.commit('updatePlayer', { buffering });

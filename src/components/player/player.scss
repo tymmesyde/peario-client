@@ -8,11 +8,12 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
     position: relative;
     align-self: center;
 
-    &.hide {
+    &.hideControls {
         cursor: none;
 
         .controls {
             opacity: 0;
+            visibility: hidden;
         }
     }
 
