@@ -132,15 +132,16 @@ input[type=text] {
   }
 }
 
+$range-size: 10px;
 input[type=range] {
   appearance: none;
-  height: 0.3rem;
+  height: $range-size;
   background: transparent;
   outline: none;
   overflow: hidden;
   margin: 0;
-  border-radius: 1vh;
-  transition: height 0.1s ease-in-out;
+  border-radius: $range-size;
+  transition: height 0.1s ease-in-out, opacity 0.2s ease-in;
 
   &::-webkit-slider-thumb {
     appearance: none;
@@ -155,26 +156,27 @@ input[type=range] {
   }
 
   &::-webkit-slider-runnable-track {
-    height: 0.3rem;
+    height: $range-size;
     background-color: rgba(white, 0.35);
     transition: height 0.1s ease-in-out;
   }
 
   &::-moz-range-track {
-    height: 0.3rem;
+    height: $range-size;
     background-color: rgba(white, 0.35);
     transition: height 0.1s ease-in-out;
   }
 
-  &:not([disabled]):hover {
-    height: 0.5rem;
+  &:not([disabled]):hover,
+  &:not([disabled]):focus {
+    height: $range-size + 5px;
 
     &::-webkit-slider-runnable-track {
-      height: 0.5rem;
+      height: $range-size + 5px;
     }
 
     &::-moz-range-track {
-      height: 0.5rem;
+      height: $range-size + 5px;
     }
   }
 }

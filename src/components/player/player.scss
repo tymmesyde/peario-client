@@ -1,4 +1,7 @@
+$overlay-background-color: rgba(0, 0, 0, 0.5);
+
 .player {
+    font-family: 'Montserrat';
     height: 100%;
     width: 100%;
     display: grid;
@@ -28,7 +31,6 @@
         img {
             width: 65%;
             margin-bottom: 2vh;
-            font-family: 'Montserrat';
             font-size: 9vh;
             font-weight: 500;
         }
@@ -58,7 +60,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: $overlay-background-color;
 
         ion-icon {
             font-size: 7vh;
@@ -72,57 +74,82 @@
         align-self: center;
     }
 
-    .auto-sync {
-        position: absolute;
-        bottom: 8vh;
-        padding: 1vh 1vh 1vh 3vh;
-
-        ion-icon {
-            margin-right: 0.5vh;
-        }
-    }
-
     .controls {
-        display: grid;
+        display: flex;
         align-items: center;
-        grid-template-columns: 5vh 5vh auto 6vh 5vh 5vh;
+        justify-content: space-between;
         position: absolute;
         bottom: 0;
         width: 100%;
-        padding: 2vh 3vh;
+        padding: 0 1vw;
         user-select: none;
         opacity: 1;
         transition: all 0.2s ease-in;
+        background-color: $overlay-background-color;
+        box-shadow: 0px -40px 100px 60px $overlay-background-color;
+
+        .auto-sync {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            bottom: 6vw;
+            left: 2.5vw;
+            padding: 10px 0;
+            font-size: 20px;
+
+            ion-icon {
+                margin-right: 10px;
+            }
+        }
+
+        .panel {
+            display: flex;
+            align-items: center;
+
+            &.stretch {
+                width: 100%;
+
+                .control {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+        }
 
         .control {
-            font-size: 3.5vh;
+            position: relative;
+            padding: 1.5vw 1vw;
+            font-size: 30px;
+            line-height: 29px;
             cursor: pointer;
 
+            &.big {
+                font-size: 55px;
+            }
+
+            &.small {
+                font-size: 20px;
+            }
+        }
+
+        .play-pause {
             &.disabled {
                 user-select: none;
                 opacity: 0.3;
             }
         }
 
-        .volume,
-        .fullscreen {
-            position: relative;
-            font-size: 2.5vh;
-            line-height: 0;
-            cursor: pointer;
-        }
-
         .volume {
-            justify-self: center;
+            display: flex;
+            justify-content: center;
 
             input {
                 position: absolute;
-                left: -3.2vh;
-                top: -6vh;
-                width: 9vh;
+                top: -70px;
+                width: 120px;
                 transform: rotate(-90deg);
+                transform-origin: center;
                 opacity: 0;
-                transition: all 0.2s ease-in;
             }
 
             &:hover {
@@ -133,18 +160,19 @@
         }
 
         .time-bar {
-            margin-left: 1.5vh !important;
-            margin-right: 2vh !important;
+            input {
+                width: 100%;
+            }
         }
+    }
+}
 
-        .timer {
-            justify-self: center;
-            font-weight: 500;
-            line-height: 0;
-        }
-
-        .fullscreen {
-            justify-self: right;
-        }
+@media only screen and (max-width: 768px) {
+    .panel.stretch {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 70px;
+        padding: 0 10px;
     }
 }

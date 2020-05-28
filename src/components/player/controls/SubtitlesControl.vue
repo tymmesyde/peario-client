@@ -17,11 +17,11 @@
                         </div>
                     </div>
 
-                    <div class="sizes">
-                        <div class="size" v-for="s in sizes" :key="s" :class="[{ 'active': s === size }, s]" @click="size = s">
+                    <ul class="sizes list">
+                        <li class="size" v-for="s in sizes" :key="s" :class="[{ 'active': s === size }, s]" @click="size = s">
                             <ion-icon name="text-outline"></ion-icon>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
                 
                 <div class="lists">
@@ -127,108 +127,86 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../variables.scss';
+
 #subtitles-control {
-    position: relative;
-    justify-self: center;
-    font-size: 2.25vh;
-    line-height: 0;
-
-    ion-icon {
-        cursor: pointer;
-    }
-
     .panel {
+        $panel-height: 250px;
+        $panel-width: 270px;
+
         position: absolute;
-        height: 19vh;
-        width: 22vh;
-        right: -6vh;
-        bottom: 5vh;
-        border-radius: 1vh;
-        background-color: rgba(white, 0.1);
+        height: $panel-height;
+        width: $panel-width;
+        top: calc(-#{$panel-height} - 15px);
+        right: -2.5vw;
+        border-radius: 10px;
+        background-color: $background-color;
         overflow: hidden;
 
-        $bar-height: 4vh;
+        $bar-height: 45px;
 
         .bar {
             height: $bar-height;
-            display: grid;
-            grid-template-columns: 30% 70%;
+            display: flex;
             align-items: center;
-            padding-left: 1vh;
+            justify-content: space-between;
+            padding-left: 15px;
+            font-size: 20px;
 
             .toggle {
-                height: $bar-height;
                 display: grid;
                 align-items: center;
-                font-size: 1.75vh;
                 cursor: pointer;
 
                 .status {
-                    display: grid;
-                    grid-template-columns: 2.75vh auto;
+                    display: flex;
                     align-items: center;
+
+                    ion-icon {
+                        margin-right: 10px;
+                    }
                 }
             }
 
             .sizes {
-                text-align: right;
+                display: flex;
+                align-items: center;
+                width: auto !important;
 
                 .size {
-                    height: $bar-height;
                     width: $bar-height;
                     line-height: $bar-height;
-                    display: inline-block;
-                    vertical-align: top;
                     text-align: center;
                     cursor: pointer;
                     
                     &.small {
-                        font-size: 1.5vh;
-                    }
-
-                    &.medium {
-                        font-size: 2vh;
+                        font-size: 16px;
                     }
 
                     &.large {
-                        font-size: 2.6vh;
-                    }
-
-                    &.active {
-                        background-color: rgba(white, 0.2);
-                    }
-
-                    &:not(.active):hover {
-                        background-color: rgba(white, 0.1);
+                        font-size: 26px;
                     }
                 }
             }
         }
 
-        .list {
-            display: inline-block;
-            vertical-align: top;
-            height: 15vh;
-            width: 11vh;
-            line-height: 100%;
-            font-size: 1.5vh;
-            overflow-y: auto;
+        .lists {
+            display: flex;
+            align-items: center;
+            height: calc(100% - #{$bar-height});
 
-            li {
-                height: 3vh;
-                line-height: 3vh;
-                padding-left: 1.25vh;
-                cursor: pointer;
-                overflow: hidden;
-                white-space: pre;
-                text-overflow: ellipsis;
+            .list {
+                height: 100%;
+                max-height: 100%;
+                width: 50%;
 
-                &.active {
-                    background-color: rgba(white, 0.2);
-                }
-
-                &:not(.active):hover {
-                    background-color: rgba(white, 0.1);
+                li {
+                    font-size: 20px;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    overflow: hidden;
+                    white-space: pre;
+                    text-overflow: ellipsis;
                 }
             }
         }
