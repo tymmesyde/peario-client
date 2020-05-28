@@ -1,13 +1,22 @@
+@import '../../variables.scss';
+
 #room {
     background-color: black;
     user-select: none;
+
+    .count {
+        font-family: 'Montserrat-Medium';
+        font-size: 30px;
+        font-weight: bold;
+        color: $accent-color;
+    }
 
     .users {
         z-index: 99;
         position: absolute;
         top: 0;
         left: 0;
-        padding: 2.5vh;
+        padding: 2vw;
         opacity: 0;
         transition: opacity 0.2s ease-in;
         transition-delay: 0.3s;
@@ -20,10 +29,16 @@
             margin-top: 1vh;
 
             li {
-                display: grid;
-                grid-template-columns: 3vh auto;
-                padding-bottom: 1vh;
+                display: flex;
+                align-content: center;
+                padding-bottom: 1.5vh;
+                font-family: 'Montserrat';
+                font-size: 15px;
                 color: rgba(255, 255, 255, 0.7);
+
+                ion-icon {
+                    padding-right: 0.5vw;
+                }
             }
         }
     }

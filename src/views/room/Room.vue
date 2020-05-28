@@ -3,7 +3,10 @@
         <Loading type="room" v-if="!playerOptions"></Loading>
 
         <div class="users" v-if="player.video" :class="{ 'show': !player.hide }">
-            <h2><ion-icon name="eye-outline"></ion-icon> {{ users.length }}</h2>
+            <div class="count">
+                <ion-icon name="eye-outline"></ion-icon> {{ users.length }}
+            </div>
+
             <ul>
                 <li v-for="user in users" v-bind:key="user.id">
                     <div class="status">
