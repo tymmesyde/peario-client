@@ -6,7 +6,7 @@
 export default {
     name: 'RangeInput',
     props: {
-        value: Number,
+        value: [Number, String],
 		disabled: Boolean,
 		max: {
 			type: String,
