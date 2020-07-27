@@ -24,7 +24,7 @@
 				<Segments :segments="seasons" v-model="selected.season">
 					<template #segment="{ segment }">
 						<span v-if="segment > 0">{{ $t(`views.stream.season`) }} {{ segment }}</span>
-						<span v-else>Miscellaneous</span>
+						<span v-else>{{ $t(`views.stream.misc`) }}</span>
 					</template>
 				</Segments>
 

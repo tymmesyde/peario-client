@@ -15,6 +15,7 @@
         },
         "stream": {
             "season": "Temporada",
+            "misc": "Miscelánea",
             "streams": {
                 "title": "Streams",
                 "error": "No hay streams disponibles",
