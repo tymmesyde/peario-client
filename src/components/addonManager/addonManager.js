@@ -1,9 +1,14 @@
+import Title from '@/components/ui/Title.vue';
+
 import StremioService from '@/services/stremio.service';
 import StorageService from '@/services/storage.service';
 import AddonService from '@/services/addon.service';
 
 export default {
     name: 'AddonManager',
+    components: {
+        Title
+    },
     props: {
         open: Boolean
     },

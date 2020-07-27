@@ -3,12 +3,12 @@
         <div class="locked" v-if="locked">
             <div>
                 <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
-                <button @click="unlockPlayer()"><ion-icon name="checkmark-outline"></ion-icon> {{ $t(`components.player.ready`) }}</button>
+                <Button icon="checkmark-outline" translate="components.player.ready" @click="unlockPlayer()"/>
             </div>
 
             <div class="share" v-if="options.isOwner">
                 <p>{{ $t(`components.player.share`) }}</p>
-                <input type="text" :value="shareUrl" spellcheck="false" @click="copyShareUrl()">
+                <TextInput :value="shareUrl" @click="copyShareUrl()"/>
             </div>
         </div>
 
@@ -42,13 +42,13 @@
                 </div>
 
                 <div class="time-bar control">
-                    <input type="range" min="0" max="10000" v-bind:value="timebar" :disabled="autoSync && !options.isOwner" @input="seek($event)" >
+                    <RangeInput v-model="timebar" max="10000" step="1" :disabled="autoSync && !options.isOwner" @seek="seek($event)"></RangeInput>
                 </div>
             </div>
 
             <div class="panel">
                 <div class="volume control">
-                    <input class="volume-bar" type="range" min="0" max="1" step="0.1" v-model="volume" @input="video.volume = volume">
+                    <RangeInput class="volume-bar" v-model="volume" @seek="video.volume = volume"></RangeInput>
                     <span class="icon" @click="toggleVolume()">
                         <ion-icon name="volume-mute-outline" v-show="video.volume === 0"></ion-icon>
                         <ion-icon name="volume-off-outline" v-show="video.volume > 0 && video.volume <= 0.2"></ion-icon>

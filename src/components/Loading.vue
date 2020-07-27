@@ -2,15 +2,20 @@
     <div class="loading">
         <div>
             <ion-icon name="sync-outline" class="spin"></ion-icon>
-            <h2>{{ $t(`loading.${type}.title`) }}</h2>
+            <Title type="secondary" :translate="`loading.${type}.title`" uppercase/>
             <p>{{ $t(`loading.${type}.message`) }}</p>
         </div>
     </div>
 </template>
 
 <script>
+import Title from '@/components/ui/Title.vue';
+
 export default {
     name: 'Loading',
+    components: {
+        Title
+    },
     props: {
         type: String
     }

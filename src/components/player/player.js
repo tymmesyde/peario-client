@@ -1,9 +1,15 @@
+import Button from "@/components/ui/Button.vue";
+import TextInput from "@/components/ui/TextInput.vue";
+import RangeInput from "@/components/ui/RangeInput.vue";
 import Subtitle from "@/components/Subtitle.vue";
 import SubtitlesControl from "./controls/SubtitlesControl.vue";
 
 export default {
     name: 'Player',
     components: {
+        Button,
+        TextInput,
+        RangeInput,
         Subtitle,
         SubtitlesControl
     },
@@ -95,9 +101,9 @@ export default {
 
             this.video.volume = this.volume;
         },
-        seek(event) {
+        seek(value) {
             if ((!this.options.isOwner && !this.autoSync) || this.options.isOwner) {
-                this.video.currentTime = event.target.value * this.video.duration / 10000;
+                this.video.currentTime = value * this.video.duration / 10000;
             }
         },
         onTimeUpdate() {

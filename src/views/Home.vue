@@ -2,8 +2,8 @@
   <div id="home" class="container">
     <div class="inner">
       <div class="title">
-        <h1>{{ $t(`views.home.title`) }}</h1>
-        <h3>{{ $t(`views.home.sub`) }}</h3>
+        <Title translate="views.home.title"/>
+        <Title type="tertiary" translate="views.home.sub"/>
       </div>
 
       <div class="player col-4 no-border" @click="goToSearch()">
@@ -18,17 +18,21 @@
         </div>
       </div>
 
-      <button class="big" @click="goToSearch()">
-        <ion-icon name="play"></ion-icon>
-        {{ $t(`views.home.button`) }}
-      </button>
+      <Button type="big" icon="play" translate="views.home.button" @click="goToSearch()"/>
     </div>
   </div>
 </template>
 
 <script>
+import Title from '@/components/ui/Title.vue';
+import Button from '@/components/ui/Button.vue';
+
 export default {
   name: 'Home',
+  components: {
+    Title,
+    Button
+  },
   methods: {
     goToSearch() {
       this.$router.push({ name: 'search' });
@@ -46,10 +50,6 @@ export default {
 
   .title {
     margin-bottom: 6vh;
-
-    h1 {
-      margin: 1vh;
-    }
   }
 
   .player {

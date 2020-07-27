@@ -31,7 +31,7 @@ $addon-icon-size: 8vh;
     background-color: $background-color;
     overflow: hidden;
 
-    h2 {
+    .title {
         height: $title-height;
         line-height: $title-height;
         padding: 0 calc(#{$menu-padding} + 1vh);

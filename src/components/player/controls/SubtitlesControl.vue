@@ -17,24 +17,18 @@
                         </div>
                     </div>
 
-                    <ul class="sizes list">
-                        <li class="size" v-for="s in sizes" :key="s" :class="[{ 'active': s === size }, s]" @click="size = s">
-                            <ion-icon name="text-outline"></ion-icon>
-                        </li>
-                    </ul>
+                    <List class="sizes" v-model="size" itemClass="size" :items="sizes">
+                        <ion-icon name="text-outline"></ion-icon>
+                    </List>
                 </div>
                 
                 <div class="lists">
-                    <ul class="list langs">
-                        <li v-for="lang in langs" :key="lang.iso" :class="{ 'active': lang.iso === panelLang }" @click="panelLang = lang.iso">
-                            {{ lang.local }}
-                        </li>
-                    </ul>
-                    <ul class="list subs">
-                        <li v-for="(sub, i) in filterSubs()" :key="sub.id" :class="{ 'active': sub === current }" @click="current = sub">
-                            {{ $t(`components.player.subtitle`) }} {{ i+1 }}
-                        </li>
-                    </ul>
+                    <List class="langs" v-model="panelLang" :items="langs" itemKey="iso" #default="{ item }">
+                        {{ item.local }}
+                    </List>
+                    <List class="subs" v-model="current" :items="filterSubs()" itemKey="id" #default="{ index }">
+                        {{ $t(`components.player.subtitle`) }} {{ index + 1 }}
+                    </List>
                 </div>
             </div>
         </transition>
@@ -43,10 +37,14 @@
 
 <script>
 import { where } from 'langs';
+import List from '@/components/ui/List.vue';
 import StremioService from '@/services/stremio.service';
 
 export default {
     name: 'SubtitlesControl',
+    components: {
+        List
+    },
     props: {
         videoUrl: String,
         userSubtitle: File
@@ -90,7 +88,7 @@ export default {
     },
     methods: {
         filterSubs() {
-            return this.list.filter(s => s.lang === this.panelLang);
+            return this.list.filter(s => s.lang === this.panelLang.iso);
         },
         extractLangs(list) {
             return list
@@ -121,12 +119,12 @@ export default {
 
         const lang = this.$i18n.locale;
         this.current = this.list.find(s => s.lang.includes(lang)) || this.list[0];
-        this.panelLang = this.current.lang;
+        this.panelLang = this.langs.find(({ iso }) => iso === this.current.lang);
     }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../../variables.scss';
 
 #subtitles-control {
@@ -169,9 +167,11 @@ export default {
             }
 
             .sizes {
-                display: flex;
-                align-items: center;
                 width: auto !important;
+
+                span {
+                    display: flex;
+                }
 
                 .size {
                     width: $bar-height;
@@ -179,11 +179,11 @@ export default {
                     text-align: center;
                     cursor: pointer;
                     
-                    &.small {
+                    &:first-child {
                         font-size: 16px;
                     }
 
-                    &.large {
+                    &:last-child {
                         font-size: 26px;
                     }
                 }
@@ -192,7 +192,6 @@ export default {
 
         .lists {
             display: flex;
-            align-items: center;
             height: calc(100% - #{$bar-height});
 
             .list {

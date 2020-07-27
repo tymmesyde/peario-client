@@ -1,33 +1,29 @@
 <template>
     <div id="search" class="container">
         <div class="inner">
-            <div class="title">
-                <h1>
-                    <ion-icon name="search"></ion-icon>
-                    {{ $t(`views.search.title`) }}
-                </h1>
-                <h3>{{ $t(`views.search.sub`) }}</h3>
+            <div class="headline">
+                <Title icon="search" translate="views.search.title"/>
+                <Title type="tertiary" translate="views.search.sub"/>
             </div>
 
             <div class="search">
-                <input type="text" class="large" v-model="search" placeholder="Parasite, Fight Club, ...">
-                <ul class="segments" v-show="search">
-                    <li v-for="segment in segments" :key="segment" :class="{ 'active': selectedType === segment }" @click="selectedType = segment">{{ $t(`views.search.segments.${segment}`) }}</li>
-                </ul>
-                <ul class="list">
-                    <transition-group name="fade">
-                        <li v-for="result in results[selectedType]" :key="result.imdb_id" @click="goToStream(result)">
-                            <div class="poster">
-                                <ion-icon name="image-outline" v-if="!result.poster"></ion-icon>
-                                <img :src="result.poster" alt="poster" v-if="result.poster">
-                            </div>
-                            <div class="info">
-                                <p class="name">{{ result.name }}</p>
-                                <p class="year">{{ result.releaseInfo }}</p>
-                            </div>
-                        </li>
-                    </transition-group>
-                </ul>
+                <TextInput type="large" v-model="search" placeholder="Parasite, Fight Club, ..."/>
+                <Segments :segments="types" v-model="type" v-show="search">
+                    <template #segment="{ segment }">
+                        {{ $t(`views.search.segments.${segment}`) }}
+                    </template>
+                </Segments>
+
+                <List :items="results[type]" itemClass="item" itemKey="id" @click="goToStream($event)" #default="{ item }">
+                    <div class="poster">
+                        <ion-icon name="image-outline" v-if="!item.poster"></ion-icon>
+                        <img :src="item.poster" alt="poster" v-if="item.poster">
+                    </div>
+                    <div class="info">
+                        <p class="name">{{ item.name }}</p>
+                        <p class="year">{{ item.releaseInfo }}</p>
+                    </div>
+                </List>
             </div>
         </div>
     </div>
@@ -35,14 +31,24 @@
 
 <script>
 import StremioService from '@/services/stremio.service';
+import Title from '@/components/ui/Title.vue';
+import TextInput from '@/components/ui/TextInput.vue';
+import Segments from '@/components/ui/Segments.vue';
+import List from '@/components/ui/List.vue';
 
 export default {
     name: 'Search',
+    components: {
+        Title,
+        TextInput,
+        Segments,
+        List
+    },
     data() {
         return {
             search: '',
-            segments: ['movies', 'series'],
-            selectedType: 'movies',
+            type: 'movies',
+            types: ['movies', 'series'],
             results: {
                 movies: [],
                 series: []
@@ -70,35 +76,24 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../variables.scss';
 
 #search {
-    .title {
+    .headline {
         text-align: center;
         margin-bottom: 4.5vh;
-
-        h1 {
-            margin-bottom: 0.5vh;
-            margin-left: -4vh;
-
-            ion-icon {
-                font-size: 7vh;
-                vertical-align: -0.75vh;
-            }
-        }
     }
 
     .list {
         max-height: 35vh;
 
-        li {
+        .item {
             display: grid;
             grid-template-columns: 9vh auto;
             grid-column-gap: 1.5vh;
             padding: 1.5vh;
             margin-bottom: 0.5vh;
-            border-radius: 1vh;
             transition-delay: 0.05s;
 
             .poster {

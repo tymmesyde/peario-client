@@ -2,15 +2,20 @@
     <div class="error">
         <div>
             <ion-icon name="close-circle-outline" class="danger"></ion-icon>
-            <h2>{{ $t(`errors.${type}.title`) }}</h2>
+            <Title type="secondary" :translate="`errors.${type}.title`" uppercase/>
             <p>{{ $t(`errors.${type}.message`) }}</p>
         </div>
     </div>
 </template>
 
 <script>
+import Title from '@/components/ui/Title.vue';
+
 export default {
     name: 'Error',
+    components: {
+        Title
+    },
     props: {
         type: String
     }

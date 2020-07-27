@@ -2,9 +2,7 @@
     <div id="addons">
         <transition name="fade">
             <div class="menu" v-if="isOpen">
-                <h2>
-                    <ion-icon name="cube-outline"></ion-icon> ADDONS
-                </h2>
+                <Title class="title" type="secondary" icon="cube-outline">ADDONS</Title>
                 <div class="close" v-on:click="isOpen = false">
                     <ion-icon name="close-outline"></ion-icon>
                 </div>

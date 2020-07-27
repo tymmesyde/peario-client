@@ -70,13 +70,11 @@ $stream-icon-size: 7vh;
         .episodes {
             overflow: auto;
 
-            li {
+            .episode {
                 display: flex;
                 align-items: center;
                 height: 4vh;
                 padding: 0 1.5vh;
-                border-radius: 0.5vh;
-                
 
                 .number {
                     font-family: 'Montserrat-SemiBold';
@@ -105,22 +103,23 @@ $stream-icon-size: 7vh;
             margin-bottom: 1vh;
         }
 
+        .no-streams {
+            height: 25vh;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            ion-icon {
+                font-size: 7vh;
+                margin-bottom: 1vh;
+            }
+        }
+
         ul {
+            margin-top: 1vh;
             padding-right: 1vh;
             padding-bottom: 1vh;
-
-            .no-streams {
-                height: 100%;
-                display: grid;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-
-                ion-icon {
-                    font-size: 7vh;
-                    margin-bottom: 1vh;
-                }
-            }
 
             .stream {
                 height: 10vh;
