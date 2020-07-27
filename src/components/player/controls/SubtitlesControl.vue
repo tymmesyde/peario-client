@@ -21,6 +21,10 @@
                         <ion-icon name="text-outline"></ion-icon>
                     </List>
                 </div>
+
+                <div class="loading" v-if="!langs.length">
+                    <ion-icon name="sync-outline" class="spin"></ion-icon>
+                </div>
                 
                 <div class="lists">
                     <List class="langs" v-model="panelLang" :items="langs" itemKey="iso" #default="{ item }">
@@ -88,7 +92,7 @@ export default {
     },
     methods: {
         filterSubs() {
-            return this.list.filter(s => s.lang === this.panelLang.iso);
+            return this.panelLang ? this.list.filter(s => s.lang === this.panelLang.iso) : [];
         },
         extractLangs(list) {
             return list
@@ -111,6 +115,9 @@ export default {
         this.size = this.sizes[1];
     },
     async mounted() {
+        this.list = [];
+        this.langs = [];
+
         this.list = await StremioService.getSubtitles(this.videoUrl);
         this.langs = this.extractLangs(this.list);
 
@@ -188,6 +195,15 @@ export default {
                     }
                 }
             }
+        }
+
+        .loading {
+            top: 0;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: grid;
+            place-items: center;
         }
 
         .lists {
