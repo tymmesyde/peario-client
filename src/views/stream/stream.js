@@ -86,7 +86,7 @@ export default {
 
         this.meta = type === 'movie' ? await StremioService.getMetaMovie(metaId) : await StremioService.getMetaSeries(metaId);
 
-        if (this.meta.videos.length) {
+        if (this.meta.videos && this.meta.videos.length) {
             const episode = this.meta.videos.find(({ id: imdb_id }) => imdb_id === id) || this.meta.videos[0];
 
             this.selected = {
