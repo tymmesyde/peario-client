@@ -1,10 +1,14 @@
 <template>
-    <header>
-      <div class="logo">
-        <img src="../assets/img/logo.svg">
-      </div>
+    <header :class="{ 'home': isHome }">
+		<div class="history-back" @click="$router.go(-1)" v-show="!isHome">
+			<ion-icon name="arrow-back-sharp"></ion-icon>
+		</div>
 
-      <Locales></Locales>
+		<router-link class="logo" to="/">
+			<img src="../assets/img/logo.svg">
+		</router-link>
+
+		<Locales></Locales>
     </header>
 </template>
 
@@ -12,10 +16,20 @@
 import Locales from './Locales';
 
 export default {
-  name: 'Header',
-  components: {
-    Locales
-  }
+	name: 'Header',
+	components: {
+		Locales
+	},
+	watch: {
+		$route(to) {
+			this.isHome = to.name === 'home';
+		}
+	},
+	data() {
+		return {
+			isHome: true
+		}
+	}
 }
 </script>
 
@@ -23,27 +37,49 @@ export default {
 @import '../variables.scss';
 
 header {
-  z-index: 99;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $header-height;
-  line-height: $header-height;
-  padding: 0 2.5vh;
-  display: flex;
-  align-items: center;
+	z-index: 99;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $header-height;
+	line-height: $header-height;
+	padding: 0 1vh;
+	display: flex;
+	align-items: center;
+	transition: padding 0.1s ease-in-out;
 
-  .logo {
-    width: 18vh;
-    user-select: none;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
+	&.home {
+		padding: 0 2.5vh;
+	}
 
-    img {
-      width: 100%;
-    }
-  }
+	.history-back {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 5.5vh;
+		width: 5.5vh;
+		border-radius: 100%;
+		margin-right: 1.5vh;
+		font-size: 3vh;
+		cursor: pointer;
+		transition: background-color 0.1s ease-in-out;
+
+		&:hover {
+			background-color: rgba(white, 0.1);
+		}
+	}
+
+	.logo {
+		width: 18vh;
+		user-select: none;
+		vertical-align: middle;
+		display: flex;
+		align-items: center;
+
+		img {
+			width: 100%;
+		}
+	}
 }
 </style>
