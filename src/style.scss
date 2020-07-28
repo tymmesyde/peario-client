@@ -168,13 +168,6 @@ $ratio: 100% / $columns;
   opacity: 0;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
-
 @media only screen and (max-width: 768px) {
   body {
     background: $background-gradient !important;

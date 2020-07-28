@@ -1,6 +1,6 @@
 <template>
     <ul class="list">
-        <transition-group name="fade">
+        <transition-group name="list">
             <li v-for="(item, i) in items" :key="itemKey ? item[itemKey] + i : item" :class="[{ 'active': item === value }, itemClass ]" @click="$emit('input', item), $emit('click', item)">
                 <slot :item="item" :index="i"></slot>
             </li>
@@ -48,5 +48,17 @@ ul {
             }
         }
     }
+}
+
+.list-enter-active, .list-leave-active {
+    opacity: 0;
+}
+
+.list-enter-active {
+    transition: opacity 0.15s;
+}
+
+.list-leave-active {
+    transition: opacity 0.1s;
 }
 </style>

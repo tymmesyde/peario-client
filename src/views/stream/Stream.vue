@@ -37,14 +37,14 @@
 			<div class="streams col-3">
 				<Title icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
 
-				<div class="no-streams" v-if="!streams.length">
+				<div class="no-streams" v-show="!streams.length">
 					<div>
 						<ion-icon name="sad"></ion-icon>
 						<p>{{ $t(`views.stream.streams.error`) }}</p>
 					</div>
 				</div>
 
-				<List class="episodes" itemClass="stream" :items="streams" itemKey="infoHash" #default="{ item }" @click="createRoom($event.infoHash)">
+				<List class="episodes" itemClass="stream" :items="streams" itemKey="infoHash" #default="{ item }" @click="createRoom($event.infoHash)" v-show="streams.length">
 					<div class="icon">
 						<img v-bind:src="item.icon" alt="">
 						<ion-icon class="outline" name="play-outline"></ion-icon>
