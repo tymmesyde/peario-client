@@ -5,7 +5,7 @@
 		</div>
         <div>
             <ion-icon name="close-circle-outline" class="icon danger"></ion-icon>
-            <Title type="secondary" :translate="`errors.${value.type}.title`" uppercase/>
+            <Title type="secondary" :translate="`errors.${value.type}.title`"/>
             <p>{{ $t(`errors.${value.type}.message`) }}</p>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-    <div :class="[type, { 'uppercase': uppercase }]">
+    <div :class="type">
         <ion-icon :name="icon" v-if="icon"></ion-icon>
         {{ $t(translate) }}
         <slot></slot>
@@ -15,8 +15,7 @@ export default {
             default: 'primary'
         },
         icon: String,
-        translate: String,
-        uppercase: Boolean
+        translate: String
     }
 }
 </script>
@@ -45,6 +44,7 @@ export default {
     font-weight: 700;
     user-select: none;
     color: $text-color;
+    text-transform: uppercase;
 }
 
 .tertiary {
@@ -54,9 +54,5 @@ export default {
     margin: 0;
     opacity: 0.75;
     color: $text-color;
-}
-
-.uppercase {
-    text-transform: uppercase;
 }
 </style>

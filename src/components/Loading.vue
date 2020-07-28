@@ -2,7 +2,7 @@
     <div class="loading">
         <div>
             <ion-icon name="sync-outline" class="spin"></ion-icon>
-            <Title type="secondary" :translate="`loading.${type}.title`" uppercase/>
+            <Title type="secondary" :translate="`loading.${type}.title`"/>
             <p>{{ $t(`loading.${type}.message`) }}</p>
         </div>
     </div>
