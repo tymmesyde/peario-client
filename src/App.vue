@@ -2,11 +2,10 @@
   <div id="app">
     <Header></Header>
 
-    <Error :type="error.type" v-if="error"></Error>
-    <Error type="stremio" v-if="!stremioRunning"></Error>
+    <Error v-model="error" v-if="error"></Error>
 
     <transition name="fade-router">
-      <router-view v-if="stremioRunning && ready"></router-view>
+      <router-view v-if="ready"></router-view>
     </transition>
 
     <Footer></Footer>
@@ -35,7 +34,6 @@ export default {
   data() {
     return {
       ready: false,
-      stremioRunning: true,
       error: null,
       heartbeat: null
     }
@@ -52,8 +50,13 @@ export default {
     WebSocketService.events.on('error', error => this.error = error);
 
     const isRunningInterval = setInterval(async () => {
-      this.stremioRunning = await StremioService.isServerOpen();
-      if (this.stremioRunning) clearInterval(isRunningInterval);
+      if (await StremioService.isServerOpen()) {
+        this.error = null;
+        clearInterval(isRunningInterval);
+      }
+      else this.error = {
+        type: 'stremio'
+      };
     }, 2000);
   },
   destroyed() {
