@@ -8,6 +8,10 @@
 			<img src="../assets/img/logo.svg">
 		</router-link>
 
+		<div class="version">
+			{{ $store.getters.appVersion }}
+		</div>
+
 		<Locales></Locales>
     </header>
 </template>
@@ -48,6 +52,7 @@ header {
 	display: flex;
 	align-items: center;
 	transition: padding 0.1s ease-in-out;
+	user-select: none;
 
 	&.home {
 		padding: 0 2.5vh;
@@ -80,6 +85,11 @@ header {
 		img {
 			width: 100%;
 		}
+	}
+
+	.version {
+		margin-left: 2vh;
+		opacity: 0.3;
 	}
 }
 </style>
