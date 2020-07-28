@@ -3,6 +3,14 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
+// Hack for ignoring NavigationDuplicated errors on replace function
+const originalReplace = Router.prototype.replace;
+Router.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => {
+        if (err.name !== 'NavigationDuplicated') throw err
+    });
+}
+
 export default new Router({
     mode: 'history',
     routes: [
