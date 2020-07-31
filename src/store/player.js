@@ -9,6 +9,7 @@ export default {
             volume: 0.5,
             autoSync: true,
             fullscreen: false,
+            isHls: false
         }
     },
     getters: {

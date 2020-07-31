@@ -4,6 +4,8 @@ import RangeInput from "@/components/ui/RangeInput.vue";
 import Subtitle from "@/components/Subtitle.vue";
 import SubtitlesControl from "./controls/SubtitlesControl.vue";
 
+import HlsService from "@/services/hls.service";
+
 export default {
     name: 'Player',
     components: {
@@ -132,9 +134,20 @@ export default {
             this.$store.dispatch('updateAutoSync', this.autoSync);
             this.$store.dispatch('updateBuffering', this.buffering);
             this.$store.dispatch('updateLockState', this.locked);
+        },
+        async toggleHls() {
+            const currentTime = this.video.currentTime;
+            if (!this.isHls) await HlsService.loadHls(this.options.hls, this.video);
+            else this.video.src = this.options.src;
+            this.isHls = !this.isHls;
+
+            this.video.currentTime = currentTime;
+            this.togglePlay();
         }
     },
     mounted() {
+        HlsService.init();
+
         this.player = this.$refs.player;
         this.video = this.$refs.video;
         this.video.volume = this.volume;
@@ -171,6 +184,6 @@ export default {
         });
     },
     destroyed() {
-        this.video.src = null;
+        HlsService.clear();
     }
 }

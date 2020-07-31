@@ -60,6 +60,11 @@
 
                 <SubtitlesControl :videoUrl="options.src" :userSubtitle="userSubtitle" class="control"></SubtitlesControl>
 
+                <div class="hls control" @click="toggleHls()">
+                    <ion-icon name="color-wand-outline" v-show="!isHls"></ion-icon>
+                    <ion-icon name="color-wand" v-show="isHls"></ion-icon>
+                </div>
+
                 <div class="fullscreen control" @click="toggleFullscreen()">
                     <ion-icon name="expand-outline" v-show="!fullscreen"></ion-icon>
                     <ion-icon name="contract-outline" v-show="fullscreen"></ion-icon>

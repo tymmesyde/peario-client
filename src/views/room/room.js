@@ -2,6 +2,7 @@ import Loading from "@/components/Loading.vue";
 import Error from "@/components/Error.vue";
 import Player from "@/components/player/Player.vue";
 import StremioService from "@/services/stremio.service";
+import HlsService from "@/services/hls.service";
 import WebSocketService from "@/services/ws.service";
 import StorageService from "@/services/storage.service";
 
@@ -36,7 +37,8 @@ export default {
 
             if (!this.playerOptions) {
                 const videoUrl = await StremioService.createStream(infoHash);
-                this.playerOptions = { src: videoUrl, meta, isOwner: this.user.id === owner };
+                const playlistUrl = await HlsService.createPlaylist(videoUrl);
+                this.playerOptions = { src: videoUrl, hls: playlistUrl, meta, isOwner: this.user.id === owner };
             }
 
             this.users = users;
