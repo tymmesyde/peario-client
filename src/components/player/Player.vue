@@ -20,7 +20,7 @@
 
         <Subtitle v-if="video" :timecode="video.currentTime"></Subtitle>
 
-        <video ref="video" :src="options.src" :poster="options.meta.background" @click="showControls()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
+        <video ref="video" :src="options.src" :poster="options.meta.background" @click="showControls()" @dblclick="toggleFullscreen()" @timeupdate="onTimeUpdate()" @mousewheel="updateVolume($event)"></video>
 
         <div class="controls" v-if="!locked && video">
             <div class="panel">
