@@ -99,12 +99,12 @@ $stream-icon-size: 7vh;
     }
 
     .streams {
-        h2 {
+        .streams-title {
             margin-bottom: 1vh;
         }
 
         .no-streams {
-            height: 25vh;
+            height: 50vh;
             display: grid;
             align-items: center;
             justify-content: center;
@@ -117,7 +117,6 @@ $stream-icon-size: 7vh;
         }
 
         ul {
-            margin-top: 1vh;
             padding-right: 1vh;
             padding-bottom: 1vh;
 

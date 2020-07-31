@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="segments">
         <li v-for="segment in segments" :key="segment" :class="{ 'active': value === segment }" @click="$emit('input', segment)">
             <slot name="segment" :segment="segment"></slot>
         </li>
@@ -22,7 +22,6 @@ export default {
 $segment-height: 4vh;
 
 ul {
-  margin-top: 2vh;
   margin-bottom: 1.5vh;
   padding-bottom: 0.5vh;
   white-space: pre;

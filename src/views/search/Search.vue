@@ -85,6 +85,10 @@ export default {
         margin-bottom: 4.5vh;
     }
 
+    .segments {
+        margin-top: 2vh;
+    }
+
     .list {
         max-height: 35vh;
 

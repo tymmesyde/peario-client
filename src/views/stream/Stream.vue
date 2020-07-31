@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="streams col-3">
-				<Title icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
+				<Title class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
 
 				<div class="no-streams" v-show="!streams.length">
 					<div>
