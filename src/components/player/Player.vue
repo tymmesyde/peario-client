@@ -24,12 +24,12 @@
 
         <div class="controls" v-if="!locked && video">
             <div class="panel">
-                <div class="play-pause control big" @click="togglePlay()" :class="{ 'disabled': autoSync && !options.isOwner }">
+                <div class="play-pause control" @click="togglePlay()" :class="{ 'disabled': autoSync && !options.isOwner }">
                     <ion-icon name="play-outline" v-show="video.paused"></ion-icon>
                     <ion-icon name="pause-outline" v-show="!video.paused"></ion-icon>
                 </div>
 
-                <div class="timer control small">
+                <div class="timer control">
                     {{ timer }}
                 </div>
             </div>

@@ -123,21 +123,22 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
             font-size: 30px;
             line-height: 29px;
             cursor: pointer;
-
-            &.big {
-                font-size: 55px;
-            }
-
-            &.small {
-                font-size: 20px;
-            }
         }
 
         .play-pause {
+            font-size: 55px;
+
             &.disabled {
                 user-select: none;
                 opacity: 0.3;
             }
+        }
+
+        .timer {
+            width: 82px;
+            padding: 0;
+            font-size: 20px;
+            text-align: center;
         }
 
         .volume {
