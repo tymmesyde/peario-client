@@ -6,20 +6,23 @@ const HlsService = {
     hls: null,
 
     init() {
-        this.hls = new Hls();
+        this.hls = new Hls({
+            startLevel: 0,
+            abrMaxWithRealBitrate: true
+        });
     },
 
     async createPlaylist(videoUrl) {
         const prefix = "stream-q-";
         const qualities = [{
             name: 320,
-            bandwith: 800000
+            bandwith: 500000
         }, {
             name: 480,
-            bandwith: 1400000
+            bandwith: 800000
         }, {
             name: 720,
-            bandwith: 2800000
+            bandwith: 1000000
         }];
 
         const playlistLevels = []; 
