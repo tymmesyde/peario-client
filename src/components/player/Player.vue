@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="time-bar control">
-                    <RangeInput v-model="timebar" max="10000" step="1" :disabled="autoSync && !options.isOwner" @seek="seek($event)"></RangeInput>
+                    <RangeInput v-model="timebar" max="10000" step="1" :disabled="(autoSync && !options.isOwner) || !video.duration" @seek="seek($event)"></RangeInput>
                 </div>
             </div>
 

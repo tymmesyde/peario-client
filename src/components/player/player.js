@@ -137,12 +137,14 @@ export default {
         },
         async toggleHls() {
             const currentTime = this.video.currentTime;
+            const wasPlaying = !this.video.paused;
+
             if (!this.isHls) await HlsService.loadHls(this.options.hls, this.video);
             else this.video.src = this.options.src;
             this.isHls = !this.isHls;
 
             this.video.currentTime = currentTime;
-            this.togglePlay();
+            if (wasPlaying) this.video.play();
         }
     },
     mounted() {
@@ -161,6 +163,8 @@ export default {
                 this.disptachAll();
             }
         }
+
+        this.video.onerror = () => this.toggleHls();
 
         this.video.onwaiting = () => {
             this.buffering = true;
