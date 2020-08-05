@@ -145,6 +145,7 @@ export default {
 
             this.video.currentTime = currentTime;
             if (wasPlaying) this.video.play();
+            this.isHls ? this.$toasted.global.hlsStream() : this.$toasted.global.sourceStream();
         }
     },
     mounted() {

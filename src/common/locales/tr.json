@@ -52,6 +52,8 @@
         }
     },
     "toasts": {
-        "clipboard": "Panonuza kopyalandı!"
+        "clipboard": "Panonuza kopyalandı!",
+        "hlsStream": "HLS akışına geçti",
+        "sourceStream": "Source akışına geçti"
     }
 }

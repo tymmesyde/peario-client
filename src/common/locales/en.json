@@ -52,6 +52,8 @@
         }
     },
     "toasts": {
-        "clipboard": "Copied to your clipboard !"
+        "clipboard": "Copied to your clipboard !",
+        "hlsStream": "Switched to HLS stream",
+        "sourceStream": "Switched to Source stream"
     }
 }

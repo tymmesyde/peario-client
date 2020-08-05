@@ -31,12 +31,13 @@ const i18n = new VueI18n({
   messages: locales,
 });
 
+// Register toasts from locale
 const { toasts } = i18n.messages[i18n.locale];
-
-Vue.toasted.register('clipboard', toasts.clipboard, {
-  type: 'success',
-  position: 'bottom-center',
-  duration: 3000,
+Object.entries(toasts).map(([key, value]) => {
+  Vue.toasted.register(key, value, {
+    position: 'bottom-center',
+    duration: 3000
+  });
 });
 
 new Vue({

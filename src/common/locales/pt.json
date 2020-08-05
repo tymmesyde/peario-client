@@ -52,6 +52,8 @@
         }
     },
     "toasts": {
-        "clipboard": "Copiado para a sua prancheta!"
+        "clipboard": "Copiado para a sua prancheta!",
+        "hlsStream": "Comutado para o fluxo HLS",
+        "sourceStream": "Comutado para o fluxo Source"
     }
 }

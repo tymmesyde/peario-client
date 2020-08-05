@@ -52,6 +52,8 @@
         }
     },
     "toasts": {
-        "clipboard": "Copié dans votre presse-papier !"
+        "clipboard": "Copié dans votre presse-papier !",
+        "hlsStream": "Passé en stream HLS",
+        "sourceStream": "Passé en stream Source"
     }
 }

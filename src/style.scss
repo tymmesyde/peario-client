@@ -141,12 +141,9 @@ $ratio: 100% / $columns;
   .toasted {
     height: 4vh;
     line-height: 4vh;
-    border-radius: 4vh;
+    border-radius: 1.5vh;
     font-family: 'Montserrat';
-
-    &.success {
-      background-color: $success-color;
-    }
+    background-color: $background-color;
   }
 }
 
