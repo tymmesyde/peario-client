@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "Incapaz de chegar ao servidor",
+            "message": "Volte dentro de pouco tempo ..."
+        },
         "stremio": {
             "title": "O Stremio não está aberto",
             "message": "Por favor, abra o Stremio para que o Peario possa funcionar."

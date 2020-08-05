@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "Sunucuya erişilemiyor",
+            "message": "Kısa bir süre sonra geri dönün ..."
+        },
         "stremio": {
             "title": "Stremio açık değil",
             "message": "Peario'nun çalışabilmesi için lütfen Stremio'yu açın."

@@ -8,7 +8,9 @@ const WebSocketService = {
 
     init(socket, listener) {
         this.socket = socket;
-        this.heartbeat = setInterval(() => this.send('heartbeat', {}), 2000);
+        
+        this.socket.onclose = () => this.events.emit('error', { type: 'server' });
+        this.socket.onopen = () => this.heartbeat = setInterval(() => this.send('heartbeat', {}), 2000);
 
         listener.onmessage = msg => {
             const { type, payload } = this.parseEvents(msg);

@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "सर्वर तक पहुंचने में असमर्थ",
+            "message": "थोड़ी देर में वापस आते हैं ..."
+        },
         "stremio": {
             "title": "Stremio खुला नहीं है",
             "message": "कृपया, Stremio खोलें ताकि Peario संचालित हो सके।"

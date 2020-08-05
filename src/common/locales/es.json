@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "Incapaz de alcanzar el servidor",
+            "message": "Vuelve en un rato ..."
+        },
         "stremio": {
             "title": "Stremio no está corriendo",
             "message": "Por favor, abre a Stremio para que Peario pueda operar."

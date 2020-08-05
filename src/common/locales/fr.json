@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "Impossible de contacter le serveur",
+            "message": "Revenez dans un petit moment ..."
+        },
         "stremio": {
             "title": "Stremio n'est pas actif",
             "message": "Ouvrez Stremio pour que Peario puisse opérer."

@@ -32,6 +32,10 @@
         }
     },
     "errors": {
+        "server": {
+            "title": "Unable to reach the server",
+            "message": "Come back in a little while ..."
+        },
         "stremio": {
             "title": "Stremio is not running",
             "message": "Please, open Stremio so Peario can operate."
