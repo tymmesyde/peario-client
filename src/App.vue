@@ -5,7 +5,7 @@
     <Error v-model="error" v-if="error"></Error>
 
     <transition name="fade-router">
-      <router-view v-if="ready"></router-view>
+      <router-view></router-view>
     </transition>
 
     <Footer></Footer>
@@ -33,34 +33,31 @@ export default {
   },
   data() {
     return {
-      ready: false,
-      error: null,
-      heartbeat: null
+      error: null
+    }
+  },
+  methods: {
+    checkIfStreamioRunning() {
+      const isRunningInterval = setInterval(async () => {
+        if (await StremioService.isServerOpen()) {
+          this.error = null;
+          clearInterval(isRunningInterval);
+        }
+        else this.error = {
+          type: 'stremio'
+        };
+      }, 2000);
     }
   },
   mounted() {
     WebSocketService.init(this.$socket, this.$options.sockets);
-    WebSocketService.events.on('ready', ({ user }) => {
-      StorageService.set('user', user);
-      this.ready = true;
-
-      this.heartbeat = setInterval(() => WebSocketService.send('heartbeat', {}), 2000);
-    });
-
+    WebSocketService.events.on('ready', ({ user }) => StorageService.set('user', user));
     WebSocketService.events.on('error', error => this.error = error);
 
-    const isRunningInterval = setInterval(async () => {
-      if (await StremioService.isServerOpen()) {
-        this.error = null;
-        clearInterval(isRunningInterval);
-      }
-      else this.error = {
-        type: 'stremio'
-      };
-    }, 2000);
+    this.checkIfStreamioRunning();
   },
   destroyed() {
-    clearInterval(this.heartbeat);
+    WebSocketService.clear();
   }
 };
 </script>

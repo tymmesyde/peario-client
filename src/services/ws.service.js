@@ -3,10 +3,13 @@ import { EventEmitter } from 'events';
 const WebSocketService = {
 
     socket: null,
+    heartbeat: null,
     events: new EventEmitter,
 
     init(socket, listener) {
         this.socket = socket;
+        this.heartbeat = setInterval(() => this.send('heartbeat', {}), 2000);
+
         listener.onmessage = msg => {
             const { type, payload } = this.parseEvents(msg);
             this.events.emit(type, payload);
@@ -22,6 +25,10 @@ const WebSocketService = {
         const { data } = msg;
         const { type, payload } = JSON.parse(data);
         return { type, payload };
+    },
+
+    clear() {
+        clearInterval(this.heartbeat);
     }
 
 };
