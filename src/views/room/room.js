@@ -31,12 +31,12 @@ export default {
     },
     methods: {
         async syncRoom(room) {            
-            const { infoHash, meta, player, owner, users } = room;
+            const { stream, meta, player, owner, users } = room;
 
             if (!this.owner) this.owner = owner;
 
             if (!this.playerOptions) {
-                const videoUrl = await StremioService.createStream(infoHash);
+                const videoUrl = await StremioService.createStream(stream);
                 const playlistUrl = await HlsService.createPlaylist(videoUrl);
                 this.playerOptions = { src: videoUrl, hls: playlistUrl, meta, isOwner: this.user.id === owner };
             }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import MimeDb from "mime-db";
 import { CINEMETA_URL, OPENSUBTITLES_URL, STREMIO_API_URL, STREMIO_STREAMING_SERVER } from "@/common/config";
 
 const StremioService = {
@@ -38,12 +37,12 @@ const StremioService = {
         return data;
     },
 
-    async createStream(infoHash) {
+    async createStream(stream) {
+        let { infoHash, fileIdx = null } = stream;
         const { data } = await axios.get(`${STREMIO_STREAMING_SERVER}/${infoHash}/create`);
         const { files } = data;
-        const videoFile = files.find(({ name }) => isVideo(name));
-        const indexFile = files.indexOf(videoFile);
-        return `${STREMIO_STREAMING_SERVER}/${infoHash}/${indexFile}`;
+        if (!fileIdx) fileIdx = files.indexOf(files.sort((a, b) => a.length - b.length).reverse()[0]);
+        return `${STREMIO_STREAMING_SERVER}/${infoHash}/${fileIdx}`;
     },
 
     async getStats(streamUrl) {
@@ -86,11 +85,6 @@ async function queryOpenSubtitles(jsonrpc) {
     const { data } = await axios.get(`${OPENSUBTITLES_URL}/q.json?b=${btoa(jsonrpc)}`);
     const { result } = data;
     return result.all;
-}
-
-function isVideo(filename) {
-    const videoTypes = Object.keys(MimeDb).filter(m => m.startsWith('video') && MimeDb[m].extensions).map(m => MimeDb[m].extensions).flat();
-    return videoTypes.find(t => filename.includes(t)) ? true : false;
 }
 
 export default StremioService;

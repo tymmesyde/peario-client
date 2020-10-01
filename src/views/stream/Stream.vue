@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<List class="episodes" itemClass="stream" :items="streams" itemKey="infoHash" #default="{ item }" @click="createRoom($event.infoHash)" v-show="streams.length">
+				<List class="episodes" itemClass="stream" :items="streams" itemKey="infoHash" #default="{ item }" @click="createRoom($event)" v-show="streams.length">
 					<div class="icon">
 						<img v-bind:src="item.icon" alt="">
 						<ion-icon class="outline" name="play-outline"></ion-icon>

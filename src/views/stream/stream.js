@@ -62,8 +62,8 @@ export default {
             const streamCol = AddonService.createStreamCollection(installedAddons);
             this.streams = await AddonService.getStreams(streamCol, type, id);
         },
-        createRoom(infoHash) {
-            WebSocketService.send('room.new', { infoHash, meta: this.meta });
+        createRoom(stream) {
+            WebSocketService.send('room.new', { stream, meta: this.meta });
             WebSocketService.events.on('room', payload => {
                 const { id } = payload;
                 this.$router.push({ name: 'room', params: { id }})
