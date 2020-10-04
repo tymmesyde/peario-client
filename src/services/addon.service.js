@@ -6,8 +6,8 @@ const AddonService = {
         const col = AddonClient.AddonCollection();
         col.load(addons);
         return col.getAddons().filter(({ manifest }) => {
-            const { resources, types } = manifest;
-            return resources.includes('stream') && (types.includes('movie') || types.includes('series'));
+            const { id, idPrefixes, resources, types } = manifest;
+            return id !== 'community.peario' && idPrefixes && idPrefixes.includes('tt') && resources.includes('stream') && (types.includes('movie') || types.includes('series'));
         });
     },
 
