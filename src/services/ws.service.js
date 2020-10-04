@@ -1,26 +1,32 @@
 import { EventEmitter } from 'events';
 
-const WebSocketService = {
+export const WebSocketService = {
 
     socket: null,
     heartbeat: null,
     events: new EventEmitter,
 
-    init(socket, listener) {
-        this.socket = socket;
-        
-        this.socket.onclose = () => this.events.emit('error', { type: 'server' });
-        this.socket.onopen = () => this.heartbeat = setInterval(() => this.send('heartbeat', {}), 2000);
+    connect(url) {
+        return new Promise(resolve => {
+            this.socket = new WebSocket(url);
 
-        listener.onmessage = msg => {
-            const { type, payload } = this.parseEvents(msg);
-            this.events.emit(type, payload);
-        };
+            this.socket.onopen = () => {
+                resolve();
+                this.heartbeat = setInterval(() => this.send('heartbeat', {}), 2000);
+            };
+
+            this.socket.onclose = () => this.events.emit('error', { type: 'server' });
+
+            this.socket.onmessage = msg => {
+                const { type, payload } = this.parseEvents(msg);
+                this.events.emit(type, payload);
+            };
+        });
     },
 
     send(type, payload) {
         if (!this.socket) throw new Error('WebSocketService.init not called.');
-        this.socket.sendObj({ type, payload });
+        this.socket.send(JSON.stringify({ type, payload }));
     },
 
     parseEvents(msg) {

@@ -5,7 +5,7 @@
     <Error v-model="error" v-if="error"></Error>
 
     <transition name="fade-router">
-      <router-view></router-view>
+      <router-view v-if="isConnected"></router-view>
     </transition>
 
     <Footer></Footer>
@@ -19,7 +19,7 @@ import Error from "@/components/Error.vue";
 import WebSocketService from "@/services/ws.service";
 import StremioService from "@/services/stremio.service";
 import StorageService from "@/services/storage.service";
-import { APP_TITLE } from "@/common/config";
+import { APP_TITLE, WS_SERVER } from "@/common/config";
 
 export default {
   name: 'App',
@@ -33,6 +33,7 @@ export default {
   },
   data() {
     return {
+      isConnected: false,
       error: null
     }
   },
@@ -49,8 +50,10 @@ export default {
       }, 2000);
     }
   },
-  mounted() {
-    WebSocketService.init(this.$socket, this.$options.sockets);
+  async mounted() {
+    await WebSocketService.connect(WS_SERVER);
+    this.isConnected = true;
+
     WebSocketService.events.on('ready', ({ user }) => StorageService.set('user', user));
     WebSocketService.events.on('error', error => this.error = error);
 

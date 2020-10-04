@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRx from 'vue-rx';
-import VueNativeSock from 'vue-native-websocket';
 import VueMeta from 'vue-meta'
 import VueI18n from 'vue-i18n';
 import VueClipboard from 'vue-clipboard2';
@@ -8,14 +7,9 @@ import Toasted from 'vue-toasted';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import { WS_SERVER } from './common/config';
 import locales from './common/locales';
 
 Vue.use(VueRx);
-Vue.use(VueNativeSock, WS_SERVER, {
-  format: 'json',
-  reconnection: true
-});
 Vue.use(VueI18n);
 Vue.use(VueMeta, {
   refreshOnceOnNavigation: true
