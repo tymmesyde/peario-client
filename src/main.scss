@@ -1,0 +1,87 @@
+@import './variables.scss';
+
+@font-face {
+    font-family: 'Montserrat-Bold';
+    src: url('assets/fonts/Montserrat/Montserrat-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBold';
+    src: url('assets/fonts/Montserrat/Montserrat-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('assets/fonts/Montserrat/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Montserrat-MediumItalic';
+    src: url('assets/fonts/Montserrat/Montserrat-MediumItalic.ttf');
+}
+
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+::selection {
+    background: rgba(white, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    background-color: $background-color;
+}
+
+.mirrored {
+    transform: scaleX(-1);
+}
+
+.fade-enter-active {
+    transition: opacity 0.25s ease;
+}
+
+.fade-leave-active {
+    transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}   
+
+.c-toast--success {
+    font-family: 'Montserrat-Bold' !important;
+    color: $background-color !important;
+    background-color: $accent-color !important;
+}
