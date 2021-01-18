@@ -19,7 +19,7 @@ class Room extends EventEmitter {
 
     async init() {
         const { owner, meta, stream } = JSON.parse((await all(this.ipfs.cat(this.id))).toString());
-        this.ipfs.swarm.connect(`/p2p-circuit/ipfs/${owner}`);
+        if (owner !== this.identity.id) this.ipfs.swarm.connect(`/p2p-circuit/ipfs/${owner}`);
 
         this.owner = owner;
         this.meta = meta;
