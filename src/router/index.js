@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     {
-        path: '/stream/:type/:id',
+        path: '/stream/:type/:imdb_id',
         name: 'stream',
         component: () => import('../views/Stream.vue')
     },

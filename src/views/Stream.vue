@@ -109,11 +109,11 @@ export default {
     methods: {
         async init() {
             const { params } = useRoute();
-            const { type, id } = params;
+            const { type, imdb_id } = params;
 
-            const { imdb_id, season, episode } = Utils.parseImdbId(id);
+            const { id, season, episode } = Utils.parseImdbId(imdb_id);
 
-            this.meta = await Stremio.getMeta(type, imdb_id) || {};
+            this.meta = await Stremio.getMeta(type, id) || {};
             
             this.season = season;
             this.episode = this.episodes.find(({ episode: ep_id }) => ep_id === episode);
