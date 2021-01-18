@@ -87,7 +87,7 @@ export default {
             return [...new Set(this.meta.videos.map(({ season }) => season))];
         },
         episodes() {
-            return this.meta.videos ? this.meta.videos.filter(({ season }) => season === this.season) : [];
+            return this.meta.videos ? this.meta.videos.filter(({ season }) => season === this.season).sort((a, b) => a.episode - b.episode) : [];
         },
         addons() {
             const mapped = this.sharedState.localAddons.map(({ manifest }) => ({ id: manifest.id, name: manifest.name }));
