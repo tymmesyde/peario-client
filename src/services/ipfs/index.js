@@ -18,7 +18,6 @@ export default {
 
     async init() {
         this.ipfs = await create({
-            preload: false,
             libp2p: {
                 config: {
                     dht: {
