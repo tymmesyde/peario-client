@@ -50,6 +50,7 @@
 
 <script>
 import { useRoute } from 'vue-router';
+import router from '../router';
 import Meta from '../components/Meta';
 import Segments from '../components/Segments';
 import List from '../components/List';
@@ -96,7 +97,8 @@ export default {
         }
     },
     watch: {
-        episode() {
+        episode({ id }) {
+            router.replace({ name: 'stream', params: { type: this.meta.type, imdb_id: id } });
             this.getStreams();
         },
         addon() {
