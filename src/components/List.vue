@@ -52,7 +52,6 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-height: 250px;
     overflow-x: hidden;
     overflow-y: auto;
 

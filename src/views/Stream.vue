@@ -14,7 +14,7 @@
         </Segments>
         <List v-model="episode" :items="episodes" fixed>
             <template #left="{ item }">
-                Ep. {{ item.number }}
+                Ep. {{ item.episode }}
             </template>
             <template #right="{ item }">
                 {{ item.name }}
@@ -114,9 +114,20 @@ export default {
             const { id, season, episode } = Utils.parseImdbId(imdb_id);
 
             this.meta = await Stremio.getMeta(type, id) || {};
-            
             this.season = season;
-            this.episode = this.episodes.find(({ episode: ep_id }) => ep_id === episode);
+
+            const episodeFromMeta = this.episodes.find(({ episode: ep_id }) => ep_id === episode);
+            if (episodeFromMeta) this.episode = episodeFromMeta;
+            else this.createTempVideo(imdb_id, season, episode);
+        },
+        createTempVideo(imdb_id, season, episode) {
+            const video = {
+                id: imdb_id,
+                season,
+                episode
+            };
+            this.meta.videos.push(video);
+            this.episode = video;
         },
         async getStreams() {
             this.streams = [];
