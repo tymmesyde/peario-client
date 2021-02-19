@@ -12,7 +12,13 @@ export default {
 
     async getMeta(type, id) {
         const { meta } = await _request('get', `https://v3-cinemeta.strem.io/meta/${type}/${id}.json`);
-        return meta;
+        return {
+            id,
+            imdb_id: id,
+            type,
+            videos: [],
+            ...meta
+        };
     },
 
     getAddons() {

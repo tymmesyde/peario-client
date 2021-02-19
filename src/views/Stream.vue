@@ -115,7 +115,7 @@ export default {
 
             const { id, season, episode } = Utils.parseImdbId(imdb_id);
 
-            this.meta = await Stremio.getMeta(type, id) || {};
+            this.meta = await Stremio.getMeta(type, id);
             this.season = season;
 
             const episodeFromMeta = this.episodes.find(({ episode: ep_id }) => ep_id === episode);
