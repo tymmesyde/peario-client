@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-async function _request(method, url) {
+async function _request(method, url, body = {}) {
     const { data } = await axios({
         method,
-        url
+        url,
+        data: body
     });
     return data;
 }
@@ -26,8 +27,18 @@ export default {
     },
 
     async createStream(stream) {
-        let { infoHash, fileIdx = null } = stream;
-        const { files } = await _request('get', `http://localhost:11470/${infoHash}/create`);
+        let { infoHash, sources, fileIdx = null } = stream;
+        const options = {
+            peerSearch: {
+                max: 150,
+                min: 40,
+                sources
+            },
+            torrent: {
+                infoHash
+            }
+        };
+        const { files } = await _request('post', `http://localhost:11470/${infoHash}/create`, options);
         if (!fileIdx) fileIdx = files.indexOf(files.sort((a, b) => a.length - b.length).reverse()[0]);
         return `http://localhost:11470/${infoHash}/${fileIdx}`;
     }
