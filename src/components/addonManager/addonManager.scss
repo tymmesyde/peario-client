@@ -1,6 +1,7 @@
 @import './../../variables.scss';
 
 $title-height: 9vh;
+$input-container-height: 70px;
 $menu-width: 45vh;
 $menu-padding: 2vh;
 $addon-icon-size: 8vh;
@@ -50,8 +51,19 @@ $addon-icon-size: 8vh;
         }
     }
 
+    .input-container {
+        height: $input-container-height;
+        display: flex;
+        justify-content: center;
+        padding: 0 20px;
+
+        input {
+            width: 100%;
+        }
+    }
+
     ul {
-        height: calc(100% - #{$title-height});
+        height: calc(100% - #{$title-height} - #{$input-container-height});
         overflow-y: auto;
         padding: 0 $menu-padding;
     }

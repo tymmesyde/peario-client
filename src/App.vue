@@ -51,6 +51,8 @@ export default {
     }
   },
   async mounted() {
+    this.$store.dispatch('loadAddons');
+    
     await WebSocketService.connect(WS_SERVER);
     this.isConnected = true;
 

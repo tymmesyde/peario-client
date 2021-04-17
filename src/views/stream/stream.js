@@ -1,5 +1,6 @@
+import { mapGetters } from 'vuex';
+
 import StremioService from "@/services/stremio.service";
-import StorageService from "@/services/storage.service";
 import AddonService from "@/services/addon.service";
 import WebSocketService from "@/services/ws.service";
 
@@ -32,7 +33,8 @@ export default {
         },
         filterVideos() {
             return this.meta.videos.filter(({ season }) => season === this.selected.season).sort((a, b) => a.episode - b.episode);
-        }
+        },
+        ...mapGetters(['collection', 'installed'])
     },
     data: () => {
         return {
@@ -53,20 +55,23 @@ export default {
         episode() {
             this.$router.replace({ path: this.selected.episode.id });
             this.loadStreams();
+        },
+        installed() {
+            this.loadStreams();
         }
     },
     methods: {
         async loadStreams() {
             const { id, type } = this.$route.params;
-            const installedAddons = StorageService.get('installed') || [];
-            const streamCol = AddonService.createStreamCollection(installedAddons);
-            this.streams = await AddonService.getStreams(streamCol, type, id);
+
+            const installedAddons = this.collection.filter(addon => this.installed.includes(addon.manifest.id));
+            this.streams = await AddonService.getStreams(installedAddons, type, id);
         },
         createRoom(stream) {
             WebSocketService.send('room.new', { stream, meta: this.meta });
             WebSocketService.events.on('room', payload => {
                 const { id } = payload;
-                this.$router.push({ name: 'room', params: { id }})
+                this.$router.push({ name: 'room', params: { id } })
             });
         },
         parseSeason() {
@@ -97,7 +102,6 @@ export default {
             this.parseSeason();
         }
 
-        StorageService.watch.subscribe(() => this.loadStreams());
         this.loadStreams();
     }
 };

@@ -1,24 +1,23 @@
+import { mapGetters } from 'vuex';
 import Title from '@/components/ui/Title.vue';
-
-import StremioService from '@/services/stremio.service';
-import StorageService from '@/services/storage.service';
-import AddonService from '@/services/addon.service';
+import TextInput from '@/components/ui/TextInput.vue';
 
 export default {
     name: 'AddonManager',
     components: {
-        Title
+        Title,
+        TextInput
     },
     props: {
         open: Boolean
     },
-    data: () => {
+    data() {
         return {
             isOpen: false,
-            addons: [],
-            installed: []
+            manifestUrl: ''
         }
     },
+    computed: mapGetters(['collection', 'installed']),
     watch: {
         open(state) {
             this.isOpen = state;
@@ -32,21 +31,16 @@ export default {
             return s.charAt(0).toUpperCase() + s.slice(1);
         },
         isInstalled(addon) {
-            return this.installed.find(i => i.transportUrl === addon.transportUrl) ? true : false;
+            return this.installed.includes(addon.manifest.id);
         },
         toggleAddon(addon) {
-            if (this.isInstalled(addon)) this.installed = this.installed.filter(({
-                transportUrl
-            }) => transportUrl !== addon.transportUrl);
-            else this.installed.unshift(addon);
-
-            StorageService.set('installed', this.installed);
+            if (this.isInstalled(addon)) this.$store.dispatch('uninstallAddon', addon);
+            else this.$store.dispatch('installAddon', addon);
+        },
+        async addFromURL() {
+            this.$store.dispatch('addUserAddon', this.manifestUrl);
+            this.$store.dispatch('loadAddons', this.manifestUrl);
+            this.manifestUrl = '';
         }
-    },
-    async mounted() {
-        const addons = await StremioService.getAddons();
-        const streamCol = AddonService.createStreamCollection(addons);
-        this.addons = streamCol;
-        this.installed = StorageService.get('installed') || [];
     }
 };
