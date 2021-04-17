@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/tymmesyde/peario-client/compare/v0.9.2...v0.10.0) (2021-04-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* can now add addons from URL given by the user
+
+### Features
+
+* can now add addons from URL given by the user ([78fd02a](https://github.com/tymmesyde/peario-client/commit/78fd02af04a0b6a48c6bf502bf7b5b2f687fa8a0))
+
 ### [0.9.2](https://github.com/tymmesyde/peario-client/compare/v0.9.1...v0.9.2) (2020-10-04)
 
 
