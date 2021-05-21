@@ -1,14 +1,11 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from 'vuex';
 
 import player from "./player";
 import subtitles from "./subtitles";
 import info from "./info";
 import addons from "./addons";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
     modules: {
         player,
         subtitles,

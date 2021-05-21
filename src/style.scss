@@ -137,14 +137,10 @@ $ratio: 100% / $columns;
   animation: spinning 1s ease-in-out infinite;
 }
 
-.toasted-container {
-  .toasted {
-    height: 4vh;
-    line-height: 4vh;
-    border-radius: 1.5vh;
-    font-family: 'Montserrat';
-    background-color: $background-color;
-  }
+.c-toast {
+  border-radius: 1.5vh !important;
+  font-family: 'Montserrat' !important;
+  background-color: $background-color !important;
 }
 
 @keyframes spinning {

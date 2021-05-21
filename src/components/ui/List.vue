@@ -1,7 +1,7 @@
 <template>
     <ul class="list">
         <transition-group name="list">
-            <li v-for="(item, i) in items" :key="itemKey ? item[itemKey] + i : item" :class="[{ 'active': item === value }, itemClass ]" @click="$emit('input', item), $emit('click', item)">
+            <li v-for="(item, i) in items" :key="itemKey ? item[itemKey] + i : item" :class="[{ 'active': item === modelValue }, itemClass ]" @click="$emit('update:modelValue', item), $emit('click', item)">
                 <slot :item="item" :index="i"></slot>
             </li>
         </transition-group>
@@ -12,11 +12,12 @@
 export default {
     name: 'List',
     props: {
-        value: [Object, String, Number],
+        modelValue: [Object, String, Number],
         items: Array,
         itemClass: String,
         itemKey: String
-    }
+    },
+    emits: ['update:modelValue', 'click']
 }
 </script>
 

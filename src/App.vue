@@ -1,18 +1,26 @@
 <template>
   <div id="app">
+    <metainfo>
+        <template v-slot:title="{ content }">{{ content }}</template>
+    </metainfo>
+
     <Header></Header>
 
     <Error v-model="error" v-if="error"></Error>
 
-    <transition name="fade-router">
-      <router-view v-if="isConnected"></router-view>
-    </transition>
+    <router-view v-slot="{ Component }" v-if="isConnected">
+      <transition name="fade-router">
+        <component :is="Component" />
+      </transition>
+    </router-view>
 
     <Footer></Footer>
   </div>
 </template>
 
 <script>
+import { useMeta } from 'vue-meta';
+
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Error from "@/components/Error.vue";
@@ -23,9 +31,6 @@ import { APP_TITLE, WS_SERVER } from "@/common/config";
 
 export default {
   name: 'App',
-  metaInfo: {
-    titleTemplate: APP_TITLE
-  },
   components: {
     Header,
     Footer,
@@ -50,6 +55,11 @@ export default {
       }, 2000);
     }
   },
+  setup() {
+    useMeta({
+        title: APP_TITLE
+    });
+  },
   async mounted() {
     this.$store.dispatch('loadAddons');
     
@@ -61,7 +71,7 @@ export default {
 
     this.checkIfStreamioRunning();
   },
-  destroyed() {
+  unmounted() {
     WebSocketService.clear();
   }
 };
@@ -74,6 +84,7 @@ export default {
 #app {
   position: relative;
   height: 100%;
+  width: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

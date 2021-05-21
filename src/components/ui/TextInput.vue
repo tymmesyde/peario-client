@@ -1,15 +1,16 @@
 <template>
-    <input type="text" spellcheck="false" :class="type" :value="value" :placeholder="placeholder" @click="$emit('click')" @input="$emit('input', $event.target.value)" @change="$emit('change', $event.target.value)">
+    <input type="text" spellcheck="false" :class="type" :value="modelValue" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)">
 </template>
 
 <script>
 export default {
     name: 'TextInput',
     props: {
+        modelValue: String,
         type: String,
-        placeholder: String,
-        value: String
-    }
+        placeholder: String
+    },
+    emits: ['update:modelValue']
 }
 </script>
 

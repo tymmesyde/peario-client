@@ -6,7 +6,7 @@
         <div>
             <ion-icon name="close-circle-outline" class="icon danger"></ion-icon>
             <Title type="secondary" :translate="`errors.${value.type}.title`"/>
-            <p>{{ $t(`errors.${value.type}.message`) }}</p>
+            <p>{{ $t(`errors.${modelValue.type}.message`) }}</p>
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
         Title
     },
     props: {
-        value: Object
+        modelValue: Object
     }
 }
 </script>

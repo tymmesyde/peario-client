@@ -174,6 +174,7 @@ export default {
             }
 
             .sizes {
+                display: flex;
                 width: auto !important;
 
                 span {

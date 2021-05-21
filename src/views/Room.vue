@@ -1,5 +1,37 @@
+<template>
+    <div id="room" class="container">
+        <Loading type="room" v-if="!playerOptions"></Loading>
+
+        <div class="users" v-if="player.video" :class="{ 'show': !player.hide }">
+            <div class="count">
+                <ion-icon name="eye-outline"></ion-icon> {{ users.length }}
+            </div>
+
+            <ul>
+                <li v-for="user in users" v-bind:key="user.id">
+                    <div class="status">
+                        <span v-if="user.id == owner">
+                            <ion-icon name="play-outline" v-show="!player.video.paused" class="success"></ion-icon>
+                            <ion-icon name="pause-outline" v-show="player.video.paused" class="danger"></ion-icon>
+                        </span>
+                        <span v-else>
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </span>
+                    </div>
+                    <div class="username">
+                        {{ user.name }}
+                        <ion-icon name="ribbon-outline" v-show="user.id == owner"></ion-icon>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <Player v-if="playerOptions" v-bind:options="playerOptions" v-on:paused="syncPlayer()"></Player>
+    </div>
+</template>
+
+<script>
 import Loading from "@/components/Loading.vue";
-import Error from "@/components/Error.vue";
 import Player from "@/components/player/Player.vue";
 import StremioService from "@/services/stremio.service";
 import HlsService from "@/services/hls.service";
@@ -10,7 +42,6 @@ export default {
     name: 'Room',
     components: {
         Loading,
-        Error,
         Player
     },
     data() {
@@ -73,8 +104,57 @@ export default {
             if (this.player.video && !this.player.video.paused) this.syncPlayer();
         }, 1000);
     },
-    destroyed() {
+    unmounted() {
         clearInterval(this.interval);
         this.interval = null;
     }
 };
+</script>
+
+<style lang="scss" scoped>
+@import '../variables.scss';
+
+#room {
+    background-color: black;
+    user-select: none;
+
+    .count {
+        font-family: 'Montserrat-Medium';
+        font-size: 30px;
+        font-weight: bold;
+        color: $accent-color;
+    }
+
+    .users {
+        z-index: 99;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 2vw;
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+        transition-delay: 0.3s;
+
+        &.show {
+            opacity: 1;
+        }
+
+        ul {
+            margin-top: 1vh;
+
+            li {
+                display: flex;
+                align-content: center;
+                padding-bottom: 1.5vh;
+                font-family: 'Montserrat';
+                font-size: 15px;
+                color: rgba(255, 255, 255, 0.7);
+
+                ion-icon {
+                    padding-right: 0.5vw;
+                }
+            }
+        }
+    }
+}
+</style>

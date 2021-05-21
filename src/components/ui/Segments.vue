@@ -1,6 +1,6 @@
 <template>
     <ul class="segments">
-        <li v-for="segment in segments" :key="segment" :class="{ 'active': value === segment }" @click="$emit('input', segment)">
+        <li v-for="segment in segments" :key="segment" :class="{ 'active': modelValue === segment }" @click="$emit('update:modelValue', segment)">
             <slot name="segment" :segment="segment"></slot>
         </li>
     </ul>
@@ -10,9 +10,10 @@
 export default {
     name: 'Segments',
     props: {
-        value: [String, Number],
+        modelValue: [String, Number],
         segments: Array
-    }
+    },
+    emits: ['update:modelValue']
 }
 </script>
 

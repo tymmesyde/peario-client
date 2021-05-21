@@ -1,7 +1,7 @@
 <template>
     <div :class="type">
         <ion-icon :name="icon" v-if="icon"></ion-icon>
-        {{ $t(translate) }}
+        {{ translate ? $t(translate) : '' }}
         <slot></slot>
     </div>
 </template>

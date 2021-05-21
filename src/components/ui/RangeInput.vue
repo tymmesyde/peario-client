@@ -1,12 +1,12 @@
 <template>
-    <input type="range" min="0" :max="max" :step="step" :value="value" :disabled="disabled" @input="$emit('seek', $event.target.value)"/>
+    <input type="range" min="0" :max="max" :step="step" :value="modelValue" :disabled="disabled" @input="$emit('seek', $event.target.value)"/>
 </template>
 
 <script>
 export default {
     name: 'RangeInput',
     props: {
-        value: [Number, String],
+        modelValue: [Number, String],
 		disabled: Boolean,
 		max: {
 			type: String,

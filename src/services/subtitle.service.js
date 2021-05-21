@@ -1,5 +1,5 @@
 import axios from "axios";
-import { parse } from 'subtitle';
+import { parseSync } from 'subtitle';
 
 const SubtitleService = {
     
@@ -8,18 +8,19 @@ const SubtitleService = {
     getCurrent(seconds) {
         if (this.subtitles) {
             const ms = seconds * 1000;
-            return this.subtitles.find(({ start, end }) => ms >= start && ms <= end)?.text;
+            const line = this.subtitles.find(({ data }) => ms >= data.start && ms <= data.end);
+            return line ? line.data.text : '';
         }
         return null;
     },
 
     async set(url) {
         const { data } = await axios.get(url);
-        this.subtitles = parse(data);
+        this.subtitles = parseSync(data);
     },
 
     setCustom(data) {
-        this.subtitles = parse(data);
+        this.subtitles = parseSync(data);
     }
 
 };

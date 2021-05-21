@@ -28,7 +28,10 @@ export default {
             state.collection.push(addon);
         },
         addToInstalled(state, addon_id) {
-            state.installed.push(addon_id);
+            state.installed = [
+                ...state.installed,
+                addon_id
+            ];
             StorageService.set('addons.installed', state.installed);
         },
         addToUser(state, addon) {

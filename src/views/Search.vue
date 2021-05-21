@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import router from '../router';
+
 import StremioService from '@/services/stremio.service';
 import Title from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
@@ -70,14 +72,14 @@ export default {
     },
     methods: {
         goToStream({ type, imdb_id }) {
-            this.$router.push({ name: 'stream', params: { type, id: imdb_id } });
+            router.push({ name: 'stream', params: { type, id: imdb_id } });
         }
     }
 }
 </script>
 
 <style lang="scss">
-@import '../../variables.scss';
+@import '../variables.scss';
 
 #search {
     .headline {
