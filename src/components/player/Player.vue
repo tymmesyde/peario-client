@@ -48,7 +48,7 @@
 
             <div class="panel">
                 <div class="volume control">
-                    <RangeInput class="volume-bar" v-model="volume" @seek="video.volume = volume"></RangeInput>
+                    <RangeInput class="volume-bar" v-model="volume" @seek="video.volume = $event"></RangeInput>
                     <span class="icon" @click="toggleVolume()">
                         <ion-icon name="volume-mute-outline" v-show="video.volume === 0"></ion-icon>
                         <ion-icon name="volume-off-outline" v-show="video.volume > 0 && video.volume <= 0.2"></ion-icon>
