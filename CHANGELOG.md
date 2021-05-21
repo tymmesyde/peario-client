@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1](https://github.com/tymmesyde/peario-client/compare/v0.10.0...v0.10.1) (2021-05-21)
+
+
+### Bug Fixes
+
+* **player:** volume was not updated when seeked ([baf5c42](https://github.com/tymmesyde/peario-client/commit/baf5c4254051e02a0fc92d325ebb8fc56919c5b7))
+* player video was streched ([cd97ad9](https://github.com/tymmesyde/peario-client/commit/cd97ad96e396d21b023b1d239483db1fb515071c))
+
 ## [0.10.0](https://github.com/tymmesyde/peario-client/compare/v0.9.2...v0.10.0) (2021-04-17)
 
 
