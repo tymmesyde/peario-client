@@ -2,17 +2,17 @@
     <div id="room" class="container">
         <Loading type="room" v-if="!playerOptions"></Loading>
 
-        <div class="users" v-if="player.video" :class="{ 'show': !player.hide }">
+        <div class="users" v-if="player.video" :class="{ 'show': !player.controlsHidden }">
             <div class="count">
                 <ion-icon name="eye-outline"></ion-icon> {{ users.length }}
             </div>
 
             <ul>
-                <li v-for="user in users" v-bind:key="user.id">
+                <li v-for="user in users" :key="user.id">
                     <div class="status">
                         <span v-if="user.id == owner">
-                            <ion-icon name="play-outline" v-show="!player.video.paused" class="success"></ion-icon>
-                            <ion-icon name="pause-outline" v-show="player.video.paused" class="danger"></ion-icon>
+                            <ion-icon class="success" name="play-outline" v-if="!player.paused"></ion-icon>
+                            <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
                         </span>
                         <span v-else>
                             <ion-icon name="checkmark-outline"></ion-icon>
@@ -26,11 +26,13 @@
             </ul>
         </div>
 
-        <Player v-if="playerOptions" v-bind:options="playerOptions" v-on:paused="syncPlayer()"></Player>
+        <Player v-if="playerOptions" :options="playerOptions" @change="syncPlayer()"></Player>
     </div>
 </template>
 
 <script>
+import store from '../store';
+
 import Loading from "@/components/Loading.vue";
 import Player from "@/components/player/Player.vue";
 import StremioService from "@/services/stremio.service";
@@ -53,11 +55,16 @@ export default {
         }
     },
     computed: {
-        player() {
-            return this.$store.getters.player;
-        },
         user() {
             return StorageService.get('user');
+        },
+        player() {
+            return {
+                video: store.getters['player/video'],
+                paused: store.getters['player/paused'],
+                autoSync: store.getters['player/autoSync'],
+                buffering: store.getters['player/buffering']
+            }
         }
     },
     methods: {
@@ -83,15 +90,15 @@ export default {
                 }
 
                 paused ? this.player.video.pause() : this.player.video.play();
+                store.commit('player/updatePaused', this.player.video.paused);
                 this.player.buffering = buffering;
             }
 
-            this.$forceUpdate();
         },
         syncPlayer() {
             if (this.player.autoSync) {
-                const { paused, currentTime } = this.player.video;
-                WebSocketService.send('player.sync', { paused, buffering: this.player.buffering, time: currentTime });
+                const { currentTime } = this.player.video;
+                WebSocketService.send('player.sync', { paused: this.player.paused, buffering: this.player.buffering, time: currentTime });
             }
         }
     },
@@ -101,7 +108,7 @@ export default {
         WebSocketService.events.on('sync', this.syncRoom);
 
         this.interval = setInterval(() => {
-            if (this.player.video && !this.player.video.paused) this.syncPlayer();
+            if (this.player.video && !this.player.paused) this.syncPlayer();
         }, 1000);
     },
     unmounted() {

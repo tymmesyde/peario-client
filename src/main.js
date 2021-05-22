@@ -6,6 +6,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import locales from './common/locales';
+import toTimer from './directives/toTimer';
 
 const i18n = createI18n({
   locale: 'en',
@@ -19,6 +20,7 @@ createApp(App)
     position: 'bottom',
     duration: 3000
   })
+  .directive('to-timer', toTimer)
   .use(router)
   .use(store)
   .mount('#app');
