@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.2](https://github.com/tymmesyde/peario-client/compare/v0.10.1...v0.10.2) (2021-05-22)
+
+
+### Bug Fixes
+
+* errors were not showing up ([4ef472c](https://github.com/tymmesyde/peario-client/commit/4ef472c961b2afbb0b9137b6e94dba18d40e8b4f))
+
 ### [0.10.1](https://github.com/tymmesyde/peario-client/compare/v0.10.0...v0.10.1) (2021-05-21)
 
 
