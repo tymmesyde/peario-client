@@ -18,8 +18,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/variables.scss';
-
 $segment-height: 4vh;
 
 ul {
@@ -38,6 +36,8 @@ ul {
     padding: 0 2vh;
     border-radius: 1vh;
     margin-right: 1vh;
+    font-family: 'Montserrat';
+    color: $text-color;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 

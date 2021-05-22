@@ -17,8 +17,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/variables.scss';
-
 button {
 	height: 5vh;
 	background-color: $accent-color;

@@ -38,8 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../variables.scss';
-
 header {
 	z-index: 99;
 	position: fixed;
@@ -67,6 +65,7 @@ header {
 		border-radius: 100%;
 		margin-right: 1.5vh;
 		font-size: 3vh;
+		color: $text-color;
 		cursor: pointer;
 		transition: background-color 0.1s ease-in-out;
 
@@ -89,6 +88,8 @@ header {
 
 	.version {
 		margin-left: 2vh;
+		font-family: 'Montserrat-SemiBold';
+		color: $text-color;
 		opacity: 0.3;
 	}
 }

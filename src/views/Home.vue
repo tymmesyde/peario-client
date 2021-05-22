@@ -42,8 +42,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../variables.scss';
-
 #home {
   text-align: center;
   padding-bottom: $header-height / 2;
@@ -93,6 +91,7 @@ export default {
 
     .play-button {
       font-size: 7.5vh;
+      color: $text-color;
     }
 
     &:hover {

@@ -21,8 +21,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/variables.scss';
-
 .primary {
     margin: 0;
     font-family: 'Montserrat-SemiBold';

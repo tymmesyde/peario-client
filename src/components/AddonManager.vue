@@ -80,8 +80,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../variables.scss';
-
 $title-height: 9vh;
 $input-container-height: 70px;
 $menu-width: 45vh;
@@ -156,6 +154,7 @@ $addon-icon-size: 8vh;
     grid-template-columns: $addon-icon-size auto 3vh;
     column-gap: 1.5vh;
     margin-bottom: 2.5vh;
+    color: $text-color;
     opacity: 0.7;
     user-select: none;
     cursor: pointer;

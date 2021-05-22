@@ -132,8 +132,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../variables.scss';
-
 #subtitles-control {
     .panel {
         $panel-height: 250px;

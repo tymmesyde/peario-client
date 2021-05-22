@@ -15,8 +15,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/variables.scss';
-
 input {
   height: 5vh;
   background-color: transparent;

@@ -175,6 +175,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
+        color: $text-color;
         background-color: $overlay-background-color;
 
         ion-icon {
@@ -200,6 +201,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
         user-select: none;
         opacity: 1;
         transition: all 0.2s ease-in;
+        color: $text-color;
         background-color: $overlay-background-color;
         box-shadow: 0px -40px 100px 60px $overlay-background-color;
 

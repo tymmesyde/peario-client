@@ -41,25 +41,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    #subtitle {
-        position: absolute;
-        width: 100%;
-        bottom: 8vh;
-        display: flex;
-        justify-content: center;
-        color: white;
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+#subtitle {
+    position: absolute;
+    width: 100%;
+    bottom: 8vh;
+    display: flex;
+    justify-content: center;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
-        &.small {
-            font-size: 2vh;
-        }
-
-        &.medium {
-            font-size: 3vh;
-        }
-
-        &.large {
-            font-size: 4vh;
-        }
+    &.small {
+        font-size: 2vh;
     }
+
+    &.medium {
+        font-size: 3vh;
+    }
+
+    &.large {
+        font-size: 4vh;
+    }
+}
 </style>

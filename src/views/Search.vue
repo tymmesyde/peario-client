@@ -79,8 +79,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../variables.scss';
-
 #search {
     .headline {
         text-align: center;

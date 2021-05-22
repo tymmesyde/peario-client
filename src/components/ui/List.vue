@@ -22,8 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/variables.scss';
-
 ul {
     width: 100%;
     max-height: 50vh;
@@ -32,6 +30,7 @@ ul {
     user-select: none;
 
     li {
+        color: $text-color;
         border-radius: 0.5vh;
         transition: all 0.1s ease-in-out;
         cursor: default;

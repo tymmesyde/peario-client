@@ -190,6 +190,7 @@ $stream-icon-size: 7vh;
 
         .info {
             padding-right: 0;
+            color: $text-color;
 
             .title {
                 font-size: 6vh;
@@ -285,6 +286,7 @@ $stream-icon-size: 7vh;
 
             ion-icon {
                 font-size: 7vh;
+                color: $text-color;
                 margin-bottom: 1vh;
             }
         }

@@ -1,21 +1,19 @@
 <template>
-  <div id="app">
-    <metainfo>
-        <template v-slot:title="{ content }">{{ content }}</template>
-    </metainfo>
+  <metainfo>
+      <template v-slot:title="{ content }">{{ content }}</template>
+  </metainfo>
 
-    <Header></Header>
+  <Header></Header>
 
-    <Error :type="error.type" v-for="error in errors" :key="error.type" @close="removeError(error.type)"></Error>
+  <Error :type="error.type" v-for="error in errors" :key="error.type" @close="removeError(error.type)"></Error>
 
-    <router-view v-slot="{ Component }" v-if="isConnected">
-      <transition name="fade-router">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+  <router-view v-slot="{ Component }" v-if="isConnected">
+    <transition name="fade-router">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 
-    <Footer></Footer>
-  </div>
+  <Footer></Footer>
 </template>
 
 <script>
@@ -81,20 +79,5 @@ export default {
 </script>
 
 <style lang="scss">
-
-@import './style.scss';
-
-#app {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $text-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+@import './assets/styles/main.scss';
 </style>

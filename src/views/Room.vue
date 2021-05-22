@@ -119,8 +119,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../variables.scss';
-
 #room {
     background-color: black;
     user-select: none;
