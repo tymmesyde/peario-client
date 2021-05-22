@@ -1,12 +1,12 @@
 <template>
     <div class="error">
-        <div class="close" @click="$emit('input', null)">
+        <div class="close" @click="$emit('close')">
 			<ion-icon name="close-sharp"></ion-icon>
 		</div>
         <div>
             <ion-icon name="close-circle-outline" class="icon danger"></ion-icon>
-            <Title type="secondary" :translate="`errors.${value.type}.title`"/>
-            <p>{{ $t(`errors.${modelValue.type}.message`) }}</p>
+            <Title type="secondary" :translate="`errors.${type}.title`"/>
+            <p>{{ $t(`errors.${type}.message`) }}</p>
         </div>
     </div>
 </template>
@@ -20,8 +20,9 @@ export default {
         Title
     },
     props: {
-        modelValue: Object
-    }
+        type: String
+    },
+    emits: ['close']
 }
 </script>
 

@@ -6,7 +6,7 @@
 
     <Header></Header>
 
-    <Error v-model="error" v-if="error"></Error>
+    <Error :type="error.type" v-for="error in errors" :key="error.type" @close="removeError(error.type)"></Error>
 
     <router-view v-slot="{ Component }" v-if="isConnected">
       <transition name="fade-router">
@@ -39,20 +39,23 @@ export default {
   data() {
     return {
       isConnected: false,
-      error: null
+      errors: []
     }
   },
   methods: {
     checkIfStreamioRunning() {
       const isRunningInterval = setInterval(async () => {
         if (await StremioService.isServerOpen()) {
-          this.error = null;
+          this.removeError('stremio');
           clearInterval(isRunningInterval);
         }
-        else this.error = {
+        else this.errors.push({
           type: 'stremio'
-        };
+        });
       }, 2000);
+    },
+    removeError(type) {
+        this.errors = this.errors.filter(e => e.type !== type);
     }
   },
   setup() {
@@ -67,7 +70,7 @@ export default {
     this.isConnected = true;
 
     WebSocketService.events.on('ready', ({ user }) => StorageService.set('user', user));
-    WebSocketService.events.on('error', error => this.error = error);
+    WebSocketService.events.on('error', error => this.errors.push(error));
 
     this.checkIfStreamioRunning();
   },
