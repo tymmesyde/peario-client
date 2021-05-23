@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { createMetaManager } from 'vue-meta'
 import { createI18n } from 'vue-i18n';
 import Toaster from '@meforma/vue-toaster';
+import IoniconsPlugin from './plugins/ionicons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -20,6 +21,7 @@ createApp(App)
     position: 'bottom',
     duration: 3000
   })
+  .use(IoniconsPlugin)
   .directive('to-timer', toTimer)
   .use(router)
   .use(store)
