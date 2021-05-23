@@ -1,20 +1,23 @@
 <template>
     <div id="addons">
-        <transition name="fade">
-            <div class="menu">
-                <Title class="title" type="secondary" icon="cube-outline">ADDONS</Title>
-                <div class="close" @click="close()">
-                    <ion-icon name="close-outline"></ion-icon>
-                </div>
+        <div class="menu">
+            <Title class="title" type="secondary" icon="cube-outline">ADDONS</Title>
+            <div class="close" @click="close()">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
 
-                <div class="input-container">
-                    <TextInput v-model="manifestUrl" placeholder="Paste addon manifest URL" @change="addFromURL()"></TextInput>
-                </div>
+            <div class="input-container">
+                <TextInput v-model="manifestUrl" placeholder="Paste addon manifest URL" @change="addFromURL()"></TextInput>
+            </div>
 
-                <ul>
-                    <li class="addon" :class="{ active: isInstalled(addon) }" v-for="addon in collection" :key="addon.transportUrl" @click="toggleAddon(addon)">
-                        <div class="icon"><img :src="addon.manifest.icon || addon.manifest.logo" alt=""></div>
-                        <div class="info">
+            <ul>
+                <li class="addon" :class="{ active: isInstalled(addon) }" v-for="addon in collection" :key="addon.transportUrl" @click="toggleAddon(addon)">
+                    <div class="info">
+                        <div class="icon">
+                            <img :src="addon.manifest.icon || addon.manifest.logo" alt="" v-if="addon.manifest.icon || addon.manifest.logo">
+                            <ion-icon name="cube-outline" v-else></ion-icon>
+                        </div>
+                        <div class="text">
                             <div class="name">{{ addon.manifest.name }}</div>
                             <div class="types">
                                 <span v-for="type in addon.manifest.types" :key="type">
@@ -22,14 +25,14 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="switch">
-                            <ion-icon name="toggle-outline" class="flip" v-show="!isInstalled(addon)"></ion-icon>
-                            <ion-icon name="toggle" v-show="isInstalled(addon)"></ion-icon>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </transition>
+                    </div>
+                    <div class="switch">
+                        <ion-icon name="toggle-outline" class="flip" v-show="!isInstalled(addon)"></ion-icon>
+                        <ion-icon name="toggle" v-show="isInstalled(addon)"></ion-icon>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         <div class="backdrop" @click="close()"></div>
     </div>
@@ -100,6 +103,7 @@ $addon-icon-size: 8vh;
 
 #addons {
     z-index: 99;
+    position: absolute;
 }
 
 .menu {
@@ -109,7 +113,7 @@ $addon-icon-size: 8vh;
     bottom: 0;
     right: 0;
     width: $menu-width;
-    background-color: $background-color;
+    background-color: $primary-color;
     overflow: hidden;
 
     .title {
@@ -120,9 +124,10 @@ $addon-icon-size: 8vh;
 
     .close {
         position: absolute;
-        top: 2vh;
-        right: 1vh;
-        font-size: 4vh;
+        top: 23px;
+        right: 10px;
+        font-size: 40px;
+        color: $text-color;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
 
@@ -143,65 +148,90 @@ $addon-icon-size: 8vh;
     }
 
     ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         height: calc(100% - #{$title-height} - #{$input-container-height});
         overflow-y: auto;
         padding: 0 $menu-padding;
-    }
-}
+        padding-bottom: $menu-padding;
 
-.addon {
-    display: grid;
-    grid-template-columns: $addon-icon-size auto 3vh;
-    column-gap: 1.5vh;
-    margin-bottom: 2.5vh;
-    color: $text-color;
-    opacity: 0.7;
-    user-select: none;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+        .addon {
+            display: flex;
+            justify-content: space-between;
+            color: $text-color;
+            user-select: none;
+            cursor: pointer;
 
-    &.active {
-        opacity: 1;
-    }
+            &.active {
+                .info {
+                    opacity: 1;
+                }
+            }
 
-    &:not(.active):hover {
-        opacity: 0.8;
-    }
+            &:not(.active):hover {
+                .info {
+                    opacity: 0.7;
+                }
+            }
 
-    .icon {
-        display: grid;
-        align-content: center;
-        height: $addon-icon-size;
-        width: $addon-icon-size;
-        border-radius: 2vh;
-        overflow: hidden;
-        background-color: rgba(white, 0.1);
+            .info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                opacity: 0.5;
+                transition: all 0.1s ease-in-out;
 
-        img {
-            width: 100%;
-        }
-    }
+                .icon {
+                    display: grid;
+                    align-content: center;
+                    justify-content: center;
+                    height: $addon-icon-size;
+                    width: $addon-icon-size;
+                    border-radius: 15px;
+                    font-size: 30px;
+                    overflow: hidden;
+                    background-color: rgba(white, 0.1);
 
-    .info {
-        padding-top: 1vh;
+                    img {
+                        width: 100%;
+                    }
+                }
 
-        .name {
-            font-size: 2vh;
-            margin-bottom: 0.25vh;
-        }
+                .text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 7px;
 
-        .types {
-            font-size: 1.5vh;
-        }
-    }
+                    .name {
+                        font-family: 'Montserrat-Medium';
+                        font-size: 20px;
+                    }
 
-    .switch {
-        font-size: 3vh;
-        line-height: $addon-icon-size;
-        text-align: right;
+                    .types {
+                        display: flex;
+                        gap: 5px;
 
-        .ion {
-            vertical-align: 0 !important;
+                        span {
+                            display: flex;
+                            align-items: center;
+                            height: 20px;
+                            background-color: rgba(white, 0.1);
+                            padding: 0 10px;
+                            border-radius: 20px;
+                            font-family: 'Montserrat-Medium';
+                            font-size: 9px;
+                            user-select: none;
+                        }
+                    }
+                }
+            }
+
+            .switch {
+                display: flex;
+                align-items: center;
+                font-size: 30px;
+            }
         }
     }
 }

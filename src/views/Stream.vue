@@ -1,62 +1,80 @@
 <template>
-	<div id="stream" class="container">
-		<AddonManager v-model="openAddons" v-if="openAddons"></AddonManager>
+	<div class="stream">
+        <transition name="fade">
+            <AddonManager v-model="openAddons" v-if="openAddons"></AddonManager>
+        </transition>
 
-		<div class="inner center col-10">
-			<div class="meta col-6">
-				<div class="poster col-5">
-					<img :src="meta.poster" alt="">
-				</div>
-				<div class="info col-7">
-					<div class="title">{{ meta.name }}</div>
-					<div class="year">{{ meta.year }}</div>
-					<div class="runtime">{{ meta.runtime }}</div>
-					<div class="description">{{ meta.description }}</div>
-					<div class="genres">
-						<div class="genre" v-for="genre of meta.genre" :key="genre">
-							{{ genre }}
-						</div>
-					</div>
-				</div>
-			</div>
+        <div class="background">
+            <div class="blur"></div>
+            <div class="image" :style="`background-image: url(${meta.background})`"></div>
+        </div>
 
-			<div class="series col-3" v-if="isSeries">
-				<Segments :segments="seasons" v-model="selected.season">
-					<template #segment="{ segment }">
-						<span v-if="segment > 0">{{ $t(`views.stream.season`) }} {{ segment }}</span>
-						<span v-else>{{ $t(`views.stream.misc`) }}</span>
-					</template>
-				</Segments>
+        <div class="meta">
+            <img class="logo" :src="meta.logo" alt="" v-if="meta.logo">
+            <div class="title" v-else>{{ meta.name }}</div>
 
-				<List class="episodes" v-model="selected.episode" itemClass="episode" :items="filterVideos" itemKey="id" #default="{ item }">
-					<div class="number">{{ item.episode }}</div>
-					<div class="name">{{ item.name }}</div>
-				</List>
-			</div>
+            <div class="details">
+                <div class="year">{{ meta.year }}</div>
+                <div class="runtime">{{ meta.runtime }}</div>
+            </div>
 
-			<div class="streams col-3">
-				<Title class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
+            <div class="description">{{ meta.description }}</div>
 
-				<div class="no-streams" v-show="!streams.length">
-					<div>
-						<ion-icon name="sad"></ion-icon>
-						<p>{{ $t(`views.stream.streams.error`) }}</p>
-					</div>
-				</div>
+            <div class="tags">
+                <div class="tag" v-for="genre in meta.genres" :key="genre">
+                    {{ genre }}
+                </div>
+            </div>
+        </div>
 
-				<List class="episodes" itemClass="stream" :items="streams" itemKey="infoHash" #default="{ item }" @click="createRoom($event)" v-show="streams.length">
-					<div class="icon">
-						<img v-bind:src="item.icon" alt="">
-						<ion-icon class="outline" name="play-outline"></ion-icon>
-						<ion-icon class="filled" name="play"></ion-icon>
-					</div>
-					<div class="name" v-if="item.name">{{ item.name }}</div>
-					<div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
-				</List>
+        <div class="series" v-if="isSeries">
+            <Segments :segments="seasons" v-model="selected.season">
+                <template #segment="{ segment }">
+                    <span v-if="segment > 0">{{ $t(`views.stream.season`) }} {{ segment }}</span>
+                    <span v-else>{{ $t(`views.stream.misc`) }}</span>
+                </template>
+            </Segments>
 
-				<Button icon="cube-outline" translate="views.stream.streams.button" @click="openAddons = true"/>
-			</div>
-		</div>
+            <List fixed class="list" v-model="selected.episode" :items="filterVideos" itemKey="id">
+                <template #left="{ item }">
+                    <div class="number">{{ item.episode }}</div>
+                </template>
+                <template #right="{ item }">
+                    <div class="name">{{ item.name }}</div>
+                </template>
+            </List>
+        </div>
+
+        <div class="streams">
+            <Title class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
+
+            <div class="no-streams" v-show="!streams.length">
+                <div>
+                    <ion-icon name="sad"></ion-icon>
+                    <p>{{ $t(`views.stream.streams.error`) }}</p>
+                </div>
+            </div>
+
+            <List class="list" :items="streams" itemKey="infoHash" @click="createRoom($event)" v-show="streams.length">
+                <template #left="{ item }">
+                    <div class="icon">
+                        <img v-bind:src="item.icon" alt="">
+                        <ion-icon class="outline" name="play-outline"></ion-icon>
+                        <ion-icon class="filled" name="play"></ion-icon>
+                    </div>
+                </template>
+                <template #right="{ item }">
+                    <div class="info">
+                        <div class="name" v-if="item.name">{{ item.name }}</div>
+                        <div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
+                    </div>
+                </template>
+            </List>
+        </div>
+
+        <Button large class="addons-button" icon="cube-outline" @click="openAddons = true">
+            {{ $t('views.stream.streams.button') }}
+        </Button>
 	</div>
 </template>
 
@@ -171,139 +189,105 @@ export default {
 </script>
 
 <style lang="scss">
-$stream-icon-size: 7vh;
+.stream {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 
-#stream {
-    font-family: 'Montserrat';
+    .background {
+        z-index: -1;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
 
-    .meta {
-        .poster {
-            padding-left: 0;
-            overflow: hidden;
-            user-select: none;
-
-            img {
-                width: 100%;
-                box-shadow: 0 0.5vh 1.5vh 0vh rgba(0, 0, 0, 0.5);
-            }
+        .blur, .image {
+            position: absolute;
+            height: 100%;
+            width: 100%;
         }
 
-        .info {
-            padding-right: 0;
-            color: $text-color;
+        .blur {
+            z-index: 1;
+            backdrop-filter: blur(100px);
+        }
 
-            .title {
-                font-size: 6vh;
-                font-weight: 600;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                margin-left: -0.25vh;
-                margin-bottom: 0.5vh;
-            }
-
-            .year, .runtime {
-                display: inline-block;
-            }
-
-            .year {
-                font-size: 2vh;
-                margin-bottom: 1vh;
-            }
-
-            .runtime {
-                margin-left: 2.5vh;
-            }
-
-            .description {
-                opacity: 0.5;
-            }
-
-            .genres {
-                margin-top: 2vh;
-                user-select: none;
-
-                .genre {
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 1vh;
-                    margin-bottom: 1vh;
-                    padding: 0.5vh 1.5vh;
-                    border-radius: 3vh;
-                    background-color: rgba(white, 0.1);
-                }
-            }
+        .image {
+            background-size: cover;
         }
     }
 
-    .series {
-        .segments {
-            margin-top: 0;
+    .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: white;
+
+        .logo {
+            display: block;
+            width: 250px;
+            user-select: none;
         }
 
-        .episodes {
-            overflow: auto;
+        .title {
+            font-family: 'Montserrat-Bold';
+            font-size: 45px;
+        }
 
-            .episode {
-                display: flex;
-                align-items: center;
-                height: 4vh;
-                padding: 0 1.5vh;
+        .details {
+            display: flex;
+            gap: 10px;
+            font-family: 'Montserrat-MediumItalic';
+            font-size: 15px;
+            opacity: 0.7;
+        }
 
-                .number {
-                    font-family: 'Montserrat-SemiBold';
-                    font-size: 1.75vh;
-                    margin-right: 1vh;
-                }
+        .description {
+            font-family: 'Montserrat-Regular';
+            font-size: 18px;
+        }
 
-                .name {
-                    font-size: 1.5vh;
-                    white-space: pre;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
-                    opacity: 0.5;
-                }
+        .tags {
+            display: flex;
+            gap: 10px;
 
-                & > * {
-                    display: inline-block;
-                    vertical-align: middle;
-                }
+            .tag {
+                height: 30px;
+                line-height: 30px;
+                background-color: rgba(white, 0.1);
+                padding: 0 12px;
+                border-radius: 30px;
+                font-family: 'Montserrat-Medium';
+                font-size: 15px;
+                user-select: none;
             }
         }
     }
 
     .streams {
-        .streams-title {
-            margin-bottom: 1vh;
-        }
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
 
         .no-streams {
-            height: 50vh;
-            display: grid;
+            height: 200px;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            font-family: 'Montserrat-Medium';
+            color: $text-color;
 
             ion-icon {
-                font-size: 7vh;
+                font-size: 50px;
                 color: $text-color;
-                margin-bottom: 1vh;
             }
         }
 
-        ul {
-            padding-right: 1vh;
-            padding-bottom: 1vh;
-
-            .stream {
-                height: 10vh;
-                display: grid;
-                grid-template-columns: $stream-icon-size 9vh auto;
-                column-gap: 1.5vh;
-                padding: 1.5vh;
-                border-radius: 1vh;
-                overflow: hidden;
-                user-select: none;
+        .list {
+            .item {
+                $stream-icon-size: 60px;
 
                 .icon {
                     position: relative;
@@ -311,9 +295,7 @@ $stream-icon-size: 7vh;
                     align-content: center;
                     height: $stream-icon-size;
                     width: $stream-icon-size;
-                    border-radius: 2vh;
                     overflow: hidden;
-                    background-color: rgba(white, 0.1);
                     
                     > * {
                         transition: opacity 0.1s ease-in-out;
@@ -331,30 +313,23 @@ $stream-icon-size: 7vh;
                         left: 0;
                         right: 0;
                         margin: auto;
-                        font-size: 4.5vh;
+                        font-size: 45px;
                         opacity: 0;
                     }
                 }
 
-                .name {
-                    font-family: 'Montserrat-SemiBold';
-                    font-size: 1.75vh;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    align-self: center;
-                }
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
 
-                .title {
-                    white-space: pre;
-                    overflow: hidden;
-                    align-self: center;
-                    font-size: 1.5vh;
-                    text-overflow: ellipsis;
-                    opacity: 0.5;
+                    .name {
+                        font-family: 'Montserrat-SemiBold';
+                    }
 
-                    &.extend {
-                        grid-column-start: 2;
-                        grid-column-end: 4;
+                    .title {
+                        font-size: 15px;
+                        opacity: 0.8;
                     }
                 }
 
@@ -380,10 +355,11 @@ $stream-icon-size: 7vh;
                 }
             }
         }
+    }
 
-        button {
-            width: 100%;
-        }
+    .addons-button {
+        position: sticky;
+        bottom: 15px;
     }
 }
 </style>

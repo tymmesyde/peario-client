@@ -1,8 +1,13 @@
 <template>
-    <ul class="list">
-        <transition-group name="list">
-            <li v-for="(item, i) in items" :key="itemKey ? item[itemKey] + i : item" :class="[{ 'active': item === modelValue }, itemClass ]" @click="$emit('update:modelValue', item), $emit('click', item)">
-                <slot :item="item" :index="i"></slot>
+    <ul :class="['list', { 'fixed': fixed, 'small': small }]">
+        <transition-group name="fade">
+            <li :class="['item', { 'active': item === modelValue }]" v-for="(item, index) in items" :key="item[itemKey]" @click="$emit('update:modelValue', item), $emit('click', item)">
+                <div>
+                    <slot name="left" :index="index" :item="item"></slot>
+                </div>
+                <div v-if="$slots.right">
+                    <slot name="right" :index="index" :item="item"></slot>
+                </div>
             </li>
         </transition-group>
     </ul>
@@ -14,51 +19,76 @@ export default {
     props: {
         modelValue: [Object, String, Number],
         items: Array,
-        itemClass: String,
-        itemKey: String
+        itemKey: String,
+        fixed: Boolean,
+        small: Boolean
     },
     emits: ['update:modelValue', 'click']
 }
 </script>
 
 <style lang="scss" scoped>
-ul {
-    width: 100%;
-    max-height: 50vh;
+.list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     overflow-x: hidden;
     overflow-y: auto;
-    user-select: none;
 
-    li {
-        color: $text-color;
-        border-radius: 0.5vh;
+    &.fixed {
+        max-height: 300px;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 15px;
+        border: 3px solid transparent;
+        border-radius: 10px;
+        color: white;
+        background-color: rgba(white, 0.05);
+        cursor: pointer;
+        user-select: none;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
         transition: all 0.1s ease-in-out;
-        cursor: default;
 
         &.active {
-            background-color: rgba($text-color, 0.1);
+            border-color: $accent-color;
         }
 
-        &:not(.active):hover {
-            background-color: rgba($text-color, 0.05);
-            cursor: pointer;
+        &:hover {
+            background-color: rgba(white, 0.1);
+        }
 
-            &:active {
-                background-color: rgba($text-color, 0.15);
-            }
+        &:active {
+            border-color: $accent-color;
+        }
+
+        div {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        div:first-child {
+            word-break: normal;
+            font-family: 'Montserrat-SemiBold';
+        }
+
+        div:last-child {
+            word-break: break-word;
+            font-family: 'Montserrat-Regular';
+            opacity: 0.75;
         }
     }
-}
 
-.list-enter-active, .list-leave-active {
-    opacity: 0;
-}
-
-.list-enter-active {
-    transition: opacity 0.15s;
-}
-
-.list-leave-active {
-    transition: opacity 0.1s;
+    &.small {
+        .item {
+            padding: 5px 10px;
+            border-width: 2px;
+        }
+    }
 }
 </style>

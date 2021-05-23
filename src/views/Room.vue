@@ -1,5 +1,5 @@
 <template>
-    <div id="room" class="container">
+    <div class="room">
         <Loading type="room" v-if="!playerOptions"></Loading>
 
         <div class="users" v-if="player.video" :class="{ 'show': !player.controlsHidden }">
@@ -9,18 +9,15 @@
 
             <ul>
                 <li v-for="user in users" :key="user.id">
-                    <div class="status">
-                        <span v-if="user.id == owner">
-                            <ion-icon class="success" name="play-outline" v-if="!player.paused"></ion-icon>
-                            <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
-                        </span>
-                        <span v-else>
-                            <ion-icon name="checkmark-outline"></ion-icon>
-                        </span>
-                    </div>
                     <div class="username">
+                        <ion-icon name="ribbon-outline" v-if="user.id == owner"></ion-icon>
+                        <ion-icon name="person-outline" v-else></ion-icon>
                         {{ user.name }}
-                        <ion-icon name="ribbon-outline" v-show="user.id == owner"></ion-icon>
+                    </div>
+
+                    <div class="status" v-if="user.id == owner">
+                        <ion-icon class="success" name="play-outline" v-if="!player.paused"></ion-icon>
+                        <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
                     </div>
                 </li>
             </ul>
@@ -119,22 +116,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#room {
+.room {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
     background-color: black;
     user-select: none;
 
-    .count {
-        font-family: 'Montserrat-Medium';
-        font-size: 30px;
-        font-weight: bold;
-        color: $accent-color;
-    }
-
     .users {
-        z-index: 99;
+        z-index: 98;
         position: absolute;
         top: 0;
         left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         padding: 2vw;
         opacity: 0;
         transition: opacity 0.2s ease-in;
@@ -144,19 +142,38 @@ export default {
             opacity: 1;
         }
 
+        .count {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat-Medium';
+            font-size: 30px;
+            font-weight: bold;
+            color: $danger-color;
+        }
+
         ul {
-            margin-top: 1vh;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
 
             li {
                 display: flex;
-                align-content: center;
-                padding-bottom: 1.5vh;
+                align-items: center;
+                gap: 10px;
                 font-family: 'Montserrat';
                 font-size: 15px;
                 color: rgba(255, 255, 255, 0.7);
 
-                ion-icon {
-                    padding-right: 0.5vw;
+                .username {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .status {
+                    display: flex;
+                    align-items: center;
                 }
             }
         }

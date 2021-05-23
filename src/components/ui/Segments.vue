@@ -1,9 +1,9 @@
 <template>
-    <ul class="segments">
-        <li v-for="segment in segments" :key="segment" :class="{ 'active': modelValue === segment }" @click="$emit('update:modelValue', segment)">
+    <div class="segments">
+        <div :class="['segment', { 'active': segment === modelValue }]" v-for="segment in segments" :key="segment" @click="$emit('update:modelValue', segment)">
             <slot name="segment" :segment="segment"></slot>
-        </li>
-    </ul>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -18,37 +18,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$segment-height: 4vh;
+.segments {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    user-select: none;
+    overflow-x: auto;
 
-ul {
-  margin-bottom: 1.5vh;
-  padding-bottom: 0.5vh;
-  white-space: pre;
-  overflow: hidden;
-  overflow-x: auto;
-  user-select: none;
+    .segment {
+        flex-shrink: 0;
+        height: 40px;
+        max-width: 140px;
+        line-height: 40px;
+        padding: 0 10px;
+        font-family: 'Montserrat-Bold';
+        font-size: 16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+        opacity: 0.6;
+        cursor: pointer;
+        transition: all 0.1s ease-in-out;
 
-  li {
-    height: $segment-height;
-    line-height: $segment-height;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 0 2vh;
-    border-radius: 1vh;
-    margin-right: 1vh;
-    font-family: 'Montserrat';
-    color: $text-color;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
+        &:hover {
+            opacity: 0.8;
+        }
 
-    &.active {
-      background-color: rgba(white, 0.1);
-      font-weight: bold;
+        &.active {
+            border-bottom: 3px solid $accent-color;
+            opacity: 1;
+        }
     }
-
-    &:hover {
-      background-color: rgba(white, 0.05);
-    }
-  }
 }
 </style>

@@ -3,10 +3,12 @@
         <div class="close" @click="$emit('close')">
 			<ion-icon name="close-sharp"></ion-icon>
 		</div>
-        <div>
+        <div class="content">
             <ion-icon name="close-circle-outline" class="icon danger"></ion-icon>
             <Title type="secondary" :translate="`errors.${type}.title`"/>
-            <p>{{ $t(`errors.${type}.message`) }}</p>
+            <div class="message">
+                {{ $t(`errors.${type}.message`) }}
+            </div>
         </div>
     </div>
 </template>
@@ -50,16 +52,32 @@ export default {
 .error {
     z-index: 99;
     position: absolute;
-    display: grid;
-    place-items: center;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 100%;
     text-align: center;
-    line-height: 3.5vh;
-    background: $background-gradient;
+    background-color: $primary-color;
 
-    .icon {
-        font-size: 15vh;
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            font-size: 15vh;
+            --ionicon-stroke-width: 30px;
+        }
+
+        .message {
+            font-family: 'Montserrat-Medium';
+            font-size: 20px;
+            color: $text-color;
+            opacity: 0.5;
+        }
     }
 }
 </style>

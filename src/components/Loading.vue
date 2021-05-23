@@ -1,9 +1,11 @@
 <template>
     <div class="loading">
-        <div>
-            <ion-icon name="sync-outline" class="spin"></ion-icon>
+        <div class="content">
+            <ion-icon name="sync-outline" class="icon spin"></ion-icon>
             <Title type="secondary" :translate="`loading.${type}.title`"/>
-            <p>{{ $t(`loading.${type}.message`) }}</p>
+            <div class="message">
+                {{ $t(`loading.${type}.message`) }}
+            </div>
         </div>
     </div>
 </template>
@@ -26,18 +28,33 @@ export default {
 .loading {
     z-index: 98;
     position: absolute;
+    top: 0;
     display: flex;
     height: 100%;
     width: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
-    line-height: 3.5vh;
+    color: $text-color;
     background-color: black;
 
-    ion-icon {
-        font-size: 15vh;
-        color: $text-color;
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        .icon {
+            font-size: 15vh;
+            --ionicon-stroke-width: 20px;
+        }
+
+        .message {
+            font-family: 'Montserrat-Medium';
+            font-size: 20px;
+            color: $text-color;
+            opacity: 0.5;
+        }
     }
 }
 </style>

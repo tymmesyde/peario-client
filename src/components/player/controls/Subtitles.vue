@@ -17,8 +17,10 @@
                         </div>
                     </div>
 
-                    <List class="sizes" v-model="size" itemClass="size" :items="sizes">
-                        <ion-icon name="text-outline"></ion-icon>
+                    <List class="sizes" small v-model="size" :items="sizes">
+                        <template #left>
+                            <ion-icon name="text-outline"></ion-icon>
+                        </template>
                     </List>
                 </div>
 
@@ -27,11 +29,15 @@
                 </div>
                 
                 <div class="lists">
-                    <List class="langs" v-model="panelLang" :items="langs" itemKey="iso" #default="{ item }">
-                        {{ item.local }}
+                    <List class="langs" small v-model="panelLang" :items="langs" itemKey="iso">
+                        <template #left="{ item }">
+                            {{ item.local }}
+                        </template>
                     </List>
-                    <List class="subs" v-model="current" :items="filterSubs()" itemKey="id" #default="{ index }">
-                        {{ $t(`components.player.subtitle`) }} {{ index + 1 }}
+                    <List class="subs" small v-model="current" :items="filterSubs()" itemKey="id">
+                        <template #left="{ index }">
+                            {{ `${$t(`components.player.subtitle`)} ${ index + 1 }` }}
+                        </template>
                     </List>
                 </div>
             </div>
@@ -143,17 +149,19 @@ export default {
         top: calc(-#{$panel-height} - 15px);
         right: -2.5vw;
         border-radius: 10px;
-        background-color: $background-color;
+        font-size: 15px;
         overflow: hidden;
+        background-color: rgba($primary-color, 0.8);
+        backdrop-filter: blur(10px);
 
-        $bar-height: 45px;
+        $bar-height: 55px;
 
         .bar {
             height: $bar-height;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-left: 15px;
+            padding: 0 15px;
             font-size: 20px;
 
             .toggle {
@@ -173,24 +181,20 @@ export default {
 
             .sizes {
                 display: flex;
-                width: auto !important;
+                flex-direction: row;
 
-                span {
-                    display: flex;
-                }
+                .item {
+                    font-size: 20px;
+                    --ionicon-stroke-width: 40px;
 
-                .size {
-                    width: $bar-height;
-                    line-height: $bar-height;
-                    text-align: center;
-                    cursor: pointer;
-                    
                     &:first-child {
-                        font-size: 16px;
+                        font-size: 13px;
+                        --ionicon-stroke-width: 20px;
                     }
 
                     &:last-child {
-                        font-size: 26px;
+                        font-size: 25px;
+                        --ionicon-stroke-width: 60px;
                     }
                 }
             }
@@ -203,24 +207,22 @@ export default {
             width: 100%;
             display: grid;
             place-items: center;
+            font-size: 30px;
         }
 
         .lists {
             display: flex;
-            height: calc(100% - #{$bar-height});
+            justify-content: space-between;
+            padding: 0 10px;
 
             .list {
-                height: 100%;
-                max-height: 100%;
+                height: calc(#{$panel-height} - #{$bar-height});
                 width: 50%;
+                padding-top: 5px;
+                padding-bottom: 10px;
 
-                li {
-                    font-size: 20px;
-                    padding: 5px 10px;
-                    cursor: pointer;
-                    overflow: hidden;
-                    white-space: pre;
-                    text-overflow: ellipsis;
+                &:first-child .item div:last-child {
+                    font-family: 'Montserrat-SemiBold' !important;
                 }
             }
         }

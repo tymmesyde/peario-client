@@ -1,12 +1,16 @@
 <template>
     <div class="lock-screen">
-        <div>
+        <div class="header">
             <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
-            <Button icon="checkmark-outline" translate="components.player.ready" @click="unlockPlayer()"/>
+            <Button large icon="checkmark-outline" @click="unlockPlayer()">
+                {{ $t('components.player.ready') }}
+            </Button>
         </div>
 
         <div class="share" v-if="options.isOwner">
-            <p>{{ $t(`components.player.share`) }}</p>
+            <div class="text">
+                {{ $t(`components.player.share`) }}
+            </div>
             <TextInput :value="shareUrl" @click="copyShareUrl()"/>
         </div>
     </div>
@@ -55,8 +59,10 @@ export default {
 .lock-screen {
     z-index: 98;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 90px;
     text-align: center;
     position: absolute;
     top: 0;
@@ -64,22 +70,28 @@ export default {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
 
-    img {
-        width: 65%;
-        margin-bottom: 2vh;
-        font-size: 9vh;
-        font-weight: 500;
-    }
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    button {
-        display: block;
-        margin: auto;
+        img {
+            width: 65%;
+            font-size: 9vh;
+            font-weight: 500;
+        }
+
+        button {
+            width: auto;
+        }
     }
 
     .share {
-        position: absolute;
-        width: 100%;
-        bottom: 7vh;
+        .text {
+            font-family: 'Montserrat-SemiBold';
+            font-size: 20px;
+            color: $text-color;
+        }
 
         input {
             width: 50vh;

@@ -23,11 +23,12 @@ export default {
 <style lang="scss" scoped>
 .primary {
     margin: 0;
-    font-family: 'Montserrat-SemiBold';
+    font-family: 'Montserrat-Bold';
     font-size: 8vh;
     font-weight: normal;
     letter-spacing: -0.15rem;
     color: $text-color;
+    line-height: 100%;
 
     ion-icon {
         font-size: 7vh;
@@ -46,7 +47,7 @@ export default {
 }
 
 .tertiary {
-    font-family: 'Montserrat-MediumItalic';
+    font-family: 'Montserrat-Medium';
     font-size: 2.75vh;
     font-weight: normal;
     margin: 0;

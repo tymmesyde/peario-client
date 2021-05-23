@@ -1,6 +1,6 @@
 <template>
     <div id="locales" v-if="current">
-        <div @click="opened = !opened">
+        <div class="input" @click="opened = !opened">
             <ion-icon name="chevron-down-outline" v-show="!opened"></ion-icon>
             <ion-icon name="chevron-up-outline" v-show="opened"></ion-icon>
             {{ getLocale(current) }} <ion-icon name="language"></ion-icon>
@@ -54,21 +54,29 @@ export default {
 <style lang="scss" scoped>
 #locales {
     position: absolute;
-    right: 3vh;
+    right: 30px;
     font-family: 'Montserrat';
     color: $text-color;
     user-select: none;
     cursor: pointer;
     text-align: right;
 
-    ul {
+    .input {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .menu {
         position: absolute;
-        top: 7vh;
+        top: 70px;
         right: 0;
-        padding: 1vh 1.5vh;
-        border-radius: 1vh;
-        background-color: $background-color;
+        width: 135px;
+        padding: 10px;
+        border-radius: 10px;
         text-align: left;
+        background-color: rgba($primary-color, 0.8);
+        backdrop-filter: blur(10px);
 
         li {
             line-height: 2em;

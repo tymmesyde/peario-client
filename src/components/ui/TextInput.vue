@@ -1,5 +1,5 @@
 <template>
-    <input type="text" spellcheck="false" :class="type" :value="modelValue" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)">
+    <input type="text" spellcheck="false" :class="[{ 'large': large }]" :value="modelValue" :placeholder="placeholder" @input="$emit('update:modelValue', $event.target.value)">
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
     name: 'TextInput',
     props: {
         modelValue: String,
-        type: String,
+        large: Boolean,
         placeholder: String
     },
     emits: ['update:modelValue']
@@ -16,34 +16,38 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  height: 5vh;
-  background-color: transparent;
-  border: 0.3vh solid $accent-color;
-  border-radius: 7vh;
-  padding: 0 2.5vh;
-  font-family: 'Montserrat-SemiBold';
-  font-size: 2vh;
-  color: white;
-  text-transform: none;
-  box-shadow: 0 0.5vh 1vh rgba(0, 0, 0, 0.1);
-  transition: all 0.1s ease-in-out;
-  outline: none;
-  text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    border: 2px solid $accent-color;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-family: 'Montserrat-Bold';
+    font-size: 15px;
+    color: $primary-color;
+    background-color: $accent-color;
+    text-transform: none;
+    outline: none;
+    text-overflow: ellipsis;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.1s ease-in-out;
 
-  &.large {
-    height: 7vh;
-    width: 100%;
-    padding: 0 3.5vh;
-    font-size: 2.75vh;
-  }
+    &.large {
+        height: 65px;
+        width: 100%;
+        font-size: 24px;
+        padding: 0 25px;
 
-  &::placeholder {
-    color: $text-color;
-    opacity: 0.5;
-  }
+        ion-icon {
+            font-size: 30px;
+        }
+    }
 
-  &:hover, &:focus {
-    opacity: 1;
-  }
+    &::placeholder {
+        color: $primary-color;
+        opacity: 0.5;
+    }
 }
 </style>
