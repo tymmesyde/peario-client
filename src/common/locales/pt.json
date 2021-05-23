@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Partilhe os seus streams",
-            "sub": "Assista filmes e séries com seus amigos de todo o mundo",
-            "button": "Assista a um Filme / Série"
+            "sub": "O Peario permite que você assista aos fluxos do Stremio com seus amigos.",
+            "button": "Criar uma sala"
         },
         "search": {
             "title": "Pesquisa",
-            "sub": "Encontre algo para assistir com seus amigos!",
+            "sub": "Encontre algo que você gostaria de assistir com seus amigos!",
             "segments": {
                 "movies": "Filmes",
                 "series": "Séries"

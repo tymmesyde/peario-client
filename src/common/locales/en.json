@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Share your streams",
-            "sub": "Watch movies & series with your 🍐 from around the world",
-            "button": "Watch a Movie / Series"
+            "sub": "Peario allows you to watch Stremio streams with your friends.",
+            "button": "Create a room"
         },
         "search": {
             "title": "Search",
-            "sub": "Find something to watch with your 🍐 !",
+            "sub": "Find something you'd like to watch with your friends!",
             "segments": {
                 "movies": "Movies",
                 "series": "Series"

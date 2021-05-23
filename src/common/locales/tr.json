@@ -2,12 +2,12 @@
     "views": {
         "home": {
             "title": "Akışlarınızı paylaşın",
-            "sub": "Dünyanın dört bir yanından arkadaşlarınızla film ve dizi izleyin",
-            "button": "Film / Dizi İzle"
+            "sub": "Peario, arkadaşlarınızla Stremio yayınlarını izlemenizi sağlar.",
+            "button": "Bir oda oluştur"
         },
         "search": {
             "title": "Arama",
-            "sub": "Arkadaşlarınızla izlemek için bir şeyler bulun!",
+            "sub": "Arkadaşlarınızla izlemek istediğiniz bir şey bulun!",
             "segments": {
                 "movies": "Filmler",
                 "series": "Seriler"
