@@ -9,7 +9,7 @@ const AddonService = {
 
         return col.getAddons().filter(({ manifest }) => {
             const { id, idPrefixes, resources, types } = manifest;
-            return id !== 'community.peario' && (resources.find(({ idPrefixes, name, types }) => (idPrefixes && idPrefixes.includes('tt')) && name === 'stream' && (types.includes('movie') || types.includes('series')))) || (idPrefixes && idPrefixes.includes('tt')) && resources.includes('stream') && (types.includes('movie') || types.includes('series'));
+            return id !== 'community.peario' && (idPrefixes && idPrefixes.includes('tt') && resources && resources.includes('stream') && (types.includes('movie') || types.includes('series')) || resources.find(({ name, idPrefixes, types }) => name === 'stream' && idPrefixes && idPrefixes.includes('tt') && types && (types.includes('movie') || types.includes('series'))));
         });
     },
 
