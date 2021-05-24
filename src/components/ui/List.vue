@@ -1,7 +1,7 @@
 <template>
     <ul :class="['list', { 'fixed': fixed, 'small': small }]">
         <transition-group name="fade">
-            <li :class="['item', { 'active': item === modelValue }]" v-for="(item, index) in items" :key="item[itemKey]" @click="$emit('update:modelValue', item), $emit('click', item)">
+            <li :class="['item', { 'active': item === modelValue }]" v-for="(item, index) in items" :key="itemKey ? item[itemKey] : item" @click="$emit('update:modelValue', item), $emit('click', item)">
                 <div>
                     <slot name="left" :index="index" :item="item"></slot>
                 </div>
