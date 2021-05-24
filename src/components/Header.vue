@@ -9,7 +9,7 @@
 		</router-link>
 
 		<div class="version">
-			{{ $store.getters.appVersion }}
+			{{ appVersion }}
 		</div>
 
 		<Locales></Locales>
@@ -17,12 +17,18 @@
 </template>
 
 <script>
+import store from '../store';
 import Locales from './Locales';
 
 export default {
 	name: 'Header',
 	components: {
 		Locales
+	},
+	computed: {
+		appVersion() {
+			return store.state.info.appVersion;
+		}
 	},
 	watch: {
 		$route(to) {

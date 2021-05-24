@@ -81,11 +81,12 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import store from '../store';
 import router from '../router';
 
 import StremioService from "@/services/stremio.service";
 import AddonService from "@/services/addon.service";
-import WebSocketService from "@/services/ws.service";
+import ClientService from "@/services/client.service";
 
 import AddonManager from '@/components/AddonManager.vue';
 import Segments from '@/components/ui/Segments.vue';
@@ -115,6 +116,7 @@ export default {
         filterVideos() {
             return this.meta.videos.filter(({ season }) => season === this.selected.season).sort((a, b) => a.episode - b.episode);
         },
+        client: () => store.state.client,
         ...mapGetters(['collection', 'installed'])
     },
     data: () => {
@@ -139,6 +141,9 @@ export default {
         },
         installed() {
             this.loadStreams();
+        },
+        'client.room'({ id }) {
+            this.$router.push({ name: 'room', params: { id } });
         }
     },
     methods: {
@@ -149,11 +154,7 @@ export default {
             this.streams = await AddonService.getStreams(installedAddons, type, id);
         },
         createRoom(stream) {
-            WebSocketService.send('room.new', { stream, meta: this.meta });
-            WebSocketService.events.on('room', payload => {
-                const { id } = payload;
-                this.$router.push({ name: 'room', params: { id } })
-            });
+            ClientService.send('room.new', { stream, meta: this.meta });
         },
         parseSeason() {
             this.seasons = Array.from(new Set(this.meta.videos.map(({ season }) => season).sort((a, b) => a - b)));

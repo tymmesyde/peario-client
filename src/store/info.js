@@ -1,10 +1,12 @@
 export default {
+    namespaced: true,
     state: {
-        packageVersion: process.env.PACKAGE_VERSION || '0'
+        appVersion: process.env.PACKAGE_VERSION || '0',
+        isStremioRunning: true
     },
-    getters: {
-        appVersion: (state) => {
-            return state.packageVersion
+    mutations: {
+        updateStremioStatus(state, value) {
+            state.isStremioRunning = value;
         }
     }
 };

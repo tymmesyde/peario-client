@@ -4,12 +4,14 @@
     </metainfo>
 
     <Header></Header>
-
-    <Error :type="error.type" v-for="error in errors" :key="error.type" @close="removeError(error.type)"></Error>
+    
+    <Error :type="client.error.type" v-if="client.error"></Error>
+    <Error type="server" v-if="!client.connected"></Error>
+    <Error type="stremio" v-if="!info.isStremioRunning"></Error>
 
     <div class="view-container">
         <div class="inner">
-            <router-view v-slot="{ Component }" v-if="isConnected">
+            <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
                     <component :is="Component" />
                 </transition>
@@ -23,61 +25,42 @@
 <script>
 import { useMeta } from 'vue-meta';
 
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import Error from "@/components/Error.vue";
-import WebSocketService from "@/services/ws.service";
-import StremioService from "@/services/stremio.service";
-import StorageService from "@/services/storage.service";
-import { APP_TITLE, WS_SERVER } from "@/common/config";
+import Header from '@/components/Header.vue';
+import Error from '@/components/Error.vue';
+import Footer from '@/components/Footer.vue';
+import { APP_TITLE } from '@/common/config';
+
+import store from './store';
+import StremioService from './services/stremio.service';
 
 export default {
     name: 'App',
     components: {
         Header,
-        Footer,
-        Error
+        Error,
+        Footer
     },
-    data() {
-        return {
-            isConnected: false,
-            errors: []
-        }
-    },
-    methods: {
-        checkIfStreamioRunning() {
-            const isRunningInterval = setInterval(async () => {
-                if (await StremioService.isServerOpen()) {
-                    this.removeError('stremio');
-                    clearInterval(isRunningInterval);
-                }
-                else this.errors.push({
-                    type: 'stremio'
-                });
-            }, 2000);
-        },
-        removeError(type) {
-            this.errors = this.errors.filter(e => e.type !== type);
-        }
+    computed: {
+        client: () => store.state.client,
+        info: () => store.state.info
     },
     setup() {
         useMeta({
             title: APP_TITLE
         });
     },
-    async mounted() {
-        this.$store.dispatch('loadAddons');
-
-        await WebSocketService.connect(WS_SERVER);
-        this.isConnected = true;
-
-        WebSocketService.events.on('ready', ({ user }) => StorageService.set('user', user));
-        WebSocketService.events.on('error', error => this.errors.push(error));
-
-        this.checkIfStreamioRunning();
+    methods: {
+        checkServerRunning() {
+            setInterval(async () => {
+                const status = await StremioService.isServerOpen();
+                store.commit('info/updateStremioStatus', status);
+            }, 5000);
+        }
     },
-    unmounted() {
-        WebSocketService.clear();
+    mounted() {
+        store.dispatch('loadAddons');
+        store.dispatch('client/start');
+        this.checkServerRunning();
     }
 };
 </script>
@@ -98,7 +81,7 @@ $padding: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: $header-height;
+    top: $header-height;
     height: calc(100vh - #{$header-height} - #{$footer-height});
     width: 100%;
     overflow-y: overlay;

@@ -10,12 +10,12 @@
             <ul>
                 <li v-for="user in users" :key="user.id">
                     <div class="username">
-                        <ion-icon name="ribbon-outline" v-if="user.id == owner"></ion-icon>
+                        <ion-icon name="ribbon-outline" v-if="user.id == client.room.owner"></ion-icon>
                         <ion-icon name="person-outline" v-else></ion-icon>
                         {{ user.name }}
                     </div>
 
-                    <div class="status" v-if="user.id == owner">
+                    <div class="status" v-if="user.id == client.room.owner">
                         <ion-icon class="success" name="play-outline" v-if="!player.paused"></ion-icon>
                         <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
                     </div>
@@ -34,8 +34,7 @@ import Loading from "@/components/Loading.vue";
 import Player from "@/components/player/Player.vue";
 import StremioService from "@/services/stremio.service";
 import HlsService from "@/services/hls.service";
-import WebSocketService from "@/services/ws.service";
-import StorageService from "@/services/storage.service";
+import ClientService from "@/services/client.service";
 
 export default {
     name: 'Room',
@@ -52,9 +51,7 @@ export default {
         }
     },
     computed: {
-        user() {
-            return StorageService.get('user');
-        },
+        client: () => store.state.client,
         player() {
             return {
                 video: store.getters['player/video'],
@@ -64,16 +61,19 @@ export default {
             }
         }
     },
+    watch: {
+        'client.room'() {
+            this.syncRoom();
+        }
+    },
     methods: {
-        async syncRoom(room) {            
-            const { stream, meta, player, owner, users } = room;
-
-            if (!this.owner) this.owner = owner;
+        async syncRoom() {            
+            const { stream, meta, player, owner, users } = this.client.room;
 
             if (!this.playerOptions) {
                 const videoUrl = await StremioService.createStream(stream);
                 const playlistUrl = await HlsService.createPlaylist(videoUrl);
-                this.playerOptions = { src: videoUrl, hls: playlistUrl, meta, isOwner: this.user.id === owner };
+                this.playerOptions = { src: videoUrl, hls: playlistUrl, meta, isOwner: this.client.user.id === owner };
             }
 
             this.users = users;
@@ -95,14 +95,13 @@ export default {
         syncPlayer() {
             if (this.player.autoSync) {
                 const { currentTime } = this.player.video;
-                WebSocketService.send('player.sync', { paused: this.player.paused, buffering: this.player.buffering, time: currentTime });
+                ClientService.send('player.sync', { paused: this.player.paused, buffering: this.player.buffering, time: currentTime });
             }
         }
     },
     mounted() {
         const { id } = this.$route.params;
-        WebSocketService.send('room.join', { id });
-        WebSocketService.events.on('sync', this.syncRoom);
+        ClientService.send('room.join', { id });
 
         this.interval = setInterval(() => {
             if (this.player.video && !this.player.paused) this.syncPlayer();
@@ -111,6 +110,9 @@ export default {
     unmounted() {
         clearInterval(this.interval);
         this.interval = null;
+    },
+    beforeRouteLeave() {
+        store.commit('client/updateError', null);
     }
 };
 </script>
