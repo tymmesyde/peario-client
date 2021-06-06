@@ -43,6 +43,10 @@
         "room": {
             "title": "Bu oda mevcut değil",
             "message": "Odanın hala aktif olduğundan emin olun."
+        },
+        "cooldown": {
+            "title": "Çok hızlı gidiyor!",
+            "message": "Yeniden denemeden önce birkaç dakika bekleyin."
         }
     },
     "loading": {

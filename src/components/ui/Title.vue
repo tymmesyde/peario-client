@@ -1,5 +1,5 @@
 <template>
-    <div :class="type">
+    <div :class="['title', type]">
         <ion-icon :name="icon" v-if="icon"></ion-icon>
         {{ translate ? $t(translate) : '' }}
         <slot></slot>
@@ -21,37 +21,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.primary {
+.title {
+    display: flex;
+    align-items: center;
+    gap: 10px;   
     margin: 0;
-    font-family: 'Montserrat-Bold';
-    font-size: 8vh;
-    font-weight: normal;
-    letter-spacing: -0.15rem;
     color: $text-color;
-    line-height: 100%;
 
-    ion-icon {
-        font-size: 7vh;
-        vertical-align: -0.75vh;
+    &.primary {
+        font-family: 'Montserrat-Bold';
+        font-size: 8vh;
+        font-weight: normal;
+        letter-spacing: -0.15rem;
+        line-height: 100%;
+
+        ion-icon {
+            font-size: 7vh;
+            vertical-align: -0.75vh;
+        }
     }
-}
 
-.secondary {
-    font-family: 'Montserrat';
-    margin: 0;
-    font-size: 3vh;
-    font-weight: 700;
-    user-select: none;
-    color: $text-color;
-    text-transform: uppercase;
-}
+    &.secondary {
+        font-family: 'Montserrat';
+        font-size: 28px;
+        font-weight: 700;
+        user-select: none;
+        text-transform: uppercase;
+    }
 
-.tertiary {
-    font-family: 'Montserrat-Medium';
-    font-size: 2.75vh;
-    font-weight: normal;
-    margin: 0;
-    opacity: 0.75;
-    color: $text-color;
+    &.tertiary {
+        font-family: 'Montserrat-Medium';
+        font-size: 2.75vh;
+        font-weight: normal;
+        opacity: 0.75;
+    }
 }
 </style>

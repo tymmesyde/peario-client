@@ -43,6 +43,10 @@
         "room": {
             "title": "Esta sala no existe",
             "message": "Asegúrate de que la sala sigue activa."
+        },
+        "cooldown": {
+            "title": "¡Va demasiado rápido!",
+            "message": "Espere unos instantes antes de volver a intentarlo."
         }
     },
     "loading": {

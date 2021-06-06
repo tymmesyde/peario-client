@@ -25,8 +25,7 @@ button {
     height: 40px;
     border: 2px solid transparent;
     border-radius: 10px;
-    padding-left: 15px;
-    padding-right: 25px;
+    padding: 0 15px;
     font-family: 'Montserrat-Bold';
     font-size: 15px;
     text-transform: uppercase;

@@ -158,6 +158,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
     height: 100%;
     width: 100%;
     overflow: hidden;
+    background-color: black;
 
     &.controlsHidden {
         cursor: none;

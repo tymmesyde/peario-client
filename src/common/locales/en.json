@@ -43,6 +43,10 @@
         "room": {
             "title": "This room does not exists",
             "message": "Be sure that the room is still active."
+        },
+        "cooldown": {
+            "title": "It's going too fast !",
+            "message": "Wait a few moment before retrying."
         }
     },
     "loading": {

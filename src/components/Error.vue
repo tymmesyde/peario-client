@@ -20,6 +20,7 @@ export default {
 
 <style lang="scss" scoped>
 .error {
+    z-index: 99;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -7,7 +7,8 @@ export default {
         connected: false,
         error: null,
         user: null,
-        room: null
+        room: null,
+        messages: []
     },
     mutations: {
         updateStatus(state, value) {
@@ -21,6 +22,15 @@ export default {
         },
         updateRoom(state, value) {
             state.room = value;
+        },
+        updateMessages(state, value) {
+            state.messages = [
+                ...state.messages,
+                value
+            ];
+        },
+        clearMessages(state) {
+            state.messages = [];
         }
     },
     actions: {
@@ -30,8 +40,12 @@ export default {
             ClientService.events.on('closed', () => commit('updateStatus', false));
             ClientService.events.on('ready', ({ user }) => commit('updateUser', user));
             ClientService.events.on('error', error => commit('updateError', error));
-            ClientService.events.on('room', room => commit('updateRoom', room));
+            ClientService.events.on('room', room => {
+                commit('updateRoom', room);
+                commit('clearMessages');
+            });
             ClientService.events.on('sync', room => commit('updateRoom', room));
+            ClientService.events.on('message', message => commit('updateMessages', message));
         }
     }
 };

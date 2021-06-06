@@ -1,5 +1,5 @@
 <template>
-    <div class="room">
+    <div :class="['room', { 'chat-open': chatOpen }]">
         <Loading type="room" v-if="!playerOptions"></Loading>
 
         <div class="users" v-if="player.video" :class="{ 'show': !player.controlsHidden }">
@@ -23,7 +23,16 @@
             </ul>
         </div>
 
+        <div class="controls">
+            <Button clear icon="close" v-if="chatOpen" @click="chatOpen = false"></Button>
+            <Button clear icon="chatbubbles-outline" v-else @click="chatOpen = true">Open Chat</Button>
+        </div>
+
         <Player v-if="playerOptions" :options="playerOptions" @change="syncPlayer()"></Player>
+
+        <transition name="fade">
+            <Chat v-if="chatOpen"></Chat>
+        </transition>
     </div>
 </template>
 
@@ -31,7 +40,9 @@
 import store from '../store';
 
 import Loading from "@/components/Loading.vue";
+import Button from "@/components/ui/Button.vue";
 import Player from "@/components/player/Player.vue";
+import Chat from "@/components/Chat.vue";
 import StremioService from "@/services/stremio.service";
 import HlsService from "@/services/hls.service";
 import ClientService from "@/services/client.service";
@@ -40,7 +51,9 @@ export default {
     name: 'Room',
     components: {
         Loading,
-        Player
+        Button,
+        Player,
+        Chat
     },
     data() {
         return {
@@ -48,6 +61,7 @@ export default {
             owner: null,
             users: [],
             playerOptions: null,
+            chatOpen: false
         }
     },
     computed: {
@@ -119,16 +133,22 @@ export default {
 
 <style lang="scss" scoped>
 .room {
+    display: flex;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: black;
     user-select: none;
 
+    &.chat-open {
+        .users {
+             display: none;
+        }
+    }
+
     .users {
-        z-index: 98;
+        z-index: 96;
         position: absolute;
         top: 0;
         left: 0;
@@ -177,6 +197,23 @@ export default {
                     display: flex;
                     align-items: center;
                 }
+            }
+        }
+    }
+
+    .controls {
+        z-index: 97;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .room {
+        &.chat-open {
+            .users {
+                display: inherit;
             }
         }
     }
