@@ -28,11 +28,18 @@ export default {
 
 <style lang="scss" scoped>
 footer {
+  display: none;
   z-index: 96;
   position: fixed;
   bottom: 0;
   height: $footer-height;
   width: 100%;
   text-align: center;
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    footer {
+       display: inherit;
+    }
 }
 </style>

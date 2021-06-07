@@ -81,8 +81,8 @@ $padding: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: $header-height;
-    height: calc(100vh - #{$header-height} - #{$footer-height});
+    top: $header-height-mobile;
+    height: calc(100vh - #{$header-height-mobile});
     width: 100%;
     overflow-y: overlay;
 
@@ -92,9 +92,11 @@ $padding: 25px;
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (min-height: 768px) {
     .view-container {
         overflow-y: auto;
+        top: $header-height;
+        height: calc(100vh - #{$header-height} - #{$footer-height});
 
         .inner {
             width: $inner-width;
