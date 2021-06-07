@@ -11,7 +11,7 @@
 
     <div class="view-container">
         <div class="inner">
-            <router-view v-slot="{ Component }">
+            <router-view v-slot="{ Component }" v-if="client.connected">
                 <transition name="fade" mode="out-in">
                     <component :is="Component" />
                 </transition>
