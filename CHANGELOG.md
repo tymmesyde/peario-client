@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://github.com/tymmesyde/peario-client/compare/v0.11.0...v0.11.1) (2021-06-07)
+
+
+### Bug Fixes
+
+* some icons were not displayed ([6cf6613](https://github.com/tymmesyde/peario-client/commit/6cf66135a59f311ac6c8ca59755e2b57d953ccb5))
+* wait for client to be connected before initializing router ([cb0749c](https://github.com/tymmesyde/peario-client/commit/cb0749c1b7a2de4564b1978db5887e3e5ddbcf0e))
+
 ## [0.11.0](https://github.com/tymmesyde/peario-client/compare/v0.10.3...v0.11.0) (2021-06-07)
 
 
