@@ -93,6 +93,7 @@ export default {
         .title {
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
             gap: 15px;
         }
     }
