@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.11.0](https://github.com/tymmesyde/peario-client/compare/v0.10.3...v0.11.0) (2021-06-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* footer was displayed on mobile
+
+### Features
+
+* new chat feature ([8743f64](https://github.com/tymmesyde/peario-client/commit/8743f641f75ae5a9f38d1d581da1746b859ceaa0))
+
+
+### Bug Fixes
+
+* footer was displayed on mobile ([94d5689](https://github.com/tymmesyde/peario-client/commit/94d568996ccd7abdbc510aa6cc600eac6ec6fd4f))
+* **components:** items in List were not keyed when itemKey was not specified ([73f6f8f](https://github.com/tymmesyde/peario-client/commit/73f6f8f61ed1d97c208f9e98e194b4d4e02a3f6b))
+* **services:** addon service was returning Peario in collection ([949ce56](https://github.com/tymmesyde/peario-client/commit/949ce5664b93e7447c9fe56c392a3b04443d62ab))
+
 ### [0.10.3](https://github.com/tymmesyde/peario-client/compare/v0.10.2...v0.10.3) (2021-05-23)
 
 ### [0.10.2](https://github.com/tymmesyde/peario-client/compare/v0.10.1...v0.10.2) (2021-05-22)
