@@ -62,12 +62,13 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 90px;
+    gap: 20px;
     text-align: center;
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
+    padding: 0 10px;
     background-color: rgba(0, 0, 0, 0.8);
 
     .header {
@@ -76,7 +77,7 @@ export default {
         align-items: center;
 
         img {
-            width: 65%;
+            width: 300px;
             font-size: 9vh;
             font-weight: 500;
         }
@@ -87,6 +88,10 @@ export default {
     }
 
     .share {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
         .text {
             font-family: 'Montserrat-SemiBold';
             font-size: 20px;
@@ -94,9 +99,20 @@ export default {
         }
 
         input {
-            width: 50vh;
-            margin-top: 1vh;
+            width: 100%;
             cursor: pointer;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .lock-screen {
+        gap: 50px;
+
+        .header {
+            img {
+                width: 600px;
+            }
         }
     }
 }
