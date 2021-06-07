@@ -50,27 +50,27 @@ header {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: $header-height;
-	line-height: $header-height;
-	padding: 0 1vh;
+	height: $header-height-mobile;
+	line-height: $header-height-mobile;
+	padding: 0 5px;
 	display: flex;
 	align-items: center;
+	gap: 10px;
 	transition: padding 0.1s ease-in-out;
 	user-select: none;
 
 	&.home {
-		padding: 0 2.5vh;
+		padding: 0 20px;
 	}
 
 	.history-back {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 5.5vh;
-		width: 5.5vh;
+		height: 45px;
+		width: 45px;
 		border-radius: 100%;
-		margin-right: 1.5vh;
-		font-size: 3vh;
+		font-size: 25px;
 		color: $text-color;
 		cursor: pointer;
 		transition: background-color 0.1s ease-in-out;
@@ -81,7 +81,7 @@ header {
 	}
 
 	.logo {
-		width: 18vh;
+		width: 100px;
 		user-select: none;
 		vertical-align: middle;
 		display: flex;
@@ -93,10 +93,23 @@ header {
 	}
 
 	.version {
-		margin-left: 2vh;
 		font-family: 'Montserrat-SemiBold';
+		font-size: 15px;
 		color: $text-color;
 		opacity: 0.3;
 	}
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    header {
+		height: $header-height;
+		line-height: $header-height;
+		gap: 15px;
+		padding: 0 10px;
+
+		.logo {
+			width: 150px;
+		}
+    }
 }
 </style>
