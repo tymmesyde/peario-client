@@ -364,4 +364,14 @@ export default {
         bottom: 15px;
     }
 }
+
+@supports not (backdrop-filter: none) {
+  .stream {
+    .background {
+        .image {
+            filter: blur(100px);
+        }
+    }
+  }
+}
 </style>
