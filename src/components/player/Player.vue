@@ -154,7 +154,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
 
 .player {
     position: relative;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat-Regular';
     height: 100%;
     width: 100%;
     overflow: hidden;

@@ -42,7 +42,7 @@ export default {
     }
 
     &.secondary {
-        font-family: 'Montserrat';
+        font-family: 'Montserrat-Regular';
         font-size: 28px;
         font-weight: 700;
         user-select: none;

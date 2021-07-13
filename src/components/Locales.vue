@@ -55,7 +55,7 @@ export default {
 #locales {
     position: absolute;
     right: 30px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat-Regular';
     color: $text-color;
     user-select: none;
     cursor: pointer;

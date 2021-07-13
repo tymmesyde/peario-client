@@ -183,7 +183,7 @@ export default {
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                font-family: 'Montserrat';
+                font-family: 'Montserrat-Regular';
                 font-size: 15px;
                 color: rgba(255, 255, 255, 0.7);
 
