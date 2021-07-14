@@ -29,6 +29,11 @@
             "autoSync": "Auto-Syncro",
             "subtitle": "Sous-Titre",
             "share": "Vous pouvez maintenant partager ce lien avec vos amis:"
+        },
+        "settings": {
+            "title": "Paramètres",
+            "lang": "Langue",
+            "button": "Terminer"
         }
     },
     "errors": {

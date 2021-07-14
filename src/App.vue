@@ -42,7 +42,8 @@ export default {
     },
     computed: {
         client: () => store.state.client,
-        info: () => store.state.info
+        info: () => store.state.info,
+        settings: () => store.state.settings
     },
     setup() {
         useMeta({
@@ -50,6 +51,10 @@ export default {
         });
     },
     methods: {
+        updateLocaleNavigator() {
+            const navigatorLocale = navigator.language.substr(0, 2);
+            if (Object.keys(this.settings.locales).includes(navigatorLocale)) store.dispatch('settings/updateLocale', navigatorLocale);
+        },
         checkServerRunning() {
             setInterval(async () => {
                 const status = await StremioService.isServerOpen();
@@ -60,7 +65,10 @@ export default {
     mounted() {
         store.dispatch('loadAddons');
         store.dispatch('client/start');
+        store.dispatch('settings/load');
+
         this.checkServerRunning();
+        this.updateLocaleNavigator();
     }
 };
 </script>
@@ -77,6 +85,7 @@ export default {
 $padding: 25px;
 
 .view-container {
+    z-index: 95;
     position: relative;
     display: flex;
     align-items: center;

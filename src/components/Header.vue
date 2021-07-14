@@ -1,29 +1,39 @@
 <template>
     <header :class="{ 'home': isHome }">
-		<div class="history-back" @click="$router.go(-1)" v-show="!isHome">
-			<ion-icon name="arrow-back-sharp"></ion-icon>
+		<div class="container">
+			<div class="history-back" @click="$router.go(-1)" v-show="!isHome">
+				<ion-icon name="arrow-back-sharp"></ion-icon>
+			</div>
+
+			<router-link class="logo" to="/">
+				<img src="../assets/img/logo.svg">
+			</router-link>
+
+			<div class="version">
+				{{ appVersion }}
+			</div>
 		</div>
 
-		<router-link class="logo" to="/">
-			<img src="../assets/img/logo.svg">
-		</router-link>
-
-		<div class="version">
-			{{ appVersion }}
+		<div class="container">
+			<Button clear icon="settings" v-model="showSettings"></Button>
 		</div>
-
-		<Locales></Locales>
     </header>
+
+	<transition name="fade">
+		<Settings v-model:show="showSettings"></Settings>
+	</transition>
 </template>
 
 <script>
 import store from '../store';
-import Locales from './Locales';
+import Button from './ui/Button.vue';
+import Settings from './Settings';
 
 export default {
 	name: 'Header',
 	components: {
-		Locales
+		Button,
+		Settings
 	},
 	computed: {
 		appVersion() {
@@ -37,7 +47,8 @@ export default {
 	},
 	data() {
 		return {
-			isHome: true
+			isHome: true,
+			showSettings: false
 		}
 	}
 }
@@ -55,7 +66,7 @@ header {
 	padding: 0 5px;
 	display: flex;
 	align-items: center;
-	gap: 10px;
+	justify-content: space-between;
 	transition: padding 0.1s ease-in-out;
 	user-select: none;
 
@@ -63,40 +74,46 @@ header {
 		padding: 0 20px;
 	}
 
-	.history-back {
+	.container {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		height: 45px;
-		width: 45px;
-		border-radius: 100%;
-		font-size: 25px;
-		color: $text-color;
-		cursor: pointer;
-		transition: background-color 0.1s ease-in-out;
+		gap: 10px;
 
-		&:hover {
-			background-color: rgba(white, 0.1);
+		.history-back {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 45px;
+			width: 45px;
+			border-radius: 100%;
+			font-size: 25px;
+			color: $text-color;
+			cursor: pointer;
+			transition: background-color 0.1s ease-in-out;
+
+			&:hover {
+				background-color: rgba(white, 0.1);
+			}
 		}
-	}
 
-	.logo {
-		width: 100px;
-		user-select: none;
-		vertical-align: middle;
-		display: flex;
-		align-items: center;
+		.logo {
+			width: 100px;
+			user-select: none;
+			vertical-align: middle;
+			display: flex;
+			align-items: center;
 
-		img {
-			width: 100%;
+			img {
+				width: 100%;
+			}
 		}
-	}
 
-	.version {
-		font-family: 'Montserrat-SemiBold';
-		font-size: 15px;
-		color: $text-color;
-		opacity: 0.3;
+		.version {
+			font-family: 'Montserrat-SemiBold';
+			font-size: 15px;
+			color: $text-color;
+			opacity: 0.3;
+		}
 	}
 }
 
@@ -104,11 +121,14 @@ header {
     header {
 		height: $header-height;
 		line-height: $header-height;
-		gap: 15px;
 		padding: 0 10px;
 
-		.logo {
-			width: 150px;
+		.container {
+			gap: 15px;
+
+			.logo {
+				width: 150px;
+			}
 		}
     }
 }

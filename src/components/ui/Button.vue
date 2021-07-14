@@ -1,7 +1,10 @@
 <template>
-    <button :class="[{ 'large': large, 'clear': clear }]">
+    <button :class="[{ 'large': large, 'clear': clear }]" @click="$emit('update:modelValue', !modelValue)">
         <ion-icon :name="icon" v-if="icon"></ion-icon>
-        <slot></slot>
+        <span v-if="translate">
+            {{ $t(translate) }}
+        </span>
+        <slot v-else></slot>
     </button>
 </template>
 
@@ -9,9 +12,11 @@
 export default {
     name: 'Button',
     props: {
+        modelValue: Boolean,
         icon: String,
         large: Boolean,
-        clear: Boolean
+        clear: Boolean,
+        translate: String
     }
 }
 </script>

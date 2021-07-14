@@ -29,6 +29,11 @@
             "autoSync": "Otomatik Eşitleme",
             "subtitle": "Alt yazı",
             "share": "Artık bu bağlantıyı arkadaşlarınızla paylaşabilirsiniz:"
+        },
+        "settings": {
+            "title": "Ayarlar",
+            "lang": "Dil",
+            "button": "Bitti"
         }
     },
     "errors": {
