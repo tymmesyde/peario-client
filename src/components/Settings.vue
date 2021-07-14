@@ -109,7 +109,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-    z-index: 97;
+    z-index: 98;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -131,7 +131,7 @@ export default {
     }
 
     .inner {
-        z-index: 98;
+        z-index: 99;
         display: flex;
         flex-direction: column;
         gap: 20px;

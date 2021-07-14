@@ -85,7 +85,6 @@ export default {
 $padding: 25px;
 
 .view-container {
-    z-index: 95;
     position: relative;
     display: flex;
     align-items: center;
