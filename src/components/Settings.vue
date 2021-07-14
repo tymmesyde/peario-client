@@ -3,7 +3,7 @@
         <div class="backdrop" @click="close()"></div>
 
         <div class="inner">
-            <Title icon="settings" type="secondary" translate="components.settings.title"></Title>
+            <Title icon="settings-outline" type="secondary" translate="components.settings.title"></Title>
 
             <div class="settings">
                 <div class="setting">
@@ -162,7 +162,16 @@ export default {
 
     .support {
         display: flex;
+        flex-direction: column;
         gap: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .setting {
+        .support {
+            flex-direction: row;
+        }
     }
 }
 </style>

@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="container">
-			<Button clear icon="settings" v-model="showSettings"></Button>
+			<Button clear icon="settings-outline" v-model="showSettings"></Button>
 		</div>
     </header>
 
