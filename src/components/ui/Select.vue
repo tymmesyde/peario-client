@@ -67,6 +67,7 @@ export default {
     }
 
     .menu {
+        z-index: 1;
         position: absolute;
         top: 36px;
         width: 100%;

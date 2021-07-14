@@ -33,6 +33,7 @@
         "settings": {
             "title": "Ayarlar",
             "lang": "Dil",
+            "support": "Destek",
             "button": "Bitti"
         }
     },

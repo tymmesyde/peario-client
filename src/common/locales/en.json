@@ -33,6 +33,7 @@
         "settings": {
             "title": "Settings",
             "lang": "Language",
+            "support": "Support",
             "button": "Done"
         }
     },

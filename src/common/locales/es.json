@@ -33,6 +33,7 @@
         "settings": {
             "title": "Parámetros",
             "lang": "Lenguaje",
+            "support": "Soporte",
             "button": "Terminar"
         }
     },
