@@ -2,7 +2,7 @@
     "views": {
         "home": {
             "title": "Akışlarınızı paylaşın",
-            "sub": "Peario, arkadaşlarınızla Stremio yayınlarını izlemenizi sağlar.",
+            "sub": "Peario, arkadaşlarınızla {0} yayınlarını izlemenizi sağlar.",
             "button": "Bir oda oluştur"
         },
         "search": {

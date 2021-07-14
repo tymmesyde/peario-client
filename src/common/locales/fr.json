@@ -2,7 +2,7 @@
     "views": {
         "home": {
             "title": "Partagez vos streams",
-            "sub": "Peario vous permet de regarder des streams Stremio avec vos amis.",
+            "sub": "Peario vous permet de regarder des streams {0} avec vos amis.",
             "button": "Créer une salle"
         },
         "search": {
