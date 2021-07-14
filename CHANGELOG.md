@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.4](https://github.com/tymmesyde/peario-client/compare/v0.11.3...v0.11.4) (2021-07-14)
+
+
+### Bug Fixes
+
+* wrong z-index layering ([28b27ca](https://github.com/tymmesyde/peario-client/commit/28b27cab84a72b9a8dab51eb8fd9eac727be1c6e))
+
 ### [0.11.3](https://github.com/tymmesyde/peario-client/compare/v0.11.2...v0.11.3) (2021-07-13)
 
 ### [0.11.2](https://github.com/tymmesyde/peario-client/compare/v0.11.1...v0.11.2) (2021-06-08)
