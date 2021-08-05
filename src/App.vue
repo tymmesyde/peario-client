@@ -32,6 +32,7 @@ import { APP_TITLE } from '@/common/config';
 
 import store from './store';
 import StremioService from './services/stremio.service';
+import ClientService from './services/client.service';
 
 export default {
     name: 'App',
@@ -45,12 +46,20 @@ export default {
         info: () => store.state.info,
         settings: () => store.state.settings
     },
+    watch: {
+        'client.ready'() {
+            this.updateUserSettings();
+        }
+    },
     setup() {
         useMeta({
             title: APP_TITLE
         });
     },
     methods: {
+        updateUserSettings() {
+            if (this.settings.username) ClientService.send('user.update', { username: this.settings.username });
+        },
         updateLocaleNavigator() {
             const navigatorLocale = navigator.language.substr(0, 2);
             if (Object.keys(this.settings.locales).includes(navigatorLocale)) store.dispatch('settings/updateLocale', navigatorLocale);

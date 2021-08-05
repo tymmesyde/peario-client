@@ -15,6 +15,13 @@
                 </div>
                 <div class="setting">
                     <div class="label">
+                        <ion-icon name="person"></ion-icon>
+                        Username
+                    </div>
+                    <TextInput :value="settings.username || client.user.name" @change="updateUsername($event)"></TextInput>
+                </div>
+                <div class="setting">
+                    <div class="label">
                         <ion-icon name="heart"></ion-icon>
                         {{ $t('components.settings.support') }}
                     </div>
@@ -30,11 +37,13 @@
 <script>
 import { ref, watchEffect } from 'vue';
 import postscribe from 'postscribe';
+import ClientService from '../services/client.service';
 
 import { where } from 'langs';
 import Title from './ui/Title.vue';
 import Button from './ui/Button.vue';
 import Select from './ui/Select.vue';
+import TextInput from './ui/TextInput.vue';
 
 import store from '../store';
 
@@ -42,12 +51,14 @@ export default {
     components: {
         Title,
         Button,
-        Select
+        Select,
+        TextInput
     },
     props: {
         show: Boolean
     },
     computed: {
+        client: () => store.state.client,
         settings: () => store.state.settings,
         localesOptions() {
             return this.settings.locales.map(locale => ({
@@ -65,6 +76,13 @@ export default {
     methods: {
         getLocaleName(locale) {
             return where('1', locale).local;
+        },
+        updateUsername({ target }) {
+            const username = target.value.slice(0, 25);
+            if (username.length > 0) {
+                store.dispatch('settings/updateUsername', username);
+                ClientService.send('user.update', { username });
+            }
         },
         close() {
             this.$emit('update:show', !this.show);

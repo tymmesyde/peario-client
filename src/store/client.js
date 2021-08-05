@@ -5,6 +5,7 @@ export default {
     namespaced: true,
     state: {
         connected: false,
+        ready: false,
         error: null,
         user: null,
         room: null,
@@ -13,6 +14,9 @@ export default {
     mutations: {
         updateStatus(state, value) {
             state.connected = value;
+        },
+        updateReady(state, value) {
+            state.ready = value;
         },
         updateError(state, value) {
             state.error = value;
@@ -38,7 +42,11 @@ export default {
             ClientService.connect(WS_SERVER);
             ClientService.events.on('opened', () => commit('updateStatus', true));
             ClientService.events.on('closed', () => commit('updateStatus', false));
-            ClientService.events.on('ready', ({ user }) => commit('updateUser', user));
+            ClientService.events.on('ready', ({ user }) => {
+                commit('updateReady', true);
+                commit('updateUser', user);
+            });
+            ClientService.events.on('user', ({ user }) => commit('updateUser', user));
             ClientService.events.on('error', error => commit('updateError', error));
             ClientService.events.on('room', room => {
                 commit('updateRoom', room);
