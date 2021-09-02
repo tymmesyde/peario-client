@@ -77,22 +77,17 @@ export default {
             activePanel: false,
             panelLang: null,
             list: [],
+            localeLang: (this.$i18n && this.$i18n.locale) || 'en',
             langs: []
         };
     },
     watch: {
-        list: {
-            deep: true,
-            handler(value) {
-                this.langs = this.extractLangs(value);
-
-                const lang = (this.$i18n && this.$i18n.locale) || 'en';
-
-                const current = this.list.find(s => s.lang.startsWith(lang)) || this.list[0];
-                this.$store.dispatch('updateCurrent', current);
-
-                this.panelLang = this.langs.find(({ iso }) => iso === current.lang);
-            }
+        list() {
+            const current = this.list.find(s => s.lang.startsWith(this.localeLang)) || this.list[0];
+    
+            this.langs = this.extractLangs(this.list);
+            this.panelLang = this.langs.find(({ iso }) => iso === current.lang);        
+            this.$store.dispatch('updateCurrent', current);
         },
         'subtitles.active'(state) {
             this.$store.dispatch('updateActive', state);
@@ -116,9 +111,23 @@ export default {
                 };
                 this.list.unshift(this.current);
             });
+        },
+        installedSubtitles() {
+            this.fetchSubtitles();
         }
     },
     methods: {
+        fetchSubtitles() {
+            const addToList = subtitles => {
+                this.list.push(...subtitles);
+
+                const urls = [...new Set(this.list.map(({ url }) => url))];
+                this.list = urls.map(url => this.list.find(sub => sub.url === url));
+            };
+
+            StremioService.getSubtitles(this.videoUrl).then(stremioSubtitles => addToList(stremioSubtitles));
+            this.installedSubtitles.map(addon => AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(addonsSubtitles => addToList(addonsSubtitles)));
+        },
         filterSubs() {
             return this.panelLang ? this.list.filter(s => s.lang === this.panelLang.iso) : [];
         },
@@ -139,9 +148,7 @@ export default {
     },
     mounted() {
         this.$store.dispatch('updateSize', this.sizes[1]);
-
-        StremioService.getSubtitles(this.videoUrl).then(stremioSubtitles => this.list.push(...stremioSubtitles));
-        this.installedSubtitles.map(addon => AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(addonsSubtitles => this.list.push(...addonsSubtitles)));
+        this.fetchSubtitles();
     }
 }
 </script>

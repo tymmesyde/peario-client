@@ -15,9 +15,14 @@
 		</div>
 
 		<div class="container">
+			<Button clear icon="cube-outline" v-model="showAddons"></Button>
 			<Button clear icon="settings-outline" v-model="showSettings"></Button>
 		</div>
     </header>
+
+	<transition name="fade">
+		<AddonManager v-model="showAddons" v-if="showAddons"></AddonManager>
+	</transition>
 
 	<transition name="fade">
 		<Settings v-model:show="showSettings"></Settings>
@@ -28,12 +33,14 @@
 import store from '../store';
 import Button from './ui/Button.vue';
 import Settings from './Settings';
+import AddonManager from '@/components/AddonManager.vue';
 
 export default {
 	name: 'Header',
 	components: {
 		Button,
-		Settings
+		Settings,
+		AddonManager
 	},
 	computed: {
 		appVersion() {
@@ -48,6 +55,7 @@ export default {
 	data() {
 		return {
 			isHome: true,
+			showAddons: false,
 			showSettings: false
 		}
 	}
