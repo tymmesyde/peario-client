@@ -34,6 +34,10 @@
             "title": "समायोजन",
             "lang": "भाषा",
             "support": "समर्थन",
+            "links": {
+                "title": "लिंक्स",
+                "report": "Report an issue"
+            },
             "button": "किया हुआ"
         }
     },

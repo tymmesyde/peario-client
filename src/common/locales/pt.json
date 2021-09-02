@@ -34,6 +34,10 @@
             "title": "Parâmetros",
             "lang": "Idioma",
             "support": "Apoio",
+            "links": {
+                "title": "Links",
+                "report": "Report an issue"
+            },
             "button": "Terminar"
         }
     },

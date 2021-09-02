@@ -1,26 +1,23 @@
 <template>
-    <span class="link" @click="open()">
+    <a :href="href" target="_blank" class="link">
         <slot></slot>
-    </span>
+    </a>
 </template>
 
 <script>
 export default {
     props: {
         href: String
-    },
-    methods: {
-        open() {
-            window.open(this.href);
-        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
 .link {
+    font-family: 'Montserrat-Medium';
     color: $accent-color;
     cursor: pointer;
+    text-decoration: none;
     transition: all 0.1s ease-in-out;
 
     &:hover {

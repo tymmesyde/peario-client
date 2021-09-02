@@ -27,6 +27,13 @@
                     </div>
                     <div class="support" ref="support"></div>
                 </div>
+                <div class="setting">
+                    <div class="label">
+                        <ion-icon name="link"></ion-icon>
+                        {{ $t('components.settings.links.title') }}
+                    </div>
+                    <Link href="https://github.com/tymmesyde/peario-client/issues">{{ $t('components.settings.links.report') }}</Link>
+                </div>
             </div>
 
             <Button clear large translate="components.settings.button" @click="close()"></Button>
@@ -44,6 +51,7 @@ import Title from './ui/Title.vue';
 import Button from './ui/Button.vue';
 import Select from './ui/Select.vue';
 import TextInput from './ui/TextInput.vue';
+import Link from './ui/Link.vue';
 
 import store from '../store';
 
@@ -52,7 +60,8 @@ export default {
         Title,
         Button,
         Select,
-        TextInput
+        TextInput,
+        Link
     },
     props: {
         show: Boolean

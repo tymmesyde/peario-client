@@ -34,6 +34,10 @@
             "title": "Ayarlar",
             "lang": "Dil",
             "support": "Destek",
+            "links": {
+                "title": "Bağlantılar",
+                "report": "Report an issue"
+            },
             "button": "Bitti"
         }
     },

@@ -34,6 +34,10 @@
             "title": "Settings",
             "lang": "Language",
             "support": "Support",
+            "links": {
+                "title": "Links",
+                "report": "Report an issue"
+            },
             "button": "Done"
         }
     },
