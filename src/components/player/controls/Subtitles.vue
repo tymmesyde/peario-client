@@ -83,10 +83,12 @@ export default {
     },
     watch: {
         list() {
-            const current = this.list.find(s => s.lang.startsWith(this.localeLang)) || this.list[0];
-    
             this.langs = this.extractLangs(this.list);
-            this.panelLang = this.langs.find(({ iso }) => iso === current.lang);        
+
+            const isCurrentUser = this.panelLang && this.panelLang.iso === 'user';
+            const current = this.list.find(s => isCurrentUser ? s.lang === 'user' : s.lang.startsWith(this.localeLang)) || this.list[0];
+
+            this.panelLang = this.langs.find(({ iso }) => iso === current.lang);
             this.$store.dispatch('updateCurrent', current);
         },
         'subtitles.active'(state) {
@@ -102,14 +104,18 @@ export default {
             const reader = new FileReader();
             reader.readAsText(file, 'ASCII');
             reader.addEventListener('load', () => {
-                const userLang = { iso: 'user', local: 'User' };
-                this.langs.unshift(userLang);
-                this.panelLang = userLang.iso;
-                this.current = {
-                    lang: userLang.iso,
+                const userIndex = this.list.filter(({ lang }) => lang === 'user').length;
+
+                const subtitle = {
+                    id: `user-${userIndex}`,
+                    lang: 'user',
                     data: reader.result
                 };
-                this.list.unshift(this.current);
+
+                this.list = [
+                    subtitle,
+                    ...this.list
+                ];
             });
         },
         installedSubtitles() {
@@ -140,7 +146,7 @@ export default {
                         const iso2B = where('2B', lang);
                         return {
                             iso: lang,
-                            local: iso2 ? iso2.local : iso2B ? iso2B.local : lang
+                            local: lang === 'user' ? 'User' : (iso2 ? iso2.local : iso2B ? iso2B.local : lang)
                         }
                     })
                     .sort();
