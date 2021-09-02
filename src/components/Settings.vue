@@ -185,6 +185,10 @@ export default {
             font-family: 'Montserrat-SemiBold';
             color: $text-color;
         }
+
+        input {
+            width: 100%;
+        }
     }
 
     .support {
