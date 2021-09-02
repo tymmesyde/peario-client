@@ -8,16 +8,16 @@
         <transition name="fade">
             <div class="panel" v-if="activePanel">
                 <div class="bar">
-                    <div class="toggle" @click="active = !active">
-                        <div v-show="active" class="status">
+                    <div class="toggle" @click="subtitles.active = !subtitles.active">
+                        <div v-show="subtitles.active" class="status">
                             <ion-icon name="toggle"></ion-icon> On
                         </div>
-                        <div v-show="!active" class="status">
+                        <div v-show="!subtitles.active" class="status">
                             <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
                         </div>
                     </div>
 
-                    <List class="sizes" small v-model="size" :items="sizes">
+                    <List class="sizes" small v-model="subtitles.size" :items="sizes">
                         <template #left>
                             <ion-icon name="text-outline"></ion-icon>
                         </template>
@@ -34,7 +34,7 @@
                             {{ item.local }}
                         </template>
                     </List>
-                    <List class="subs" small v-model="current" :items="filterSubs()" itemKey="id">
+                    <List class="subs" small v-model="subtitles.current" :items="filterSubs()" itemKey="id">
                         <template #left="{ index }">
                             {{ `${$t(`components.player.subtitle`)} ${ index + 1 }` }}
                         </template>
@@ -50,7 +50,7 @@ import { where } from 'langs';
 import { mapGetters } from 'vuex';
 import List from '@/components/ui/List.vue';
 import StremioService from '@/services/stremio.service';
-import AddonService from '../../../services/addon.service';
+import AddonService from '@/services/addon.service';
 
 export default {
     name: 'SubtitlesControl',
@@ -70,19 +70,37 @@ export default {
                 'large'
             ];
         },
-        ...mapGetters(['installedSubtitles'])
+        ...mapGetters(['installedSubtitles', 'subtitles'])
     },
     data() {
-        return this.$store.getters.subtitles;
+        return {
+            activePanel: false,
+            panelLang: null,
+            list: [],
+            langs: []
+        };
     },
     watch: {
-        active(state) {
+        list: {
+            deep: true,
+            handler(value) {
+                this.langs = this.extractLangs(value);
+
+                const lang = (this.$i18n && this.$i18n.locale) || 'en';
+
+                const current = this.list.find(s => s.lang.startsWith(lang)) || this.list[0];
+                this.$store.dispatch('updateCurrent', current);
+
+                this.panelLang = this.langs.find(({ iso }) => iso === current.lang);
+            }
+        },
+        'subtitles.active'(state) {
             this.$store.dispatch('updateActive', state);
         },
-        current(state) {
+        'subtitles.current'(state) {
             this.$store.dispatch('updateCurrent', state);
         },
-        size(state) {
+        'subtitles.size'(state) {
             this.$store.dispatch('updateSize', state);
         },
         userSubtitle(file) {
@@ -119,30 +137,11 @@ export default {
                     .sort();
         }
     },
-    created() {
-        this.active = true;
-        this.activePanel = false;
-        this.size = this.sizes[1];
-    },
-    async mounted() {
-        this.list = [];
-        this.langs = [];
-    
-        const stremioSubtitles = await StremioService.getSubtitles(this.videoUrl);
-        const addonsSubtitles = await AddonService.getSubtitles(this.installedSubtitles, this.meta.type, this.meta.id);
+    mounted() {
+        this.$store.dispatch('updateSize', this.sizes[1]);
 
-        this.list = [
-            ...stremioSubtitles,
-            ...addonsSubtitles
-        ];
-        this.langs = this.extractLangs(this.list);
-
-        this.$store.dispatch('updateList', this.list);
-        this.$store.dispatch('updateLangs', this.langs);
-
-        const lang = (this.$i18n && this.$i18n.locale) || 'en';
-        this.current = this.list.find(s => lang.startsWith(s.lang)) || this.list[0];
-        this.panelLang = this.langs.find(({ iso }) => iso === this.current.lang);
+        StremioService.getSubtitles(this.videoUrl).then(stremioSubtitles => this.list.push(...stremioSubtitles));
+        this.installedSubtitles.map(addon => AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(addonsSubtitles => this.list.push(...addonsSubtitles)));
     }
 }
 </script>

@@ -52,7 +52,7 @@
 
 <script>
 import LockScreen from "./LockScreen.vue";
-import Subtitle from "@/components/Subtitle.vue";
+import Subtitle from "./Subtitle.vue";
 import AutoSyncControl from "./controls/AutoSync.vue";
 import PlayPauseControl from "./controls/PlayPause.vue";
 import TimeBarControl from "./controls/TimeBar.vue";

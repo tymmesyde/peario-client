@@ -1,12 +1,8 @@
 export default {
     state: {
         subtitles: {
-            active: null,
-            activePanel: null,
+            active: true,
             current: null,
-            list: [],
-            langs: [],
-            panelLang: null,
             size: null,
         }
     },
@@ -24,12 +20,6 @@ export default {
         }
     },
     actions: {
-        updateList(context, list) {
-            context.commit('updateSubtitles', { list });
-        },
-        updateLangs(context, langs) {
-            context.commit('updateSubtitles', { langs });
-        },
         updateActive(context, active) {
             context.commit('updateSubtitles', { active });
         },
