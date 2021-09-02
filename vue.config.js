@@ -32,5 +32,8 @@ module.exports = {
                     isCustomElement: (tag) => tag === 'ion-icon'
                 }
             }));
-    }
+    },
+    transpileDependencies: [
+        'vue-meta',
+    ]
 };
