@@ -212,7 +212,7 @@ export default {
         .blur {
             z-index: 1;
             backdrop-filter: blur(100px);
-            background-color: rgba(0, 0, 0, 0.25);
+            background-color: rgba($primary-color, 0.5);
         }
 
         .image {
