@@ -59,10 +59,7 @@ export default {
     },
     props: {
         videoUrl: String,
-        meta: {
-            id: String,
-            type: String
-        },
+        meta: Object,
         userSubtitle: File
     },
     computed: {
@@ -143,7 +140,7 @@ export default {
         this.$store.dispatch('updateList', this.list);
         this.$store.dispatch('updateLangs', this.langs);
 
-        const lang = this.$i18n.locale;
+        const lang = (this.$i18n && this.$i18n.locale) || 'en';
         this.current = this.list.find(s => s.lang.includes(lang)) || this.list[0];
         this.panelLang = this.langs.find(({ iso }) => iso === this.current.lang);
     }
