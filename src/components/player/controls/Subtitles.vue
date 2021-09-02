@@ -141,7 +141,7 @@ export default {
         this.$store.dispatch('updateLangs', this.langs);
 
         const lang = (this.$i18n && this.$i18n.locale) || 'en';
-        this.current = this.list.find(s => s.lang.includes(lang)) || this.list[0];
+        this.current = this.list.find(s => lang.startsWith(s.lang)) || this.list[0];
         this.panelLang = this.langs.find(({ iso }) => iso === this.current.lang);
     }
 }
@@ -151,7 +151,7 @@ export default {
 #subtitles-control {
     .panel {
         $panel-height: 250px;
-        $panel-width: 300px;
+        $panel-width: 320px;
 
         position: absolute;
         height: $panel-height;
@@ -163,20 +163,24 @@ export default {
         overflow: hidden;
         background-color: rgba($primary-color, 0.8);
         backdrop-filter: blur(10px);
+        cursor: default;
 
-        $bar-height: 55px;
+        $bar-height: 65px;
 
         .bar {
             height: $bar-height;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 15px;
+            padding-left: 10px;
+            padding-right: 20px;
             font-size: 20px;
 
             .toggle {
+                height: 100%;
                 display: grid;
                 align-items: center;
+                padding: 0 10px;
                 cursor: pointer;
 
                 .status {
@@ -223,12 +227,12 @@ export default {
         .lists {
             display: flex;
             justify-content: space-between;
-            padding: 0 10px;
+            padding: 0 5px;
 
             .list {
                 height: calc(#{$panel-height} - #{$bar-height});
                 width: 50%;
-                padding-top: 5px;
+                padding: 0 10px;
                 padding-bottom: 10px;
 
                 &:first-child .item div:last-child {
