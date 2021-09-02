@@ -86,8 +86,14 @@ export default {
 
             if (!this.playerOptions) {
                 const videoUrl = await StremioService.createStream(stream);
-                const playlistUrl = await HlsService.createPlaylist(videoUrl);
-                this.playerOptions = { src: videoUrl, hls: playlistUrl, meta, isOwner: this.client.user.id === owner };
+                this.playerOptions = { src: videoUrl, hls: null, meta, isOwner: this.client.user.id === owner };
+
+                HlsService.createPlaylist(videoUrl).then(playlistUrl => {
+                    this.playerOptions = {
+                        ...this.playerOptions,
+                        hls: playlistUrl
+                    };
+                });
             }
 
             this.users = users;

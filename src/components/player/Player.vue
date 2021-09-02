@@ -42,7 +42,7 @@
 
                 <SubtitlesControl class="control" :videoUrl="options.src" :meta="options.meta" :userSubtitle="userSubtitle"></SubtitlesControl>
 
-                <HlsControl class="control" :options="options"></HlsControl>
+                <HlsControl class="control" :options="options" v-if="options.hls"></HlsControl>
 
                 <FullScreenControl class="control" :player="player" :video="video"></FullScreenControl>
             </div>
@@ -80,6 +80,7 @@ export default {
     props: {
         options: {
             src: String,
+            hls: String,
             meta: {
                 id: String,
                 type: String,

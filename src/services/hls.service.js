@@ -25,16 +25,17 @@ const HlsService = {
             bandwith: 1000000
         }];
 
-        const playlistLevels = []; 
-        await Promise.all(qualities.map(async ({ name, bandwith}) => {
+        const playlistLevels = (await Promise.all(qualities.map(async ({ name, bandwith}) => {
             try {
                 const streamQ = `${videoUrl}/${prefix}${name}.m3u8`;
                 await axios.get(streamQ);
-                playlistLevels.push(`#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=${bandwith},NAME="${name}"\n${streamQ}`);
+                return `#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=${bandwith},NAME="${name}"\n${streamQ}`;
             } catch(e) {
-                return;
+                return null;
             }
-        }));
+        }))).filter(level => level);
+
+        if (!playlistLevels.length) return null;
 
         const playlistHeader = '#EXTM3U\n#EXT-X-VERSION:4\n';
         const playlist = playlistHeader.concat(playlistLevels.join('\n'));
