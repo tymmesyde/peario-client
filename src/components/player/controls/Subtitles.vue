@@ -47,8 +47,10 @@
 
 <script>
 import { where } from 'langs';
+import { mapGetters } from 'vuex';
 import List from '@/components/ui/List.vue';
 import StremioService from '@/services/stremio.service';
+import AddonService from '../../../services/addon.service';
 
 export default {
     name: 'SubtitlesControl',
@@ -57,6 +59,10 @@ export default {
     },
     props: {
         videoUrl: String,
+        meta: {
+            id: String,
+            type: String
+        },
         userSubtitle: File
     },
     computed: {
@@ -66,7 +72,8 @@ export default {
                 'medium',
                 'large'
             ];
-        }
+        },
+        ...mapGetters(['installedSubtitles'])
     },
     data() {
         return this.$store.getters.subtitles;
@@ -123,8 +130,14 @@ export default {
     async mounted() {
         this.list = [];
         this.langs = [];
+    
+        const stremioSubtitles = await StremioService.getSubtitles(this.videoUrl);
+        const addonsSubtitles = await AddonService.getSubtitles(this.installedSubtitles, this.meta.type, this.meta.id);
 
-        this.list = await StremioService.getSubtitles(this.videoUrl);
+        this.list = [
+            ...stremioSubtitles,
+            ...addonsSubtitles
+        ];
         this.langs = this.extractLangs(this.list);
 
         this.$store.dispatch('updateList', this.list);

@@ -6,12 +6,17 @@
                 <ion-icon name="close-outline"></ion-icon>
             </div>
 
-            <div class="input-container">
+            <div class="filters-container">
                 <TextInput v-model="manifestUrl" placeholder="Paste addon manifest URL" @change="addFromURL()"></TextInput>
+                <Segments :segments="types" v-model="type">
+                    <template #segment="{ segment }">
+                        {{ $t(`components.addons.types.${segment}`) }}
+                    </template>
+                </Segments>
             </div>
 
             <ul>
-                <li class="addon" :class="{ active: isInstalled(addon) }" v-for="addon in collection" :key="addon.transportUrl" @click="toggleAddon(addon)">
+                <li class="addon" :class="{ active: isInstalled(addon) }" v-for="addon in collection[type]" :key="addon.transportUrl" @click="toggleAddon(addon)">
                     <div class="info">
                         <div class="icon">
                             <img :src="addon.manifest.icon || addon.manifest.logo" alt="" v-if="addon.manifest.icon || addon.manifest.logo">
@@ -42,12 +47,14 @@
 import { mapGetters } from 'vuex';
 import Title from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
+import Segments from '@/components/ui/Segments.vue';
 
 export default {
     name: 'AddonManager',
     components: {
         Title,
-        TextInput
+        TextInput,
+        Segments
     },
     props: {
         modelValue: Boolean
@@ -55,7 +62,9 @@ export default {
     emits: ['update:modelValue'],
     data() {
         return {
-            manifestUrl: ''
+            manifestUrl: '',
+            type: 'streams',
+            types: ['streams', 'subtitles']
         }
     },
     computed: mapGetters(['collection', 'installed']),
@@ -84,7 +93,6 @@ export default {
 
 <style lang="scss" scoped>
 $title-height: 9vh;
-$input-container-height: 70px;
 $menu-width: 45vh;
 $menu-padding: 2vh;
 $addon-icon-size: 8vh;
@@ -112,6 +120,8 @@ $addon-icon-size: 8vh;
     top: 0;
     bottom: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
     width: $menu-width;
     background-color: $primary-color;
     overflow: hidden;
@@ -136,10 +146,12 @@ $addon-icon-size: 8vh;
         }
     }
 
-    .input-container {
-        height: $input-container-height;
+    .filters-container {
         display: flex;
+        flex: 1 0 auto;
+        flex-direction: column;
         justify-content: center;
+        gap: 10px;
         padding: 0 20px;
 
         input {
@@ -151,7 +163,7 @@ $addon-icon-size: 8vh;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        height: calc(100% - #{$title-height} - #{$input-container-height});
+        height: calc(100% - #{$title-height});
         overflow-y: auto;
         padding: 0 $menu-padding;
         padding-bottom: $menu-padding;

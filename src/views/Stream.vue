@@ -150,7 +150,7 @@ export default {
         async loadStreams() {
             const { id, type } = this.$route.params;
 
-            const installedAddons = this.collection.filter(addon => this.installed.includes(addon.manifest.id));
+            const installedAddons = this.collection.streams.filter(addon => this.installed.includes(addon.manifest.id));
             this.streams = await AddonService.getStreams(installedAddons, type, id);
         },
         createRoom(stream) {

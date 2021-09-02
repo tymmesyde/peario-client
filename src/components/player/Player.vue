@@ -40,7 +40,7 @@
             <div class="panel">
                 <VolumeContol class="control"></VolumeContol>
 
-                <SubtitlesControl class="control" :videoUrl="options.src" :userSubtitle="userSubtitle"></SubtitlesControl>
+                <SubtitlesControl class="control" :videoUrl="options.src" :meta="options.meta" :userSubtitle="userSubtitle"></SubtitlesControl>
 
                 <HlsControl class="control" :options="options"></HlsControl>
 
@@ -81,6 +81,8 @@ export default {
         options: {
             src: String,
             meta: {
+                id: String,
+                type: String,
                 logo: String,
                 background: String,
             },

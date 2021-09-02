@@ -53,24 +53,28 @@ const StremioService = {
     },
 
     async getSubtitles(streamUrl) {
-        const { hash, size } = await getOpenSubInfo(streamUrl);
-        
-        const jsonrpc = JSON.stringify({
-            jsonrpc: '2.0',
-            id: 1,
-            method: 'subtitles.find',
-            params: [
-                null,
-                {
-                    query: {
-                        videoHash: hash,
-                        videoSize: size
+        try {
+            const { hash, size } = await getOpenSubInfo(streamUrl);
+            
+            const jsonrpc = JSON.stringify({
+                jsonrpc: '2.0',
+                id: 1,
+                method: 'subtitles.find',
+                params: [
+                    null,
+                    {
+                        query: {
+                            videoHash: hash,
+                            videoSize: size
+                        }
                     }
-                }
-            ]
-        });
+                ]
+            });
 
-        return queryOpenSubtitles(jsonrpc);
+            return queryOpenSubtitles(jsonrpc);
+        } catch(_) {
+            return [];
+        }
     }
 
 };

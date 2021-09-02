@@ -15,8 +15,15 @@ const SubtitleService = {
     },
 
     async set(url) {
-        const { data } = await axios.get(url);
-        this.subtitles = parseSync(data);
+        try {
+            const { data } = await axios.get(url);
+            if (!Object.keys(data).length) return Promise.reject();
+
+            this.subtitles = parseSync(data);
+            return Promise.resolve();
+        } catch(err) {
+            return Promise.reject(err);
+        }
     },
 
     setCustom(data) {

@@ -4,13 +4,17 @@ import StorageService from '../services/storage.service';
 
 export default {
     state: {
-        collection: [],
+        collection: {
+            streams: [],
+            subtitles: []
+        },
         installed: [],
         user: []
     },
     getters: {
         collection: state => state.collection,
-        installed: state => state.installed
+        installed: state => state.installed,
+        installedSubtitles: state => state.collection.subtitles.filter(({ manifest }) => state.installed.includes(manifest.id))
     },
     mutations: {
         updateCollection(state, addons) {
@@ -23,9 +27,6 @@ export default {
         updateUser(state, addons) {
             state.user = addons;
             StorageService.set('addons.user', state.user);
-        },
-        addToCollection(state, addon) {
-            state.collection.push(addon);
         },
         addToInstalled(state, addon_id) {
             state.installed = [
@@ -48,11 +49,20 @@ export default {
             const listed = await StremioService.getAddons();
             const user = StorageService.get('addons.user') || [];
             const installed = StorageService.get('addons.installed') || [];
+
+            const { streams, subtitles } = AddonService.createCollection(listed);
+            const { streams: userStreams, subtitles: userSubtitles } = AddonService.createCollection(user); 
             
-            const collection = [
-                ...AddonService.createCollection(listed),
-                ...AddonService.createCollection(user)
-            ];
+            const collection = {
+                streams: [
+                    ...streams,
+                    ...userStreams
+                ],
+                subtitles: [
+                    ...subtitles,
+                    ...userSubtitles
+                ]
+            };
 
             commit('updateCollection', collection);
             commit('updateUser', user);
