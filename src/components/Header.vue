@@ -129,7 +129,8 @@ header {
     header {
 		height: $header-height;
 		line-height: $header-height;
-		padding: 0 10px;
+		padding-left: 5px;
+		padding-right: 20px;
 
 		.container {
 			gap: 15px;
