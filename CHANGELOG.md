@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.6](https://github.com/tymmesyde/peario-client/compare/v0.11.5...v0.11.6) (2021-09-03)
+
+
+### Features
+
+* can now add subtitles addons while in a room ([51b7b81](https://github.com/tymmesyde/peario-client/commit/51b7b811e43eaebb29ef638e50d44a5421c6f7ac))
+* can now use subtitles addons ([d6551a8](https://github.com/tymmesyde/peario-client/commit/d6551a8833736e972e1e7513d847a1e8b1d50056))
+
+
+### Bug Fixes
+
+* **Room:** creating a hls playlist was blocking the loading ([dc44bc0](https://github.com/tymmesyde/peario-client/commit/dc44bc0dee7d2a85198ce28247b0646c430175b5))
+* **Subtitles:** fix errors ([54ae6d2](https://github.com/tymmesyde/peario-client/commit/54ae6d23662566b2286e1d625592c31cb1642521))
+* **Subtitles:** user subtitles were partially broken ([a56cdea](https://github.com/tymmesyde/peario-client/commit/a56cdeaa0c432d7cff1a87ff20570e6f01ec1840))
+
 ### [0.11.5](https://github.com/tymmesyde/peario-client/compare/v0.11.4...v0.11.5) (2021-09-02)
 
 
