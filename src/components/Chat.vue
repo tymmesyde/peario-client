@@ -93,7 +93,7 @@ export default {
     flex-direction: column;
     flex-shrink: 0;
     height: 100%;
-    width: 100%;
+    width: calc(100vh - 400px);
 
     .topbar {
         flex-shrink: 0;
