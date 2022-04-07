@@ -53,8 +53,8 @@
             "message": "Come back in a little while ..."
         },
         "stremio": {
-            "title": "Stremio is not running",
-            "message": "Please, open Stremio so Peario can operate."
+            "title": "Failed to connect to Stremio",
+            "message": "Make sure to open Stremio and disable your adblocker so Peario can operate."
         },
         "room": {
             "title": "This room does not exists",

@@ -47,8 +47,8 @@
             "message": "Volte dentro de pouco tempo ..."
         },
         "stremio": {
-            "title": "O Stremio não está aberto",
-            "message": "Por favor, abra o Stremio para que o Peario possa funcionar."
+            "title": "Erro ao conectar ao Stremio",
+            "message": "Confirme que o Stremio está aberto e desative o adblocker para que o Peario possa funcionar."
         },
         "room": {
             "title": "Esta sala não existe",
