@@ -1,6 +1,6 @@
 {
   "name": "peario-client",
-  "version": "0.11.7",
+  "version": "0.11.7-canary.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
