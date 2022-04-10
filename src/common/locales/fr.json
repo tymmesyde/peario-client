@@ -48,7 +48,7 @@
         },
         "stremio": {
             "title": "Stremio n'est pas actif",
-            "message": "Ouvrez Stremio pour que Peario puisse opérer."
+            "message": "Assurez-vous d'ouvrir Stremio et de désactiver votre adblocker pour que Peario puisse fonctionner."
         },
         "room": {
             "title": "Cette salle n'existe pas",

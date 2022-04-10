@@ -48,7 +48,7 @@
         },
         "stremio": {
             "title": "Stremio no está corriendo",
-            "message": "Por favor, abre a Stremio para que Peario pueda operar."
+            "message": "Asegúrese de abrir Stremio y deshabilitar su bloqueador de anuncios para que Peario pueda operar."
         },
         "room": {
             "title": "Esta sala no existe",

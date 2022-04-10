@@ -48,7 +48,7 @@
         },
         "stremio": {
             "title": "Stremio açık değil",
-            "message": "Peario'nun çalışabilmesi için lütfen Stremio'yu açın."
+            "message": "Peario'nun çalışabilmesi için Stremio'yu açtığınızdan ve reklam engelleyicinizi devre dışı bıraktığınızdan emin olun."
         },
         "room": {
             "title": "Bu oda mevcut değil",
