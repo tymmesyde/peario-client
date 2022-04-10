@@ -1,12 +1,10 @@
 <template>
-    <div class="error-wrapper">
-        <div class="error">
-            <div class="title">
-                {{ $t(`errors.${type}.title`) }}
-            </div>
-            <div class="message">
-                {{ $t(`errors.${type}.message`) }}
-            </div>
+    <div class="error">
+        <div class="title">
+            {{ $t(`errors.${type}.title`) }}
+        </div>
+        <div class="message">
+            {{ $t(`errors.${type}.message`) }}
         </div>
     </div>
 </template>
@@ -21,22 +19,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.error-wrapper {
-    z-index: 99;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    width: 100vw;
-    height: 100vh;
-}
-
 .error {
-    padding: 10px;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
     width: 90vw;
-    max-width: 550px;
+    margin-left: -45vw;
+    padding: 1em;
     border-radius: 15px 15px 0 0;
-    text-align: center;
     color: $text-color;
     background-color: $danger-color;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -54,11 +50,11 @@ export default {
 }
 
 @media only screen and (min-width: 768px) {
-    .error-wrapper {
-        align-items: flex-start;
-    }
     .error {
-        max-width: 400px;
+        top: 0;
+        bottom: inherit;
+        width: 40vh;
+        margin-left: -20vh;
         border-radius: 0 0 15px 15px;
         animation: slide-down 0.1s ease-in-out;
     }
