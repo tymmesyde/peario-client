@@ -1,11 +1,21 @@
+const { defineConfig } = require('@vue/cli-service');
 const webpack = require('webpack');
-const fs = require('fs');
-const packageJson = fs.readFileSync('./package.json');
-const version = JSON.parse(packageJson).version || 0;
+const { version } = require('./package.json');
 
-module.exports = {
+module.exports = defineConfig({
     configureWebpack: {
+        resolve: {
+            fallback: {
+                stream: false,
+                process: require.resolve('process/browser'),
+                buffer: require.resolve('buffer/')
+            }
+        },
         plugins: [
+            new webpack.ProvidePlugin({
+                Buffer: ['buffer', 'Buffer'],
+                process: 'process/browser',
+            }),
             new webpack.DefinePlugin({
                 'process.env': {
                     PACKAGE_VERSION: `"${version}"`
@@ -36,4 +46,4 @@ module.exports = {
     transpileDependencies: [
         'vue-meta',
     ]
-};
+});
