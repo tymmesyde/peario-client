@@ -13,8 +13,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 .link {
-  font-family: "Montserrat-Medium";
+  font-family: "Montserrat", serif;
+  font-weight: 500;
   color: $accent-color;
   cursor: pointer;
   text-decoration: none;

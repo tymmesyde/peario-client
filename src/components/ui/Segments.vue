@@ -1,10 +1,10 @@
 <template>
   <div class="segments">
     <div
-      :class="['segment', { active: segment === modelValue }]"
-      v-for="segment in segments"
-      :key="segment"
-      @click="$emit('update:modelValue', segment)"
+        :class="['segment', { active: segment === modelValue }]"
+        v-for="segment in segments"
+        :key="segment"
+        @click="$emit('update:modelValue', segment)"
     >
       <slot name="segment" :segment="segment"></slot>
     </div>
@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 .segments {
   display: flex;
   gap: 10px;
@@ -36,7 +38,8 @@ export default {
     max-width: 140px;
     line-height: 40px;
     padding: 0 10px;
-    font-family: "Montserrat-Bold";
+    font-family: "Montserrat", serif;
+    font-weight: 700;
     font-size: 16px;
     overflow: hidden;
     text-overflow: ellipsis;

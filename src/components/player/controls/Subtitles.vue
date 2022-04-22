@@ -2,8 +2,8 @@
   <div id="subtitles-control">
     <span @click="activePanel = !activePanel">
       <ion-icon
-        name="chatbox-ellipses-outline"
-        v-show="!activePanel"
+          name="chatbox-ellipses-outline"
+          v-show="!activePanel"
       ></ion-icon>
       <ion-icon name="chatbox-ellipses" v-show="activePanel"></ion-icon>
     </span>
@@ -13,10 +13,12 @@
         <div class="bar">
           <div class="toggle" @click="subtitles.active = !subtitles.active">
             <div v-show="subtitles.active" class="status">
-              <ion-icon name="toggle"></ion-icon> On
+              <ion-icon name="toggle"></ion-icon>
+              On
             </div>
             <div v-show="!subtitles.active" class="status">
-              <ion-icon name="toggle-outline" class="flip"></ion-icon> Off
+              <ion-icon name="toggle-outline" class="flip"></ion-icon>
+              Off
             </div>
           </div>
 
@@ -33,22 +35,22 @@
 
         <div class="lists">
           <List
-            class="langs"
-            small
-            v-model="panelLang"
-            :items="langs"
-            itemKey="iso"
+              class="langs"
+              small
+              v-model="panelLang"
+              :items="langs"
+              itemKey="iso"
           >
             <template #left="{ item }">
               {{ item.local }}
             </template>
           </List>
           <List
-            class="subs"
-            small
-            v-model="subtitles.current"
-            :items="filterSubs()"
-            itemKey="id"
+              class="subs"
+              small
+              v-model="subtitles.current"
+              :items="filterSubs()"
+              itemKey="id"
           >
             <template #left="{ index }">
               {{ `${$t(`components.player.subtitle`)} ${index + 1}` }}
@@ -61,8 +63,8 @@
 </template>
 
 <script>
-import { where } from "langs";
-import { mapGetters } from "vuex";
+import {where} from "langs";
+import {mapGetters} from "vuex";
 import List from "@/components/ui/List.vue";
 import StremioService from "@/services/stremio.service";
 import AddonService from "@/services/addon.service";
@@ -98,11 +100,11 @@ export default {
 
       const isCurrentUser = this.panelLang && this.panelLang.iso === "user";
       const current =
-        this.list.find((s) =>
-          isCurrentUser ? s.lang === "user" : s.lang.startsWith(this.localeLang)
-        ) || this.list[0];
+          this.list.find((s) =>
+              isCurrentUser ? s.lang === "user" : s.lang.startsWith(this.localeLang)
+          ) || this.list[0];
 
-      this.panelLang = this.langs.find(({ iso }) => iso === current.lang);
+      this.panelLang = this.langs.find(({iso}) => iso === current.lang);
       this.$store.dispatch("updateCurrent", current);
     },
     "subtitles.active"(state) {
@@ -119,7 +121,7 @@ export default {
       reader.readAsText(file, "ASCII");
       reader.addEventListener("load", () => {
         const userIndex = this.list.filter(
-          ({ lang }) => lang === "user"
+            ({lang}) => lang === "user"
         ).length;
 
         const subtitle = {
@@ -140,44 +142,44 @@ export default {
       const addToList = (subtitles) => {
         this.list.push(...subtitles);
 
-        const urls = [...new Set(this.list.map(({ url }) => url))];
+        const urls = [...new Set(this.list.map(({url}) => url))];
         this.list = urls.map((url) => this.list.find((sub) => sub.url === url));
       };
 
       StremioService.getSubtitles(this.videoUrl).then((stremioSubtitles) =>
-        addToList(stremioSubtitles)
+          addToList(stremioSubtitles)
       );
       this.installedSubtitles.map((addon) =>
-        AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(
-          (addonsSubtitles) => addToList(addonsSubtitles)
-        )
+          AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(
+              (addonsSubtitles) => addToList(addonsSubtitles)
+          )
       );
     },
     filterSubs() {
       return this.panelLang
-        ? this.list.filter((s) => s.lang === this.panelLang.iso)
-        : [];
+          ? this.list.filter((s) => s.lang === this.panelLang.iso)
+          : [];
     },
     extractLangs(list) {
       return list
-        .map(({ lang }) => lang)
-        .filter((el, i, self) => i == self.indexOf(el))
-        .map((lang) => {
-          const iso2 = where("2", lang);
-          const iso2B = where("2B", lang);
-          return {
-            iso: lang,
-            local:
-              lang === "user"
-                ? "User"
-                : iso2
-                ? iso2.local
-                : iso2B
-                ? iso2B.local
-                : lang,
-          };
-        })
-        .sort();
+          .map(({lang}) => lang)
+          .filter((el, i, self) => i == self.indexOf(el))
+          .map((lang) => {
+            const iso2 = where("2", lang);
+            const iso2B = where("2B", lang);
+            return {
+              iso: lang,
+              local:
+                  lang === "user"
+                      ? "User"
+                      : iso2
+                          ? iso2.local
+                          : iso2B
+                              ? iso2B.local
+                              : lang,
+            };
+          })
+          .sort();
     },
   },
   mounted() {
@@ -188,6 +190,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "/src/assets/styles/main";
+
 #subtitles-control {
   .panel {
     $panel-height: 250px;
@@ -272,11 +276,11 @@ export default {
       .list {
         height: calc(#{$panel-height} - #{$bar-height});
         width: 50%;
-        padding: 0 10px;
-        padding-bottom: 10px;
+        padding: 0 10px 10px;
 
         &:first-child .item div:last-child {
-          font-family: "Montserrat-SemiBold" !important;
+          font-family: "Montserrat", serif !important;
+          font-weight: 600;
         }
       }
     }

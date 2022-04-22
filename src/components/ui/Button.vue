@@ -1,7 +1,7 @@
 <template>
   <button
-    :class="[{ large: large, clear: clear }]"
-    @click="$emit('update:modelValue', !modelValue)"
+      :class="[{ large: large, clear: clear }]"
+      @click="$emit('update:modelValue', !modelValue)"
   >
     <ion-icon :name="icon" v-if="icon"></ion-icon>
     <span v-if="translate">
@@ -25,6 +25,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 button {
   display: flex;
   align-items: center;
@@ -34,7 +36,8 @@ button {
   border: 2px solid transparent;
   border-radius: 10px;
   padding: 0 15px;
-  font-family: "Montserrat-Bold";
+  font-family: "Montserrat", serif;
+  font-weight: 700;
   font-size: 15px;
   text-transform: uppercase;
   color: $primary-color;

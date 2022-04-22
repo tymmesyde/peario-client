@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/main";
+
 .error {
   z-index: 99;
   display: flex;
@@ -40,11 +42,13 @@ export default {
 
   .title {
     text-transform: uppercase;
-    font-family: "Montserrat-Bold";
+    font-family: "Montserrat", serif;
+    font-weight: 700;
   }
 
   .message {
-    font-family: "Montserrat-Medium";
+    font-family: "Montserrat", serif;
+    font-weight: 500;
     opacity: 0.7;
   }
 }

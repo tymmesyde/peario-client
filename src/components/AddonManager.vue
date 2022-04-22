@@ -8,9 +8,9 @@
 
       <div class="filters-container">
         <TextInput
-          v-model="manifestUrl"
-          placeholder="Paste addon manifest URL"
-          @change="addFromURL()"
+            v-model="manifestUrl"
+            placeholder="Paste addon manifest URL"
+            @change="addFromURL()"
         ></TextInput>
         <Segments :segments="types" v-model="type">
           <template #segment="{ segment }">
@@ -21,18 +21,18 @@
 
       <ul>
         <li
-          class="addon"
-          :class="{ active: isInstalled(addon) }"
-          v-for="addon in collection[type]"
-          :key="addon.transportUrl"
-          @click="toggleAddon(addon)"
+            class="addon"
+            :class="{ active: isInstalled(addon) }"
+            v-for="addon in collection[type]"
+            :key="addon.transportUrl"
+            @click="toggleAddon(addon)"
         >
           <div class="info">
             <div class="icon">
               <img
-                :src="addon.manifest.icon || addon.manifest.logo"
-                alt=""
-                v-if="addon.manifest.icon || addon.manifest.logo"
+                  :src="addon.manifest.icon || addon.manifest.logo"
+                  alt=""
+                  v-if="addon.manifest.icon || addon.manifest.logo"
               />
               <ion-icon name="cube-outline" v-else></ion-icon>
             </div>
@@ -47,9 +47,9 @@
           </div>
           <div class="switch">
             <ion-icon
-              name="toggle-outline"
-              class="flip"
-              v-show="!isInstalled(addon)"
+                name="toggle-outline"
+                class="flip"
+                v-show="!isInstalled(addon)"
             ></ion-icon>
             <ion-icon name="toggle" v-show="isInstalled(addon)"></ion-icon>
           </div>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import Title from "@/components/ui/Title.vue";
 import TextInput from "@/components/ui/TextInput.vue";
 import Segments from "@/components/ui/Segments.vue";
@@ -111,6 +111,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/main";
+
 $title-height: 9vh;
 $menu-width: 45vh;
 $menu-padding: 2vh;
@@ -184,8 +186,7 @@ $addon-icon-size: 8vh;
     gap: 20px;
     height: calc(100% - #{$title-height});
     overflow-y: auto;
-    padding: 0 $menu-padding;
-    padding-bottom: $menu-padding;
+    padding: 0 $menu-padding $menu-padding;
 
     .addon {
       display: flex;
@@ -235,7 +236,8 @@ $addon-icon-size: 8vh;
           gap: 7px;
 
           .name {
-            font-family: "Montserrat-Medium";
+            font-family: "Montserrat", serif;
+            font-weight: 500;
             font-size: 20px;
           }
 
@@ -250,7 +252,8 @@ $addon-icon-size: 8vh;
               background-color: rgba(white, 0.1);
               padding: 0 10px;
               border-radius: 20px;
-              font-family: "Montserrat-Medium";
+              font-family: "Montserrat", serif;
+              font-weight: 500;
               font-size: 9px;
               user-select: none;
             }

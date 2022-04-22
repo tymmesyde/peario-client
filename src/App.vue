@@ -13,7 +13,7 @@
     <div class="inner">
       <router-view v-slot="{ Component }" v-if="client.connected">
         <transition name="fade" mode="out-in">
-          <component :is="Component" />
+          <component :is="Component"/>
         </transition>
       </router-view>
     </div>
@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import { useMeta } from "vue-meta";
+import {useMeta} from "vue-meta";
 
 import Header from "@/components/Header.vue";
 import Error from "@/components/Error.vue";
 import Footer from "@/components/Footer.vue";
-import { APP_TITLE } from "@/common/config";
+import {APP_TITLE} from "@/common/config";
 
 import store from "./store";
 import StremioService from "./services/stremio.service";
@@ -59,7 +59,7 @@ export default {
   methods: {
     updateUserSettings() {
       if (this.settings.username)
-        ClientService.send("user.update", { username: this.settings.username });
+        ClientService.send("user.update", {username: this.settings.username});
     },
     updateLocaleNavigator() {
       const navigatorLocale = navigator.language.substr(0, 2);
@@ -103,7 +103,7 @@ $padding: 25px;
   top: $header-height-mobile;
   height: calc(100vh - #{$header-height-mobile});
   width: 100%;
-  overflow-y: overlay;
+  overflow-y: auto;
 
   .inner {
     margin: auto;

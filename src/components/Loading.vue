@@ -2,7 +2,7 @@
   <div class="loading">
     <div class="content">
       <ion-icon name="sync-outline" class="icon spin"></ion-icon>
-      <Title type="secondary" :translate="`loading.${type}.title`" />
+      <Title type="secondary" :translate="`loading.${type}.title`"/>
       <div class="message">
         {{ $t(`loading.${type}.message`) }}
       </div>
@@ -25,6 +25,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/main";
+
 .loading {
   z-index: 98;
   position: absolute;
@@ -50,7 +52,8 @@ export default {
     }
 
     .message {
-      font-family: "Montserrat-Medium";
+      font-family: "Montserrat", serif;
+      font-weight: 500;
       font-size: 20px;
       color: $text-color;
       opacity: 0.5;

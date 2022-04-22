@@ -1,26 +1,8 @@
-@font-face {
-  font-family: "Montserrat-Regular";
-  src: url("assets/fonts/Montserrat/Montserrat-Regular.ttf");
-}
+@import "variables";
 
 @font-face {
-  font-family: "Montserrat-Medium";
-  src: url("assets/fonts/Montserrat/Montserrat-Medium.ttf");
-}
-
-@font-face {
-  font-family: "Montserrat-MediumItalic";
-  src: url("assets/fonts/Montserrat/Montserrat-MediumItalic.ttf");
-}
-
-@font-face {
-  font-family: "Montserrat-SemiBold";
-  src: url("assets/fonts/Montserrat/Montserrat-SemiBold.ttf");
-}
-
-@font-face {
-  font-family: "Montserrat-Bold";
-  src: url("assets/fonts/Montserrat/Montserrat-Bold.ttf");
+  font-family: "Montserrat";
+  src: url("/src/assets/fonts/Montserrat.ttf") format("ttf");
 }
 
 ::-webkit-scrollbar {
@@ -53,8 +35,8 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  background-color: $primary-color;
-  background: radial-gradient(circle, $primary-color 50%, black 100%);
+  background: $primary-color
+    radial-gradient(circle, $primary-color 50%, black 100%);
 }
 
 ul {
@@ -85,7 +67,8 @@ ul {
 
 .c-toast {
   border-radius: 1.5vh !important;
-  font-family: "Montserrat-Regular" !important;
+  font-family: "Montserrat", serif !important;
+  font-weight: 400;
   background-color: $primary-color !important;
 }
 

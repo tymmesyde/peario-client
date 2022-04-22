@@ -2,9 +2,9 @@
   <div class="lock-screen">
     <div class="header">
       <img
-        v-if="options.meta.logo"
-        :src="options.meta.logo"
-        :alt="options.meta.name"
+          v-if="options.meta.logo"
+          :src="options.meta.logo"
+          :alt="options.meta.name"
       />
       <Button large icon="checkmark-outline" @click="unlockPlayer()">
         {{ $t("components.player.ready") }}
@@ -15,14 +15,14 @@
       <div class="text">
         {{ $t(`components.player.share`) }}
       </div>
-      <TextInput :value="shareUrl" @click="copyShareUrl()" />
+      <TextInput :value="shareUrl" @click="copyShareUrl()"/>
     </div>
   </div>
 </template>
 
 <script>
 import store from "../../store";
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 import Button from "@/components/ui/Button.vue";
 import TextInput from "@/components/ui/TextInput.vue";
@@ -51,7 +51,8 @@ export default {
     },
     unlockPlayer() {
       const canPlay = this.video.play();
-      canPlay.catch(() => {});
+      canPlay.catch(() => {
+      });
       this.video.pause();
       store.commit("player/updateLockState", false);
     },
@@ -60,6 +61,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 .lock-screen {
   z-index: 98;
   display: flex;
@@ -97,7 +100,8 @@ export default {
     gap: 10px;
 
     .text {
-      font-family: "Montserrat-SemiBold";
+      font-family: "Montserrat", serif;
+      font-weight: 600;
       font-size: 20px;
       color: $text-color;
     }

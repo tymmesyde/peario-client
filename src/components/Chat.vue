@@ -12,14 +12,14 @@
     <div ref="messages" class="messages" v-show="client.messages.length">
       <transition-group name="fade" mode="out-in">
         <div
-          :class="['message', { right: client.user.id === message.user }]"
-          v-for="message in client.messages"
-          :key="message"
+            :class="['message', { right: client.user.id === message.user }]"
+            v-for="message in client.messages"
+            :key="message"
         >
           <div class="user">
             <ion-icon
-              name="ribbon"
-              v-if="client.room.owner === message.user"
+                name="ribbon"
+                v-if="client.room.owner === message.user"
             ></ion-icon>
             <ion-icon name="person" v-else></ion-icon>
             {{ getUsername(message.user) }}
@@ -33,11 +33,11 @@
 
     <div class="form">
       <TextInput
-        v-model="message"
-        placeholder="Say something nice"
-        maxlength="300"
-        @keyup.stop=""
-        @keyup.enter="sendMessage()"
+          v-model="message"
+          placeholder="Say something nice"
+          maxlength="300"
+          @keyup.stop=""
+          @keyup.enter="sendMessage()"
       ></TextInput>
       <Button icon="send" @click="sendMessage()"></Button>
     </div>
@@ -74,17 +74,17 @@ export default {
   },
   methods: {
     sendMessage() {
-      ClientService.send("room.message", { content: this.message });
+      ClientService.send("room.message", {content: this.message});
       this.message = "";
 
       clearTimeout(this.cooldown);
       this.cooldown = setTimeout(
-        () => store.commit("client/updateError", null),
-        3000
+          () => store.commit("client/updateError", null),
+          3000
       );
     },
     getUsername(user_id) {
-      const user = this.client.room.users.find(({ id }) => id === user_id);
+      const user = this.client.room.users.find(({id}) => id === user_id);
       return user ? user.name : "Unknown";
     },
     scrollToBottom() {
@@ -101,6 +101,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/main";
+
 .chat {
   z-index: 96;
   display: flex;
@@ -135,7 +137,8 @@ export default {
 
     .text {
       width: 50%;
-      font-family: "Montserrat-SemiBold";
+      font-family: "Montserrat", serif;
+      font-weight: 600;
       font-size: 15px;
     }
   }
@@ -155,7 +158,8 @@ export default {
       gap: 5px;
       overflow: hidden;
       word-break: break-word;
-      font-family: "Montserrat-Regular";
+      font-family: "Montserrat", serif;
+      font-weight: 400;
       color: $text-color;
 
       .user {

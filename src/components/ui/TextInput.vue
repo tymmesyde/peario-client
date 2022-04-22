@@ -1,11 +1,11 @@
 <template>
   <input
-    type="text"
-    spellcheck="false"
-    :class="[{ large: large }]"
-    :value="modelValue"
-    :placeholder="placeholder"
-    @input="$emit('update:modelValue', $event.target.value)"
+      type="text"
+      spellcheck="false"
+      :class="[{ large: large }]"
+      :value="modelValue"
+      :placeholder="placeholder"
+      @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 
@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 input {
   display: flex;
   align-items: center;
@@ -31,7 +33,8 @@ input {
   border: 2px solid $accent-color;
   border-radius: 5px;
   padding: 0 15px;
-  font-family: "Montserrat-Bold";
+  font-family: "Montserrat", serif;
+  font-weight: 700;
   font-size: 15px;
   color: $primary-color;
   background-color: $accent-color;

@@ -6,7 +6,7 @@
       </div>
 
       <router-link class="logo" to="/">
-        <img src="../assets/img/logo.svg" />
+        <img src="../assets/img/logo.svg"/>
       </router-link>
 
       <div class="version">
@@ -63,6 +63,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/main";
+
 header {
   z-index: 99;
   position: fixed;
@@ -117,7 +119,8 @@ header {
     }
 
     .version {
-      font-family: "Montserrat-SemiBold";
+      font-family: "Montserrat", serif;
+      font-weight: 600;
       font-size: 15px;
       color: $text-color;
       opacity: 0.3;

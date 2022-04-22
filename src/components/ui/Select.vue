@@ -11,10 +11,10 @@
     <transition name="fade">
       <ul class="menu" v-show="active">
         <li
-          :class="{ active: option.value == selected.value }"
-          v-for="option in options"
-          :key="option"
-          @click="$emit('update:modelValue', option.value), toggle()"
+            :class="{ active: option.value == selected.value }"
+            v-for="option in options"
+            :key="option"
+            @click="$emit('update:modelValue', option.value), toggle()"
         >
           {{ option.name }}
         </li>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     selected() {
-      return this.options.find(({ value }) => value === this.modelValue);
+      return this.options.find(({value}) => value === this.modelValue);
     },
   },
   methods: {
@@ -48,6 +48,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/src/assets/styles/main";
+
 .select {
   position: relative;
 
@@ -59,9 +61,9 @@ export default {
     border: 2px solid $accent-color;
     border-radius: 5px;
     padding: 0 15px;
-    font-family: "Montserrat-Bold";
+    font-family: "Montserrat", serif;
+    font-weight: 700;
     font-size: 15px;
-    font-weight: bold;
     color: $primary-color;
     background-color: $accent-color;
     text-transform: none;
@@ -87,9 +89,9 @@ export default {
       align-items: center;
       height: 40px;
       padding: 15px;
-      font-family: "Montserrat-Bold";
+      font-family: "Montserrat-Bold", serif;
+      font-weight: 700;
       font-size: 15px;
-      font-weight: bold;
       color: $primary-color;
       cursor: pointer;
 
