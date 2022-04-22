@@ -1,73 +1,73 @@
 {
-    "views": {
-        "home": {
-            "title": "Comparte tus corrientes",
-            "sub": "Peario te permite ver los streams de {0} con tus amigos.",
-            "button": "Cree una sala"
-        },
-        "search": {
-            "title": "Busca en",
-            "sub": "¡Encuentra algo que te gustaría ver con tus amigos!",
-            "segments": {
-                "movies": "Películas",
-                "series": "Series"
-            }
-        },
-        "stream": {
-            "season": "Temporada",
-            "misc": "Miscelánea",
-            "streams": {
-                "title": "Streams",
-                "error": "No hay streams disponibles",
-                "button": "Administrar Addons"
-            }
-        }
+  "views": {
+    "home": {
+      "title": "Comparte tus corrientes",
+      "sub": "Peario te permite ver los streams de {0} con tus amigos.",
+      "button": "Cree una sala"
     },
-    "components": {
-        "player": {
-            "ready": "LISTO",
-            "autoSync": "Auto-Syncro",
-            "subtitle": "Subtítulo",
-            "share": "Ahora puedes compartir este enlace con tus amigos:"
-        },
-        "settings": {
-            "title": "Parámetros",
-            "lang": "Lenguaje",
-            "support": "Soporte",
-            "links": {
-                "title": "Enlaces",
-                "report": "Report an issue"
-            },
-            "button": "Terminar"
-        }
+    "search": {
+      "title": "Busca en",
+      "sub": "¡Encuentra algo que te gustaría ver con tus amigos!",
+      "segments": {
+        "movies": "Películas",
+        "series": "Series"
+      }
     },
-    "errors": {
-        "server": {
-            "title": "Incapaz de alcanzar el servidor",
-            "message": "Vuelve en un rato ..."
-        },
-        "stremio": {
-            "title": "Stremio no está corriendo",
-            "message": "Asegúrese de abrir Stremio y deshabilitar su bloqueador de anuncios para que Peario pueda operar."
-        },
-        "room": {
-            "title": "Esta sala no existe",
-            "message": "Asegúrate de que la sala sigue activa."
-        },
-        "cooldown": {
-            "title": "¡Va demasiado rápido!",
-            "message": "Espere unos instantes antes de volver a intentarlo."
-        }
-    },
-    "loading": {
-        "room": {
-            "title": "Cargando la sala",
-            "message": "Puede tomar algunas veces."
-        }
-    },
-    "toasts": {
-        "clipboard": "¡Copiado en tu portapapeles!",
-        "hlsStream": "Cambió a HLS stream",
-        "sourceStream": "Cambió a Source stream"
+    "stream": {
+      "season": "Temporada",
+      "misc": "Miscelánea",
+      "streams": {
+        "title": "Streams",
+        "error": "No hay streams disponibles",
+        "button": "Administrar Addons"
+      }
     }
+  },
+  "components": {
+    "player": {
+      "ready": "LISTO",
+      "autoSync": "Auto-Syncro",
+      "subtitle": "Subtítulo",
+      "share": "Ahora puedes compartir este enlace con tus amigos:"
+    },
+    "settings": {
+      "title": "Parámetros",
+      "lang": "Lenguaje",
+      "support": "Soporte",
+      "links": {
+        "title": "Enlaces",
+        "report": "Report an issue"
+      },
+      "button": "Terminar"
+    }
+  },
+  "errors": {
+    "server": {
+      "title": "Incapaz de alcanzar el servidor",
+      "message": "Vuelve en un rato ..."
+    },
+    "stremio": {
+      "title": "Stremio no está corriendo",
+      "message": "Asegúrese de abrir Stremio y deshabilitar su bloqueador de anuncios para que Peario pueda operar."
+    },
+    "room": {
+      "title": "Esta sala no existe",
+      "message": "Asegúrate de que la sala sigue activa."
+    },
+    "cooldown": {
+      "title": "¡Va demasiado rápido!",
+      "message": "Espere unos instantes antes de volver a intentarlo."
+    }
+  },
+  "loading": {
+    "room": {
+      "title": "Cargando la sala",
+      "message": "Puede tomar algunas veces."
+    }
+  },
+  "toasts": {
+    "clipboard": "¡Copiado en tu portapapeles!",
+    "hlsStream": "Cambió a HLS stream",
+    "sourceStream": "Cambió a Source stream"
+  }
 }

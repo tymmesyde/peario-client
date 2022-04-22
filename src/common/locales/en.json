@@ -1,79 +1,79 @@
 {
-    "views": {
-        "home": {
-            "title": "Share your streams",
-            "sub": "Peario allows you to watch {0} streams with your friends.",
-            "button": "Create a room"
-        },
-        "search": {
-            "title": "Search",
-            "sub": "Find something you'd like to watch with your friends!",
-            "segments": {
-                "movies": "Movies",
-                "series": "Series"
-            }
-        },
-        "stream": {
-            "season": "Season",
-            "misc": "Miscellaneous",
-            "streams": {
-                "title": "Streams",
-                "error": "No streams available",
-                "button": "Manage Addons"
-            }
-        }
+  "views": {
+    "home": {
+      "title": "Share your streams",
+      "sub": "Peario allows you to watch {0} streams with your friends.",
+      "button": "Create a room"
     },
-    "components": {
-        "player": {
-            "ready": "READY",
-            "autoSync": "Auto-Sync",
-            "subtitle": "Subtitle",
-            "share": "You can now share this link with your friends:"
-        },
-        "settings": {
-            "title": "Settings",
-            "lang": "Language",
-            "support": "Support",
-            "links": {
-                "title": "Links",
-                "report": "Report an issue"
-            },
-            "button": "Done"
-        },
-        "addons": {
-            "types": {
-                "streams": "Streams",
-                "subtitles": "Subtitles"
-            }
-        }
+    "search": {
+      "title": "Search",
+      "sub": "Find something you'd like to watch with your friends!",
+      "segments": {
+        "movies": "Movies",
+        "series": "Series"
+      }
     },
-    "errors": {
-        "server": {
-            "title": "Unable to reach the server",
-            "message": "Come back in a little while ..."
-        },
-        "stremio": {
-            "title": "Failed to connect to Stremio",
-            "message": "Make sure to open Stremio and disable your adblocker so Peario can operate."
-        },
-        "room": {
-            "title": "This room does not exists",
-            "message": "Be sure that the room is still active."
-        },
-        "cooldown": {
-            "title": "It's going too fast !",
-            "message": "Wait a few moment before retrying."
-        }
-    },
-    "loading": {
-        "room": {
-            "title": "Loading the room",
-            "message": "It can take some times."
-        }
-    },
-    "toasts": {
-        "clipboard": "Copied to your clipboard !",
-        "hlsStream": "Switched to HLS stream",
-        "sourceStream": "Switched to Source stream"
+    "stream": {
+      "season": "Season",
+      "misc": "Miscellaneous",
+      "streams": {
+        "title": "Streams",
+        "error": "No streams available",
+        "button": "Manage Addons"
+      }
     }
+  },
+  "components": {
+    "player": {
+      "ready": "READY",
+      "autoSync": "Auto-Sync",
+      "subtitle": "Subtitle",
+      "share": "You can now share this link with your friends:"
+    },
+    "settings": {
+      "title": "Settings",
+      "lang": "Language",
+      "support": "Support",
+      "links": {
+        "title": "Links",
+        "report": "Report an issue"
+      },
+      "button": "Done"
+    },
+    "addons": {
+      "types": {
+        "streams": "Streams",
+        "subtitles": "Subtitles"
+      }
+    }
+  },
+  "errors": {
+    "server": {
+      "title": "Unable to reach the server",
+      "message": "Come back in a little while ..."
+    },
+    "stremio": {
+      "title": "Failed to connect to Stremio",
+      "message": "Make sure to open Stremio and disable your adblocker so Peario can operate."
+    },
+    "room": {
+      "title": "This room does not exists",
+      "message": "Be sure that the room is still active."
+    },
+    "cooldown": {
+      "title": "It's going too fast !",
+      "message": "Wait a few moment before retrying."
+    }
+  },
+  "loading": {
+    "room": {
+      "title": "Loading the room",
+      "message": "It can take some times."
+    }
+  },
+  "toasts": {
+    "clipboard": "Copied to your clipboard !",
+    "hlsStream": "Switched to HLS stream",
+    "sourceStream": "Switched to Source stream"
+  }
 }
