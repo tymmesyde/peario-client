@@ -1,135 +1,118 @@
 @font-face {
-    font-family: 'Montserrat-Regular';
-    src: url('assets/fonts/Montserrat/Montserrat-Regular.ttf');
-}
-
-@font-face {
-    font-family: 'Montserrat-Medium';
-    src: url('assets/fonts/Montserrat/Montserrat-Medium.ttf');
-}
-
-@font-face {
-    font-family: 'Montserrat-MediumItalic';
-    src: url('assets/fonts/Montserrat/Montserrat-MediumItalic.ttf');
-}
-
-@font-face {
-    font-family: 'Montserrat-SemiBold';
-    src: url('assets/fonts/Montserrat/Montserrat-SemiBold.ttf');
-}
-
-@font-face {
-    font-family: 'Montserrat-Bold';
-    src: url('assets/fonts/Montserrat/Montserrat-Bold.ttf');
+  font-family: Montserrat;
+  src: url("/src/assets/fonts/montserrat.ttf");
+  font-weight: 100 900;
 }
 
 ::-webkit-scrollbar {
-    height: 8px;
-    width: 8px;
+  height: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 ::selection {
-    background: rgba(white, 0.1);
+  background: rgba(white, 0.1);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    overflow: hidden;
-    background-color: $primary-color;
-    background: radial-gradient(circle, $primary-color 50%, black 100%);
+  margin: 0;
+  overflow: hidden;
+  background-color: $primary-color;
+  background: radial-gradient(circle, $primary-color 50%, black 100%);
 }
 
 ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .flip {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .danger {
-    color: $danger-color;
+  color: $danger-color;
 }
 
 .success {
-    color: $success-color;
+  color: $success-color;
 }
 
 .accent {
-    color: $accent-color;
+  color: $accent-color;
 }
 
 .spin {
-    animation: spinning 1s ease-in-out infinite;
+  animation: spinning 1s ease-in-out infinite;
 }
 
 .c-toast {
-    border-radius: 1.5vh !important;
-    font-family: 'Montserrat-Regular' !important;
-    background-color: $primary-color !important;
+  border-radius: 1.5vh !important;
+  font-family: "Montserrat", serif !important;
+  font-weight: 400;
+  background-color: $primary-color !important;
 }
 
 @keyframes spinning {
-    0% {
-        transform: rotate(0);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes slide-down {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-up {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .fade-enter-active {
-    transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease;
 }
 
 .fade-leave-active {
-    transition: opacity 0.1s ease;
+  transition: opacity 0.1s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 
 @media only screen and (max-width: 768px) {
-    footer {
-        display: none;
-    }
+  footer {
+    display: none;
+  }
 }

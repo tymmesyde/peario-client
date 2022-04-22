@@ -1,73 +1,73 @@
 {
-    "views": {
-        "home": {
-            "title": "Akışlarınızı paylaşın",
-            "sub": "Peario, arkadaşlarınızla {0} yayınlarını izlemenizi sağlar.",
-            "button": "Bir oda oluştur"
-        },
-        "search": {
-            "title": "Arama",
-            "sub": "Arkadaşlarınızla izlemek istediğiniz bir şey bulun!",
-            "segments": {
-                "movies": "Filmler",
-                "series": "Seriler"
-            }
-        },
-        "stream": {
-            "season": "Sezon",
-            "misc": "Çeşitli",
-            "streams": {
-                "title": "Canlı Yayınlar",
-                "error": "Mevcut akış yok",
-                "button": "Eklentileri Yönet"
-            }
-        }
+  "views": {
+    "home": {
+      "title": "Akışlarınızı paylaşın",
+      "sub": "Peario, arkadaşlarınızla {0} yayınlarını izlemenizi sağlar.",
+      "button": "Bir oda oluştur"
     },
-    "components": {
-        "player": {
-            "ready": "HAZIR",
-            "autoSync": "Otomatik Eşitleme",
-            "subtitle": "Alt yazı",
-            "share": "Artık bu bağlantıyı arkadaşlarınızla paylaşabilirsiniz:"
-        },
-        "settings": {
-            "title": "Ayarlar",
-            "lang": "Dil",
-            "support": "Destek",
-            "links": {
-                "title": "Bağlantılar",
-                "report": "Report an issue"
-            },
-            "button": "Bitti"
-        }
+    "search": {
+      "title": "Arama",
+      "sub": "Arkadaşlarınızla izlemek istediğiniz bir şey bulun!",
+      "segments": {
+        "movies": "Filmler",
+        "series": "Seriler"
+      }
     },
-    "errors": {
-        "server": {
-            "title": "Sunucuya erişilemiyor",
-            "message": "Kısa bir süre sonra geri dönün ..."
-        },
-        "stremio": {
-            "title": "Stremio açık değil",
-            "message": "Peario'nun çalışabilmesi için Stremio'yu açtığınızdan ve reklam engelleyicinizi devre dışı bıraktığınızdan emin olun."
-        },
-        "room": {
-            "title": "Bu oda mevcut değil",
-            "message": "Odanın hala aktif olduğundan emin olun."
-        },
-        "cooldown": {
-            "title": "Çok hızlı gidiyor!",
-            "message": "Yeniden denemeden önce birkaç dakika bekleyin."
-        }
-    },
-    "loading": {
-        "room": {
-            "title": "Oda yükleniyor",
-            "message": "Biraz zaman alabilir."
-        }
-    },
-    "toasts": {
-        "clipboard": "Panonuza kopyalandı!",
-        "hlsStream": "HLS akışına geçti",
-        "sourceStream": "Source akışına geçti"
+    "stream": {
+      "season": "Sezon",
+      "misc": "Çeşitli",
+      "streams": {
+        "title": "Canlı Yayınlar",
+        "error": "Mevcut akış yok",
+        "button": "Eklentileri Yönet"
+      }
     }
+  },
+  "components": {
+    "player": {
+      "ready": "HAZIR",
+      "autoSync": "Otomatik Eşitleme",
+      "subtitle": "Alt yazı",
+      "share": "Artık bu bağlantıyı arkadaşlarınızla paylaşabilirsiniz:"
+    },
+    "settings": {
+      "title": "Ayarlar",
+      "lang": "Dil",
+      "support": "Destek",
+      "links": {
+        "title": "Bağlantılar",
+        "report": "Report an issue"
+      },
+      "button": "Bitti"
+    }
+  },
+  "errors": {
+    "server": {
+      "title": "Sunucuya erişilemiyor",
+      "message": "Kısa bir süre sonra geri dönün ..."
+    },
+    "stremio": {
+      "title": "Stremio açık değil",
+      "message": "Peario'nun çalışabilmesi için Stremio'yu açtığınızdan ve reklam engelleyicinizi devre dışı bıraktığınızdan emin olun."
+    },
+    "room": {
+      "title": "Bu oda mevcut değil",
+      "message": "Odanın hala aktif olduğundan emin olun."
+    },
+    "cooldown": {
+      "title": "Çok hızlı gidiyor!",
+      "message": "Yeniden denemeden önce birkaç dakika bekleyin."
+    }
+  },
+  "loading": {
+    "room": {
+      "title": "Oda yükleniyor",
+      "message": "Biraz zaman alabilir."
+    }
+  },
+  "toasts": {
+    "clipboard": "Panonuza kopyalandı!",
+    "hlsStream": "HLS akışına geçti",
+    "sourceStream": "Source akışına geçti"
+  }
 }
