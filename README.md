@@ -11,17 +11,19 @@ Peario uses a server to link users together, which you can find here on GitHub: 
 ![Peario Player](screenshot1.png)
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
-
