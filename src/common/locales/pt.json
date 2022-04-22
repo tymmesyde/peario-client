@@ -1,73 +1,73 @@
 {
-    "views": {
-        "home": {
-            "title": "Partilhe os seus streams",
-            "sub": "O Peario permite que você assista aos fluxos do {0} com seus amigos.",
-            "button": "Criar uma sala"
-        },
-        "search": {
-            "title": "Pesquisa",
-            "sub": "Encontre algo que você gostaria de assistir com seus amigos!",
-            "segments": {
-                "movies": "Filmes",
-                "series": "Séries"
-            }
-        },
-        "stream": {
-            "season": "Época",
-            "misc": "Diversos",
-            "streams": {
-                "title": "Streams",
-                "error": "Não há fluxos disponíveis",
-                "button": "Gerir Addons"
-            }
-        }
+  "views": {
+    "home": {
+      "title": "Partilhe os seus streams",
+      "sub": "O Peario permite que você assista aos fluxos do {0} com seus amigos.",
+      "button": "Criar uma sala"
     },
-    "components": {
-        "player": {
-            "ready": "PRONTO",
-            "autoSync": "Auto-Sync",
-            "subtitle": "Subtítulo",
-            "share": "Pode agora partilhar este link com os seus amigos:"
-        },
-        "settings": {
-            "title": "Parâmetros",
-            "lang": "Idioma",
-            "support": "Apoio",
-            "links": {
-                "title": "Links",
-                "report": "Report an issue"
-            },
-            "button": "Terminar"
-        }
+    "search": {
+      "title": "Pesquisa",
+      "sub": "Encontre algo que você gostaria de assistir com seus amigos!",
+      "segments": {
+        "movies": "Filmes",
+        "series": "Séries"
+      }
     },
-    "errors": {
-        "server": {
-            "title": "Incapaz de chegar ao servidor",
-            "message": "Volte dentro de pouco tempo ..."
-        },
-        "stremio": {
-            "title": "Erro ao conectar ao Stremio",
-            "message": "Confirme que o Stremio está aberto e desative o adblocker para que o Peario possa funcionar."
-        },
-        "room": {
-            "title": "Esta sala não existe",
-            "message": "Certifique-se de que a sala ainda está activa."
-        },
-        "cooldown": {
-            "title": "Está indo muito rápido!",
-            "message": "Aguarde alguns momentos antes de tentar novamente."
-        }
-    },
-    "loading": {
-        "room": {
-            "title": "Carregamento da sala",
-            "message": "Pode demorar algumas vezes."
-        }
-    },
-    "toasts": {
-        "clipboard": "Copiado para a sua prancheta!",
-        "hlsStream": "Comutado para o fluxo HLS",
-        "sourceStream": "Comutado para o fluxo Source"
+    "stream": {
+      "season": "Época",
+      "misc": "Diversos",
+      "streams": {
+        "title": "Streams",
+        "error": "Não há fluxos disponíveis",
+        "button": "Gerir Addons"
+      }
     }
+  },
+  "components": {
+    "player": {
+      "ready": "PRONTO",
+      "autoSync": "Auto-Sync",
+      "subtitle": "Subtítulo",
+      "share": "Pode agora partilhar este link com os seus amigos:"
+    },
+    "settings": {
+      "title": "Parâmetros",
+      "lang": "Idioma",
+      "support": "Apoio",
+      "links": {
+        "title": "Links",
+        "report": "Report an issue"
+      },
+      "button": "Terminar"
+    }
+  },
+  "errors": {
+    "server": {
+      "title": "Incapaz de chegar ao servidor",
+      "message": "Volte dentro de pouco tempo ..."
+    },
+    "stremio": {
+      "title": "Erro ao conectar ao Stremio",
+      "message": "Confirme que o Stremio está aberto e desative o adblocker para que o Peario possa funcionar."
+    },
+    "room": {
+      "title": "Esta sala não existe",
+      "message": "Certifique-se de que a sala ainda está activa."
+    },
+    "cooldown": {
+      "title": "Está indo muito rápido!",
+      "message": "Aguarde alguns momentos antes de tentar novamente."
+    }
+  },
+  "loading": {
+    "room": {
+      "title": "Carregamento da sala",
+      "message": "Pode demorar algumas vezes."
+    }
+  },
+  "toasts": {
+    "clipboard": "Copiado para a sua prancheta!",
+    "hlsStream": "Comutado para o fluxo HLS",
+    "sourceStream": "Comutado para o fluxo Source"
+  }
 }
