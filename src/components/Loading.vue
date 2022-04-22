@@ -2,7 +2,7 @@
   <div class="loading">
     <div class="content">
       <ion-icon name="sync-outline" class="icon spin"></ion-icon>
-      <Title type="secondary" :translate="`loading.${type}.title`"/>
+      <Title type="secondary" :translate="`loading.${type}.title`" />
       <div class="message">
         {{ $t(`loading.${type}.message`) }}
       </div>

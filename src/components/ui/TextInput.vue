@@ -1,11 +1,11 @@
 <template>
   <input
-      type="text"
-      spellcheck="false"
-      :class="[{ large: large }]"
-      :value="modelValue"
-      :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value)"
+    type="text"
+    spellcheck="false"
+    :class="[{ large: large }]"
+    :value="modelValue"
+    :placeholder="placeholder"
+    @input="$emit('update:modelValue', $event.target.value)"
   />
 </template>
 

@@ -1,13 +1,13 @@
 <template>
   <div
-      class="player"
-      ref="player"
-      :class="{ controlsHidden: controlsHidden }"
-      @mousemove="showControls()"
-      @touchmove="showControls()"
-      @dragover="dropSubtitles($event)"
-      @drop="dropSubtitles($event)"
-      @mouseleave="hideControls()"
+    class="player"
+    ref="player"
+    :class="{ controlsHidden: controlsHidden }"
+    @mousemove="showControls()"
+    @touchmove="showControls()"
+    @dragover="dropSubtitles($event)"
+    @drop="dropSubtitles($event)"
+    @mouseleave="hideControls()"
   >
     <LockScreen :options="options" v-if="locked"></LockScreen>
 
@@ -20,22 +20,22 @@
     <Subtitle v-if="video" :timecode="currentTime"></Subtitle>
 
     <video
-        ref="video"
-        :src="options.src"
-        :poster="options.meta.background"
-        @click="showControls()"
-        @timeupdate="updateCurrentTime()"
-        @waiting="updateBuffering(true)"
-        @loadedmetadata="updateBuffering(false)"
-        @canplay="updateBuffering(false)"
+      ref="video"
+      :src="options.src"
+      :poster="options.meta.background"
+      @click="showControls()"
+      @timeupdate="updateCurrentTime()"
+      @waiting="updateBuffering(true)"
+      @loadedmetadata="updateBuffering(false)"
+      @canplay="updateBuffering(false)"
     ></video>
 
     <div class="controls" v-if="!locked && video">
       <div class="panel">
         <PlayPauseControl
-            class="control"
-            :options="options"
-            @change="onPlayerChange()"
+          class="control"
+          :options="options"
+          @change="onPlayerChange()"
         ></PlayPauseControl>
 
         <div class="timer control" v-to-timer="currentTime"></div>
@@ -51,22 +51,22 @@
         <VolumeContol class="control"></VolumeContol>
 
         <SubtitlesControl
-            class="control"
-            :videoUrl="options.src"
-            :meta="options.meta"
-            :userSubtitle="userSubtitle"
+          class="control"
+          :videoUrl="options.src"
+          :meta="options.meta"
+          :userSubtitle="userSubtitle"
         ></SubtitlesControl>
 
         <HlsControl
-            class="control"
-            :options="options"
-            v-if="options.hls"
+          class="control"
+          :options="options"
+          v-if="options.hls"
         ></HlsControl>
 
         <FullScreenControl
-            class="control"
-            :player="player"
-            :video="video"
+          class="control"
+          :player="player"
+          :video="video"
         ></FullScreenControl>
       </div>
     </div>
@@ -85,7 +85,7 @@ import HlsControl from "./controls/Hls.vue";
 import FullScreenControl from "./controls/FullScreen.vue";
 
 import store from "../../store";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Player",
@@ -158,7 +158,7 @@ export default {
     dropSubtitles(event) {
       event.preventDefault();
 
-      const {files} = event.dataTransfer;
+      const { files } = event.dataTransfer;
       if (files.length) {
         const file = files[0];
         if (file.name.endsWith(".srt")) this.userSubtitle = file;

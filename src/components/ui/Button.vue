@@ -1,7 +1,7 @@
 <template>
   <button
-      :class="[{ large: large, clear: clear }]"
-      @click="$emit('update:modelValue', !modelValue)"
+    :class="[{ large: large, clear: clear }]"
+    @click="$emit('update:modelValue', !modelValue)"
   >
     <ion-icon :name="icon" v-if="icon"></ion-icon>
     <span v-if="translate">

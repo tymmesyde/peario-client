@@ -11,10 +11,10 @@
     <transition name="fade">
       <ul class="menu" v-show="active">
         <li
-            :class="{ active: option.value == selected.value }"
-            v-for="option in options"
-            :key="option"
-            @click="$emit('update:modelValue', option.value), toggle()"
+          :class="{ active: option.value == selected.value }"
+          v-for="option in options"
+          :key="option"
+          @click="$emit('update:modelValue', option.value), toggle()"
         >
           {{ option.name }}
         </li>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     selected() {
-      return this.options.find(({value}) => value === this.modelValue);
+      return this.options.find(({ value }) => value === this.modelValue);
     },
   },
   methods: {

@@ -4,9 +4,9 @@
 
     <div class="inner">
       <Title
-          icon="settings-outline"
-          type="secondary"
-          translate="components.settings.title"
+        icon="settings-outline"
+        type="secondary"
+        translate="components.settings.title"
       ></Title>
 
       <div class="settings">
@@ -23,8 +23,8 @@
             Username
           </div>
           <TextInput
-              :value="settings.username || client.user.name"
-              @change="updateUsername($event)"
+            :value="settings.username || client.user.name"
+            @change="updateUsername($event)"
           ></TextInput>
         </div>
         <div class="setting">
@@ -39,29 +39,28 @@
             <ion-icon name="link"></ion-icon>
             {{ $t("components.settings.links.title") }}
           </div>
-          <Link href="https://github.com/tymmesyde/peario-client/issues">{{
-              $t("components.settings.links.report")
-                                                                         }}
+          <Link href="https://github.com/tymmesyde/peario-client/issues"
+            >{{ $t("components.settings.links.report") }}
           </Link>
         </div>
       </div>
 
       <Button
-          clear
-          large
-          translate="components.settings.button"
-          @click="close()"
+        clear
+        large
+        translate="components.settings.button"
+        @click="close()"
       ></Button>
     </div>
   </div>
 </template>
 
 <script>
-import {ref, watchEffect} from "vue";
+import { ref, watchEffect } from "vue";
 import postscribe from "postscribe";
 import ClientService from "../services/client.service";
 
-import {where} from "langs";
+import { where } from "langs";
 import Title from "./ui/Title.vue";
 import Button from "./ui/Button.vue";
 import Select from "./ui/Select.vue";
@@ -101,11 +100,11 @@ export default {
     getLocaleName(locale) {
       return where("1", locale).local;
     },
-    updateUsername({target}) {
+    updateUsername({ target }) {
       const username = target.value.slice(0, 25);
       if (username.length > 0) {
         store.dispatch("settings/updateUsername", username);
-        ClientService.send("user.update", {username});
+        ClientService.send("user.update", { username });
       }
     },
     close() {
@@ -117,8 +116,8 @@ export default {
 
     const buymeacoffee = document.createElement("script");
     buymeacoffee.setAttribute(
-        "src",
-        "https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+      "src",
+      "https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
     );
     buymeacoffee.setAttribute("data-name", "bmc-button");
     buymeacoffee.setAttribute("data-slug", "tymmesyde");
@@ -133,13 +132,13 @@ export default {
 
     const kofiscript = document.createElement("script");
     kofiscript.setAttribute(
-        "src",
-        "https://storage.ko-fi.com/cdn/widget/Widget_2.js"
+      "src",
+      "https://storage.ko-fi.com/cdn/widget/Widget_2.js"
     );
 
     const kofibuton = document.createElement("script");
     kofibuton.text =
-        "kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'G2G85BB77');kofiwidget2.draw();";
+      "kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'G2G85BB77');kofiwidget2.draw();";
 
     watchEffect(() => {
       if (support.value) {

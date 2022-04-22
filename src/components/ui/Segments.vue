@@ -1,10 +1,10 @@
 <template>
   <div class="segments">
     <div
-        :class="['segment', { active: segment === modelValue }]"
-        v-for="segment in segments"
-        :key="segment"
-        @click="$emit('update:modelValue', segment)"
+      :class="['segment', { active: segment === modelValue }]"
+      v-for="segment in segments"
+      :key="segment"
+      @click="$emit('update:modelValue', segment)"
     >
       <slot name="segment" :segment="segment"></slot>
     </div>
