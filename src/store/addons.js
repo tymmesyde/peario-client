@@ -55,12 +55,12 @@ export default {
             
             const collection = {
                 streams: [
-                    ...streams,
-                    ...userStreams
+                    ...userStreams,
+                    ...streams
                 ],
                 subtitles: [
-                    ...subtitles,
-                    ...userSubtitles
+                    ...userSubtitles,
+                    ...subtitles
                 ]
             };
 
