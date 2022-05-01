@@ -1,55 +1,45 @@
 <template>
     <div class="time-bar">
-        <RangeInput v-model="range" max="10000" step="1" :disabled="(autoSync && !options.isOwner) || !video.duration" @change="updateCurrentTime($event)"></RangeInput>
+        <RangeInput v-model="range" max="10000" step="1" :disabled="(autoSync && !isOwner) || !videoElement.duration" @change="onRangeChange"></RangeInput>
     </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex';
+<script setup>
+import { computed, defineProps, onMounted, onUnmounted, ref } from 'vue';
 import store from '@/store';
 import RangeInput from "@/components/ui/RangeInput.vue";
 
-export default {
-    name: 'TimeBarControl',
-    components: {
-        RangeInput
-    },
-    props: {
-        options: Object
-    },
-    computed: {
-        currentTime() {
-            return this.video.currentTime;
-        },
-        ...mapGetters({
-            video: 'player/video',
-            autoSync: 'player/autoSync'
-        })
-    },
-    data() {
-        return {
-            range: 0
-        }
-    },
-    methods: {
-        currentTimeToRange() {
-            const { currentTime, duration } = this.video;
-            this.range = Number(((currentTime * 10000 / duration) || 0).toFixed());
-        },
-        updateCurrentTime(value) {
-            if ((!this.options.isOwner && !this.autoSync) || this.options.isOwner) {
-                const currentTime = value * this.video.duration / 10000;
-                store.dispatch('player/setCurrentTime', currentTime);
-            }
-        }
-    },
-    mounted() {
-        this.video.addEventListener('timeupdate', this.currentTimeToRange);
-    },
-    unmounted() {
-        this.video.removeEventListener('timeupdate', this.currentTimeToRange);
+const props = defineProps({
+    options: {
+        isOwner: Boolean
     }
-}
+});
+
+const range = ref(0);
+
+const isOwner = computed(() => props.options.isOwner);
+const videoElement = computed(() => store.state.player.video);
+const autoSync = computed(() => store.state.player.autoSync);
+
+const currentTimeToRange = () => {
+    const { currentTime, duration } = videoElement.value;
+    range.value = Number(((currentTime * 10000 / duration) || 0).toFixed());
+};
+
+const onRangeChange = (value) => {
+    if ((!isOwner.value && !autoSync.value) || isOwner.value) {
+        const currentTime = value * videoElement.value.duration / 10000;
+        store.dispatch('player/setCurrentTime', currentTime);
+    }
+};
+
+onMounted(() => {
+    videoElement.value.addEventListener('timeupdate', currentTimeToRange);
+});
+
+onUnmounted(() => {
+    videoElement.value.removeEventListener('timeupdate', currentTimeToRange)
+});
 </script>
 
 <style lang="scss" scoped>
