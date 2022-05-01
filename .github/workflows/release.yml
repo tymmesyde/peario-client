@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install NPM dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Zip build artifact
+        run: zip -r peario.zip ./build
+      - name: Upload build artifact to GitHub release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: peario.zip
+          asset_name: peario.zip
+          tag: ${{ github.ref }}
+          overwrite: true
