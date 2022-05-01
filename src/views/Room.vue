@@ -1,22 +1,22 @@
 <template>
-    <div :class="['room', { 'chat-open': chatOpen }]">
+    <div :class="['room', { 'chat-open': isChatOpen }]">
         <Loading type="room" v-if="!playerOptions"></Loading>
 
-        <div class="users" v-if="player.video" :class="{ 'show': !player.controlsHidden }">
+        <div class="users" v-if="playerState.video" :class="{ 'show': !playerState.controlsHidden }">
             <div class="count">
-                <ion-icon name="eye-outline"></ion-icon> {{ users.length }}
+                <ion-icon name="eye-outline"></ion-icon> {{ usersList.length }}
             </div>
 
             <ul>
-                <li v-for="user in users" :key="user.id">
+                <li v-for="user in usersList" :key="user.id">
                     <div class="username">
-                        <ion-icon name="ribbon-outline" v-if="user.id == client.room.owner"></ion-icon>
+                        <ion-icon name="ribbon-outline" v-if="user.id == clientState.room.owner"></ion-icon>
                         <ion-icon name="person-outline" v-else></ion-icon>
                         {{ user.name }}
                     </div>
 
-                    <div class="status" v-if="user.id == client.room.owner">
-                        <ion-icon class="success" name="play-outline" v-if="!player.paused"></ion-icon>
+                    <div class="status" v-if="user.id == clientState.room.owner">
+                        <ion-icon class="success" name="play-outline" v-if="!playerState.paused"></ion-icon>
                         <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
                     </div>
                 </li>
@@ -24,20 +24,22 @@
         </div>
 
         <div class="controls">
-            <Button clear icon="close" v-if="chatOpen" @click="chatOpen = false"></Button>
-            <Button clear icon="chatbubbles-outline" v-else @click="chatOpen = true">Open Chat</Button>
+            <Button clear icon="close" v-if="isChatOpen" @click="isChatOpen = false"></Button>
+            <Button clear icon="chatbubbles-outline" v-else @click="isChatOpen = true">Open Chat</Button>
         </div>
 
         <Player v-if="playerOptions" :options="playerOptions" @change="syncPlayer()"></Player>
 
         <transition name="fade">
-            <Chat v-if="chatOpen"></Chat>
+            <Chat v-if="isChatOpen"></Chat>
         </transition>
     </div>
 </template>
 
-<script>
-import store from '../store';
+<script setup>
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import router from '@/router';
+import store from '@/store';
 
 import Loading from "@/components/Loading.vue";
 import Button from "@/components/ui/Button.vue";
@@ -46,95 +48,78 @@ import Chat from "@/components/Chat.vue";
 import StremioService from "@/services/stremio.service";
 import HlsService from "@/services/hls.service";
 import ClientService from "@/services/client.service";
+import { onBeforeRouteLeave } from 'vue-router';
 
-export default {
-    name: 'Room',
-    components: {
-        Loading,
-        Button,
-        Player,
-        Chat
-    },
-    data() {
-        return {
-            blob: null,
-            owner: null,
-            users: [],
-            playerOptions: null,
-            chatOpen: false
+const usersList = ref([]); 
+const playerOptions = ref(null); 
+const isChatOpen = ref(false); 
+
+const clientState = computed(() => store.state.client);
+const clientRoomState = computed(() => store.state.client.room);
+const playerState = computed(() => store.state.player);
+
+const syncRoom = async () => {
+    const { stream, meta, player, owner, users } = clientState.value.room;
+
+    if (!playerOptions.value) {
+        const videoUrl = await StremioService.createStream(stream);
+        playerOptions.value = { src: videoUrl, hls: null, meta, isOwner: clientState.value.user.id === owner };
+
+        HlsService.createPlaylist(videoUrl).then(playlistUrl => {
+            playerOptions.value = {
+                ...playerOptions.value,
+                hls: playlistUrl
+            };
+        });
+    }
+
+    usersList.value = users;
+
+    if (playerState.value.autoSync && playerState.value.video && !playerState.value.locked) {
+        const { paused, buffering, time } = player;
+
+        const unsync = time - playerState.value.video.currentTime;
+        if (unsync > 1 || unsync < -1) {
+            playerState.value.video.currentTime = time;
         }
-    },
-    computed: {
-        client: () => store.state.client,
-        player() {
-            return {
-                video: store.getters['player/video'],
-                paused: store.getters['player/paused'],
-                autoSync: store.getters['player/autoSync'],
-                buffering: store.getters['player/buffering']
-            }
-        }
-    },
-    watch: {
-        'client.room'() {
-            this.syncRoom();
-        }
-    },
-    methods: {
-        async syncRoom() {            
-            const { stream, meta, player, owner, users } = this.client.room;
 
-            if (!this.playerOptions) {
-                const videoUrl = await StremioService.createStream(stream);
-                this.playerOptions = { src: videoUrl, hls: null, meta, isOwner: this.client.user.id === owner };
-
-                HlsService.createPlaylist(videoUrl).then(playlistUrl => {
-                    this.playerOptions = {
-                        ...this.playerOptions,
-                        hls: playlistUrl
-                    };
-                });
-            }
-
-            this.users = users;
-
-            if (this.player.autoSync && this.player.video && !this.player.locked) {
-                const { paused, buffering, time } = player;
-
-                const unsync = time - this.player.video.currentTime;
-                if (unsync > 1 || unsync < -1) {
-                    this.player.video.currentTime = time;
-                }
-
-                paused ? this.player.video.pause() : this.player.video.play();
-                store.commit('player/updatePaused', this.player.video.paused);
-                this.player.buffering = buffering;
-            }
-
-        },
-        syncPlayer() {
-            if (this.player.autoSync) {
-                const { currentTime } = this.player.video;
-                ClientService.send('player.sync', { paused: this.player.paused, buffering: this.player.buffering, time: currentTime });
-            }
-        }
-    },
-    mounted() {
-        const { id } = this.$route.params;
-        ClientService.send('room.join', { id });
-
-        this.interval = setInterval(() => {
-            if (this.player.video && !this.player.paused) this.syncPlayer();
-        }, 1000);
-    },
-    unmounted() {
-        clearInterval(this.interval);
-        this.interval = null;
-    },
-    beforeRouteLeave() {
-        store.commit('client/updateError', null);
+        paused ? playerState.value.video.pause() : playerState.value.video.play();
+        store.commit('player/updatePaused', playerState.value.video.paused);
+        playerState.value.buffering = buffering;
     }
 };
+
+const syncPlayer = () => {
+    if (playerState.value.autoSync) {
+        const { currentTime } = playerState.value.video;
+        ClientService.send('player.sync', { paused: playerState.value.paused, buffering: playerState.value.buffering, time: currentTime });
+    }
+};
+
+watch(clientRoomState, () => {
+    syncRoom();
+});
+
+let syncPlayerInterval = null;
+
+onMounted(() => {
+    const { id } = router.currentRoute.value.params;
+    ClientService.send('room.join', { id });
+
+    syncPlayerInterval = setInterval(() => {
+        if (playerState.value.video && !playerState.value.paused)
+            syncPlayer();
+    }, 1000);
+});
+
+onUnmounted(() => {
+    clearInterval(syncPlayerInterval);
+    syncPlayerInterval = null;
+});
+
+onBeforeRouteLeave(() => {
+    store.commit('client/updateError', null);
+});
 </script>
 
 <style lang="scss" scoped>

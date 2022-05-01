@@ -30,53 +30,42 @@
     </div>
 </template>
 
-<script>
-import router from '../router';
-
+<script setup>
+import { ref, watch } from 'vue';
+import router from '@/router';
 import StremioService from '@/services/stremio.service';
+
 import Title from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';
 
-export default {
-    name: 'Search',
-    components: {
-        Title,
-        TextInput,
-        Segments,
-        List
-    },
-    data() {
-        return {
-            search: '',
-            type: 'movies',
-            types: ['movies', 'series'],
-            results: {
-                movies: [],
-                series: []
-            },
-            debouncer: null
-        }
-    },
-    watch: {
-        search(value) {
-            clearTimeout(this.debouncer);
-            this.debouncer = setTimeout(async () => {
-                if (value.length) {
-                    this.results.movies = await StremioService.searchMovies(value);
-                    this.results.series = await StremioService.searchSeries(value);
-                }
-                else this.results = [];
-            }, 250);
-        }
-    },
-    methods: {
-        goToStream({ type, imdb_id }) {
-            router.push({ name: 'stream', params: { type, id: imdb_id } });
-        }
-    }
-}
+const search = ref('');
+const type = ref('movies');
+const types = ['movies', 'series'];
+const results = ref({
+    movies: [],
+    series: []
+});
+
+let debouncer = null;
+watch(search, (value) => {
+    clearTimeout(debouncer);
+
+    debouncer = setTimeout(async () => {
+        if (value.length) {
+            results.value.movies = await StremioService.searchMovies(value);
+            results.value.series = await StremioService.searchSeries(value);
+        } else results.value = {
+            movies: [],
+            series: []
+        };
+    }, 250);
+});
+
+const goToStream = ({ type, imdb_id }) => {
+    router.push({ name: 'stream', params: { type, id: imdb_id } });
+};
 </script>
 
 <style lang="scss" scoped>

@@ -15,24 +15,14 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import router from '@/router';
+
 import Title from '@/components/ui/Title.vue';
 import Link from '@/components/ui/Link.vue';
 import Button from '@/components/ui/Button.vue';
 
-export default {
-    name: 'Home',
-    components: {
-        Title,
-        Link,
-        Button
-    },
-    methods: {
-        goToSearch() {
-            this.$router.push({ name: 'search' });
-        }
-    }
-}
+const goToSearch = () => router.push({ name: 'search' });
 </script>
 
 <style lang="scss" scoped>
