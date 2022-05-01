@@ -33,12 +33,23 @@ const onRangeChange = (value) => {
     }
 };
 
+const onKeyDown = ({ key }) => {
+    if ((!isOwner.value && !autoSync.value) || isOwner.value) {
+        if (key === 'ArrowLeft') 
+            store.dispatch('player/setCurrentTime', videoElement.value.currentTime - 10);
+        if (key === 'ArrowRight') 
+            store.dispatch('player/setCurrentTime', videoElement.value.currentTime + 10);
+    }
+};
+
 onMounted(() => {
     videoElement.value.addEventListener('timeupdate', currentTimeToRange);
+    document.addEventListener('keydown', onKeyDown);
 });
 
 onUnmounted(() => {
     videoElement.value.removeEventListener('timeupdate', currentTimeToRange)
+    document.removeEventListener('keydown', onKeyDown);
 });
 </script>
 
