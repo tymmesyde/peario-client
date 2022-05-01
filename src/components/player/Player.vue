@@ -1,12 +1,12 @@
 <template>
-    <div class="player" ref="player" :class="{ 'controlsHidden': controlsHidden }"
-        @mousemove="showControls()"
-        @touchmove="showControls()"
-        @dragover="dropSubtitles($event)"
-        @drop="dropSubtitles($event)"
-        @mouseleave="hideControls()">
+    <div class="player" ref="playerRef" :class="{ 'controlsHidden': controlsHidden }"
+        @mousemove="showControls"
+        @touchmove="showControls"
+        @dragover="onSubtitlesDropped"
+        @drop="onSubtitlesDropped"
+        @mouseleave="hideControls">
 
-        <LockScreen :options="options" v-if="locked"></LockScreen>
+        <LockScreen :options="props.options" v-if="locked"></LockScreen>
         
         <div class="buffering" v-if="!locked && !paused && buffering">
             <div>
@@ -14,17 +14,17 @@
             </div>
         </div>
 
-        <Subtitle v-if="video" :timecode="currentTime"></Subtitle>
+        <Subtitle v-if="videoRef" :timecode="currentTime"></Subtitle>
 
-        <video ref="video" :src="options.src" :poster="options.meta.background"
-            @click="showControls()"
-            @timeupdate="updateCurrentTime()"
-            @waiting="updateBuffering(true)"
-            @loadedmetadata="updateBuffering(false)"
-            @canplay="updateBuffering(false)">
+        <video ref="videoRef" :src="options.src" :poster="options.meta.background"
+            @click="showControls"
+            @timeupdate="updateCurrentTime"
+            @waiting="() => updateBuffering(true)"
+            @loadedmetadata="() => updateBuffering(false)"
+            @canplay="() => updateBuffering(false)">
         </video>
 
-        <div class="controls" v-if="!locked && video">
+        <div class="controls" v-if="!locked && videoRef">
             <div class="panel">
                 <PlayPauseControl class="control" :options="options" @change="onPlayerChange()"></PlayPauseControl>
 
@@ -44,13 +44,16 @@
 
                 <HlsControl class="control" :options="options" v-if="options.hls"></HlsControl>
 
-                <FullScreenControl class="control" :player="player" :video="video"></FullScreenControl>
+                <FullScreenControl class="control" :player="playerRef" :video="videoRef"></FullScreenControl>
             </div>
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
+import { computed, defineProps, defineEmits, onMounted, ref, watch, onUnmounted } from 'vue';
+import store from '@/store';
+
 import LockScreen from "./LockScreen.vue";
 import Subtitle from "./Subtitle.vue";
 import AutoSyncControl from "./controls/AutoSync.vue";
@@ -61,95 +64,84 @@ import SubtitlesControl from "./controls/Subtitles.vue";
 import HlsControl from "./controls/Hls.vue";
 import FullScreenControl from "./controls/FullScreen.vue";
 
-import store from '../../store';
-import { mapGetters } from 'vuex';
-
-export default {
-    name: 'Player',
-    components: {
-        LockScreen,
-        Subtitle,
-        AutoSyncControl,
-        PlayPauseControl,
-        TimeBarControl,
-        VolumeContol,
-        SubtitlesControl,
-        HlsControl,
-        FullScreenControl
-    },
-    props: {
-        options: {
-            src: String,
-            hls: String,
-            meta: {
-                id: String,
-                type: String,
-                logo: String,
-                background: String,
-            },
-            isOwner: Boolean
-        }
-    },
-    computed: mapGetters({
-        locked: 'player/locked',
-        paused: 'player/paused',
-        currentTime: 'player/currentTime',
-        controlsHidden: 'player/controlsHidden',
-        buffering: 'player/buffering',
-        volume: 'player/volume',
-        autoSync: 'player/autoSync'
-    }),
-    data() {
-        return {
-            player: null,
-            video: null,
-            hideTimeout: null,
-            userSubtitle: null
-        };
-    },
-    watch: {
-        volume(value) {
-            this.video.volume = value;
-        }
-    },
-    methods: {
-        showControls() {
-            clearTimeout(this.hideTimeout);
-            store.commit('player/updateHideState', false);
-
-            this.hideTimeout = setTimeout(this.hideControls, 3000);
+const props = defineProps({
+    options: {
+        src: String,
+        hls: String,
+        meta: {
+            id: String,
+            type: String,
+            logo: String,
+            background: String,
         },
-        hideControls() {
-            if (!this.paused) store.commit('player/updateHideState', true);
-        },
-        onPlayerChange() {
-            if (this.paused) this.showControls();
-            this.$emit('change');
-        },
-        updateBuffering(value) {
-            store.commit('player/updateBuffering', value);
-        },
-        updateCurrentTime() {
-            store.commit('player/updateCurrentTime', this.video.currentTime);
-        },
-        dropSubtitles(event) {
-            event.preventDefault();
-
-            const { files } = event.dataTransfer;
-            if (files.length) {
-                const file = files[0];
-                if (file.name.endsWith('.srt')) this.userSubtitle = file;
-            }
-        }
-    },
-    mounted() {
-        store.commit('player/updateLockState', true);
-        this.player = this.$refs.player;
-        this.video = this.$refs.video;
-        store.commit('player/updateVideo', this.video);
-        this.video.volume = this.volume;
+        isOwner: Boolean
     }
-}
+});
+
+const emit = defineEmits(['change']);
+
+const locked = computed(() => store.state.player.locked);
+const paused = computed(() => store.state.player.paused);
+const currentTime = computed(() => store.state.player.currentTime);
+const controlsHidden = computed(() => store.state.player.controlsHidden);
+const buffering = computed(() => store.state.player.buffering);
+const volume = computed(() => store.state.player.volume);
+
+const playerRef = ref(null);
+const videoRef = ref(null);
+const userSubtitle = ref(null);
+
+watch(volume, (value) => {
+    videoRef.value.volume = value;
+});
+
+let hideTimeout = null;
+const showControls = () => {
+    clearTimeout(hideTimeout);
+    store.commit('player/updateHideState', false);
+    hideTimeout = setTimeout(hideControls, 3000);
+};
+
+const hideControls = () => {
+    if (!paused.value) store.commit('player/updateHideState', true);
+};
+
+const onPlayerChange = () => {
+    if (paused.value) showControls();
+        emit('change');
+};
+
+const updateBuffering = (value) => {
+    store.commit('player/updateBuffering', value);
+};
+
+const updateCurrentTime = () => {
+    if (videoRef.value)
+        store.commit('player/updateCurrentTime', videoRef.value.currentTime);
+};
+
+const onSubtitlesDropped = (event) => {
+    event.preventDefault();
+
+    const { files } = event.dataTransfer;
+    if (files.length) {
+        const file = files[0];
+        if (file.name.endsWith('.srt'))
+            userSubtitle.value = file;
+    }
+};
+
+onMounted(() => {
+    store.commit('player/updateLockState', true);
+    store.commit('player/updateVideo', videoRef.value);
+    videoRef.value.volume = volume.value;
+});
+
+onUnmounted(() => {
+    store.commit('player/updateVideo', null);
+    clearTimeout(hideTimeout);
+    hideTimeout = null;
+});
 </script>
 
 <style lang="scss" scoped>
