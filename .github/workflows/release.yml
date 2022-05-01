@@ -15,7 +15,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Zip build artifact
-        run: zip -r peario.zip ./build
+        run: zip -r peario.zip ./dist
       - name: Upload build artifact to GitHub release assets
         uses: svenstaro/upload-release-action@v2
         with:
