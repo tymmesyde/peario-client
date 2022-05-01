@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.8](https://github.com/tymmesyde/peario-client/compare/v0.10.7...v0.11.8) (2022-05-01)
+
+
+### Features
+
+* **TimeBar:** implement seeking with arrow keys ([6147ea4](https://github.com/tymmesyde/peario-client/commit/6147ea480bd817241d7b9472845f206510412117))
+
+
+### Bug Fixes
+
+* **addon.service.js:** don't filter idPrefixes for subtitles addons ([7b4b7a8](https://github.com/tymmesyde/peario-client/commit/7b4b7a8f917aab377fbb888fb6471df47dfe4927))
+
 ### [0.11.6](https://github.com/tymmesyde/peario-client/compare/v0.11.5...v0.11.6) (2021-09-03)
 
 
