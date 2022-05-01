@@ -159,17 +159,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #subtitles-control {
     .panel {
-        $panel-height: 250px;
-        $panel-width: 320px;
-
-        position: absolute;
-        height: $panel-height;
-        width: $panel-width;
-        top: calc(-#{$panel-height} - 15px);
-        right: -2.5vw;
+        position: fixed;
+        bottom: $player-controls-height;
+        right: 0;
+        height: 300px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
         border-radius: 10px;
         font-size: 15px;
         overflow: hidden;
@@ -177,10 +176,9 @@ export default {
         backdrop-filter: blur(10px);
         cursor: default;
 
-        $bar-height: 65px;
-
         .bar {
-            height: $bar-height;
+            flex: none;
+            height:  65px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -204,26 +202,6 @@ export default {
                     }
                 }
             }
-
-            .sizes {
-                display: flex;
-                flex-direction: row;
-
-                .item {
-                    font-size: 20px;
-                    --ionicon-stroke-width: 40px;
-
-                    &:first-child {
-                        font-size: 13px;
-                        --ionicon-stroke-width: 20px;
-                    }
-
-                    &:last-child {
-                        font-size: 25px;
-                        --ionicon-stroke-width: 60px;
-                    }
-                }
-            }
         }
 
         .loading {
@@ -238,17 +216,53 @@ export default {
 
         .lists {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             padding: 0 5px;
+            overflow: hidden;
 
             .list {
-                height: calc(#{$panel-height} - #{$bar-height});
-                width: 50%;
+                flex: 0 1 50%;
+                height: 100%;
                 padding: 0 10px;
                 padding-bottom: 10px;
 
                 &:first-child .item div:last-child {
                     font-family: 'Montserrat-SemiBold' !important;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .panel {
+        position: absolute !important;
+        width: 400px !important;
+        bottom: calc(#{$player-controls-height} + 2em) !important;
+    }
+}
+</style>
+
+<style lang="scss">
+.panel {
+    .bar {
+        .sizes {
+            display: flex;
+            flex-direction: row;
+
+            .item {
+                font-size: 20px;
+                --ionicon-stroke-width: 40px;
+
+                &:first-child {
+                    font-size: 13px;
+                    --ionicon-stroke-width: 30px;
+                }
+
+                &:last-child {
+                    font-size: 25px;
+                    --ionicon-stroke-width: 60px;
                 }
             }
         }

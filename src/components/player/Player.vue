@@ -195,6 +195,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
     }
 
     .controls {
+        height: $player-controls-height;
         display: flex;
         align-items: center;
         justify-content: space-between;
