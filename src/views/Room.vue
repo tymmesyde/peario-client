@@ -50,9 +50,9 @@ import HlsService from "@/services/hls.service";
 import ClientService from "@/services/client.service";
 import { onBeforeRouteLeave } from 'vue-router';
 
-const usersList = ref([]); 
-const playerOptions = ref(null); 
-const isChatOpen = ref(false); 
+const usersList = ref([]);
+const playerOptions = ref(null);
+const isChatOpen = ref(false);
 
 const clientState = computed(() => store.state.client);
 const clientRoomState = computed(() => store.state.client.room);
@@ -159,9 +159,9 @@ onBeforeRouteLeave(() => {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: 'Montserrat-Medium';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
             font-size: 30px;
-            font-weight: bold;
             color: $danger-color;
         }
 
@@ -174,7 +174,8 @@ onBeforeRouteLeave(() => {
                 display: flex;
                 align-items: center;
                 gap: 10px;
-                font-family: 'Montserrat-Regular';
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 400;
                 font-size: 15px;
                 color: rgba(255, 255, 255, 0.7);
 

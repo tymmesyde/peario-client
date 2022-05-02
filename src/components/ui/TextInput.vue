@@ -24,7 +24,8 @@ input {
     border: 2px solid $accent-color;
     border-radius: 5px;
     padding: 0 15px;
-    font-family: 'Montserrat-Bold';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     font-size: 15px;
     color: $primary-color;
     background-color: $accent-color;

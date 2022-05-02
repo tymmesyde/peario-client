@@ -13,7 +13,7 @@
                 </template>
             </Segments>
         </div>
-    
+
         <List class="list" :items="results[type]" itemKey="id" @click="goToStream($event)">
             <template #left="{ item }">
                 <div class="poster" :style="`background-image: url(${item.poster})`">
@@ -105,19 +105,21 @@ const goToStream = ({ type, imdb_id }) => {
                     margin: auto;
                 }
             }
-            
+
             .info {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
 
                 .name {
-                    font-family: 'Montserrat-Bold';
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 700;
                     font-size: 20px;
                 }
 
                 .year {
-                    font-family: 'Montserrat-Medium';
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 500;
                     font-size: 15px;
                     font-style: italic;
                 }

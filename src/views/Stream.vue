@@ -203,20 +203,24 @@ onMounted(async () => {
         }
 
         .title {
-            font-family: 'Montserrat-Bold';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 45px;
         }
 
         .details {
             display: flex;
             gap: 10px;
-            font-family: 'Montserrat-MediumItalic';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-style: italic;
             font-size: 15px;
             opacity: 0.7;
         }
 
         .description {
-            font-family: 'Montserrat-Regular';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
             font-size: 18px;
         }
 
@@ -230,7 +234,8 @@ onMounted(async () => {
                 background-color: rgba(white, 0.1);
                 padding: 0 12px;
                 border-radius: 30px;
-                font-family: 'Montserrat-Medium';
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 500;
                 font-size: 15px;
                 user-select: none;
             }
@@ -248,7 +253,8 @@ onMounted(async () => {
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-family: 'Montserrat-Medium';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
             color: $text-color;
 
             ion-icon {
@@ -268,7 +274,7 @@ onMounted(async () => {
                     height: $stream-icon-size;
                     width: $stream-icon-size;
                     overflow: hidden;
-                    
+
                     > * {
                         transition: opacity 0.1s ease-in-out;
                         transition-delay: 0.1s;
@@ -296,7 +302,8 @@ onMounted(async () => {
                     gap: 5px;
 
                     .name {
-                        font-family: 'Montserrat-SemiBold';
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 600;
                     }
 
                     .title {

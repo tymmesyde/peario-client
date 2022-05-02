@@ -24,14 +24,14 @@ export default {
 .title {
     display: flex;
     align-items: center;
-    gap: 10px;   
+    gap: 10px;
     margin: 0;
     color: $text-color;
 
     &.primary {
-        font-family: 'Montserrat-Bold';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
         font-size: 8vh;
-        font-weight: normal;
         letter-spacing: -0.15rem;
         line-height: 100%;
 
@@ -42,17 +42,17 @@ export default {
     }
 
     &.secondary {
-        font-family: 'Montserrat-Regular';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
         font-size: 28px;
-        font-weight: 700;
         user-select: none;
         text-transform: uppercase;
     }
 
     &.tertiary {
-        font-family: 'Montserrat-Medium';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
         font-size: 2.75vh;
-        font-weight: normal;
         opacity: 0.75;
     }
 }

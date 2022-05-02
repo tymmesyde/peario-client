@@ -7,7 +7,7 @@
         @mouseleave="hideControls">
 
         <LockScreen :options="props.options" v-if="locked"></LockScreen>
-        
+
         <div class="buffering" v-if="!locked && !paused && buffering">
             <div>
                 <ion-icon name="sync-outline" class="spin"></ion-icon>
@@ -149,7 +149,8 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
 
 .player {
     position: relative;
-    font-family: 'Montserrat-Regular';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
     height: 100%;
     width: 100%;
     overflow: hidden;

@@ -117,7 +117,8 @@ header {
 		}
 
 		.version {
-			font-family: 'Montserrat-SemiBold';
+			font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
 			font-size: 15px;
 			color: $text-color;
 			opacity: 0.3;

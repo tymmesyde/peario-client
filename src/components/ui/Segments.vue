@@ -31,7 +31,8 @@ export default {
         max-width: 140px;
         line-height: 40px;
         padding: 0 10px;
-        font-family: 'Montserrat-Bold';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
         font-size: 16px;
         overflow: hidden;
         text-overflow: ellipsis;

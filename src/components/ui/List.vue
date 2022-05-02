@@ -88,12 +88,14 @@ export default {
 
         div:first-child {
             word-break: normal;
-            font-family: 'Montserrat-SemiBold';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
         div:last-child {
             word-break: break-word;
-            font-family: 'Montserrat-Regular';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
             opacity: 0.75;
         }
     }

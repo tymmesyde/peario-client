@@ -93,7 +93,8 @@ export default {
         gap: 10px;
 
         .text {
-            font-family: 'Montserrat-SemiBold';
+            font-family: 'Montserrat',sans-serif;
+            font-weight: 600;
             font-size: 20px;
             color: $text-color;
         }

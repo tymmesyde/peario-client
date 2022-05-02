@@ -7,7 +7,7 @@
             </transition>
             {{ selected.name }}
         </div>
-        
+
         <transition name="fade">
             <ul class="menu" v-show="active">
                 <li :class="{ 'active': option.value == selected.value }" v-for="option in options" :key="option" @click="$emit('update:modelValue', option.value), toggle()">
@@ -54,9 +54,9 @@ export default {
         border: 2px solid $accent-color;
         border-radius: 5px;
         padding: 0 15px;
-        font-family: 'Montserrat-Bold';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
         font-size: 15px;
-        font-weight: bold;
         color: $primary-color;
         background-color: $accent-color;
         text-transform: none;
@@ -82,9 +82,9 @@ export default {
             align-items: center;
             height: 40px;
             padding: 15px;
-            font-family: 'Montserrat-Bold';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             font-size: 15px;
-            font-weight: bold;
             color: $primary-color;
             cursor: pointer;
 

@@ -3,7 +3,7 @@
         <div class="topbar">
             <Title type="secondary" icon="chatbubbles">Chat</Title>
         </div>
-        
+
         <div class="placeholder" v-show="!client.messages.length">
             <ion-icon name="chatbubbles-outline"></ion-icon>
             <div class="text">
@@ -121,7 +121,8 @@ export default {
 
         .text {
             width: 50%;
-            font-family: 'Montserrat-SemiBold';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
             font-size: 15px;
         }
     }
@@ -141,7 +142,8 @@ export default {
             gap: 5px;
             overflow: hidden;
             word-break: break-word;
-            font-family: 'Montserrat-Regular';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
             color: $text-color;
 
             .user {
@@ -151,7 +153,7 @@ export default {
                 font-size: 12px;
                 opacity: 0.5;
             }
-            
+
             &.right {
                 align-self: flex-end;
                 text-align: right;

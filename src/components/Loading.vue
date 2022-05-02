@@ -50,7 +50,8 @@ export default {
         }
 
         .message {
-            font-family: 'Montserrat-Medium';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
             font-size: 20px;
             color: $text-color;
             opacity: 0.5;

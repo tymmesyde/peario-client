@@ -31,7 +31,8 @@ button {
     border: 2px solid transparent;
     border-radius: 10px;
     padding: 0 15px;
-    font-family: 'Montserrat-Bold';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     font-size: 15px;
     text-transform: uppercase;
     color: $primary-color;

@@ -216,7 +216,8 @@ $addon-icon-size: 8vh;
                     gap: 7px;
 
                     .name {
-                        font-family: 'Montserrat-Medium';
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 500;
                         font-size: 20px;
                     }
 
@@ -231,7 +232,8 @@ $addon-icon-size: 8vh;
                             background-color: rgba(white, 0.1);
                             padding: 0 10px;
                             border-radius: 20px;
-                            font-family: 'Montserrat-Medium';
+                            font-family: 'Montserrat', sans-serif;
+                            font-weight: 500;
                             font-size: 9px;
                             user-select: none;
                         }

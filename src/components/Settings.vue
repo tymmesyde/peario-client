@@ -145,7 +145,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     .backdrop {
         position: absolute;
         top: 0;
@@ -182,7 +182,8 @@ export default {
             align-items: center;
             gap: 10px;
             height: 40px;
-            font-family: 'Montserrat-SemiBold';
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
             color: $text-color;
         }
 

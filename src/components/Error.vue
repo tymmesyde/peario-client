@@ -40,11 +40,13 @@ export default {
 
     .title {
         text-transform: uppercase;
-        font-family: 'Montserrat-Bold';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
     }
 
     .message {
-        font-family: 'Montserrat-Medium';
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
         opacity: 0.7;
     }
 }

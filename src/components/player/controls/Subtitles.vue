@@ -27,7 +27,7 @@
                 <div class="loading" v-if="!langs.length">
                     <ion-icon name="sync-outline" class="spin"></ion-icon>
                 </div>
-                
+
                 <div class="lists">
                     <List class="langs" small v-model="panelLang" :items="langs" itemKey="iso">
                         <template #left="{ item }">
@@ -228,7 +228,8 @@ export default {
                 padding-bottom: 10px;
 
                 &:first-child .item div:last-child {
-                    font-family: 'Montserrat-SemiBold' !important;
+                    font-family: 'Montserrat', sans-serif !important;
+                    font-weight: 600;
                 }
             }
         }

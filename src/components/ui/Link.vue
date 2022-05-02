@@ -14,7 +14,8 @@ export default {
 
 <style lang="scss" scoped>
 .link {
-    font-family: 'Montserrat-Medium';
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
     color: $accent-color;
     cursor: pointer;
     text-decoration: none;
