@@ -1,5 +1,5 @@
 <template>
-    <button :class="[{ 'large': large, 'clear': clear }]" @click="$emit('update:modelValue', !modelValue)">
+    <button :class="[{ 'large': large, 'small': small, 'clear': clear }]" @click="$emit('update:modelValue', !modelValue)">
         <ion-icon :name="icon" v-if="icon"></ion-icon>
         <span v-if="translate">
             {{ $t(translate) }}
@@ -15,6 +15,7 @@ export default {
         modelValue: Boolean,
         icon: String,
         large: Boolean,
+        small: Boolean,
         clear: Boolean,
         translate: String
     }
@@ -57,6 +58,16 @@ button {
 
         &:hover {
             border: 3px solid $accent-color;
+        }
+    }
+
+    &.small {
+        height: 30px;
+        font-size: 10px;
+        padding: 0 5px;
+
+        ion-icon {
+            font-size: 2em;
         }
     }
 

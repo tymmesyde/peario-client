@@ -2,26 +2,14 @@
     <div :class="['room', { 'chat-open': isChatOpen }]">
         <Loading type="room" v-if="!playerOptions"></Loading>
 
-        <div class="users" v-if="playerState.video" :class="{ 'show': !playerState.controlsHidden }">
-            <div class="count">
-                <ion-icon name="eye-outline"></ion-icon> {{ usersList.length }}
-            </div>
-
-            <ul>
-                <li v-for="user in usersList" :key="user.id">
-                    <div class="username">
-                        <ion-icon name="ribbon-outline" v-if="user.id == clientState.room.owner"></ion-icon>
-                        <ion-icon name="person-outline" v-else></ion-icon>
-                        {{ user.name }}
-                    </div>
-
-                    <div class="status" v-if="user.id == clientState.room.owner">
-                        <ion-icon class="success" name="play-outline" v-if="!playerState.paused"></ion-icon>
-                        <ion-icon class="danger" name="pause-outline" v-else></ion-icon>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <UsersList
+            :show="!playerState.controlsHidden"
+            :roomOwner="roomOwner"
+            :isUserOwner="isUserOwner"
+            :users="usersList"
+            :isPlayerPaused="playerState.paused"
+            @onUpdateOwnership="onUpdateOwnership"
+        />
 
         <div class="controls">
             <Button clear icon="close" v-if="isChatOpen" @click="isChatOpen = false"></Button>
@@ -45,12 +33,12 @@ import Loading from "@/components/Loading.vue";
 import Button from "@/components/ui/Button.vue";
 import Player from "@/components/player/Player.vue";
 import Chat from "@/components/Chat.vue";
+import UsersList from './UsersList/UsersList.vue';
 import StremioService from "@/services/stremio.service";
 import HlsService from "@/services/hls.service";
 import ClientService from "@/services/client.service";
 import { onBeforeRouteLeave } from 'vue-router';
 
-const usersList = ref([]); 
 const playerOptions = ref(null); 
 const isChatOpen = ref(false); 
 
@@ -58,22 +46,22 @@ const clientState = computed(() => store.state.client);
 const clientRoomState = computed(() => store.state.client.room);
 const playerState = computed(() => store.state.player);
 
+const roomOwner = computed(() => clientRoomState.value && clientState.value.room.owner ? clientState.value.room.owner : null);
+const usersList = computed(() => clientRoomState.value && clientState.value.room.users ? clientState.value.room.users : []);
+const isUserOwner = computed(() => clientState.value && clientState.value.user && clientState.value.user.id ? roomOwner.value === clientState.value.user.id : false);
+
 const syncRoom = async () => {
-    const { stream, meta, player, owner, users } = clientState.value.room;
+    const { stream, meta, player, owner } = clientState.value.room;
 
-    if (!playerOptions.value) {
-        const videoUrl = await StremioService.createStream(stream);
-        playerOptions.value = { src: videoUrl, hls: null, meta, isOwner: clientState.value.user.id === owner };
+    const videoUrl = await StremioService.createStream(stream);
+    playerOptions.value = { src: videoUrl, hls: null, meta, isOwner: clientState.value.user.id === owner };
 
-        HlsService.createPlaylist(videoUrl).then(playlistUrl => {
-            playerOptions.value = {
-                ...playerOptions.value,
-                hls: playlistUrl
-            };
-        });
-    }
-
-    usersList.value = users;
+    HlsService.createPlaylist(videoUrl).then(playlistUrl => {
+        playerOptions.value = {
+            ...playerOptions.value,
+            hls: playlistUrl
+        };
+    });
 
     if (playerState.value.autoSync && playerState.value.video && !playerState.value.locked) {
         const { paused, buffering, time } = player;
@@ -94,6 +82,10 @@ const syncPlayer = () => {
         const { currentTime } = playerState.value.video;
         ClientService.send('player.sync', { paused: playerState.value.paused, buffering: playerState.value.buffering, time: currentTime });
     }
+};
+
+const onUpdateOwnership = (userId) => {
+    ClientService.send('room.updateOwnership', { userId });
 };
 
 watch(clientRoomState, () => {
@@ -135,60 +127,6 @@ onBeforeRouteLeave(() => {
     &.chat-open {
         .users {
              display: none;
-        }
-    }
-
-    .users {
-        z-index: 96;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 2vw;
-        opacity: 0;
-        transition: opacity 0.2s ease-in;
-        transition-delay: 0.3s;
-
-        &.show {
-            opacity: 1;
-        }
-
-        .count {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Montserrat-Medium';
-            font-size: 30px;
-            font-weight: bold;
-            color: $danger-color;
-        }
-
-        ul {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-
-            li {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                font-family: 'Montserrat-Regular';
-                font-size: 15px;
-                color: rgba(255, 255, 255, 0.7);
-
-                .username {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                }
-
-                .status {
-                    display: flex;
-                    align-items: center;
-                }
-            }
         }
     }
 
