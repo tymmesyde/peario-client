@@ -235,9 +235,17 @@ export default {
     }
 }
 
+@media only screen and (orientation: landscape) {
+    .panel {
+        height: 230px !important;
+        width: 45% !important;
+    }
+}
+
 @media only screen and (min-width: 768px) and (min-height: 768px) {
     .panel {
         position: absolute !important;
+        height: 300px !important;
         width: 400px !important;
         bottom: calc(#{$player-controls-height} + 2em) !important;
     }
