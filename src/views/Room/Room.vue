@@ -125,8 +125,8 @@ onBeforeRouteLeave(() => {
     user-select: none;
 
     &.chat-open {
-        .users {
-             display: none;
+        .users-list {
+            display: none;
         }
     }
 
@@ -141,7 +141,7 @@ onBeforeRouteLeave(() => {
 @media only screen and (min-width: 768px) and (min-height: 768px) {
     .room {
         &.chat-open {
-            .users {
+            .users-list {
                 display: inherit;
             }
         }
