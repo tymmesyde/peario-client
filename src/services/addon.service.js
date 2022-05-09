@@ -32,7 +32,15 @@ const AddonService = {
             try {
                 const { streams } = await addon.get('stream', type, id);
                 const { icon, logo } = addon.manifest;
-                return streams.map(s => { s.icon = icon || logo; return s; });
+                return streams.map(stream => {
+                    const { infoHash, url } = stream;
+                    const type = infoHash ? 'Torrent' : url ? url.split(':')[0].toUpperCase() : null;
+                    return {
+                        ...stream,
+                        icon: icon || logo,
+                        type
+                    };
+                });
             } catch (e) {
                 return [];
             }

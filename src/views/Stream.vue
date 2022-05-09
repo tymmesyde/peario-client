@@ -67,6 +67,7 @@
                     <div class="info">
                         <div class="name" v-if="item.name">{{ item.name }}</div>
                         <div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
+                        <div class="type" v-if="item.type">{{ item.type }}</div>
                     </div>
                 </template>
             </List>
@@ -159,7 +160,7 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .stream {
     display: flex;
     flex-direction: column;
@@ -302,6 +303,21 @@ onMounted(async () => {
                     .title {
                         font-size: 15px;
                         opacity: 0.8;
+                    }
+
+                    .type {
+                        position: absolute;
+                        right: 1em;
+                        top: 1em;
+                        height: 25px;
+                        line-height: 25px;
+                        align-self: flex-start;
+                        background-color: rgba(white, 0.1);
+                        padding: 0 11px;
+                        border-radius: 25px;
+                        font-family: 'Montserrat-Medium';
+                        font-size: 11px;
+                        user-select: none;
                     }
                 }
 
