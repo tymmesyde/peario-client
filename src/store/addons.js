@@ -75,7 +75,16 @@ export default {
             commit('removeFromInstalled', addon.manifest.id);
         },
         async addUserAddon({ commit }, addon_url) {
-            const addon = await AddonService.detectFromURL(addon_url);
+            let url = addon_url;
+
+            const { hash } = new URL(addon_url);
+            if (hash) {
+                const [, encodedAddonUrl] = hash.split('addon=');
+                if (encodedAddonUrl)
+                    url = decodeURIComponent(encodedAddonUrl);
+            }
+
+            const addon = await AddonService.detectFromURL(url);
             commit('addToUser', addon);
         }
     }
