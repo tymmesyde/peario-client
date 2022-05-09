@@ -76,7 +76,7 @@ export default {
             return s.charAt(0).toUpperCase() + s.slice(1);
         },
         isInstalled(addon) {
-            return this.installed.includes(addon.manifest.id);
+            return this.installed.includes(addon.transportUrl);
         },
         toggleAddon(addon) {
             if (this.isInstalled(addon)) this.$store.dispatch('uninstallAddon', addon);

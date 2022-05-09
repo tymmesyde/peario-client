@@ -14,7 +14,7 @@ export default {
     getters: {
         collection: state => state.collection,
         installed: state => state.installed,
-        installedSubtitles: state => state.collection.subtitles.filter(({ manifest }) => state.installed.includes(manifest.id))
+        installedSubtitles: state => state.collection.subtitles.filter(({ transportUrl }) => state.installed.includes(transportUrl))
     },
     mutations: {
         updateCollection(state, addons) {
@@ -69,10 +69,10 @@ export default {
             commit('updateInstalled', installed);
         },
         installAddon({ commit }, addon) {
-            commit('addToInstalled', addon.manifest.id);
+            commit('addToInstalled', addon.transportUrl);
         },
         uninstallAddon({ commit }, addon) {
-            commit('removeFromInstalled', addon.manifest.id);
+            commit('removeFromInstalled', addon.transportUrl);
         },
         async addUserAddon({ commit }, addon_url) {
             let url = addon_url;
