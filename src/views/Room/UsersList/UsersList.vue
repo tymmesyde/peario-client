@@ -56,8 +56,9 @@ const updateOwnership = (userId) => {
     left: 1em;
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
-    padding: 2vw;
+    gap: 1em;
+    padding: 1.5em;
+    padding-top: 1em;
     border-radius: 1em;
     opacity: 0;
     transition: opacity 0.2s ease-in;
@@ -81,9 +82,12 @@ const updateOwnership = (userId) => {
     }
 
     ul {
+        max-height: 10em;
         display: flex;
         flex-direction: column;
         gap: 1.5em;
+        padding-right: 1em;
+        overflow-y: auto;
 
         li {
             display: flex;
