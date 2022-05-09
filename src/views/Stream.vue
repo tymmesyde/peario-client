@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <List class="list" :items="streams" itemKey="infoHash" @click="createRoom($event)" v-show="streams.length">
+            <List class="list" :items="streams" @click="createRoom($event)" v-show="streams.length">
                 <template #left="{ item }">
                     <div class="icon">
                         <img v-bind:src="item.icon" alt="">
