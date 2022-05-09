@@ -53,15 +53,17 @@ const isUserOwner = computed(() => clientState.value && clientState.value.user &
 const syncRoom = async () => {
     const { stream, meta, player, owner } = clientState.value.room;
 
-    const videoUrl = await StremioService.createStream(stream);
+    const isTorrentStream = stream.infoHash != null;
+    const videoUrl = isTorrentStream ? await StremioService.createTorrentStream(stream) : stream.url;
     playerOptions.value = { src: videoUrl, hls: null, meta, isOwner: clientState.value.user.id === owner };
 
-    HlsService.createPlaylist(videoUrl).then(playlistUrl => {
-        playerOptions.value = {
-            ...playerOptions.value,
-            hls: playlistUrl
-        };
-    });
+    if (isTorrentStream)
+        HlsService.createPlaylist(videoUrl).then(playlistUrl => {
+            playerOptions.value = {
+                ...playerOptions.value,
+                hls: playlistUrl
+            };
+        });
 
     if (playerState.value.autoSync && playerState.value.video && !playerState.value.locked) {
         const { paused, buffering, time } = player;

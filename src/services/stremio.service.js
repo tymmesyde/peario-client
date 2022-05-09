@@ -37,7 +37,7 @@ const StremioService = {
         return data;
     },
 
-    async createStream(stream) {
+    async createTorrentStream(stream) {
         let { infoHash, fileIdx = null } = stream;
         const { data } = await axios.get(`${STREMIO_STREAMING_SERVER}/${infoHash}/create`);
         const { files } = data;
