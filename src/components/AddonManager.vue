@@ -32,8 +32,8 @@
                         </div>
                     </div>
                     <div class="switch">
-                        <ion-icon name="toggle-outline" class="flip" v-show="!isInstalled(addon)"></ion-icon>
-                        <ion-icon name="toggle" v-show="isInstalled(addon)"></ion-icon>
+                        <ion-icon name="toggle-outline" class="off flip" v-show="!isInstalled(addon)"></ion-icon>
+                        <ion-icon name="toggle" class="on" v-show="isInstalled(addon)"></ion-icon>
                     </div>
                 </li>
             </ul>
@@ -92,10 +92,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$title-height: 9vh;
-$menu-width: 45vh;
-$menu-padding: 2vh;
-$addon-icon-size: 8vh;
 
 .backdrop {
     z-index: 97;
@@ -122,26 +118,28 @@ $addon-icon-size: 8vh;
     right: 0;
     display: flex;
     flex-direction: column;
-    width: $menu-width;
-    background-color: $primary-color;
+    width: 100%;
+    background-color: rgba($primary-color, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px 0 rgba($primary-color, 0.5);
     overflow: hidden;
 
     .title {
-        height: $title-height;
-        line-height: $title-height;
-        padding: 0 calc(#{$menu-padding} + 1vh);
+        height: 4em;
+        line-height: 4em;
+        padding: 0 1em;
     }
 
     .close {
         position: absolute;
-        top: 23px;
-        right: 10px;
-        font-size: 40px;
+        top: 0.8em;
+        right: 0.5em;
+        font-size: 2.5em;
         color: $text-color;
         cursor: pointer;
         transition: all 0.1s ease-in-out;
 
-        &:hover {
+        &:ho1er {
             transform: scale(1.1);
         }
     }
@@ -160,13 +158,13 @@ $addon-icon-size: 8vh;
     }
 
     ul {
+        flex: 1 1 100%;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        height: calc(100% - #{$title-height});
         overflow-y: auto;
-        padding: 0 $menu-padding;
-        padding-bottom: $menu-padding;
+        padding: 0 1.5em;
+        padding-bottom: 1.5em;
 
         .addon {
             display: flex;
@@ -174,32 +172,27 @@ $addon-icon-size: 8vh;
             color: $text-color;
             user-select: none;
             cursor: pointer;
+            transition: all 0.1s ease-in-out;
 
             &.active {
-                .info {
-                    opacity: 1;
-                }
+                opacity: 1;
             }
 
             &:not(.active):hover {
-                .info {
-                    opacity: 0.7;
-                }
+                opacity: 0.7;
             }
 
             .info {
                 display: flex;
                 align-items: center;
                 gap: 15px;
-                opacity: 0.5;
-                transition: all 0.1s ease-in-out;
 
                 .icon {
                     display: grid;
                     align-content: center;
                     justify-content: center;
-                    height: $addon-icon-size;
-                    width: $addon-icon-size;
+                    height: 3em;
+                    width: 3em;
                     border-radius: 15px;
                     font-size: 30px;
                     overflow: hidden;
@@ -213,11 +206,11 @@ $addon-icon-size: 8vh;
                 .text {
                     display: flex;
                     flex-direction: column;
-                    gap: 7px;
+                    gap: 0.5em;
 
                     .name {
-                        font-family: 'Montserrat-Medium';
-                        font-size: 20px;
+                        font-family: 'Montserrat-SemiBold';
+                        font-size: 1.2em;
                     }
 
                     .types {
@@ -227,12 +220,12 @@ $addon-icon-size: 8vh;
                         span {
                             display: flex;
                             align-items: center;
-                            height: 20px;
+                            height: 2.5em;
                             background-color: rgba(white, 0.1);
-                            padding: 0 10px;
-                            border-radius: 20px;
-                            font-family: 'Montserrat-Medium';
-                            font-size: 9px;
+                            padding: 0 12px;
+                            border-radius: 2.5em;
+                            font-family: 'Montserrat-SemiBold';
+                            font-size: 10px;
                             user-select: none;
                         }
                     }
@@ -242,9 +235,25 @@ $addon-icon-size: 8vh;
             .switch {
                 display: flex;
                 align-items: center;
-                font-size: 30px;
+                font-size: 2em;
+
+                ion-icon {
+                    &.on {
+                        color: $accent-color;
+                    }
+
+                    &.off {
+                        opacity: 0.5;
+                    }
+                }
             }
         }
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .menu {
+        width: 30em;
     }
 }
 </style>
