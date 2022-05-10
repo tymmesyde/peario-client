@@ -136,7 +136,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-    z-index: 98;
+    z-index: 99;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -162,15 +162,18 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        min-width: 350px;
+        max-height: 95%;
+        width: 90%;
         padding: 25px;
         border-radius: 15px;
         background-color: $primary-color;
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
     }
 }
 
 .settings {
+    flex: auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -198,8 +201,25 @@ export default {
     }
 }
 
+@media only screen and (orientation: landscape) {
+    .modal {
+        .inner {
+            max-height: 100%;
+            width: 100% !important;
+        }
+    }
+}
+
 @media only screen and (min-width: 768px) and (min-height: 768px) {
+    .modal {
+        .inner {
+            width: auto !important;
+            min-width: 350px;
+        }
+    }
+
     .setting {
+
         .support {
             flex-direction: row;
         }

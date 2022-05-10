@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 button {
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: center;
