@@ -125,14 +125,14 @@ export default {
     overflow: hidden;
 
     .title {
-        height: 4em;
-        line-height: 4em;
+        height: 3em;
+        line-height: 3em;
         padding: 0 1em;
     }
 
     .close {
         position: absolute;
-        top: 0.8em;
+        top: 0.5em;
         right: 0.5em;
         font-size: 2.5em;
         color: $text-color;
