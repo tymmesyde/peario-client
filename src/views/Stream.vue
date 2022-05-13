@@ -65,10 +65,15 @@
                 </template>
                 <template #right="{ item }">
                     <div class="info">
-                        <div class="name" v-if="item.name">{{ item.name }}</div>
+                        <div class="name" v-if="item.name">
+                            <div class="small-icon">
+                                <img v-bind:src="item.icon" alt="">
+                            </div>
+                            {{ item.name }}
+                        </div>
                         <div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
-                        <div class="type" v-if="item.type">{{ item.type }}</div>
                     </div>
+                    <div class="type" v-if="item.type">{{ item.type }}</div>
                 </template>
             </List>
         </div>
@@ -260,11 +265,12 @@ onMounted(async () => {
 
         .list {
             .item {
+                align-items: flex-start;
                 $stream-icon-size: 60px;
 
                 .icon {
+                    display: none;
                     position: relative;
-                    display: grid;
                     align-content: center;
                     height: $stream-icon-size;
                     width: $stream-icon-size;
@@ -297,28 +303,39 @@ onMounted(async () => {
                     gap: 5px;
 
                     .name {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 0.5em;
                         font-family: 'Montserrat-SemiBold';
+
+                        .small-icon {
+                            height: 1.5em;
+                            width: 1.5em;
+
+                            img {
+                                width: 100%;
+                            }
+                        }
                     }
 
                     .title {
                         font-size: 15px;
                         opacity: 0.8;
                     }
+                }
 
-                    .type {
-                        position: absolute;
-                        right: 1em;
-                        top: 1em;
-                        height: 25px;
-                        line-height: 25px;
-                        align-self: flex-start;
-                        background-color: rgba(white, 0.1);
-                        padding: 0 11px;
-                        border-radius: 25px;
-                        font-family: 'Montserrat-Medium';
-                        font-size: 11px;
-                        user-select: none;
-                    }
+                .type {
+                    flex: none;
+                    height: 25px;
+                    line-height: 25px;
+                    align-self: flex-start;
+                    background-color: rgba(white, 0.1);
+                    padding: 0 11px;
+                    border-radius: 25px;
+                    font-family: 'Montserrat-Medium';
+                    font-size: 11px;
+                    user-select: none;
                 }
 
                 &:hover {
@@ -359,5 +376,25 @@ onMounted(async () => {
         }
     }
   }
+}
+
+@media only screen and (min-width: 768px) and (min-height: 768px) {
+    .stream {
+        .list {
+            .item {
+                .icon {
+                    display: flex !important;
+                }
+
+                .info {
+                    .name {
+                        .small-icon {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 </style>
