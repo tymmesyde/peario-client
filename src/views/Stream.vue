@@ -264,16 +264,16 @@ onMounted(async () => {
         }
 
         .list {
-            .item {
+            /deep/ .item {
                 align-items: flex-start;
-                $stream-icon-size: 60px;
+                padding: 1.5em 15px;
 
                 .icon {
                     display: none;
                     position: relative;
                     align-content: center;
-                    height: $stream-icon-size;
-                    width: $stream-icon-size;
+                    height: 60px;
+                    width: 60px;
                     overflow: hidden;
                     
                     > * {

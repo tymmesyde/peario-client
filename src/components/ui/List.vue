@@ -59,7 +59,7 @@ export default {
         display: flex;
         align-items: center;
         gap: 15px;
-        padding: 1.5em 15px;
+        padding: 15px 15px;
         border: 3px solid transparent;
         border-radius: 10px;
         color: white;
