@@ -92,7 +92,7 @@ export default {
             else this.$store.dispatch('installAddon', addon);
         },
         async addFromURL() {
-            this.$store.dispatch('addUserAddon', this.manifestUrl);
+            await this.$store.dispatch('addUserAddon', this.manifestUrl);
             this.$store.dispatch('loadAddons', this.manifestUrl);
             this.manifestUrl = '';
         },
