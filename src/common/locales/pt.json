@@ -40,6 +40,12 @@
                 "report": "Report an issue"
             },
             "button": "Terminar"
+        },
+        "addons": {
+            "types": {
+                "streams": "Streams",
+                "subtitles": "Subtítulos"
+            }
         }
     },
     "errors": {

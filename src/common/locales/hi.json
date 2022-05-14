@@ -40,6 +40,12 @@
                 "report": "Report an issue"
             },
             "button": "किया हुआ"
+        },
+        "addons": {
+            "types": {
+                "streams": "स्ट्रीम",
+                "subtitles": "उपशीर्षक"
+            }
         }
     },
     "errors": {

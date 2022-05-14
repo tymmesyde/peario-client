@@ -40,6 +40,12 @@
                 "report": "Report an issue"
             },
             "button": "Bitti"
+        },
+        "addons": {
+            "types": {
+                "streams": "Akışları",
+                "subtitles": "Altyazılar"
+            }
         }
     },
     "errors": {
