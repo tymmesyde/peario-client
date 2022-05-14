@@ -38,7 +38,8 @@ const AddonService = {
                     return {
                         ...stream,
                         icon: icon || logo,
-                        type
+                        type,
+                        addon
                     };
                 });
             } catch (e) {

@@ -104,6 +104,7 @@ $padding: 25px;
     overflow-y: overlay;
 
     .inner {
+        max-width: 100vw;
         margin: auto;
         padding: 0 $padding;
     }

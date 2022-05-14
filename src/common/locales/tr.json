@@ -16,6 +16,7 @@
         "stream": {
             "season": "Sezon",
             "misc": "Çeşitli",
+            "all": "Tüm",
             "streams": {
                 "title": "Canlı Yayınlar",
                 "error": "Mevcut akış yok",

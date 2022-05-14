@@ -1,20 +1,29 @@
 <template>
     <div class="segments">
-        <div :class="['segment', { 'active': segment === modelValue }]" v-for="segment in segments" :key="segment" @click="$emit('update:modelValue', segment)">
+        <div
+            :class="['segment', { 'active': (haveIds ? segment.id : segment) === props.modelValue }]"
+            v-for="segment in props.segments" :key="haveIds ? segment.id : segment"
+            @click="onClick(segment)"
+        >
             <slot name="segment" :segment="segment"></slot>
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Segments',
-    props: {
-        modelValue: [String, Number],
-        segments: Array
-    },
-    emits: ['update:modelValue']
-}
+<script setup>
+import { defineProps, defineEmits, computed } from 'vue';
+
+const props = defineProps({
+    modelValue: [String, Number],
+    segments: Array
+});
+
+const emit = defineEmits(['update:modelValue']);
+const haveIds = computed(() => Array.isArray(props.segments) && typeof props.segments[0] === 'object');
+
+const onClick = (segment) => {
+    emit('update:modelValue', haveIds.value ? segment.id : segment);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -33,11 +42,12 @@ export default {
         padding: 0 10px;
         font-family: 'Montserrat-Bold';
         font-size: 16px;
-        overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
         color: white;
         opacity: 0.6;
         cursor: pointer;
+        overflow: hidden;
         transition: all 0.1s ease-in-out;
 
         &:hover {

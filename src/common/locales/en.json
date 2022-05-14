@@ -16,6 +16,7 @@
         "stream": {
             "season": "Season",
             "misc": "Miscellaneous",
+            "all": "All",
             "streams": {
                 "title": "Streams",
                 "error": "No streams available",

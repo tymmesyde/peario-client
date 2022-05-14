@@ -30,8 +30,8 @@
         <div class="series" v-if="isSeries">
             <Segments :segments="seasons" v-model="selectedSeason">
                 <template #segment="{ segment }">
-                    <span v-if="segment > 0">{{ $t(`views.stream.season`) }} {{ segment }}</span>
-                    <span v-else>{{ $t(`views.stream.misc`) }}</span>
+                    <span v-if="segment > 0">{{ t(`views.stream.season`) }} {{ segment }}</span>
+                    <span v-else>{{ t(`views.stream.misc`) }}</span>
                 </template>
             </Segments>
 
@@ -45,47 +45,17 @@
             </List>
         </div>
 
-        <div class="streams">
-            <Title class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
-
-            <div class="no-streams" v-show="!streams.length">
-                <div>
-                    <ion-icon name="sad"></ion-icon>
-                    <p>{{ $t(`views.stream.streams.error`) }}</p>
-                </div>
-            </div>
-
-            <List class="list" :items="streams" @click="createRoom($event)" v-show="streams.length">
-                <template #left="{ item }">
-                    <div class="icon">
-                        <img v-bind:src="item.icon" alt="">
-                        <ion-icon class="outline" name="play-outline"></ion-icon>
-                        <ion-icon class="filled" name="play"></ion-icon>
-                    </div>
-                </template>
-                <template #right="{ item }">
-                    <div class="info">
-                        <div class="name" v-if="item.name">
-                            <div class="small-icon">
-                                <img v-bind:src="item.icon" alt="">
-                            </div>
-                            {{ item.name }}
-                        </div>
-                        <div class="title" :class="{ 'extend': !item.name }">{{ item.title }}</div>
-                    </div>
-                    <div class="type" v-if="item.type">{{ item.type }}</div>
-                </template>
-            </List>
-        </div>
+        <Streams :streams="streams" @streamClick="createRoom"/>
 
         <Button large class="addons-button" icon="cube-outline" @click="isAddonsMenuOpen = true">
-            {{ $t('views.stream.streams.button') }}
+            {{ t('views.stream.streams.button') }}
         </Button>
 	</div>
 </template>
 
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import store from '@/store';
 import router from '@/router';
@@ -98,7 +68,9 @@ import AddonManager from '@/components/AddonManager.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';
 import Button from '@/components/ui/Button.vue';
-import Title from '@/components/ui/Title.vue';
+import Streams from './Streams/Streams.vue';
+
+const { t } = useI18n();
 
 const meta = ref({});
 const seasons = ref([]);
@@ -120,7 +92,7 @@ const loadStreams = () => {
     loadStreamsDebouncer = setTimeout(async () => {
         const { id, type } = router.currentRoute.value.params;
         if (id && type) {
-            const installedAddons = collectionState.value && collectionState.value.streams.filter(addon => installedAddonsState.value.includes(addon.manifest.id));
+            const installedAddons = collectionState.value && collectionState.value.streams.filter(addon => installedAddonsState.value.includes(addon.transportUrl));
             if (installedAddons)
                 streams.value = await AddonService.getStreams(installedAddons, type, id);
         }
@@ -243,125 +215,6 @@ onMounted(async () => {
         }
     }
 
-    .streams {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        .no-streams {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: 'Montserrat-Medium';
-            color: $text-color;
-
-            ion-icon {
-                font-size: 50px;
-                color: $text-color;
-            }
-        }
-
-        .list {
-            /deep/ .item {
-                align-items: flex-start;
-                padding: 1.5em 15px;
-
-                .icon {
-                    display: none;
-                    position: relative;
-                    align-content: center;
-                    height: 60px;
-                    width: 60px;
-                    overflow: hidden;
-                    
-                    > * {
-                        transition: opacity 0.1s ease-in-out;
-                        transition-delay: 0.1s;
-                    }
-
-                    img {
-                        width: 100%;
-                    }
-
-                    ion-icon {
-                        position: absolute;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        margin: auto;
-                        font-size: 45px;
-                        opacity: 0;
-                    }
-                }
-
-                .info {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 5px;
-
-                    .name {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 0.5em;
-                        font-family: 'Montserrat-SemiBold';
-
-                        .small-icon {
-                            height: 1.5em;
-                            width: 1.5em;
-
-                            img {
-                                width: 100%;
-                            }
-                        }
-                    }
-
-                    .title {
-                        font-size: 15px;
-                        opacity: 0.8;
-                    }
-                }
-
-                .type {
-                    flex: none;
-                    height: 25px;
-                    line-height: 25px;
-                    align-self: flex-start;
-                    background-color: rgba(white, 0.1);
-                    padding: 0 11px;
-                    border-radius: 25px;
-                    font-family: 'Montserrat-Medium';
-                    font-size: 11px;
-                    user-select: none;
-                }
-
-                &:hover {
-                    .icon {
-                        img {
-                            opacity: 0;
-                        }
-
-                        ion-icon.outline {
-                            opacity: 1;
-                        }
-                    }
-
-                    &:active {
-                        .icon {
-                            ion-icon.filled {
-                                transition-delay: 0s;
-                                opacity: 1;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     .addons-button {
         position: sticky;
         bottom: 15px;
@@ -376,25 +229,5 @@ onMounted(async () => {
         }
     }
   }
-}
-
-@media only screen and (min-width: 768px) and (min-height: 768px) {
-    .stream {
-        .list {
-            .item {
-                .icon {
-                    display: flex !important;
-                }
-
-                .info {
-                    .name {
-                        .small-icon {
-                            display: none !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 </style>

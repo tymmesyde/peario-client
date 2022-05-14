@@ -14,7 +14,7 @@ const routes = [
     {
         name: "stream",
         path: "/stream/:type/:id",
-        component: () => import("@/views/Stream.vue")
+        component: () => import("@/views/Stream")
     },
     {
         name: "room",

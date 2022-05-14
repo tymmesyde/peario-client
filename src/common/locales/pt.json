@@ -16,6 +16,7 @@
         "stream": {
             "season": "Época",
             "misc": "Diversos",
+            "all": "Todos",
             "streams": {
                 "title": "Streams",
                 "error": "Não há fluxos disponíveis",
