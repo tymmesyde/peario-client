@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.12.0](https://github.com/tymmesyde/peario-client/compare/v0.11.8...v0.12.0) (2022-05-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* store installed addons by transportUrl
+
+### Features
+
+* add community list link on AddonManager ([0ed6a4a](https://github.com/tymmesyde/peario-client/commit/0ed6a4a2bf0fd0258b49b1e9f24161cb04c555c2))
+* allow addon share links from stremio to be added ([55feaad](https://github.com/tymmesyde/peario-client/commit/55feaadffce0b3663a4dc539b97081c9f4aca6d9))
+* handle http streams ([8e53932](https://github.com/tymmesyde/peario-client/commit/8e539323bd36a72b4da3cc56f07a35b18d2c2b60))
+* implement update room ownership ([d4b741b](https://github.com/tymmesyde/peario-client/commit/d4b741b06bcd84089c14ba245209c50a1267fe71))
+* sort streams by addons on Stream ([6db0aa0](https://github.com/tymmesyde/peario-client/commit/6db0aa05f508f1ec938071c54a80efa8c378bbfd))
+
+
+### Bug Fixes
+
+* **AddonManager:** await addUserAddon disaptch before loading Addons ([6e5cb7d](https://github.com/tymmesyde/peario-client/commit/6e5cb7dde4a768cc7e0176ed7e2c59e196e360e3))
+* **Room:** users-list was over chat on mobile ([1abc9be](https://github.com/tymmesyde/peario-client/commit/1abc9be5cd7fae73f570ad74ec5adb6c1f2dae28))
+* store installed addons by transportUrl ([e5a7091](https://github.com/tymmesyde/peario-client/commit/e5a7091ddbca581a911ce8d195a613b630e548e6))
+* **Stream:** key issue ([4b5a8de](https://github.com/tymmesyde/peario-client/commit/4b5a8def9f91e2558b776d38305ef6474840bc0a))
+* styling issue ([be51248](https://github.com/tymmesyde/peario-client/commit/be512483a549966d3f093c016d4dd70cffc63dc1))
+* styling issue with List on Stream ([da5564f](https://github.com/tymmesyde/peario-client/commit/da5564f5ef80fbe47614c8794dd2652cb242c0e0))
+* **Subtitles:** layout issue ([274b0d4](https://github.com/tymmesyde/peario-client/commit/274b0d45de327ac82ed47873f90e38c9c682083b))
+* **Subtitles:** minor styling issue ([e3dc306](https://github.com/tymmesyde/peario-client/commit/e3dc30656c00ad4e1b21c73e68b5710ad2d649f7))
+* **UsersList:** styling issue ([b45de22](https://github.com/tymmesyde/peario-client/commit/b45de225f5a14508be23b5ebc4b1368ea3f80e7d))
+
 ### [0.11.8](https://github.com/tymmesyde/peario-client/compare/v0.10.7...v0.11.8) (2022-05-01)
 
 
