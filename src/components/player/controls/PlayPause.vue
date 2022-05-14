@@ -44,7 +44,8 @@ export default {
 <style lang="scss" scoped>
 .play-pause {
     display: flex;
-    font-size: 55px !important;
+    font-size: 3em !important;
+    padding: 0 0.25em 0 0.3em !important;
 
     &.disabled {
         user-select: none;

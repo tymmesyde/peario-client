@@ -1,9 +1,7 @@
 <template>
     <div id="subtitles-control">
-        <span @click="activePanel = !activePanel">
-            <ion-icon name="chatbox-ellipses-outline" v-show="!activePanel"></ion-icon>
-            <ion-icon name="chatbox-ellipses" v-show="activePanel"></ion-icon>
-        </span>
+        <ion-icon name="chatbox-ellipses-outline" v-show="!activePanel" @click="togglePanel"></ion-icon>
+        <ion-icon name="chatbox-ellipses" v-show="activePanel" @click="togglePanel"></ion-icon>
 
         <transition name="fade">
             <div class="panel" v-if="activePanel">
@@ -123,6 +121,9 @@ export default {
         }
     },
     methods: {
+        togglePanel() {
+            this.activePanel = !this.activePanel;
+        },
         fetchSubtitles() {
             const addToList = subtitles => {
                 this.list.push(...subtitles);

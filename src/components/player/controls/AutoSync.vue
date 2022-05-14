@@ -1,17 +1,22 @@
 <template>
-    <div class="auto-sync" @click="toggleAutoSync()">
+    <Button class="auto-sync" clear @click="toggleAutoSync()">
         <ion-icon name="toggle-outline" class="flip" v-show="!autoSync"></ion-icon>
         <ion-icon name="toggle" v-show="autoSync"></ion-icon>
         {{ $t(`components.player.autoSync`) }}
-    </div>
+    </Button>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import store from '@/store';
 
+import Button from '@/components/ui/Button.vue';
+
 export default {
     name: 'AutoSyncControl',
+    components: {
+        Button
+    },
     computed: mapGetters({
         autoSync: 'player/autoSync'
     }),
@@ -28,13 +33,18 @@ export default {
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 6vw;
-    left: 2.5vw;
-    padding: 10px 0;
-    font-size: 20px;
+    bottom: calc(#{$player-controls-height} + 1rem);
+    left: 1.5em;
+    cursor: pointer;
 
     ion-icon {
-        margin-right: 10px;
+        margin-right: 0.5em;
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    .auto-sync {
+        bottom: calc(#{$player-controls-height} + 2.5rem) !important;
     }
 }
 </style>

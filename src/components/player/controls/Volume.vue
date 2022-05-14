@@ -72,6 +72,10 @@ export default {
         opacity: 0;
     }
 
+    .icon {
+        display: contents;
+    }
+
     &:hover {
         .volume-bar {
             opacity: 1;

@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <Subtitle v-if="videoRef" :timecode="currentTime"></Subtitle>
+        <Subtitle v-if="videoRef" :timecode="currentTime" :controlsShown="!controlsHidden"></Subtitle>
 
         <video ref="videoRef" :src="options.src" :poster="options.meta.background"
             @click="showControls"
@@ -25,6 +25,8 @@
         </video>
 
         <div class="controls" v-if="!locked && videoRef">
+            <AutoSyncControl></AutoSyncControl>
+
             <div class="panel">
                 <PlayPauseControl class="control" :options="options" @change="onPlayerChange()"></PlayPauseControl>
 
@@ -32,8 +34,6 @@
             </div>
 
             <div class="panel stretch">
-                <AutoSyncControl></AutoSyncControl>
-
                 <TimeBarControl class="control" :options="options"></TimeBarControl>
             </div>
 
@@ -218,16 +218,20 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
 
         .control {
             position: relative;
-            padding: 1.5vw 1vw;
-            font-size: 30px;
-            line-height: 29px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5em;
+            font-size: 1.8em;
             cursor: pointer;
         }
 
         .timer {
-            width: 82px;
+            width: 4em;
             padding: 0;
-            font-size: 20px;
+            font-size: 1.3em;
+            font-family: 'Montserrat-Medium';
             text-align: center;
         }
     }

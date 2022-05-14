@@ -1,5 +1,5 @@
 <template>
-    <div id="subtitle" :class="settings.size" v-show="settings.active">
+    <div id="subtitle" :class="[settings.size, { 'controls-shown': controlsShown }]" v-show="settings.active">
         <span v-html="html"></span>
     </div>
 </template>
@@ -10,6 +10,7 @@ import SubtitleService from '@/services/subtitle.service';
 export default {
     name: 'Subtitle',
     props: {
+        controlsShown: Boolean,
         videoUrl: String,
         timecode: Number,
     },
@@ -44,22 +45,38 @@ export default {
 #subtitle {
     position: absolute;
     width: 100%;
-    bottom: 8vh;
+    bottom: 2rem;
     display: flex;
     justify-content: center;
+    font-family: 'Montserrat-Medium';
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    white-space: pre-line;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+
+    &.controls-shown {
+        bottom: calc(#{$player-controls-height} + 1rem);
+    }
 
     &.small {
-        font-size: 2vh;
+        font-size: 1.5rem;
     }
 
     &.medium {
-        font-size: 3vh;
+        font-size: 2.1rem;
     }
 
     &.large {
-        font-size: 4vh;
+        font-size: 2.8rem;
+    }
+}
+
+@media only screen and (max-width: 768px) and (orientation: portrait) {
+    #subtitle {
+        &.controls-shown {
+            bottom: calc(#{$player-controls-height} + 6rem) !important;
+        }
     }
 }
 </style>
