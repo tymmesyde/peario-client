@@ -42,6 +42,7 @@
             "button": "Terminer"
         },
         "addons": {
+            "communityList": "Parcourir la liste communautaire",
             "types": {
                 "streams": "Streams",
                 "subtitles": "Sous-Titres"

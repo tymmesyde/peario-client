@@ -42,6 +42,7 @@
             "button": "किया हुआ"
         },
         "addons": {
+            "communityList": "समुदाय सूची ब्राउज़ करें",
             "types": {
                 "streams": "स्ट्रीम",
                 "subtitles": "उपशीर्षक"

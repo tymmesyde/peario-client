@@ -42,6 +42,7 @@
             "button": "Done"
         },
         "addons": {
+            "communityList": "Browse community list",
             "types": {
                 "streams": "Streams",
                 "subtitles": "Subtitles"

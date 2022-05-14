@@ -37,6 +37,12 @@
                     </div>
                 </li>
             </ul>
+
+            <div class="community-list">
+                <Button clear class="link" icon="open-outline" @click="openList">
+                    {{ $t(`components.addons.communityList`) }}
+                </Button>
+            </div>
         </div>
 
         <div class="backdrop" @click="close()"></div>
@@ -48,13 +54,16 @@ import { mapGetters } from 'vuex';
 import Title from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
 import Segments from '@/components/ui/Segments.vue';
+import Button from '@/components/ui/Button.vue';
+import { ADDON_COMMUNITY_LIST } from '@/common/config';
 
 export default {
     name: 'AddonManager',
     components: {
         Title,
         TextInput,
-        Segments
+        Segments,
+        Button
     },
     props: {
         modelValue: Boolean
@@ -86,6 +95,9 @@ export default {
             this.$store.dispatch('addUserAddon', this.manifestUrl);
             this.$store.dispatch('loadAddons', this.manifestUrl);
             this.manifestUrl = '';
+        },
+        openList() {
+            window.open(ADDON_COMMUNITY_LIST, '_blank');
         }
     }
 };
@@ -247,6 +259,14 @@ export default {
                     }
                 }
             }
+        }
+    }
+
+    .community-list {
+        padding: 1em;
+
+        .link {
+            width: 100%;
         }
     }
 }
