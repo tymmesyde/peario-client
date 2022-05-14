@@ -228,6 +228,10 @@ export default {
                 padding: 0 10px;
                 padding-bottom: 10px;
 
+                /deep/ .item {
+                    padding: 0.75em 1em;
+                }
+
                 &:first-child .item div:last-child {
                     font-family: 'Montserrat-SemiBold' !important;
                 }
