@@ -144,45 +144,52 @@ const streamClick = (stream) => {
                     }
                 }
 
-                .info {
+                .right-content {
                     display: flex;
-                    flex-direction: column;
-                    gap: 5px;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    width: 100%;
 
-                    .name {
+                    .info {
                         display: flex;
-                        flex-direction: row;
-                        align-items: center;
-                        gap: 0.5em;
-                        font-family: 'Montserrat-SemiBold';
+                        flex-direction: column;
+                        gap: 5px;
 
-                        .small-icon {
-                            height: 1.5em;
-                            width: 1.5em;
+                        .name {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            gap: 0.5em;
+                            font-family: 'Montserrat-SemiBold';
 
-                            img {
-                                width: 100%;
+                            .small-icon {
+                                height: 1.5em;
+                                width: 1.5em;
+
+                                img {
+                                    width: 100%;
+                                }
                             }
+                        }
+
+                        .title {
+                            font-size: 15px;
+                            opacity: 0.8;
                         }
                     }
 
-                    .title {
-                        font-size: 15px;
-                        opacity: 0.8;
+                    .type {
+                        flex: none;
+                        height: 25px;
+                        line-height: 25px;
+                        align-self: flex-start;
+                        background-color: rgba(white, 0.1);
+                        padding: 0 11px;
+                        border-radius: 25px;
+                        font-family: 'Montserrat-Medium';
+                        font-size: 11px;
+                        user-select: none;
                     }
-                }
-
-                .type {
-                    flex: none;
-                    height: 25px;
-                    line-height: 25px;
-                    align-self: flex-start;
-                    background-color: rgba(white, 0.1);
-                    padding: 0 11px;
-                    border-radius: 25px;
-                    font-family: 'Montserrat-Medium';
-                    font-size: 11px;
-                    user-select: none;
                 }
 
                 &:hover {

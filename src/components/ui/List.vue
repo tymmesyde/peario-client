@@ -2,10 +2,10 @@
     <ul :class="['list', { 'fixed': fixed, 'small': small }]">
         <transition-group name="fade">
             <li :class="['item', { 'active': item === modelValue }]" v-for="(item, index) in items" :key="itemKey ? item[itemKey] : item" @click="selectItem($event, item)">
-                <div>
+                <div class="left-content">
                     <slot name="left" :index="index" :item="item"></slot>
                 </div>
-                <div v-if="$slots.right">
+                <div class="right-content" v-if="$slots.right">
                     <slot name="right" :index="index" :item="item"></slot>
                 </div>
             </li>
@@ -87,12 +87,12 @@ export default {
             align-items: center;
         }
 
-        div:first-child {
+        .left-content {
             word-break: normal;
             font-family: 'Montserrat-SemiBold';
         }
 
-        div:last-child {
+        .right-content {
             word-break: break-word;
             font-family: 'Montserrat-Regular';
             opacity: 0.75;
