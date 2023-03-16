@@ -42,6 +42,7 @@
             "button": "Bitti"
         },
         "addons": {
+            "manifestTextInput": "Eklenti yükleme bağlantısını yapıştırın",
             "communityList": "Topluluk Listesine Göz Atın",
             "types": {
                 "streams": "Akışları",

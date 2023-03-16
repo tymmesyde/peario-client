@@ -42,6 +42,7 @@
             "button": "Terminer"
         },
         "addons": {
+            "manifestTextInput": "Coller un lien d'installation d'addon",
             "communityList": "Parcourir la liste communautaire",
             "types": {
                 "streams": "Streams",

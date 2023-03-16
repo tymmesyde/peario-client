@@ -42,6 +42,7 @@
             "button": "Terminar"
         },
         "addons": {
+            "manifestTextInput": "Link de instalação do addon de colar",
             "communityList": "Navegar na lista da comunidade",
             "types": {
                 "streams": "Streams",

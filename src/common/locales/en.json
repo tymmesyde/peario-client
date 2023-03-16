@@ -42,6 +42,7 @@
             "button": "Done"
         },
         "addons": {
+            "manifestTextInput": "Paste addon install link",
             "communityList": "Browse community list",
             "types": {
                 "streams": "Streams",
