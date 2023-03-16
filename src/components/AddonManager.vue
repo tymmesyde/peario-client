@@ -7,7 +7,7 @@
             </div>
 
             <div class="filters-container">
-                <TextInput v-model="manifestUrl" placeholder="Paste addon manifest URL" @change="addFromURL()"></TextInput>
+                <TextInput v-model="manifestUrl" placeholder="Paste addon install link" @change="addFromURL()"></TextInput>
                 <Segments :segments="types" v-model="type">
                     <template #segment="{ segment }">
                         {{ $t(`components.addons.types.${segment}`) }}
@@ -266,6 +266,7 @@ export default {
         padding: 1em;
 
         .link {
+            height: 60px;
             width: 100%;
         }
     }
