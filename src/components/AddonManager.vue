@@ -176,7 +176,6 @@ export default {
         gap: 20px;
         overflow-y: auto;
         padding: 0 1.5em;
-        padding-bottom: 1.5em;
 
         .addon {
             display: flex;
@@ -195,16 +194,19 @@ export default {
             }
 
             .info {
+                flex: 0 1 auto;
                 display: flex;
                 align-items: center;
                 gap: 15px;
+                overflow: hidden;
 
                 .icon {
+                    flex: 0 0 auto;
                     display: grid;
                     align-content: center;
                     justify-content: center;
-                    height: 3em;
-                    width: 3em;
+                    height: 2.5em;
+                    width: 2.5em;
                     border-radius: 15px;
                     font-size: 30px;
                     overflow: hidden;
@@ -216,13 +218,15 @@ export default {
                 }
 
                 .text {
+                    flex: 0 1 auto;
                     display: flex;
                     flex-direction: column;
                     gap: 0.5em;
+                    overflow: hidden;
 
                     .name {
                         font-family: 'Montserrat-SemiBold';
-                        font-size: 1.2em;
+                        font-size: 1em;
                     }
 
                     .types {
@@ -245,6 +249,7 @@ export default {
             }
 
             .switch {
+                flex: 0 0 auto;
                 display: flex;
                 align-items: center;
                 font-size: 2em;
@@ -275,6 +280,23 @@ export default {
 @media only screen and (min-width: 768px) and (min-height: 768px) {
     .menu {
         width: 30em;
+
+        ul {
+            .addon {
+                .info {
+                    .icon {
+                        height: 3em;
+                        width: 3em;
+                    }
+
+                    .text {
+                        .name {
+                            font-size: 1.2em;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 </style>
