@@ -7,7 +7,7 @@
             </div>
 
             <div class="filters-container">
-                <TextInput v-model="manifestUrl" :placeholder="$t('components.addons.manifestTextInput')" @change="addFromURL()"></TextInput>
+                <TextInput v-model="manifestUrl" :placeholder="$t('components.addons.manifestTextInput')" @input="addFromURL()"></TextInput>
                 <Segments :segments="types" v-model="type">
                     <template #segment="{ segment }">
                         {{ $t(`components.addons.types.${segment}`) }}
@@ -92,9 +92,12 @@ export default {
             else this.$store.dispatch('installAddon', addon);
         },
         async addFromURL() {
-            await this.$store.dispatch('addUserAddon', this.manifestUrl);
-            this.$store.dispatch('loadAddons', this.manifestUrl);
-            this.manifestUrl = '';
+            const addedAddon = await this.$store.dispatch('addUserAddon', this.manifestUrl);
+            if (addedAddon) {
+                this.$store.dispatch('loadAddons', this.manifestUrl);
+                this.manifestUrl = '';
+                this.$toast.success(this.$t('toasts.userAddonSuccess', [addedAddon.manifest.name]));
+            }
         },
         openList() {
             window.open(ADDON_COMMUNITY_LIST, '_blank');

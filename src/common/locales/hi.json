@@ -77,6 +77,7 @@
     "toasts": {
         "clipboard": "आपके क्लिपबोर्ड पर कॉपी किया गया!",
         "hlsStream": "HLS स्ट्रीम पर स्विच किया गया",
-        "sourceStream": "Source स्ट्रीम पर स्विच किया गया"
+        "sourceStream": "Source स्ट्रीम पर स्विच किया गया",
+        "userAddonSuccess": "{0} ऐडऑन को सफलतापूर्वक जोड़ा गया!"
     }
 }

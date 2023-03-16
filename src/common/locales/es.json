@@ -77,6 +77,7 @@
     "toasts": {
         "clipboard": "¡Copiado en tu portapapeles!",
         "hlsStream": "Cambió a HLS stream",
-        "sourceStream": "Cambió a Source stream"
+        "sourceStream": "Cambió a Source stream",
+        "userAddonSuccess": "¡Añadido con éxito el addon {0} !"
     }
 }

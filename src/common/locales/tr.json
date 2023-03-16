@@ -77,6 +77,7 @@
     "toasts": {
         "clipboard": "Panonuza kopyalandı!",
         "hlsStream": "HLS akışına geçti",
-        "sourceStream": "Source akışına geçti"
+        "sourceStream": "Source akışına geçti",
+        "userAddonSuccess": "{0} eklentisi başarıyla eklendi!"
     }
 }

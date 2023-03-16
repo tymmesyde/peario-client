@@ -75,17 +75,22 @@ export default {
             commit('removeFromInstalled', addon.transportUrl);
         },
         async addUserAddon({ commit }, addon_url) {
-            let url = addon_url;
+            try {
+                let url = addon_url;
+                const { hash } = new URL(addon_url);
+                if (hash) {
+                    const [, encodedAddonUrl] = hash.split('addon=');
+                    if (encodedAddonUrl)
+                        url = decodeURIComponent(encodedAddonUrl);
+                }
 
-            const { hash } = new URL(addon_url);
-            if (hash) {
-                const [, encodedAddonUrl] = hash.split('addon=');
-                if (encodedAddonUrl)
-                    url = decodeURIComponent(encodedAddonUrl);
+                const addon = await AddonService.detectFromURL(url);
+                commit('addToUser', addon);
+                return Promise.resolve(addon);
+            } catch(e) {
+                console.error('Failed to parse url');
+                return Promise.resolve(false);
             }
-
-            const addon = await AddonService.detectFromURL(url);
-            commit('addToUser', addon);
         }
     }
 };
