@@ -43,7 +43,7 @@
         },
         "addons": {
             "manifestTextInput": "Coller un lien d'installation d'addon",
-            "communityList": "Parcourir la liste communautaire",
+            "communityList": "Parcourir d'autres addons",
             "types": {
                 "streams": "Streams",
                 "subtitles": "Sous-Titres"

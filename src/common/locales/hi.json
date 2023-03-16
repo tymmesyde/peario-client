@@ -43,7 +43,7 @@
         },
         "addons": {
             "manifestTextInput": "ऐडऑन इंस्टॉल लिंक पेस्ट करें",
-            "communityList": "समुदाय सूची ब्राउज़ करें",
+            "communityList": "और ऐड-ऑन ब्राउज़ करें",
             "types": {
                 "streams": "स्ट्रीम",
                 "subtitles": "उपशीर्षक"

@@ -43,7 +43,7 @@
         },
         "addons": {
             "manifestTextInput": "Eklenti yükleme bağlantısını yapıştırın",
-            "communityList": "Topluluk Listesine Göz Atın",
+            "communityList": "Daha fazla eklentiye göz atın",
             "types": {
                 "streams": "Akışları",
                 "subtitles": "Altyazılar"

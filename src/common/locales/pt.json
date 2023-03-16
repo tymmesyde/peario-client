@@ -43,7 +43,7 @@
         },
         "addons": {
             "manifestTextInput": "Link de instalação do addon de colar",
-            "communityList": "Navegar na lista da comunidade",
+            "communityList": "Procurar mais addons",
             "types": {
                 "streams": "Streams",
                 "subtitles": "Subtítulos"

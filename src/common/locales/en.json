@@ -43,7 +43,7 @@
         },
         "addons": {
             "manifestTextInput": "Paste addon install link",
-            "communityList": "Browse community list",
+            "communityList": "Browse more addons",
             "types": {
                 "streams": "Streams",
                 "subtitles": "Subtitles"
