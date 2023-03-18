@@ -10,6 +10,7 @@ import locales from './common/locales';
 import toTimer from './directives/toTimer';
 
 const i18n = createI18n({
+  legacy: false,
   locale: 'en',
   messages: locales
 });
