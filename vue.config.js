@@ -45,5 +45,6 @@ module.exports = defineConfig({
     },
     transpileDependencies: [
         'vue-meta',
-    ]
+    ],
+    productionSourceMap: false,
 });
