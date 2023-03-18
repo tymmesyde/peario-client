@@ -45,7 +45,7 @@
             </List>
         </div>
 
-        <Streams :streams="streams" @streamClick="createRoom"/>
+        <Streams :streams="streams" :loading="loading" @streamClick="createRoom" />
 
         <Button large class="addons-button" icon="cube-outline" @click="isAddonsMenuOpen = true">
             {{ t('views.stream.streams.button') }}
@@ -72,6 +72,7 @@ import Streams from './Streams/Streams.vue';
 
 const { t } = useI18n();
 
+const loading = ref(false);
 const meta = ref({});
 const seasons = ref([]);
 const selectedSeason = ref(1);
@@ -88,6 +89,7 @@ const episodes = computed(() => meta.value && meta.value.videos && meta.value.vi
 
 let loadStreamsDebouncer = null;
 const loadStreams = () => {
+    loading.value = true;
     clearTimeout(loadStreamsDebouncer);
     loadStreamsDebouncer = setTimeout(async () => {
         const { id, type } = router.currentRoute.value.params;
@@ -96,6 +98,7 @@ const loadStreams = () => {
             if (installedAddons)
                 streams.value = await AddonService.getStreams(installedAddons, type, id);
         }
+        loading.value = false;
     }, 250);
 };
 

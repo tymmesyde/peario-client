@@ -10,14 +10,16 @@
                 </template>
             </Segments>
 
-            <div class="no-streams" v-show="!filteredStreams.length">
+            <div class="no-streams" v-show="!props.loading && !filteredStreams.length">
                 <div>
                     <ion-icon name="sad"></ion-icon>
                     <p>{{ t(`views.stream.streams.error`) }}</p>
                 </div>
             </div>
 
-            <List class="list" :items="filteredStreams" @click="streamClick" v-show="filteredStreams.length">
+            <Loading class="loading" v-show="props.loading" />
+
+            <List class="list" :items="filteredStreams" @click="streamClick" v-show="!props.loading && filteredStreams.length">
                 <template #left="{ item }">
                     <div class="icon">
                         <img v-bind:src="item.icon" alt="">
@@ -49,11 +51,13 @@ import { useI18n } from 'vue-i18n';
 import Title from '@/components/ui/Title.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';
+import Loading from '@/components/ui/Loading.vue';
 
 const { t } = useI18n();
 
 const props = defineProps({
-    streams: Array
+    streams: Array,
+    loading: Boolean,
 });
 
 const emit = defineEmits(['streamClick']);
@@ -108,6 +112,10 @@ const streamClick = (stream) => {
                 font-size: 50px;
                 color: $text-color;
             }
+        }
+
+        .loading {
+            height: 200px;
         }
 
         .list {

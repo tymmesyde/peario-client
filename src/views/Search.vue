@@ -7,13 +7,15 @@
             </div>
 
             <TextInput large v-model="search" placeholder="Parasite, Fight Club, ..."/>
-            <Segments :segments="types" v-model="type" v-show="search">
+            <Segments :segments="types" v-model="type" v-show="!loading && search">
                 <template #segment="{ segment }">
                     {{ $t(`views.search.segments.${segment}`) }}
                 </template>
             </Segments>
         </div>
-    
+
+        <Loading class="loading" v-show="loading" />
+
         <List class="list" :items="results[type]" itemKey="id" @click="goToStream($event)">
             <template #left="{ item }">
                 <div class="poster" :style="`background-image: url(${item.poster})`">
@@ -39,7 +41,9 @@ import Title from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';
+import Loading from '@/components/ui/Loading.vue';
 
+const loading = ref(false);
 const search = ref('');
 const type = ref('movies');
 const types = ['movies', 'series'];
@@ -50,8 +54,8 @@ const results = ref({
 
 let debouncer = null;
 watch(search, (value) => {
+    loading.value = true;
     clearTimeout(debouncer);
-
     debouncer = setTimeout(async () => {
         if (value.length) {
             results.value.movies = await StremioService.searchMovies(value);
@@ -60,6 +64,7 @@ watch(search, (value) => {
             movies: [],
             series: []
         };
+        loading.value = false;
     }, 250);
 });
 
@@ -70,6 +75,8 @@ const goToStream = ({ type, imdb_id }) => {
 
 <style lang="scss" scoped>
 .search {
+    position: relative;
+
     .header {
         z-index: 97;
         top: 0;
@@ -87,7 +94,16 @@ const goToStream = ({ type, imdb_id }) => {
         }
     }
 
+    .loading {
+        z-index: 0;
+        position: absolute;
+        height: 12rem;
+    }
+
     .list {
+        position: relative;
+        z-index: 0;
+
         .item {
             .poster {
                 display: grid;
