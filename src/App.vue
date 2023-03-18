@@ -97,7 +97,7 @@ $padding: 25px;
     top: $header-height-mobile;
     height: calc(100vh - #{$header-height-mobile});
     width: 100%;
-    overflow-y: overlay;
+    overflow-y: auto;
 
     .inner {
         max-width: 100vw;
