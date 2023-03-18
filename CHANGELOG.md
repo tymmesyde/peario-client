@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.1](https://github.com/tymmesyde/peario-client/compare/v0.12.0...v0.12.1) (2023-03-18)
+
+
+### Features
+
+* add loading indicator on Search and Streams ([afda51b](https://github.com/tymmesyde/peario-client/commit/afda51bd6c349a0af5dc936f6ec2b2ee8c4ffa83))
+* show toast when user addon successfully added ([99a09e7](https://github.com/tymmesyde/peario-client/commit/99a09e7cfbc48fd8a4989c28986cb84d8ada4fab))
+
+
+### Bug Fixes
+
+* **AddonManager:** layout was broken ([91770bf](https://github.com/tymmesyde/peario-client/commit/91770bfa392fb37c98beb8a5ceef44fdb419dc8f))
+
 ## [0.12.0](https://github.com/tymmesyde/peario-client/compare/v0.11.8...v0.12.0) (2022-05-14)
 
 
