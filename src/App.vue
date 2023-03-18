@@ -18,8 +18,6 @@
             </router-view>
         </div>
     </div>
-
-    <Footer></Footer>
 </template>
 
 <script>
@@ -27,7 +25,6 @@ import { useMeta } from 'vue-meta';
 
 import Header from '@/components/Header.vue';
 import Error from '@/components/Error.vue';
-import Footer from '@/components/Footer.vue';
 import { APP_TITLE } from '@/common/config';
 
 import store from './store';
@@ -39,7 +36,6 @@ export default {
     components: {
         Header,
         Error,
-        Footer
     },
     computed: {
         client: () => store.state.client,
@@ -114,7 +110,7 @@ $padding: 25px;
     .view-container {
         overflow-y: auto;
         top: $header-height;
-        height: calc(100vh - #{$header-height} - #{$footer-height});
+        height: calc(100vh - #{$header-height});
 
         .inner {
             width: $inner-width;
