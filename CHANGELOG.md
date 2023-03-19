@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.12.2](https://github.com/tymmesyde/peario-client/compare/v0.12.1...v0.12.2) (2023-03-19)
+
+
+### Bug Fixes
+
+* **App:** scroll issue on firefox on mobile screen ([6dbb916](https://github.com/tymmesyde/peario-client/commit/6dbb916ce12336744a00fa4f697c755aeb8a0fb7))
+* disable legacy mode for vue-18n ([01e5e7c](https://github.com/tymmesyde/peario-client/commit/01e5e7cc33895c13d16eaebe75970bc49502fe8d))
+
 ### [0.12.1](https://github.com/tymmesyde/peario-client/compare/v0.12.0...v0.12.1) (2023-03-18)
 
 
