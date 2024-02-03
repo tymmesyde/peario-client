@@ -39,6 +39,7 @@ import HlsService from "@/services/hls.service";
 import ClientService from "@/services/client.service";
 import { onBeforeRouteLeave } from 'vue-router';
 
+const initialized = ref(false); 
 const playerOptions = ref(null); 
 const isChatOpen = ref(false); 
 
@@ -53,17 +54,32 @@ const isUserOwner = computed(() => clientState.value && clientState.value.user &
 const syncRoom = async () => {
     const { stream, meta, player, owner } = clientState.value.room;
 
-    const isTorrentStream = stream.infoHash != null;
-    const videoUrl = isTorrentStream ? await StremioService.createTorrentStream(stream) : stream.url;
-    playerOptions.value = { src: videoUrl, hls: null, meta, isOwner: clientState.value.user.id === owner };
+    playerOptions.value = {
+        ...playerOptions.value,
+        meta,
+        isOwner: clientState.value.user.id === owner,
+    };
 
-    if (isTorrentStream)
-        HlsService.createPlaylist(videoUrl).then(playlistUrl => {
+    if (!initialized.value) {
+        const isTorrentStream = stream.infoHash != null;
+    
+        const videoUrl = isTorrentStream ? await StremioService.createTorrentStream(stream) : stream.url;
+        playerOptions.value = {
+            ...playerOptions.value,
+            src: videoUrl,
+            hls: null,
+        };
+
+        if (isTorrentStream) {
+            const playlistUrl = await HlsService.createPlaylist(videoUrl);
             playerOptions.value = {
                 ...playerOptions.value,
-                hls: playlistUrl
+                hls: playlistUrl,
             };
-        });
+        }
+
+        initialized.value = true;
+    }
 
     if (playerState.value.autoSync && playerState.value.video && !playerState.value.locked) {
         const { paused, buffering, time } = player;
@@ -82,7 +98,11 @@ const syncRoom = async () => {
 const syncPlayer = () => {
     if (playerState.value.autoSync) {
         const { currentTime } = playerState.value.video;
-        ClientService.send('player.sync', { paused: playerState.value.paused, buffering: playerState.value.buffering, time: currentTime });
+        ClientService.send('player.sync', {
+            paused: playerState.value.paused,
+            buffering: playerState.value.buffering,
+            time: currentTime,
+        });
     }
 };
 
@@ -99,10 +119,11 @@ let syncPlayerInterval = null;
 onMounted(() => {
     const { id } = router.currentRoute.value.params;
     ClientService.send('room.join', { id });
-
+    
     syncPlayerInterval = setInterval(() => {
-        if (playerState.value.video && !playerState.value.paused)
+        if (playerState.value.video && !playerState.value.paused) {
             syncPlayer();
+        }
     }, 1000);
 });
 
