@@ -132,8 +132,15 @@ export default {
                 this.list = urls.map(url => this.list.find(sub => sub.url === url));
             };
 
-            StremioService.getSubtitles(this.videoUrl).then(stremioSubtitles => addToList(stremioSubtitles));
-            this.installedSubtitles.map(addon => AddonService.getSubtitles([addon], this.meta.type, this.meta.id).then(addonsSubtitles => addToList(addonsSubtitles)));
+            StremioService.getSubtitles({
+                type: this.meta.type,
+                id: this.meta.id,
+                url: this.videoUrl,
+            }).then(stremioSubtitles => addToList(stremioSubtitles));
+
+            this.installedSubtitles
+                .map(addon => AddonService.getSubtitles([addon], this.meta.type, this.meta.id)
+                .then(addonsSubtitles => addToList(addonsSubtitles)));
         },
         filterSubs() {
             return this.panelLang ? this.list.filter(s => s.lang === this.panelLang.iso) : [];

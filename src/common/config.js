@@ -1,5 +1,5 @@
 const CINEMETA_URL = "https://v3-cinemeta.strem.io";
-const OPENSUBTITLES_URL = "https://opensubtitles.strem.io";
+const OPENSUBTITLES_URL = "https://opensubtitles-v3.strem.io";
 const STREMIO_API_URL = "https://api.strem.io";
 const STREMIO_STREAMING_SERVER = "http://localhost:11470";
 const ADDON_COMMUNITY_LIST = 'https://stremio-addons.netlify.app/';
