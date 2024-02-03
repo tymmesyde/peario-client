@@ -1,21 +1,21 @@
 <template>
-    <Button class="auto-sync" clear @click="toggleAutoSync()">
+    <AButton class="auto-sync" clear @click="toggleAutoSync()">
         <ion-icon name="toggle-outline" class="flip" v-show="!autoSync"></ion-icon>
         <ion-icon name="toggle" v-show="autoSync"></ion-icon>
         {{ $t(`components.player.autoSync`) }}
-    </Button>
+    </AButton>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import store from '@/store';
 
-import Button from '@/components/ui/Button.vue';
+import AButton from '@/components/ui/Button.vue';
 
 export default {
     name: 'AutoSyncControl',
     components: {
-        Button
+        AButton
     },
     computed: mapGetters({
         autoSync: 'player/autoSync'

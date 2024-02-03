@@ -28,8 +28,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-
 import Button from "@/components/ui/Button.vue";
 
 const emit = defineEmits(['onUpdateOwnership']);

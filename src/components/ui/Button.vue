@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: 'Button',
+    name: 'AButton',
     props: {
         modelValue: Boolean,
         icon: String,

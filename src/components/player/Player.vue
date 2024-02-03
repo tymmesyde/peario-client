@@ -51,7 +51,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps, defineEmits, onMounted, ref, watch, onUnmounted } from 'vue';
+import { computed, onMounted, ref, watch, onUnmounted } from 'vue';
 import store from '@/store';
 
 import LockScreen from "./LockScreen.vue";

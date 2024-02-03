@@ -2,7 +2,7 @@
     <div class="loading">
         <div class="content">
             <ion-icon name="sync-outline" class="icon spin"></ion-icon>
-            <Title type="secondary" :translate="`loading.${type}.title`"/>
+            <ATitle type="secondary" :translate="`loading.${type}.title`"/>
             <div class="message">
                 {{ $t(`loading.${type}.message`) }}
             </div>
@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import Title from '@/components/ui/Title.vue';
+import ATitle from '@/components/ui/Title.vue';
 
 export default {
     name: 'Loading',
     components: {
-        Title
+        ATitle
     },
     props: {
         type: String

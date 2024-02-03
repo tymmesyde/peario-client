@@ -2,9 +2,9 @@
     <div class="lock-screen">
         <div class="header">
             <img v-if="options.meta.logo" :src="options.meta.logo" :alt="options.meta.name">
-            <Button large icon="checkmark-outline" @click="unlockPlayer()">
+            <AButton large icon="checkmark-outline" @click="unlockPlayer()">
                 {{ $t('components.player.ready') }}
-            </Button>
+            </AButton>
         </div>
 
         <div class="share" v-if="options.isOwner">
@@ -20,13 +20,13 @@
 import store from '../../store';
 import { mapGetters } from 'vuex';
 
-import Button from "@/components/ui/Button.vue";
+import AButton from "@/components/ui/Button.vue";
 import TextInput from "@/components/ui/TextInput.vue";
 
 export default {
     name: 'LockScreen',
     components: {
-        Button,
+        AButton,
         TextInput
     },
     props: {

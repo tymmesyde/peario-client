@@ -1,7 +1,7 @@
 <template>
     <div class="chat">
         <div class="topbar">
-            <Title type="secondary" icon="chatbubbles">Chat</Title>
+            <ATitle type="secondary" icon="chatbubbles">Chat</ATitle>
         </div>
         
         <div class="placeholder" v-show="!client.messages.length">
@@ -27,8 +27,8 @@
         </div>
 
         <div class="form">
-            <TextInput v-model="message" placeholder="Say something nice" maxlength="300" @keyup.stop="" @keyup.enter="sendMessage()"></TextInput>
-            <Button icon="send" @click="sendMessage()"></Button>
+            <ATextInput v-model="message" placeholder="Say something nice" maxlength="300" @keyup.stop="" @keyup.enter="sendMessage()" />
+            <AButton icon="send" @click="sendMessage()" />
         </div>
     </div>
 </template>
@@ -36,16 +36,17 @@
 <script>
 import store from '../store';
 import ClientService from "@/services/client.service";
-import Title from '@/components/ui/Title.vue';
-import TextInput from '@/components/ui/TextInput.vue';
-import Button from '@/components/ui/Button.vue';
+
+import ATitle from '@/components/ui/Title.vue';
+import ATextInput from '@/components/ui/TextInput.vue';
+import AButton from '@/components/ui/Button.vue';
 
 export default {
     name: 'Chat',
     components: {
-        Title,
-        TextInput,
-        Button
+        ATitle,
+        ATextInput,
+        AButton
     },
     computed: {
         client: () => store.state.client

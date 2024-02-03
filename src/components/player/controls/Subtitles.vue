@@ -228,7 +228,7 @@ export default {
                 padding: 0 10px;
                 padding-bottom: 10px;
 
-                /deep/ .item {
+                :deep(.item) {
                     padding: 0.75em 1em;
                 }
 

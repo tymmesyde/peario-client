@@ -2,8 +2,8 @@
     <div class="search">
         <div class="header">
             <div class="title">
-                <Title translate="views.search.title"/>
-                <Title type="tertiary" translate="views.search.sub"/>
+                <ATitle translate="views.search.title"/>
+                <ATitle type="tertiary" translate="views.search.sub"/>
             </div>
 
             <TextInput large v-model="search" placeholder="Parasite, Fight Club, ..."/>
@@ -37,7 +37,7 @@ import { ref, watch } from 'vue';
 import router from '@/router';
 import StremioService from '@/services/stremio.service';
 
-import Title from '@/components/ui/Title.vue';
+import ATitle from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';

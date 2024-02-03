@@ -1,7 +1,7 @@
 <template>
     <div id="addons">
         <div class="menu">
-            <Title class="title" type="secondary" icon="cube-outline">ADDONS</Title>
+            <ATitle class="title" type="secondary" icon="cube-outline">ADDONS</ATitle>
             <div class="close" @click="close()">
                 <ion-icon name="close-outline"></ion-icon>
             </div>
@@ -39,9 +39,9 @@
             </ul>
 
             <div class="community-list">
-                <Button clear class="link" icon="open-outline" @click="openList">
+                <AButton clear class="link" icon="open-outline" @click="openList">
                     {{ $t(`components.addons.communityList`) }}
-                </Button>
+                </AButton>
             </div>
         </div>
 
@@ -51,19 +51,19 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Title from '@/components/ui/Title.vue';
+import ATitle from '@/components/ui/Title.vue';
 import TextInput from '@/components/ui/TextInput.vue';
 import Segments from '@/components/ui/Segments.vue';
-import Button from '@/components/ui/Button.vue';
+import AButton from '@/components/ui/Button.vue';
 import { ADDON_COMMUNITY_LIST } from '@/common/config';
 
 export default {
     name: 'AddonManager',
     components: {
-        Title,
+        ATitle,
         TextInput,
         Segments,
-        Button
+        AButton
     },
     props: {
         modelValue: Boolean

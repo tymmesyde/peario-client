@@ -1,23 +1,20 @@
 <template>
-    <div :class="['title', type]">
-        <ion-icon :name="icon" v-if="icon"></ion-icon>
+    <div :class="['title', props.type]">
+        <ion-icon :name="props.icon" v-if="props.icon"></ion-icon>
         {{ translate ? $t(translate) : '' }}
         <slot></slot>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Title',
-    props: {
-        type: {
-            type: String,
-            default: 'primary'
-        },
-        icon: String,
-        translate: String
-    }
-}
+<script setup>
+const props = defineProps({
+    type: {
+        type: String,
+        default: 'primary',
+    },
+    icon: String,
+    translate: String,
+});
 </script>
 
 <style lang="scss" scoped>

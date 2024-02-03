@@ -1,6 +1,6 @@
 <template>
     <div class="streams">
-        <Title class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
+        <ATitle class="streams-title" icon="play-outline" type="secondary" translate="views.stream.streams.title"/>
 
         <div class="content">
             <Segments :segments="addons" v-model="selectedAddon">
@@ -45,10 +45,10 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import Title from '@/components/ui/Title.vue';
+import ATitle from '@/components/ui/Title.vue';
 import Segments from '@/components/ui/Segments.vue';
 import List from '@/components/ui/List.vue';
 import Loading from '@/components/ui/Loading.vue';
@@ -119,7 +119,7 @@ const streamClick = (stream) => {
         }
 
         .list {
-            /deep/ .item {
+           :deep(.item) {
                 align-items: flex-start;
                 padding: 1.5em 15px;
 

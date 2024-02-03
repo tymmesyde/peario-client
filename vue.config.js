@@ -8,7 +8,9 @@ module.exports = defineConfig({
             fallback: {
                 stream: false,
                 process: require.resolve('process/browser'),
-                buffer: require.resolve('buffer/')
+                buffer: require.resolve('buffer/'),
+                events: require.resolve('events'),
+                querystring: require.resolve('querystring-es3'),
             }
         },
         plugins: [
@@ -17,9 +19,7 @@ module.exports = defineConfig({
                 process: 'process/browser',
             }),
             new webpack.DefinePlugin({
-                'process.env': {
-                    PACKAGE_VERSION: `"${version}"`
-                }
+                'process.env.PACKAGE_VERSION': JSON.stringify(version),
             })
         ]
     },

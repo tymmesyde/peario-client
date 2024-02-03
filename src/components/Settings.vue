@@ -3,7 +3,7 @@
         <div class="backdrop" @click="close()"></div>
 
         <div class="inner">
-            <Title icon="settings-outline" type="secondary" translate="components.settings.title"></Title>
+            <ATitle icon="settings-outline" type="secondary" translate="components.settings.title" />
 
             <div class="settings">
                 <div class="setting">
@@ -11,14 +11,14 @@
                         <ion-icon name="language"></ion-icon>
                         {{ $t('components.settings.lang') }}
                     </div>
-                    <Select v-model="settings.locale" :options="localesOptions"></Select>
+                    <ASelect v-model="settings.locale" :options="localesOptions" />
                 </div>
                 <div class="setting">
                     <div class="label">
                         <ion-icon name="person"></ion-icon>
                         Username
                     </div>
-                    <TextInput :value="settings.username || client.user.name" @change="updateUsername($event)"></TextInput>
+                    <ATextInput :value="settings.username || client.user.name" @change="updateUsername($event)" />
                 </div>
                 <div class="setting">
                     <div class="label">
@@ -32,11 +32,11 @@
                         <ion-icon name="link"></ion-icon>
                         {{ $t('components.settings.links.title') }}
                     </div>
-                    <Link href="https://github.com/tymmesyde/peario-client/issues">{{ $t('components.settings.links.report') }}</Link>
+                    <ALink href="https://github.com/tymmesyde/peario-client/issues">{{ $t('components.settings.links.report') }}</ALink>
                 </div>
             </div>
 
-            <Button clear large translate="components.settings.button" @click="close()"></Button>
+            <AButton clear large translate="components.settings.button" @click="close()" />
         </div>
     </div>
 </template>
@@ -47,21 +47,21 @@ import postscribe from 'postscribe';
 import ClientService from '../services/client.service';
 
 import { where } from 'langs';
-import Title from './ui/Title.vue';
-import Button from './ui/Button.vue';
-import Select from './ui/Select.vue';
-import TextInput from './ui/TextInput.vue';
-import Link from './ui/Link.vue';
+import ATitle from './ui/Title.vue';
+import AButton from './ui/Button.vue';
+import ASelect from './ui/Select.vue';
+import ATextInput from './ui/TextInput.vue';
+import ALink from './ui/Link.vue';
 
 import store from '../store';
 
 export default {
     components: {
-        Title,
-        Button,
-        Select,
-        TextInput,
-        Link
+        ATitle,
+        AButton,
+        ASelect,
+        ATextInput,
+        ALink
     },
     props: {
         show: Boolean

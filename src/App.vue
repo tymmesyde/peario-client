@@ -20,7 +20,8 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { computed, onMounted, watch } from 'vue';
 import { useMeta } from 'vue-meta';
 
 import Header from '@/components/Header.vue';
@@ -31,51 +32,42 @@ import store from './store';
 import StremioService from './services/stremio.service';
 import ClientService from './services/client.service';
 
-export default {
-    name: 'App',
-    components: {
-        Header,
-        Error,
-    },
-    computed: {
-        client: () => store.state.client,
-        info: () => store.state.info,
-        settings: () => store.state.settings
-    },
-    watch: {
-        'client.ready'() {
-            this.updateUserSettings();
-        }
-    },
-    setup() {
-        useMeta({
-            title: APP_TITLE
-        });
-    },
-    methods: {
-        updateUserSettings() {
-            if (this.settings.username) ClientService.send('user.update', { username: this.settings.username });
-        },
-        updateLocaleNavigator() {
-            const navigatorLocale = navigator.language.substr(0, 2);
-            if (Object.keys(this.settings.locales).includes(navigatorLocale)) store.dispatch('settings/updateLocale', navigatorLocale);
-        },
-        checkServerRunning() {
-            setInterval(async () => {
-                const status = await StremioService.isServerOpen();
-                store.commit('info/updateStremioStatus', status);
-            }, 5000);
-        }
-    },
-    mounted() {
-        store.dispatch('loadAddons');
-        store.dispatch('client/start');
-        store.dispatch('settings/load');
+const client = computed(() => store.state.client);
+const info = computed(() => store.state.info);
+const settings = computed(() => store.state.settings);
 
-        this.checkServerRunning();
-        this.updateLocaleNavigator();
-    }
+const updateUserSettings = () => {
+    if (settings.value.username)
+        ClientService.send('user.update', { username: settings.value.username });
 };
+
+const updateLocaleNavigator = () => {
+    const navigatorLocale = navigator.language.slice(0, 2);
+    if (Object.keys(settings.value.locales).includes(navigatorLocale))
+        store.dispatch('settings/updateLocale', navigatorLocale);
+};
+
+const checkServerRunning = () => {
+    setInterval(async () => {
+        const status = await StremioService.isServerOpen();
+        store.commit('info/updateStremioStatus', status);
+    }, 5000);
+};
+
+watch(() => client.value.ready, updateUserSettings);
+
+onMounted(() => {
+    store.dispatch('loadAddons');
+    store.dispatch('client/start');
+    store.dispatch('settings/load');
+
+    checkServerRunning();
+    updateLocaleNavigator();
+});
+
+useMeta({
+    title: APP_TITLE
+});
 </script>
 
 <style lang="scss">

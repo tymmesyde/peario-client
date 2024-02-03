@@ -14,16 +14,16 @@ Peario uses a server to link users together, which you can find here on GitHub: 
 
 ## Project setup
 ```
-npm install
+pnpm i
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+pnpm serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+pnpm build
 ```
 

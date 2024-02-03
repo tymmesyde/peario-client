@@ -15,8 +15,8 @@
 		</div>
 
 		<div class="container">
-			<Button clear icon="cube-outline" v-model="showAddons"></Button>
-			<Button clear icon="settings-outline" v-model="showSettings"></Button>
+			<AButton clear icon="cube-outline" v-model="showAddons" />
+			<AButton clear icon="settings-outline" v-model="showSettings" />
 		</div>
     </header>
 
@@ -31,14 +31,14 @@
 
 <script>
 import store from '../store';
-import Button from './ui/Button.vue';
+import AButton from './ui/Button.vue';
 import Settings from './Settings';
 import AddonManager from '@/components/AddonManager.vue';
 
 export default {
-	name: 'Header',
+	name: 'AHeader',
 	components: {
-		Button,
+		AButton,
 		Settings,
 		AddonManager
 	},
