@@ -29,8 +29,8 @@ export default {
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 90vw;
-    margin-left: -45vw;
+    width: 90%;
+    margin-left: -45%;
     padding: 1em;
     border-radius: 15px 15px 0 0;
     color: $text-color;
@@ -53,8 +53,8 @@ export default {
     .error {
         top: 0;
         bottom: inherit;
-        width: 40vh;
-        margin-left: -20vh;
+        width: 32rem;
+        margin-left: -16rem;
         border-radius: 0 0 15px 15px;
         animation: slide-down 0.1s ease-in-out;
     }

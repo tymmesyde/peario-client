@@ -78,8 +78,10 @@ export default {
 
         img {
             width: 300px;
-            font-size: 9vh;
+            line-height: 10rem;
+            font-size: 5rem;
             font-weight: 500;
+            color: $text-color;
         }
 
         button {

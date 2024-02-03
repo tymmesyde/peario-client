@@ -135,8 +135,8 @@ onBeforeRouteLeave(() => {
     .controls {
         z-index: 97;
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 0.75rem;
+        right: 1rem;
     }
 }
 

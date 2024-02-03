@@ -175,7 +175,7 @@ $overlay-background-color: rgba(0, 0, 0, 0.5);
         background-color: $overlay-background-color;
 
         ion-icon {
-            font-size: 7vh;
+            font-size: 5rem;
         }
     }
 

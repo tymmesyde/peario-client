@@ -50,8 +50,8 @@ const updateOwnership = (userId) => {
 .users-list {
     z-index: 96;
     position: absolute;
-    top: 0.5em;
-    left: 1em;
+    top: 0.75rem;
+    left: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1em;

@@ -179,7 +179,7 @@ export default {
 
         .bar {
             flex: none;
-            height:  65px;
+            height: 4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -206,9 +206,9 @@ export default {
         }
 
         .loading {
-            top: 0;
+            top: 4rem;
             position: absolute;
-            height: 100%;
+            height: calc(100% - 4rem);
             width: 100%;
             display: grid;
             place-items: center;

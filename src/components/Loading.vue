@@ -45,7 +45,7 @@ export default {
         gap: 10px;
 
         .icon {
-            font-size: 15vh;
+            font-size: 5rem;
             --ionicon-stroke-width: 20px;
         }
 
