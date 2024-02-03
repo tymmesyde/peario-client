@@ -21,7 +21,12 @@ module.exports = defineConfig({
             new webpack.DefinePlugin({
                 'process.env.PACKAGE_VERSION': JSON.stringify(version),
             })
-        ]
+        ],
+        devServer: {
+            client: {
+                overlay: false,
+            },
+        },
     },
     css: {
         loaderOptions: {
