@@ -1,5 +1,6 @@
-import Hls from "hls.js";
-import axios from "axios";
+import Hls from 'hls.js';
+import hat from 'hat';
+import { STREMIO_STREAMING_SERVER } from '@/common/config';
 
 const HlsService = {
 
@@ -12,34 +13,20 @@ const HlsService = {
         });
     },
 
-    async createPlaylist(videoUrl) {
-        const prefix = "stream-q-";
-        const qualities = [{
-            name: 320,
-            bandwith: 500000
-        }, {
-            name: 480,
-            bandwith: 800000
-        }, {
-            name: 720,
-            bandwith: 1000000
-        }];
+    async createPlaylist(mediaURL) {
+        const id = hat();
 
-        const playlistLevels = (await Promise.all(qualities.map(async ({ name, bandwith}) => {
-            try {
-                const streamQ = `${videoUrl}/${prefix}${name}.m3u8`;
-                await axios.get(streamQ);
-                return `#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=${bandwith},NAME="${name}"\n${streamQ}`;
-            } catch(e) {
-                return null;
-            }
-        }))).filter(level => level);
+        const queryParams = new URLSearchParams([
+            ['mediaURL', mediaURL],
+            ['videoCodecs', 'h264'],
+            ['videoCodecs', 'vp9'],
+            ['audioCodecs', 'aac'],
+            ['audioCodecs', 'mp3'],
+            ['audioCodecs', 'opus'],
+            ['maxAudioChannels', 2],
+        ]);
 
-        if (!playlistLevels.length) return null;
-
-        const playlistHeader = '#EXTM3U\n#EXT-X-VERSION:4\n';
-        const playlist = playlistHeader.concat(playlistLevels.join('\n'));
-        return URL.createObjectURL(new Blob([Buffer.from(playlist)], { type: 'application/x-mpegURL' }));
+        return `${STREMIO_STREAMING_SERVER}/hlsv2/${id}/master.m3u8?${queryParams.toString()}`;
     },
 
     loadHls(playlistUrl, videoElement) {

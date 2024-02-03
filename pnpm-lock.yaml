@@ -23,6 +23,9 @@ dependencies:
   events:
     specifier: ^3.3.0
     version: 3.3.0
+  hat:
+    specifier: ^0.0.3
+    version: 0.0.3
   hls.js:
     specifier: ^1.5.3
     version: 1.5.3
@@ -4651,6 +4654,10 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
+
+  /hat@0.0.3:
+    resolution: {integrity: sha512-zpImx2GoKXy42fVDSEad2BPKuSQdLcqsCYa48K3zHSzM/ugWuYjLDr8IXxpVuL7uCLHw56eaiLxCRthhOzf5ug==}
+    dev: false
 
   /he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
