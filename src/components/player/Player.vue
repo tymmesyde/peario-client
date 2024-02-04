@@ -38,13 +38,10 @@
             </div>
 
             <div class="panel">
-                <VolumeContol class="control"></VolumeContol>
-
-                <SubtitlesControl class="control" :videoUrl="options.src" :meta="options.meta" :userSubtitle="userSubtitle"></SubtitlesControl>
-
-                <HlsControl class="control" :options="options" v-if="options.hls"></HlsControl>
-
-                <FullScreenControl class="control" :player="playerRef" :video="videoRef"></FullScreenControl>
+                <VolumeContol class="control" />
+                <SubtitlesControl class="control" v-if="options.src && options.meta" :videoUrl="options.src" :meta="options.meta" :userSubtitle="userSubtitle" />
+                <HlsControl class="control" v-if="options.hls" :options="options" />
+                <FullScreenControl class="control" :player="playerRef" :video="videoRef" />
             </div>
         </div>
     </div>
